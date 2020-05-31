@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Carpeta Necesaria/PreparaManto/build/generated/src"/>
+	<classpathentry kind="src" path="Carpeta Necesaria/PreparaManto/src/java"/>
+	<classpathentry kind="src" path="fdhfhj/src"/>
+	<classpathentry kind="src" path="HospitalInfantil/src"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/JasperReportLibraries/commons-beanutils-1.8.2.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/JasperReportLibraries/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/JasperReportLibraries/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/JasperReportLibraries/commons-javaflow-20060411.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/JasperReportLibraries/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/JasperReportLibraries/groovy-all-2.0.1.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/JasperReportLibraries/iText-2.1.7.js2.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/JasperReportLibraries/jasperreports-5.6.0.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/commons-beanutils-1.8.2.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/commons-javaflow-20060411.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/groovy-all-2.0.1.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/iText-2.1.7.js2.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/jasperreports-5.6.0.jar"/>
+	<classpathentry kind="lib" path="Carpeta Necesaria/PreparaManto/build/web/WEB-INF/lib/mysql-connector-java-5.1.23-bin.jar"/>
+	<classpathentry kind="lib" path="jcalendar-1.3.3.jar"/>
+	<classpathentry kind="lib" path="lib/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-javaflow-20060411.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/groovy-all-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/iText-2.1.7.js2.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-5.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/JPlaceHolder.jar"/>
+	<classpathentry kind="lib" path="lib/LIB_IDETS.jar"/>
+	<classpathentry kind="lib" path="lib/NefAnimacion_V2.1_jdk18.jar"/>
+	<classpathentry kind="lib" path="rs2xml.jar"/>
+	<classpathentry kind="output" path="Carpeta Necesaria/PreparaManto/build/generated/classes"/>
+</classpath>

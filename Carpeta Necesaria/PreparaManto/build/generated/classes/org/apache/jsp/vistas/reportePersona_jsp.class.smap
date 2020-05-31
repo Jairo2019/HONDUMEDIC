@@ -1,0 +1,12 @@
+SMAP
+reportePersona_jsp.java
+JSP
+*S JSP
+*F
++ 0 reportePersona.jsp
+vistas/reportePersona.jsp
+*L
+1,15:50
+17,21:67
+37,5:88
+*E
