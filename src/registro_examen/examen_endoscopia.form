@@ -444,7 +444,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/img/Endoscope_64.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="RayosX"/>
+                    <Property name="text" type="java.lang.String" value="Endoscopia"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel9">
@@ -622,7 +622,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Tahoma" size="14" style="1"/>
                             </Property>
-                            <Property name="placeholder" type="java.lang.String" value="MOTIVO DE INGRESO"/>
+                            <Property name="placeholder" type="java.lang.String" value="OBSERVACIONES"/>
                           </Properties>
                         </Component>
                       </SubComponents>

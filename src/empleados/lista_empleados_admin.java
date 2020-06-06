@@ -331,6 +331,9 @@ PreparedStatement pst=null;
                         }else if (("3").equals(cual)){
                             registro_examen.examen_rayosx.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";
+                        }else if (("4").equals(cual)){
+                            registro_examen.examen_endoscopia.txtmedicoadmin.setText(nom + " "+  apellido);
+                            cual="";
                         }else{
                             registro_examen.examen_laboratorio.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";}

@@ -356,7 +356,7 @@ static Conexion cc = new Conexion();
         jLabel14.setForeground(new java.awt.Color(128, 128, 131));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Endoscope_64.png"))); // NOI18N
-        jLabel14.setText("RayosX");
+        jLabel14.setText("Endoscopia");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -384,7 +384,7 @@ static Conexion cc = new Conexion();
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtdescripcion.setPlaceholder("MOTIVO DE INGRESO");
+        txtdescripcion.setPlaceholder("OBSERVACIONES");
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -809,7 +809,7 @@ static Conexion cc = new Conexion();
         int cont = 1;
         String num = "";
         String c = "";
-        String SQL = "SELECT MAX(codigo) FROM test_rayosx";
+        String SQL = "SELECT MAX(codigo) FROM test_endoscopia";
 
         try {
             Statement st = cn.createStatement();
@@ -819,7 +819,7 @@ static Conexion cc = new Conexion();
             }
 
             if (c == null) {
-                numFac.setText("RX0001");
+                numFac.setText("RE0001");
             } else {
                 char r1 = c.charAt(2);
                 char r2 = c.charAt(3);
@@ -830,7 +830,7 @@ static Conexion cc = new Conexion();
                 j = Integer.parseInt(r);
                 GenerarCodigos gen = new GenerarCodigos();
                 gen.generar(j);
-                numFac.setText("RX" + gen.serie());
+                numFac.setText("RE" + gen.serie());
 
             }
 
@@ -866,7 +866,7 @@ static Conexion cc = new Conexion();
     }
   private void Get_Data(){
         limpiaCampos();
-        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',medico_3 as 'Ordeno Ingreso',num_habitacion as 'Habitación',observaciones as'Motivo de Ingreso',fecha as 'Fecha y Hora', total as 'Total (L)' from test_rayosx";
+        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',medico_3 as 'Ordeno Ingreso',num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_endoscopia";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -883,9 +883,9 @@ static Conexion cc = new Conexion();
             Producto pr = new Producto();
             idp = tablaCaja.getValueAt(i, 0).toString();
             cant = Integer.parseInt(tablaCaja.getValueAt(i, 3).toString());
-            pr = pdao.listarID_rayosx(idp);
+            pr = pdao.listarID_endoscopia(idp);
             int sa = pr.getStock() - cant;
-            pdao.actualizarStock_rayosx(sa, idp);
+            pdao.actualizarStock_endoscopia(sa, idp);
 
         }
     }
@@ -918,7 +918,7 @@ static Conexion cc = new Conexion();
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_rayosx(idventa,codigo,p_s,precio,cantidad,importe) values ('"+numFac.getText()+"','" +codigo+"','" + p_s +"','" +precio+"','" +cantidad+"','" +importe+ "')";
+        String sql= "insert into detalle_test_endoscopia(idventa,codigo,p_s,precio,cantidad,importe) values ('"+numFac.getText()+"','" +codigo+"','" + p_s +"','" +precio+"','" +cantidad+"','" +importe+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -931,7 +931,7 @@ static Conexion cc = new Conexion();
     }
          }
     private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_rayosx where idventa='" + numFac.getText() + "' ";
+        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_endoscopia where idventa='" + numFac.getText() + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -958,7 +958,7 @@ static Conexion cc = new Conexion();
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM test_rayosx WHERE paciente LIKE '%"+name+"%' ");
+                ResultSet rs = s.executeQuery("SELECT * FROM test_endoscopia WHERE paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1005,7 +1005,7 @@ static Conexion cc = new Conexion();
     }//GEN-LAST:event_tableCajaMouseClicked
 
     private void btnVender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVender1ActionPerformed
-        new lista_productos_servicios.productos_rayosx(new JFrame(), true).setVisible(true);
+        new lista_productos_servicios.productos_endoscopia(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnVender1ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -1054,7 +1054,7 @@ static Conexion cc = new Conexion();
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_rayosx(codigo,paciente,medico_1,medico_2,medico_3,num_habitacion,observaciones,fecha,total) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtmedicoindica.getText()+"','" +txtmedicoingreso.getText()+"','"+txtnumhabitacion.getText()+"','" +txtdescripcion.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
+            String sql= "insert into test_endoscopia(codigo,paciente,medico_1,medico_2,medico_3,num_habitacion,observaciones,fecha,total) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtmedicoindica.getText()+"','" +txtmedicoingreso.getText()+"','"+txtnumhabitacion.getText()+"','" +txtdescripcion.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 
@@ -1111,11 +1111,11 @@ static Conexion cc = new Conexion();
     }//GEN-LAST:event_quitarActionPerformed
 
     private void btnserviciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnserviciosActionPerformed
-        new lista_servicios.lista_rayosx(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
+        new lista_servicios.lista_endoscopia(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnserviciosActionPerformed
 
     private void btns_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_pacienteActionPerformed
-        pacientes.lista_pacientes_laboratorio.cual="3";
+        pacientes.lista_pacientes_laboratorio.cual="4";
         new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);  
         // TODO add your handling code here:
     }//GEN-LAST:event_btns_pacienteActionPerformed
@@ -1139,17 +1139,17 @@ static Conexion cc = new Conexion();
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btns_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_adminActionPerformed
-        empleados.lista_empleados_admin.cual="3";
+        empleados.lista_empleados_admin.cual="4";
         new empleados.lista_empleados_admin(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_btns_adminActionPerformed
 
     private void btns_medico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico1ActionPerformed
-        empleados.lista_empleados_mindica.cual="3";
+        empleados.lista_empleados_mindica.cual="4";
         new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btns_medico1ActionPerformed
 
     private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
-        empleados.lista_empleados_mingreso.cual="3";
+        empleados.lista_empleados_mingreso.cual="4";
         new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btns_medico2ActionPerformed
   

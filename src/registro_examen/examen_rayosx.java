@@ -384,7 +384,7 @@ static Conexion cc = new Conexion();
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtdescripcion.setPlaceholder("MOTIVO DE INGRESO");
+        txtdescripcion.setPlaceholder("OBSERVACIONES");
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -866,7 +866,7 @@ static Conexion cc = new Conexion();
     }
   private void Get_Data(){
         limpiaCampos();
-        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',medico_3 as 'Ordeno Ingreso',num_habitacion as 'Habitación',observaciones as'Motivo de Ingreso',fecha as 'Fecha y Hora', total as 'Total (L)' from test_rayosx";
+        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',medico_3 as 'Ordeno Ingreso',num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_rayosx";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
