@@ -279,7 +279,6 @@ PreparedStatement pst=null;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-                v.add(rs.getString(5));
                 dt.addRow(v);
 
             }
@@ -291,13 +290,6 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_buscarKeyReleased
 
     private void buscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarKeyTyped
-        char letras = evt.getKeyChar();
-
-        if (Character.isLowerCase(letras)) {
-            String cad = ("" + letras).toUpperCase();
-            letras = cad.charAt(0);
-            evt.setKeyChar(letras);
-        }
     }//GEN-LAST:event_buscarKeyTyped
 
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
@@ -326,6 +318,9 @@ PreparedStatement pst=null;
                     cual="";
                     }else if (("2").equals(cual)){
                     registro_examen.examen_hospitalizacion.txtmedicoingreso.setText(nom + " "+  apellido);
+                    cual="";
+                    }else if (("2.1").equals(cual)){
+                    Registro_Salida.salida_hospitalizacion.txtmedicosalida.setText(nom + " "+  apellido);
                     cual="";
                     }else if (("3").equals(cual)){
                     registro_examen.examen_rayosx.txtmedicoingreso.setText(nom + " "+  apellido);

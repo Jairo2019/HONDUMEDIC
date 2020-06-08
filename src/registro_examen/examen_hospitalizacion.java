@@ -171,7 +171,7 @@ static Conexion cc = new Conexion();
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Registro");
+        jLabel4.setText("Registro de Entradas");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -181,8 +181,8 @@ static Conexion cc = new Conexion();
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(129, 129, 129)
                 .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 744, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,7 +366,7 @@ static Conexion cc = new Conexion();
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 111, 177));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CODIGO DE EXAMEN");
+        jLabel3.setText("CODIGO DE REGISTRO");
 
         numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numFac.setForeground(new java.awt.Color(0, 111, 177));
@@ -866,7 +866,7 @@ static Conexion cc = new Conexion();
     }
   private void Get_Data(){
         limpiaCampos();
-        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',medico_3 as 'Ordeno Ingreso',num_habitacion as 'Habitación',observaciones as'Motivo de Ingreso',fecha as 'Fecha y Hora', total as 'Total (L)' from test_hospitalizacion";
+        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',medico_3 as 'Ordeno Ingreso',num_habitacion as 'Habitación',observaciones as'Motivo de Ingreso',fecha as 'Fecha y Hora', total as 'Total (L)' from test_hospitalizacion where estado=1 ";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -958,7 +958,7 @@ static Conexion cc = new Conexion();
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM test_hospitalizacion WHERE paciente LIKE '%"+name+"%' ");
+                ResultSet rs = s.executeQuery("SELECT * FROM test_hospitalizacion WHERE paciente LIKE '%"+name+"%' and estado=1 ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1058,7 +1058,7 @@ static Conexion cc = new Conexion();
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_hospitalizacion(codigo,paciente,medico_1,medico_2,medico_3,num_habitacion,observaciones,fecha,total) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtmedicoindica.getText()+"','" +txtmedicoingreso.getText()+"','"+txtnumhabitacion.getText()+"','" +txtdescripcion.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
+            String sql= "insert into test_hospitalizacion(codigo,paciente,medico_1,medico_2,medico_3,num_habitacion,observaciones,fecha,total,estado) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtmedicoindica.getText()+"','" +txtmedicoingreso.getText()+"','"+txtnumhabitacion.getText()+"','" +txtdescripcion.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText()+"','" +1+ "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 

@@ -37,6 +37,7 @@ import ventas.Ventas;
 import registro_examen.examen_laboratorio;
 import registro_examen.examen_emergencia;
 import registro_examen.examen_hospitalizacion;
+import Registro_Salida.salida_hospitalizacion;
 import registro_examen.examen_rayosx;
 import registro_examen.examen_endoscopia;
 /**
@@ -77,6 +78,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static examen_laboratorio examen_laboratorio= null;
     public static examen_emergencia examen_emergencia = null;
     public static examen_hospitalizacion examen_hospitalizacion = null;
+    public static salida_hospitalizacion salida_hospitalizacion=null;
     public static examen_rayosx examen_rayosx=null;
     public static examen_endoscopia examen_endoscopia=null;
     public static boolean estacerrado(Object obj) {

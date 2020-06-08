@@ -6,6 +6,7 @@
 package elegir;
 
 import Inventarios.inventario_hospitalizacion;
+import Registro_Salida.salida_hospitalizacion;
 import ventas.*;
 import alertas.principal.AWTUtilities;
 import java.util.Timer;
@@ -55,6 +56,7 @@ public class elegir_hospitalizacion extends javax.swing.JDialog {
         btnCancelar = new principal.MaterialButtomRectangle();
         btninventary = new principal.MaterialButtomRectangle();
         btnregistrar = new principal.MaterialButtomRectangle();
+        btnregistrarsalida = new principal.MaterialButtomRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -111,7 +113,8 @@ public class elegir_hospitalizacion extends javax.swing.JDialog {
 
         btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
         btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnregistrar.setText("Registrar Hospitalización");
+        btnregistrar.setText("Registrar Entrada");
+        btnregistrar.setToolTipText("");
         btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnregistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,41 +123,61 @@ public class elegir_hospitalizacion extends javax.swing.JDialog {
             }
         });
 
+        btnregistrarsalida.setBackground(new java.awt.Color(0, 111, 177));
+        btnregistrarsalida.setForeground(new java.awt.Color(255, 255, 255));
+        btnregistrarsalida.setText("Registrar Salida");
+        btnregistrarsalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnregistrarsalida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnregistrarsalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistrarsalidaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
         panel3.setLayout(panel3Layout);
         panel3Layout.setHorizontalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(panel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnservice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btninventary, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnregistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnservice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btninventary, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnregistrarsalida, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel3Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnservice, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btninventary, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnregistrarsalida, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,7 +260,7 @@ public class elegir_hospitalizacion extends javax.swing.JDialog {
     }//GEN-LAST:event_btninventaryActionPerformed
 
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-        PrincipalAdministrador.escritorio.removeAll();
+         PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
         if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.examen_hospitalizacion)) {
             PrincipalAdministrador.examen_hospitalizacion = new examen_hospitalizacion();
@@ -246,8 +269,21 @@ public class elegir_hospitalizacion extends javax.swing.JDialog {
             PrincipalAdministrador.examen_hospitalizacion.setSize(width, Height);
             PrincipalAdministrador.escritorio.add(PrincipalAdministrador.examen_hospitalizacion);
             PrincipalAdministrador.examen_hospitalizacion.show();
-        }          // TODO add your handling code here:
+        } // TODO add your handling code here:
     }//GEN-LAST:event_btnregistrarActionPerformed
+
+    private void btnregistrarsalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarsalidaActionPerformed
+                PrincipalAdministrador.escritorio.removeAll();
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.salida_hospitalizacion)) {
+            PrincipalAdministrador.salida_hospitalizacion = new salida_hospitalizacion();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.salida_hospitalizacion.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.salida_hospitalizacion);
+            PrincipalAdministrador.salida_hospitalizacion.show();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnregistrarsalidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,6 +338,7 @@ public class elegir_hospitalizacion extends javax.swing.JDialog {
     private principal.MaterialButtomRectangle btnCancelar;
     private principal.MaterialButtomRectangle btninventary;
     private principal.MaterialButtomRectangle btnregistrar;
+    private principal.MaterialButtomRectangle btnregistrarsalida;
     private principal.MaterialButtomRectangle btnservice;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
