@@ -329,7 +329,7 @@ PreparedStatement pst=null;
                     registro_examen.examen_endoscopia.txtmedicoingreso.setText(nom + " "+  apellido);
                     cual="";
                     }else{
-                    registro_examen.examen_laboratorio.txtmedicoingreso.setText(nom + " "+  apellido);
+                        
                     cual="";}
                     this.dispose();
                 }

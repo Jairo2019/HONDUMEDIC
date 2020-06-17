@@ -39,28 +39,46 @@ FROM
 	<field name="importe" class="java.lang.String"/>
 	<field name="subtotal" class="java.lang.String"/>
 	<field name="total" class="java.lang.String"/>
+	<field name="adeuda" class="java.lang.String"/>
 	<group name="my">
 		<groupFooter>
 			<band height="122">
 				<frame>
-					<reportElement mode="Opaque" x="359" y="10" width="196" height="90" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#F7F9FA" uuid="0c9aa0e1-5a75-4d32-8a62-d3fdce197233"/>
+					<reportElement mode="Opaque" x="317" y="10" width="238" height="100" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#F7F9FA" uuid="0c9aa0e1-5a75-4d32-8a62-d3fdce197233"/>
 					<textField>
-						<reportElement x="60" y="40" width="100" height="18" uuid="4d04dc3c-7b68-4db9-8910-7b517ad7a213">
+						<reportElement x="100" y="40" width="100" height="18" uuid="4d04dc3c-7b68-4db9-8910-7b517ad7a213">
 							<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fa1cc126-4eab-487c-b92c-309df57608ff"/>
 						</reportElement>
 						<textFieldExpression><![CDATA[$F{isv}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="60" y="16" width="100" height="20" uuid="5056b08a-34d7-4f9c-b0aa-9109e199f494">
+						<reportElement x="100" y="19" width="100" height="20" uuid="5056b08a-34d7-4f9c-b0aa-9109e199f494">
 							<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="453ab2e7-57c8-4473-880b-360ca129541a"/>
 						</reportElement>
 						<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
 					</textField>
 					<textField>
-						<reportElement x="60" y="61" width="100" height="16" uuid="27a5c912-63ea-4a4e-8386-978e9ba867dc">
+						<reportElement x="100" y="61" width="100" height="16" uuid="27a5c912-63ea-4a4e-8386-978e9ba867dc">
 							<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ccf88ed0-bd90-460d-8c7b-b9666a2d5b66"/>
 						</reportElement>
 						<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+					</textField>
+					<line>
+						<reportElement x="59" y="78" width="136" height="1" uuid="b8dc8b4b-f981-4d37-b523-886bd0187ab7"/>
+						<graphicElement>
+							<pen lineWidth="1.5" lineStyle="Double"/>
+						</graphicElement>
+					</line>
+					<staticText>
+						<reportElement style="Column header" x="2" y="80" width="92" height="15" forecolor="#000000" uuid="a9730a7f-eaab-4fdf-89fd-fedf3df75248"/>
+						<textElement textAlignment="Right">
+							<font size="10" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Saldo Adeudado:]]></text>
+					</staticText>
+					<textField>
+						<reportElement x="100" y="80" width="100" height="15" uuid="afbfe2a5-7eca-4bbc-bc21-f4b31d6971b7"/>
+						<textFieldExpression><![CDATA[$F{adeuda}]]></textFieldExpression>
 					</textField>
 				</frame>
 				<staticText>

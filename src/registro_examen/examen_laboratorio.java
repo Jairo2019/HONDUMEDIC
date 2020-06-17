@@ -129,9 +129,6 @@ static Conexion cc = new Conexion();
         txtmedicoindica = new app.bolivia.swing.JCTextField();
         btns_medico1 = new principal.MaterialButton();
         jLabel6 = new javax.swing.JLabel();
-        txtmedicoingreso = new app.bolivia.swing.JCTextField();
-        btns_medico2 = new principal.MaterialButton();
-        jLabel8 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCaja = new javax.swing.JTable();
@@ -506,10 +503,10 @@ static Conexion cc = new Conexion();
         txtmedicoadmin.setEnabled(false);
         txtmedicoadmin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtmedicoadmin.setPlaceholder("PERSONA QUE REALIZA EXAMEN");
-        jPanel4.add(txtmedicoadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 240, 30));
+        jPanel4.add(txtmedicoadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 240, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/atiende.png"))); // NOI18N
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 310, -1));
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 310, -1));
 
         btns_admin.setBackground(new java.awt.Color(0, 111, 177));
         btns_admin.setBorder(null);
@@ -525,7 +522,7 @@ static Conexion cc = new Conexion();
                 btns_adminActionPerformed(evt);
             }
         });
-        jPanel4.add(btns_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 80, 50));
+        jPanel4.add(btns_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 80, 50));
 
         txtmedicoindica.setEditable(false);
         txtmedicoindica.setBorder(null);
@@ -534,7 +531,7 @@ static Conexion cc = new Conexion();
         txtmedicoindica.setEnabled(false);
         txtmedicoindica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtmedicoindica.setPlaceholder("MEDICO QUE INDICA");
-        jPanel4.add(txtmedicoindica, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 240, 30));
+        jPanel4.add(txtmedicoindica, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 240, 30));
 
         btns_medico1.setBackground(new java.awt.Color(0, 111, 177));
         btns_medico1.setBorder(null);
@@ -550,38 +547,10 @@ static Conexion cc = new Conexion();
                 btns_medico1ActionPerformed(evt);
             }
         });
-        jPanel4.add(btns_medico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 80, 50));
+        jPanel4.add(btns_medico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, 80, 50));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/indication.png"))); // NOI18N
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 310, -1));
-
-        txtmedicoingreso.setEditable(false);
-        txtmedicoingreso.setBorder(null);
-        txtmedicoingreso.setForeground(new java.awt.Color(58, 159, 171));
-        txtmedicoingreso.setToolTipText("");
-        txtmedicoingreso.setEnabled(false);
-        txtmedicoingreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtmedicoingreso.setPlaceholder("MEDICO QUE ORDENA INGRESO");
-        jPanel4.add(txtmedicoingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 240, 30));
-
-        btns_medico2.setBackground(new java.awt.Color(0, 111, 177));
-        btns_medico2.setBorder(null);
-        btns_medico2.setForeground(new java.awt.Color(255, 255, 255));
-        btns_medico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_medico2.setText("buscar");
-        btns_medico2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_medico2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_medico2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_medico2.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_medico2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_medico2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btns_medico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 80, 50));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/insert.png"))); // NOI18N
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 310, -1));
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 310, -1));
 
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -855,7 +824,6 @@ static Conexion cc = new Conexion();
         txtdescripcion.setText("");
         txtmedicoadmin.setText("");
         txtmedicoindica.setText("");
-        txtmedicoingreso.setText("");
         txtnumhabitacion.setText("");
         lblTotal.setText("0.0");
         txtFecha.setText(fechaactual());
@@ -865,7 +833,7 @@ static Conexion cc = new Conexion();
     }
   private void Get_Data(){
         limpiaCampos();
-        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',medico_3 as 'Ordeno Ingreso',num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_laboratorio";
+        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_laboratorio";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -986,12 +954,11 @@ static Conexion cc = new Conexion();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
             txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,7).toString());
             txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,3).toString()) ;
-            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
-            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
-            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
+            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
             txttotal.setText("TOTAL PAGADO: L");
             thishide.setVisible(true);
             btnVender.setEnabled(false);
@@ -1040,10 +1007,6 @@ static Conexion cc = new Conexion();
                 JOptionPane.showMessageDialog( this, "Ingrese Medico que Indica el Examen","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }  
-            if (txtmedicoingreso.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese el Medico que Ordeno el Ingreso del Paciente","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
             if (txtnumhabitacion.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Número de Habitación","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -1053,7 +1016,7 @@ static Conexion cc = new Conexion();
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_laboratorio(codigo,paciente,medico_1,medico_2,medico_3,num_habitacion,observaciones,fecha,total) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtmedicoindica.getText()+"','" +txtmedicoingreso.getText()+"','"+txtnumhabitacion.getText()+"','" +txtdescripcion.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
+            String sql= "insert into test_laboratorio(codigo,paciente,medico_1,medico_2,num_habitacion,observaciones,fecha,total) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtmedicoindica.getText()+"','"+txtnumhabitacion.getText()+"','" +txtdescripcion.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 
@@ -1143,10 +1106,6 @@ static Conexion cc = new Conexion();
     private void btns_medico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico1ActionPerformed
         new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btns_medico1ActionPerformed
-
-    private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
-        new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
-    }//GEN-LAST:event_btns_medico2ActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1156,7 +1115,6 @@ static Conexion cc = new Conexion();
     private principal.MaterialButton btnedit;
     private principal.MaterialButton btns_admin;
     private principal.MaterialButton btns_medico1;
-    private principal.MaterialButton btns_medico2;
     private principal.MaterialButton btns_paciente;
     private principal.MaterialButton btnservicios;
     private app.bolivia.swing.JCTextField c_search_tbl;
@@ -1171,7 +1129,6 @@ static Conexion cc = new Conexion();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1200,7 +1157,6 @@ static Conexion cc = new Conexion();
     private app.bolivia.swing.JCTextField txtdescripcion;
     public static app.bolivia.swing.JCTextField txtmedicoadmin;
     public static app.bolivia.swing.JCTextField txtmedicoindica;
-    public static app.bolivia.swing.JCTextField txtmedicoingreso;
     private app.bolivia.swing.JCTextField txtnumhabitacion;
     public static app.bolivia.swing.JCTextField txtpaciente;
     private javax.swing.JLabel txttotal;

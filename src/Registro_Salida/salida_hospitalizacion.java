@@ -601,7 +601,7 @@ static Conexion cc = new Conexion();
                 return;
             }
             if (txtmedicosalida.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese el Medico que Ordeno el Ingreso del Paciente","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog( this, "Ingrese el Medico que Ordeno la Salida del Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtFecha.getText().equals("")) {

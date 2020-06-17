@@ -1,9 +1,9 @@
 package clases_cajas_servicios;
 
-public class laboratorio {
-    String paciente,num_fac,estado,fecha,isv,codigo,nombre_p, precio, cantidad,importe, subtotal, total;
+public class laboratorio_Credito {
+    String paciente,num_fac,estado,fecha,isv,codigo,nombre_p, precio, cantidad,importe, subtotal,adeuda, total;
 
-    public laboratorio(String paciente, String num_fac, String estado, String fecha, String isv, String codigo, String nombre_p, String precio, String cantidad, String importe, String subtotal, String total) {
+    public laboratorio_Credito(String paciente, String num_fac, String estado, String fecha, String isv, String codigo, String nombre_p, String precio, String cantidad, String importe, String subtotal, String adeuda,String total) {
         this.paciente = paciente;
         this.num_fac = num_fac;
         this.estado = estado;
@@ -16,6 +16,7 @@ public class laboratorio {
         this.importe = importe;
         this.subtotal = subtotal;
         this.total = total;
+         this.adeuda= adeuda;
     }
 
 
@@ -66,7 +67,9 @@ public class laboratorio {
     public String getCodigo() {
         return codigo;
     }
-
+    public String getAdeuda() {
+        return adeuda;
+    }
     public void setPaciente(String paciente) {
         this.paciente = paciente;
     }
@@ -113,4 +116,7 @@ public class laboratorio {
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }  
+    public void setAdeuda(String adeuda) {
+        this.adeuda = adeuda;
+    }
 }

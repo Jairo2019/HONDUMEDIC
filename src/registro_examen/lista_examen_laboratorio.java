@@ -50,6 +50,7 @@ ResultSet rs=null;
     static Connection cn = cc.ConnectDB();
     static PreparedStatement ps;
 PreparedStatement pst=null;
+public static Double value ;
     public lista_examen_laboratorio(JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -97,9 +98,8 @@ PreparedStatement pst=null;
         btnMenos = new principal.MaterialButtonCircle();
         buscar = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtCantidad = new app.bolivia.swing.JCTextField();
-        jLabel9 = new javax.swing.JLabel();
         cantidadAlmacen = new javax.swing.JLabel();
+        send = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -253,24 +253,17 @@ PreparedStatement pst=null;
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productos/campo-buscar.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 210, -1));
 
-        txtCantidad.setBorder(null);
-        txtCantidad.setForeground(new java.awt.Color(58, 159, 171));
-        txtCantidad.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtCantidad.setPlaceholder("CANTIDAD");
-        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCantidadKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 80, 110, 30));
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/campo-cantidad.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, -1, -1));
-
         cantidadAlmacen.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cantidadAlmacen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cantidadAlmacen.setText("CANTIDAD");
         jPanel1.add(cantidadAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, 29));
+
+        send.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        send.setForeground(new java.awt.Color(0, 0, 0));
+        send.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        send.setText("Agregar Examen");
+        send.setToolTipText("");
+        jPanel1.add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, 140, 40));
 
         panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 8, 960, 590));
 
@@ -279,7 +272,7 @@ PreparedStatement pst=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
-        String sql="select codigo_laboratorio as 'Codigo', nombre as 'Nombre', precio as 'Precio', cantidad as 'Cantidad Disponible' from inventario_laboratorio";
+        String sql="select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_laboratorio";
 
         try{
          pst=con.prepareStatement(sql);
@@ -318,6 +311,19 @@ PreparedStatement pst=null;
         cajaservicios.caja_laboratorio.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
+    private void show_detalle(){
+        int fila = tabla.getSelectedRow();
+        String cod = tabla.getValueAt(fila, 0).toString();
+        String sql="select codigo as 'Codigo',p_s as 'Producto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_laboratorio where idventa='" + cod + "' ";
+        try{
+         pst=con.prepareStatement(sql);
+         rs= pst.executeQuery();
+         cajaservicios.caja_laboratorio.tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
+         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+          
+}    
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
@@ -332,7 +338,7 @@ PreparedStatement pst=null;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select codigo_laboratorio as 'Codigo', nombre as 'Nombre', precio as 'Precio', cantidad as 'Cantidad Disponible' from inventario_laboratorio WHERE nombre LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_laboratorio WHERE paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -341,6 +347,8 @@ PreparedStatement pst=null;
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
+                v.add(rs.getString(6));
+                v.add(rs.getString(7));
                 dt.addRow(v);
 
             }
@@ -365,7 +373,7 @@ PreparedStatement pst=null;
         if (tabla.getRowCount() > 0) {
             try {
                 String cant = null;
-                DefaultTableModel tabladet = (DefaultTableModel) cajaservicios.caja_laboratorio.tablaCaja.getModel();
+
 
                 String[] dato = new String[6];
 
@@ -379,69 +387,22 @@ PreparedStatement pst=null;
                     er.setVisible(true);
                 } else {
                     String cod = tabla.getValueAt(fila, 0).toString();
-                    String nom = tabla.getValueAt(fila, 1).toString();
-                    String precio = tabla.getValueAt(fila, 2).toString();
-                    int c = 0;
-                    int j = 0;
-                    if (this.txtCantidad.getText().equals("") || this.txtCantidad.getText().equals("0") ) {
-                        ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                        er.titulo.setText("OOPS...");
-                        er.msj.setText("DEBES INGRESAR UNA");
-                        er.msj1.setText("CANTIDAD");
-                        er.setVisible(true);
-                    } else {
-                        int total = Integer.parseInt(this.cantidadAlmacen.getText()) - Integer.parseInt(this.txtCantidad.getText());
-
-                        if (total < 0) {
-                            ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                            er.titulo.setText("OOPS...");
-                                er.msj.setText("VERIFICA LA CANTIDAD DISPONIBLE");
-                            er.msj1.setText("DE ESTE PRODUCTO");
-                            er.setVisible(true);
-                        } else {
-                        cant= txtCantidad.getText();
-                        for (int i = 0; i < cajaservicios.caja_laboratorio.tablaCaja.getRowCount(); i++) {
-                            Object com = cajaservicios.caja_laboratorio.tablaCaja.getValueAt(i, 0);
-                            Object cant1 = cajaservicios.caja_laboratorio.tablaCaja.getValueAt(i, 3);
+                    String paciente = tabla.getValueAt(fila, 1).toString();
+                            String com = cajaservicios.caja_laboratorio.codetest.getText();
                             if (cod.equals(com)) {
-                                j = i;
-                                int cantT = Integer.parseInt(cant) + Integer.parseInt((String) cant1);
-                                int ct= Integer.parseInt(this.cantidadAlmacen.getText());
-                                if (cantT > ct) {
-                                    ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                                    er.titulo.setText("OOPS...");
-                                    er.msj.setText("LA SUMA EXCEDE LA CANTIDAD");
-                                    er.msj1.setText("DE ESTE PRODUCTO");
-                                    er.setVisible(true);
-                                    c=1;
-                                }else{
-                                    cajaservicios.caja_laboratorio.tablaCaja.setValueAt(String.valueOf(cantT), i, 3);
-                                    c=1;
-                                    calcular();
-                                    cajaservicios.caja_laboratorio.txtImporte.setText("");
-                                    cajaservicios.caja_laboratorio.txtCambio.setText("");
-                                }
-                            }
-                        }
-//                        actualizar_stock(total);
-                        this.dispose();
-                        if (c == 0) {
-
-                            dato[0] = cod;
-                            dato[1] = nom;
-                            dato[2] = precio;
-                            dato[3] = cant;
-
-                            tabladet.addRow(dato);
-
-                            cajaservicios.caja_laboratorio.tablaCaja.setModel(tabladet);
+                                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                                er.titulo.setText("OOPS...");
+                                er.msj.setText("EL EXAMEN");
+                                er.msj1.setText("YA SE INGRESO");
+                                er.setVisible(true);
+                                this.dispose();
+                            }else{
+                            cajaservicios.caja_laboratorio.codetest.setText(cod); 
+                            cajaservicios.caja_laboratorio.txtpaciente.setText(paciente);   
+                            show_detalle();
                             calcular();
-
-                            cajaservicios.caja_laboratorio. txtImporte.setText("");
-                            cajaservicios.caja_laboratorio.txtCambio.setText("");
-                            
-                        }}
-                    }
+                            this.dispose();
+                            }          
                 }
             } catch (Exception e) {
             }
@@ -452,13 +413,6 @@ PreparedStatement pst=null;
             er.msj1.setText("");
             er.setVisible(true);}
     }//GEN-LAST:event_btnMenosActionPerformed
-
-    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
-        char num = evt.getKeyChar();
-        if ((num < '0' || num > '9')) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtCantidadKeyTyped
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
 
@@ -768,14 +722,13 @@ PreparedStatement pst=null;
     private principal.MaterialButton cerrar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private org.edisoncor.gui.panel.Panel panel1;
+    private javax.swing.JLabel send;
     public static javax.swing.JTable tabla;
-    private app.bolivia.swing.JCTextField txtCantidad;
     // End of variables declaration//GEN-END:variables
 }
