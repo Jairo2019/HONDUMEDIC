@@ -37,7 +37,7 @@ import tabla.MyScrollbarUI;
  *
  * @author Rojeru San
  */
-public class lista_examen_laboratorio extends javax.swing.JDialog {
+public class lista_examen_rayosx extends javax.swing.JDialog {
 
     /**
      * Creates new form Principal
@@ -51,7 +51,7 @@ ResultSet rs=null;
     static PreparedStatement ps;
 PreparedStatement pst=null;
 public static Double value ;
-    public lista_examen_laboratorio(JFrame parent, boolean modal) {
+    public lista_examen_rayosx(JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
@@ -273,7 +273,7 @@ public static Double value ;
         pack();
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
-        String sql="select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_laboratorio";
+        String sql="select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_rayosx";
 
         try{
          pst=con.prepareStatement(sql);
@@ -296,30 +296,30 @@ public static Double value ;
         double imp = 0.0;
         double isv= 0.0;
 
-        for (int i = 0; i < cajaservicios.caja_laboratorio.tablaCaja.getRowCount(); i++) {
-            pre = cajaservicios.caja_laboratorio.tablaCaja.getValueAt(i, 2).toString();
-            can = cajaservicios.caja_laboratorio.tablaCaja.getValueAt(i, 3).toString();
+        for (int i = 0; i < cajaservicios.caja_rayosx.tablaCaja.getRowCount(); i++) {
+            pre = cajaservicios.caja_rayosx.tablaCaja.getValueAt(i, 2).toString();
+            can = cajaservicios.caja_rayosx.tablaCaja.getValueAt(i, 3).toString();
             precio = Double.parseDouble(pre);
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            double value = Double.valueOf(cajaservicios.caja_laboratorio.isv.getText());
+            double value = Double.valueOf(cajaservicios.caja_rayosx.isv.getText());
             isv=((value/100) * total);
-            cajaservicios.caja_laboratorio.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
+            cajaservicios.caja_rayosx.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
 
         }
-        cajaservicios.caja_laboratorio.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
-        cajaservicios.caja_laboratorio.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
+        cajaservicios.caja_rayosx.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
+        cajaservicios.caja_rayosx.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
     private void show_detalle(){
         int fila = tabla.getSelectedRow();
         String cod = tabla.getValueAt(fila, 0).toString();
-        String sql="select codigo as 'Codigo',p_s as 'Producto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_laboratorio where idventa='" + cod + "' ";
+        String sql="select codigo as 'Codigo',p_s as 'Producto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_rayosx where idventa='" + cod + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
-         cajaservicios.caja_laboratorio.tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
+         cajaservicios.caja_rayosx.tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
           
@@ -339,7 +339,7 @@ public static Double value ;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_laboratorio WHERE paciente LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_rayosx WHERE paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -389,7 +389,7 @@ public static Double value ;
                 } else {
                     String cod = tabla.getValueAt(fila, 0).toString();
                     String paciente = tabla.getValueAt(fila, 1).toString();
-                            String com = cajaservicios.caja_laboratorio.codetest.getText();
+                            String com = cajaservicios.caja_rayosx.codetest.getText();
                             if (cod.equals(com)) {
                                 ErrorAlert er = new ErrorAlert(new JFrame(), true);
                                 er.titulo.setText("OOPS...");
@@ -398,8 +398,8 @@ public static Double value ;
                                 er.setVisible(true);
                                 this.dispose();
                             }else{
-                            cajaservicios.caja_laboratorio.codetest.setText(cod); 
-                            cajaservicios.caja_laboratorio.txtpaciente.setText(paciente);   
+                            cajaservicios.caja_rayosx.codetest.setText(cod); 
+                            cajaservicios.caja_rayosx.txtpaciente.setText(paciente);   
                             show_detalle();
                             calcular();
                             this.dispose();
@@ -436,14 +436,270 @@ public static Double value ;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(lista_examen_laboratorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lista_examen_rayosx.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(lista_examen_laboratorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lista_examen_rayosx.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(lista_examen_laboratorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lista_examen_rayosx.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(lista_examen_laboratorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(lista_examen_rayosx.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -704,7 +960,7 @@ public static Double value ;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                lista_examen_laboratorio dialog = new lista_examen_laboratorio(new javax.swing.JFrame(), true);
+                lista_examen_rayosx dialog = new lista_examen_rayosx(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -8,6 +8,7 @@ package elegir;
 import Inventarios.inventario_rayosx;
 import ventas.*;
 import alertas.principal.AWTUtilities;
+import cajaservicios.caja_rayosx;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
@@ -188,13 +189,13 @@ public class elegir_rayosx extends javax.swing.JDialog {
 
     private void btnbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbillActionPerformed
         this.dispose();
-        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.ventas)) {
-            PrincipalAdministrador.ventas = new Ventas();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.caja_rayosx)) {
+            PrincipalAdministrador.caja_rayosx = new caja_rayosx();
             int width = PrincipalAdministrador.escritorio.getWidth();
             int Height = PrincipalAdministrador.escritorio.getHeight();
-            PrincipalAdministrador.ventas.setSize(width, Height);
-            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.ventas);
-            PrincipalAdministrador.ventas.show();
+            PrincipalAdministrador.caja_rayosx.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.caja_rayosx);
+            PrincipalAdministrador.caja_rayosx.show();
         }
     }//GEN-LAST:event_btnbillActionPerformed
 

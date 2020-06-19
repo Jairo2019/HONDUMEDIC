@@ -23,6 +23,7 @@ import Inventarios.inventario_laboratorio;
 import Inventarios.inventario_rayosx;
 import Inventarios.inventario_ultrasonido;
 import cajaservicios.caja_laboratorio;
+import cajaservicios.caja_rayosx;
 import alertas.principal.FadeEffect;
 import alertas.principal.WarningAlertCerrar;
 import alertas.principal.WarningAlertSalir;
@@ -75,6 +76,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static inventario_rayosx inventario_rayosx = null;
     public static inventario_ultrasonido inventario_ultrasonido = null;
     public static caja_laboratorio caja_laboratorio =null;
+    public static caja_rayosx caja_rayosx =null;
     public static examen_laboratorio examen_laboratorio= null;
     public static examen_emergencia examen_emergencia = null;
     public static examen_hospitalizacion examen_hospitalizacion = null;

@@ -49,7 +49,7 @@ FROM
 						<reportElement x="100" y="40" width="100" height="18" uuid="4d04dc3c-7b68-4db9-8910-7b517ad7a213">
 							<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fa1cc126-4eab-487c-b92c-309df57608ff"/>
 						</reportElement>
-						<textFieldExpression><![CDATA[$F{isv}]]></textFieldExpression>
+						<textFieldExpression><![CDATA[$F{isv} + "%"]]></textFieldExpression>
 					</textField>
 					<textField>
 						<reportElement x="100" y="19" width="100" height="20" uuid="5056b08a-34d7-4f9c-b0aa-9109e199f494">

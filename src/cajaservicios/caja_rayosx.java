@@ -36,13 +36,13 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import clases_cajas_servicios.laboratorio;
-import clases_cajas_servicios.laboratorio_Credito;
+import clases_cajas_servicios.rayosx;
+import clases_cajas_servicios.rayosx_Credito;
 /**
  *
  * @author Rojeru San
  */
-public class caja_laboratorio extends javax.swing.JInternalFrame {
+public class caja_rayosx extends javax.swing.JInternalFrame {
 SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
 Connection con=null;
 Date dato = null;
@@ -73,7 +73,7 @@ static Conexion cc = new Conexion();
     }
  int filas;
     DefaultTableModel m;
-    public caja_laboratorio() {
+    public caja_rayosx() {
         initComponents();
         tablaCaja.getTableHeader().setDefaultRenderer(new principal.EstiloTablaHeader());
         tablaCaja.setDefaultRenderer(Object.class, new principal.EstiloTablaRenderer());
@@ -239,8 +239,8 @@ static Conexion cc = new Conexion();
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Laboratory_64.png"))); // NOI18N
-        jLabel7.setText("Laboratorio");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/XRay_64.png"))); // NOI18N
+        jLabel7.setText("RayosX");
 
         pnlChange.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -525,8 +525,8 @@ static Conexion cc = new Conexion();
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(128, 128, 131));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Laboratory_64.png"))); // NOI18N
-        jLabel14.setText("Laboratorio");
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/XRay_64.png"))); // NOI18N
+        jLabel14.setText("RayosX");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1020,7 +1020,7 @@ static Conexion cc = new Conexion();
         int cont = 1;
         String num = "";
         String c = "";
-        String SQL = "SELECT MAX(idventa) FROM caja_laboratorio";
+        String SQL = "SELECT MAX(idventa) FROM caja_rayosx";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
@@ -1039,7 +1039,7 @@ static Conexion cc = new Conexion();
             }
 
         } catch (SQLException ex) {
-//           Logger.getLogger(opciones_laboratorioVen.class.getName()).log(Level.SEVERE, null, ex);
+//           Logger.getLogger(opciones_rayosxVen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1083,7 +1083,7 @@ static Conexion cc = new Conexion();
     //obtener los datos de la base de datos
   private void Get_Data(){
         thishide.setVisible(false);
-        String sql="select idventa as 'Codigo',codigo_examen as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_laboratorio where estado_pago='Contado'";
+        String sql="select idventa as 'Codigo',codigo_examen as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_rayosx where estado_pago='Contado'";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -1103,12 +1103,12 @@ static Conexion cc = new Conexion();
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
-        cajaservicios.caja_laboratorio.txttotalcaja.setText("TOTAL EN CAJA: L " + Math.rint((total) * 100) / 100);
+        cajaservicios.caja_rayosx.txttotalcaja.setText("TOTAL EN CAJA: L " + Math.rint((total) * 100) / 100);
   }
   //obtiene las factura que se a hecho al credito
   void cuentas_cobrar(){
         thishide.setVisible(true);
-        String sql="select idventa as 'Codigo',codigo_examen as 'Codigo Examen', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',abonado as 'Saldo Adeudado', pendiente as 'Saldo Pendiennte', total as 'Total (L)' from caja_laboratorio where estado_pago='Crédito'";
+        String sql="select idventa as 'Codigo',codigo_examen as 'Codigo Examen', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',abonado as 'Saldo Adeudado', pendiente as 'Saldo Pendiennte', total as 'Total (L)' from caja_rayosx where estado_pago='Crédito'";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -1127,7 +1127,7 @@ static Conexion cc = new Conexion();
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
-        cajaservicios.caja_laboratorio.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
+        cajaservicios.caja_rayosx.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
 }
   //saber si la factura es al credito o al contado
 private String condiciones(String estado_actual){
@@ -1171,11 +1171,11 @@ private void condicionIsv( ){
         if (isv.getText().isEmpty() || isv.getText().equals("0")){
             JOptionPane.showMessageDialog( this, "Ingrese el Porcentaje de Impuesto","Error", JOptionPane.ERROR_MESSAGE);
         }else{
-            new registro_examen.lista_examen_laboratorio(new JFrame(), true).setVisible(true);
+            new registro_examen.lista_examen_rayosx(new JFrame(), true).setVisible(true);
         }    
         }else if(rbnoisv.isSelected()){
         isv.setText("0");
-         new registro_examen.lista_examen_laboratorio(new JFrame(), true).setVisible(true);   
+         new registro_examen.lista_examen_rayosx(new JFrame(), true).setVisible(true);   
      }else{
         JOptionPane.showMessageDialog( this, "Seleccione si aplica o no aplica Impuesto","Error", JOptionPane.ERROR_MESSAGE);
         
@@ -1184,15 +1184,15 @@ private void condicionIsv( ){
 //    paciente,num_fac,estado,fecha,codigo_examen,codigo,nombre_p, precio, cantidad,importe, subtotal, total
 // llenar la factura
     void print_bill(){
-        laboratorio em;// Instaciamos la clase empleado
-        List <laboratorio>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        rayosx em;// Instaciamos la clase empleado
+        List <rayosx>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-            em = new laboratorio(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            em = new rayosx(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
             tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),lblsubtotal.getText(),lblTotal.getText());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
-        String path = "src\\reportes\\caja_laboratorio_contado.jasper"; //Ponemos la localizacion del reporte creado
+        String path = "src\\reportes\\caja_rayosx_contado.jasper"; //Ponemos la localizacion del reporte creado
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
@@ -1204,15 +1204,15 @@ private void condicionIsv( ){
         } 
 }
     void print_bill_credit(){
-        laboratorio_Credito em;// Instaciamos la clase empleado
-        List <laboratorio_Credito>lista = new ArrayList<>(); //lista de los datos de la factura con ArrayList para obtener cada dato del laboratorio
+        rayosx_Credito em;// Instaciamos la clase empleado
+        List <rayosx_Credito>lista = new ArrayList<>(); //lista de los datos de la factura con ArrayList para obtener cada dato del rayosx
         for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-            em = new laboratorio_Credito(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            em = new rayosx_Credito(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
             tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),lblsubtotal.getText(),txtcredito.getText(),lblTotal.getText());
             lista.add(em); //se lee el objeto laboratrio a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
-        String path = "src\\reportes\\caja_laboratorio_credito.jasper"; //Ponemos la localizacion del reporte creado
+        String path = "src\\reportes\\caja_rayosx_credito.jasper"; //Ponemos la localizacion del reporte creado
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
@@ -1246,15 +1246,15 @@ private void condicionIsv( ){
 //        String isvr= ("" + Math.rint((isvl) * 100) / 100);
 //        double disv= Double.parseDouble(isvr);
         Integer cvisv = (int)Math.round(isvl);
-        laboratorio_Credito em;// Instaciamos la clase empleado
-        List <laboratorio_Credito>lista = new ArrayList<>(); //lista de los datos de la factura con ArrayList para obtener cada dato del laboratorio
+        rayosx_Credito em;// Instaciamos la clase empleado
+        List <rayosx_Credito>lista = new ArrayList<>(); //lista de los datos de la factura con ArrayList para obtener cada dato del rayosx
         for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-            em = new laboratorio_Credito(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),cvisv.toString(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            em = new rayosx_Credito(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),cvisv.toString(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
             tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),sub,liquidate.toString(),lblTotal.getText());
             lista.add(em); //se lee el objeto laboratrio a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
-        String path = "src\\reportes\\caja_laboratorio_credito.jasper"; //Ponemos la localizacion del reporte creado
+        String path = "src\\reportes\\caja_rayosx_credito.jasper"; //Ponemos la localizacion del reporte creado
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
@@ -1277,7 +1277,7 @@ private void condicionIsv( ){
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select idventa as 'Codigo',codigo_examen as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_laboratorio WHERE fecha ='" + fecH + "' and estado_pago='Contado'");
+            ResultSet rs = s.executeQuery("select idventa as 'Codigo',codigo_examen as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_rayosx WHERE fecha ='" + fecH + "' and estado_pago='Contado'");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -1297,7 +1297,7 @@ private void condicionIsv( ){
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
-        cajaservicios.caja_laboratorio.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);
+        cajaservicios.caja_rayosx.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -1316,7 +1316,7 @@ private void condicionIsv( ){
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select idventa as 'Codigo',codigo_examen as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_laboratorio WHERE fecha ='" + fecH + "' and estado_pago='Contado'");
+            ResultSet rs = s.executeQuery("select idventa as 'Codigo',codigo_examen as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_rayosx WHERE fecha ='" + fecH + "' and estado_pago='Contado'");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -1336,7 +1336,7 @@ private void condicionIsv( ){
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
-        cajaservicios.caja_laboratorio.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);
+        cajaservicios.caja_rayosx.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -1355,7 +1355,7 @@ private void condicionIsv( ){
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM caja_laboratorio WHERE fecha ='" + fecH + "' and estado_pago='Crédito'");
+            ResultSet rs = s.executeQuery("SELECT * FROM caja_rayosx WHERE fecha ='" + fecH + "' and estado_pago='Crédito'");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -1377,7 +1377,7 @@ private void condicionIsv( ){
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
-        cajaservicios.caja_laboratorio.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
+        cajaservicios.caja_rayosx.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -1400,7 +1400,7 @@ private void condicionIsv( ){
     }
 // traer los detalles de la factura con el codigo del examen
     private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_laboratorio where idventa='" + codetest.getText() + "' ";
+        String sql="select codigo as 'Codigo',p_s as 'Producto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_rayosx where idventa='" + codetest.getText() + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1427,7 +1427,7 @@ private void condicionIsv( ){
             imp = precio * cantidad;
             total = total + imp;
         }
-        cajaservicios.caja_laboratorio.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
+        cajaservicios.caja_rayosx.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
     }
     //calcular el total de la factura cuando se ve la factura
     public static void calcular() {
@@ -1482,7 +1482,7 @@ private void condicionIsv( ){
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
             if (thishide.isVisible()){
-                ResultSet rs = s.executeQuery("SELECT * FROM caja_laboratorio WHERE paciente LIKE '%"+name+"%' and estado_pago='Crédito'");
+                ResultSet rs = s.executeQuery("SELECT * FROM caja_rayosx WHERE paciente LIKE '%"+name+"%' and estado_pago='Crédito'");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1504,10 +1504,10 @@ private void condicionIsv( ){
                     cantidad = Float.parseFloat(can);
                     total = total + cantidad;
                 }
-                cajaservicios.caja_laboratorio.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
+                cajaservicios.caja_rayosx.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
                     }
               }else {
-                    ResultSet rs = s.executeQuery("SELECT * FROM caja_laboratorio WHERE paciente LIKE '%"+name+"%' and estado_pago='Contado'");
+                    ResultSet rs = s.executeQuery("SELECT * FROM caja_rayosx WHERE paciente LIKE '%"+name+"%' and estado_pago='Contado'");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1527,7 +1527,7 @@ private void condicionIsv( ){
                     cantidad = Float.parseFloat(can);
                     total = total + cantidad;
                 }
-                cajaservicios.caja_laboratorio.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);
+                cajaservicios.caja_rayosx.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);
                     }
         }
 
@@ -1610,12 +1610,12 @@ private void condicionIsv( ){
                 txtcredito.requestFocus();
                 return;
             }
-               // insertar datos en caja_laboratorio
+               // insertar datos en caja_rayosx
             if (rbcredito.isSelected()){
-            String sql= "insert into caja_laboratorio(idventa,codigo_examen,paciente,fecha,estado_pago,abonado,pendiente,total) values ('"+numFac.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" +condiciones(Estado_actual)+"','" + Double.parseDouble(txtcredito.getText())+"','" +credito(Num)+"','" +lblTotal.getText()+ "')";
+            String sql= "insert into caja_rayosx(idventa,codigo_examen,paciente,fecha,estado_pago,abonado,pendiente,total) values ('"+numFac.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" +condiciones(Estado_actual)+"','" + Double.parseDouble(txtcredito.getText())+"','" +credito(Num)+"','" +lblTotal.getText()+ "')";
             pst=con.prepareStatement(sql);
             pst.execute();}else{
-            String sql= "insert into caja_laboratorio(idventa,codigo_examen,paciente,fecha,estado_pago,total) values ('"+numFac.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" +condiciones(Estado_actual)+"','" + lblTotal.getText() + "')";
+            String sql= "insert into caja_rayosx(idventa,codigo_examen,paciente,fecha,estado_pago,total) values ('"+numFac.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" +condiciones(Estado_actual)+"','" + lblTotal.getText() + "')";
                 pst=con.prepareStatement(sql);
                 pst.execute();
             }
@@ -1741,7 +1741,7 @@ private void condicionIsv( ){
         if (P==0){
             try{
             con=Conexion.ConnectDB();
-            String sql= "update caja_laboratorio set estado_pago='" + "Contado" + "' where idventa='" + numFac.getText()+ "'";
+            String sql= "update caja_rayosx set estado_pago='" + "Contado" + "' where idventa='" + numFac.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
