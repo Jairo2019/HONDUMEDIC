@@ -46,7 +46,7 @@ PreparedStatement pst=null;
         Get_Data();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         tableUsers.getTableHeader().setBackground(Color.decode("#006FB0"));
-        tableUsers.getTableHeader().setForeground(Color.white);
+//        tableUsers.getTableHeader().setForeground(Color.white);
 
     }
 
@@ -94,6 +94,8 @@ PreparedStatement pst=null;
         txtPrecio = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txtedad = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        txttelefono = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -555,6 +557,40 @@ PreparedStatement pst=null;
         gridBagConstraints.insets = new java.awt.Insets(12, 77, 0, 326);
         jPanel9.add(txtedad, gridBagConstraints);
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Teléfono:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(27, 303, 0, 0);
+        jPanel9.add(jLabel20, gridBagConstraints);
+
+        txttelefono.setBackground(new java.awt.Color(255, 255, 255));
+        txttelefono.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txttelefono.setForeground(new java.awt.Color(0, 0, 0));
+        txttelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txttelefonoActionPerformed(evt);
+            }
+        });
+        txttelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 246;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 77, 0, 326);
+        jPanel9.add(txttelefono, gridBagConstraints);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -582,7 +618,7 @@ PreparedStatement pst=null;
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(82, 82, 82)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(155, Short.MAX_VALUE)))
+                    .addContainerGap(99, Short.MAX_VALUE)))
         );
 
         jTabbedPane2.addTab("Nuevo Paciente", jPanel3);
@@ -610,7 +646,7 @@ PreparedStatement pst=null;
 
     private void Get_Data(){
         Reset();
-        String sql="select codigo_paciente as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', direccion as 'Dirección',edad as 'Edad' from paciente";
+        String sql="select codigo_paciente as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', direccion as 'Dirección',edad as 'Edad',telefono as 'Teléfono' from paciente";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -689,9 +725,10 @@ PreparedStatement pst=null;
             int row= tableUsers.getSelectedRow();
             txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
             txtName.setText(tableUsers.getModel().getValueAt(row,1).toString());
-            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,2).toString());
-            txtPrecio.setText(tableUsers.getModel().getValueAt(row,3).toString());
+            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,3).toString());
+            txtPrecio.setText(tableUsers.getModel().getValueAt(row,2).toString());
             txtedad.setText(tableUsers.getModel().getValueAt(row,4).toString());
+            txttelefono.setText(tableUsers.getModel().getValueAt(row,5).toString());
             txtCodigo.setEnabled(false);
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
@@ -726,6 +763,10 @@ PreparedStatement pst=null;
                 JOptionPane.showMessageDialog( this, "Ingrese Edad","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            if (txttelefono.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese el Numero de Telefono","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             Statement stmt;
             stmt= con.createStatement();
             String sql1="Select codigo_paciente from paciente where codigo_paciente= '" + txtCodigo.getText() + "'";
@@ -742,12 +783,12 @@ PreparedStatement pst=null;
                 return;  
                 }
             // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into paciente(codigo_paciente,nombre,apellido,direccion,edad) values ('"+txtCodigo.getText()+"','" +txtName.getText()+"','" + txtPrecio.getText() +"','" +txtDescripcion.getText()+ "','" +txtedad.getText()+ "')";
+            String sql= "insert into paciente(codigo_paciente,nombre,apellido,direccion,edad,telefono) values ('"+txtCodigo.getText()+"','" +txtName.getText()+"','" + txtPrecio.getText() +"','" +txtDescripcion.getText()+ "','" +txtedad.getText()+"','" +txttelefono.getText()+ "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
 
-            JOptionPane.showMessageDialog(this,"Registrado con éxito","Inventario Ambulancia",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Registrado con éxito","Registro de Pacientes",JOptionPane.INFORMATION_MESSAGE);
             btnsave.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
@@ -760,10 +801,10 @@ PreparedStatement pst=null;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
-            String sql= "update paciente set nombre='"+ txtName.getText()+ "',apellido='" + txtPrecio.getText() + "',direccion='" + txtDescripcion.getText() +"',edad='" + txtedad.getText() + "' where codigo_paciente='" + txtCodigo.getText()+ "'";
+            String sql= "update paciente set nombre='"+ txtName.getText()+ "',apellido='" + txtPrecio.getText() + "',direccion='" + txtDescripcion.getText() +"',edad='" + txtedad.getText() +"',telefono='" + txttelefono.getText() + "' where codigo_paciente='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this,"Inventario Actualizado","Inventario de Ambulancia",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Paciente Actualizado","Registro de Pacientes",JOptionPane.INFORMATION_MESSAGE);
             btnUpdate.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
@@ -817,16 +858,20 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void txtedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtedadKeyTyped
-           char car = evt.getKeyChar();
-        if((car<'0' || car>'9')) evt.consume();          // TODO add your handling code here:
+        int limite  = 3;
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9')) evt.consume(); 
+        if (txtedad.getText().length()== limite){
+            evt.consume();
+       }         // TODO add your handling code here:
     }//GEN-LAST:event_txtedadKeyTyped
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
-        private int limite  = 13;
+    int limite  = 13;
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
-           char car = evt.getKeyChar();
+        char car = evt.getKeyChar();
         if((car<'0' || car>'9')) evt.consume(); 
         if (txtCodigo.getText().length()== limite){
 
@@ -834,6 +879,19 @@ PreparedStatement pst=null;
        }
 // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txttelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txttelefonoActionPerformed
+
+    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+        int limite  = 15;
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9')) evt.consume(); 
+        if (txttelefono.getText().length()== limite){
+            evt.consume();
+       }       // TODO add your handling code here:
+    }//GEN-LAST:event_txttelefonoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -849,6 +907,7 @@ PreparedStatement pst=null;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel4;
@@ -871,5 +930,6 @@ PreparedStatement pst=null;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtedad;
+    public javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables
 }

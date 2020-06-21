@@ -1075,7 +1075,7 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="4"/>
-                            <Property name="text" type="java.lang.String" value="TOTAL A PAGAR: L"/>
+                            <Property name="text" type="java.lang.String" value="SUBTOTAL: L"/>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
                           </Properties>
                         </Component>

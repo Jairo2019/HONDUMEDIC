@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import net.proteanit.sql.DbUtils;
 import principal.PrincipalAdministrador;
 /**
@@ -23,14 +24,13 @@ import principal.PrincipalAdministrador;
  */
 public class pnl_menu extends javax.swing.JInternalFrame {
     public PrincipalAdministrador a ;
+//    JScrollPane scroll;
     /**
      * Creates new form NewJInternalFrame
      */
     public pnl_menu() {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-
-
     }
 
     /**
@@ -48,6 +48,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         cerrar = new principal.MaterialButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         pnlnewMenu = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -95,6 +96,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         dropShadowBorder1.setShowLeftShadow(true);
         dropShadowBorder1.setShowTopShadow(true);
         setBorder(dropShadowBorder1);
+        setAutoscrolls(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -128,7 +130,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 836, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -141,6 +143,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         );
 
         pnlnewMenu.setBackground(new java.awt.Color(255, 255, 255));
+        pnlnewMenu.setPreferredSize(new java.awt.Dimension(0, 0));
         pnlnewMenu.setLayout(new java.awt.GridBagLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -628,7 +631,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel26)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cinco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -824,22 +827,21 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(12, 6, 24, 16);
         pnlnewMenu.add(jPanel6, gridBagConstraints);
 
+        jScrollPane1.setViewportView(pnlnewMenu);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlnewMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlnewMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -989,6 +991,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private rsbuttom.RSButtonMetro ocho;
     private rsbuttom.RSButtonMetro once;
     private javax.swing.JPanel pnlnewMenu;

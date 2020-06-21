@@ -41,6 +41,7 @@ import registro_examen.examen_hospitalizacion;
 import Registro_Salida.salida_hospitalizacion;
 import registro_examen.examen_rayosx;
 import registro_examen.examen_endoscopia;
+import ambulancia.ambulancia;
 /**
  *
  * @author Rojeru San
@@ -83,6 +84,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static salida_hospitalizacion salida_hospitalizacion=null;
     public static examen_rayosx examen_rayosx=null;
     public static examen_endoscopia examen_endoscopia=null;
+    public static ambulancia registro_ambulancia = null;
     public static boolean estacerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();
         boolean cerrado = true;
@@ -135,6 +137,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         escritorio = new principal.Escritorio();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -357,7 +360,12 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnGastos, btnProductos, btnUsuarios, btnVentas, cerrarSesion});
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(2000, 1500));
+
         escritorio.setBackground(new java.awt.Color(255, 255, 255));
+        escritorio.setMinimumSize(new java.awt.Dimension(10, 10));
+        escritorio.setPreferredSize(new java.awt.Dimension(1245, 794));
+        jScrollPane1.setViewportView(escritorio);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -367,9 +375,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,7 +385,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -554,6 +561,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private principal.MaterialButton minimizar;
     // End of variables declaration//GEN-END:variables
 }

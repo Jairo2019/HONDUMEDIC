@@ -8,11 +8,13 @@ package elegir;
 import Inventarios.inventario_ambulancia;
 import ventas.*;
 import alertas.principal.AWTUtilities;
+import ambulancia.ambulancia;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
 import paneles.pnl_ambulancia;
 import principal.PrincipalAdministrador;
+
 
 /**
  *
@@ -53,6 +55,7 @@ public class elegir_ambulancia extends javax.swing.JDialog {
         btnListaVentas = new principal.MaterialButtomRectangle();
         btnCancelar = new principal.MaterialButtomRectangle();
         btnListaVentas1 = new principal.MaterialButtomRectangle();
+        btnregistrar = new principal.MaterialButtomRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -107,6 +110,17 @@ public class elegir_ambulancia extends javax.swing.JDialog {
             }
         });
 
+        btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
+        btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnregistrar.setText("registrar ambulancia");
+        btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
         panel3.setLayout(panel3Layout);
         panel3Layout.setHorizontalGroup(
@@ -121,7 +135,8 @@ public class elegir_ambulancia extends javax.swing.JDialog {
                         .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                             .addComponent(btnListaVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btnListaVentas1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                            .addComponent(btnListaVentas1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                            .addComponent(btnregistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                         .addGap(24, 24, 24)))
                 .addContainerGap())
         );
@@ -132,10 +147,12 @@ public class elegir_ambulancia extends javax.swing.JDialog {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnListaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnListaVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -220,6 +237,19 @@ public class elegir_ambulancia extends javax.swing.JDialog {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnListaVentas1ActionPerformed
 
+    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
+        PrincipalAdministrador.escritorio.removeAll();
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.registro_ambulancia)) {
+            PrincipalAdministrador.registro_ambulancia = new ambulancia();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.registro_ambulancia.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.registro_ambulancia);
+            PrincipalAdministrador.registro_ambulancia.show();
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_btnregistrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -297,6 +327,7 @@ public class elegir_ambulancia extends javax.swing.JDialog {
     private principal.MaterialButtomRectangle btnCancelar;
     private principal.MaterialButtomRectangle btnListaVentas;
     private principal.MaterialButtomRectangle btnListaVentas1;
+    private principal.MaterialButtomRectangle btnregistrar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private org.edisoncor.gui.panel.Panel panel3;

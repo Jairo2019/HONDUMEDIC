@@ -584,7 +584,7 @@ static Conexion cc = new Conexion();
         txttotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txttotal.setForeground(new java.awt.Color(255, 255, 255));
         txttotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txttotal.setText("TOTAL A PAGAR: L");
+        txttotal.setText("SUBTOTAL: L");
         txttotal.setToolTipText("");
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

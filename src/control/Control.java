@@ -42,8 +42,8 @@ public class Control {
             if (res < segundos) {
                 ErrorAlert er = new ErrorAlert(null, true);
                 er.titulo.setText("OOPS...");
-                er.msj.setText("LA APLICACIÓN YA ESTA EN EJECUCIÓN!");
-                er.msj1.setText("");
+                er.msj.setText("¡HONDUMEDIC YA ESTA");
+                er.msj1.setText("EN EJECUCIÓN!");
                 er.setVisible(true);
                 return false;
             } else {

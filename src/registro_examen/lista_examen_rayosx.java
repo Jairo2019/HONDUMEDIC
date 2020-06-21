@@ -399,7 +399,8 @@ public static Double value ;
                                 this.dispose();
                             }else{
                             cajaservicios.caja_rayosx.codetest.setText(cod); 
-                            cajaservicios.caja_rayosx.txtpaciente.setText(paciente);   
+                            cajaservicios.caja_rayosx.txtpaciente.setText(paciente); 
+                            cajaservicios.caja_rayosx.txtcredito.setEnabled(true);
                             show_detalle();
                             calcular();
                             this.dispose();

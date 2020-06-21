@@ -335,6 +335,9 @@ PreparedStatement pst=null;
                         }else if (("4").equals(cual)){
                             registro_examen.examen_endoscopia.txtpaciente.setText(nom + " "+  apellido);
                             cual="";
+                        }else if (("5").equals(cual)){
+                            ambulancia.ambulancia.txtpaciente.setText(nom + " "+  apellido);
+                            cual="";
                         }else{
                              registro_examen.examen_laboratorio.txtpaciente.setText(nom + " "+  apellido);
                              cual="";}

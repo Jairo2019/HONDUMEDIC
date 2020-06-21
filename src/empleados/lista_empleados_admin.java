@@ -47,7 +47,7 @@ PreparedStatement pst=null;
         
         tabla.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         tabla.getTableHeader().setBackground(Color.decode("#006FB0"));
-        tabla.getTableHeader().setForeground(Color.white);
+//        tabla.getTableHeader().setForeground(Color.white);
         this.tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
@@ -245,6 +245,17 @@ PreparedStatement pst=null;
     }// </editor-fold>//GEN-END:initComponents
  
     private void Get_Data(){
+        if (("5").equals(cual)){
+            String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', rol as 'Rol' from empleado where rol='Doctor (a)' or rol='Enfermera (o)'";
+
+            try{
+             pst=con.prepareStatement(sql);
+              rs= pst.executeQuery();
+             tabla.setModel(DbUtils.resultSetToTableModel(rs));
+             }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+             }
+        }else{
         String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', rol as 'Rol' from empleado";
 
         try{
@@ -253,8 +264,8 @@ PreparedStatement pst=null;
          tabla.setModel(DbUtils.resultSetToTableModel(rs));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-            
-}
+         }
+        }
   }
 
 
@@ -333,6 +344,9 @@ PreparedStatement pst=null;
                             cual="";
                         }else if (("4").equals(cual)){
                             registro_examen.examen_endoscopia.txtmedicoadmin.setText(nom + " "+  apellido);
+                            cual="";
+                        }else if (("5").equals(cual)){
+                            ambulancia.ambulancia.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";
                         }else{
                             registro_examen.examen_laboratorio.txtmedicoadmin.setText(nom + " "+  apellido);

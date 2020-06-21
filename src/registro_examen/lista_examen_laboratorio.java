@@ -399,7 +399,8 @@ public static Double value ;
                                 this.dispose();
                             }else{
                             cajaservicios.caja_laboratorio.codetest.setText(cod); 
-                            cajaservicios.caja_laboratorio.txtpaciente.setText(paciente);   
+                            cajaservicios.caja_laboratorio.txtpaciente.setText(paciente); 
+                            cajaservicios.caja_laboratorio.txtcredito.setEnabled(true);
                             show_detalle();
                             calcular();
                             this.dispose();

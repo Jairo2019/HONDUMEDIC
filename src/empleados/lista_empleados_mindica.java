@@ -244,6 +244,18 @@ PreparedStatement pst=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void Get_Data(){
+        if (("5").equals(cual)){
+        String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', rol as 'Rol' from empleado WHERE rol='Conductor'";
+
+        try{
+         pst=con.prepareStatement(sql);
+          rs= pst.executeQuery();
+         tabla.setModel(DbUtils.resultSetToTableModel(rs));
+         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+            
+            }  
+        }else{        
         String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', rol as 'Rol' from empleado";
 
         try{
@@ -253,7 +265,8 @@ PreparedStatement pst=null;
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
             
-}
+            }
+        }
   }
 
 
@@ -301,7 +314,7 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_buscarKeyTyped
 
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
-        if (tabla.getRowCount() > 0) {
+         if (tabla.getRowCount() > 0) {
             try {
                 String cant = null;
 
@@ -332,6 +345,9 @@ PreparedStatement pst=null;
                     cual="";
                     }else if (("4").equals(cual)){
                     registro_examen.examen_endoscopia.txtmedicoindica.setText(nom + " "+  apellido);
+                    cual="";
+                    }else if (("5").equals(cual)){
+                    ambulancia.ambulancia.txtconductor.setText(nom + " "+  apellido);
                     cual="";
                     }else{
                     registro_examen.examen_laboratorio.txtmedicoindica.setText(nom + " "+  apellido);

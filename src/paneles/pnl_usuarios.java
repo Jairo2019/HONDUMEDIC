@@ -262,7 +262,7 @@ PreparedStatement pst=null;
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChangeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1029, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlChangeLayout.createSequentialGroup()
@@ -446,7 +446,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(29, 100, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(22, 100, 0, 0);
         jPanel9.add(jLabel15, gridBagConstraints);
 
         txtLastname.setBackground(new java.awt.Color(255, 255, 255));
@@ -459,7 +459,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 165;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 30, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 30, 0, 0);
         jPanel9.add(txtLastname, gridBagConstraints);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -481,7 +481,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 151, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(11, 150, 0, 0);
         jPanel9.add(jLabel17, gridBagConstraints);
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -498,7 +498,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 170;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 13, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(11, 12, 0, 0);
         jPanel9.add(txtCodigo, gridBagConstraints);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -576,19 +576,19 @@ PreparedStatement pst=null;
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(choiceacces, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,7 +607,8 @@ PreparedStatement pst=null;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 15;
+        gridBagConstraints.gridwidth = 16;
+        gridBagConstraints.ipadx = 37;
         gridBagConstraints.ipady = 19;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(58, 148, 0, 151);
@@ -622,7 +623,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(32, 150, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(25, 150, 0, 0);
         jPanel9.add(jLabel23, gridBagConstraints);
 
         txtName.setBackground(new java.awt.Color(255, 255, 255));
@@ -636,7 +637,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridheight = 4;
         gridBagConstraints.ipadx = 170;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(28, 14, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 14, 0, 0);
         jPanel9.add(txtName, gridBagConstraints);
 
         txtEmail.setBackground(new java.awt.Color(204, 204, 204));
@@ -646,7 +647,7 @@ PreparedStatement pst=null;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 170;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -668,7 +669,7 @@ PreparedStatement pst=null;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 170;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -720,7 +721,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 95, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(16, 94, 0, 0);
         jPanel9.add(jLabel26, gridBagConstraints);
 
         choiceunidad.setBackground(new java.awt.Color(255, 255, 255));
@@ -734,36 +735,30 @@ PreparedStatement pst=null;
         gridBagConstraints.gridheight = 4;
         gridBagConstraints.ipadx = 49;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 30, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(11, 29, 0, 0);
         jPanel9.add(choiceunidad, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1029, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 1035, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 388, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 376, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(93, 93, 93)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(89, Short.MAX_VALUE)))
         );
 
         jTabbedPane2.addTab("Nuevo Usuario", jPanel3);
@@ -773,7 +768,7 @@ PreparedStatement pst=null;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1057, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

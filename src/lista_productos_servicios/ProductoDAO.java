@@ -63,7 +63,19 @@ public class ProductoDAO {
        } catch (Exception e) {
        }
        return r;
-   }    
+   }  
+          public int actualizarStock_ambulancia(int cant, String idp){
+       String sql="update inventario_ambulancia set cantidad=? where codigo_ambulancia=?";
+       try {
+           con=acceso.ConnectDB();
+           ps=con.prepareStatement(sql);
+           ps.setInt(1, cant);
+           ps.setString(2, idp);
+           ps.executeUpdate();
+       } catch (Exception e) {
+       }
+       return r;
+   }  
           public int actualizarStock_endoscopia(int cant, String idp){
        String sql="update inventario_endoscopia set cantidad=? where codigo_endoscopia=?";
        try {
@@ -135,6 +147,24 @@ public class ProductoDAO {
     }public Producto listarID_rayosx(String id){
         Producto p=new Producto();
         String sql="select * from inventario_rayosx where codigo_rayosx=?";
+        try {
+            con=acceso.ConnectDB();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                p.setId(rs.getString(1));
+                p.setNom(rs.getString(2));
+                p.setPre(rs.getFloat(3));
+                p.setEstado(rs.getString(4));
+                p.setStock(rs.getInt(5));
+            }
+        } catch (Exception e) {
+        }
+        return p;
+    }public Producto listarID_ambulancia(String id){
+        Producto p=new Producto();
+        String sql="select * from inventario_ambulancia where codigo_ambulancia=?";
         try {
             con=acceso.ConnectDB();
             ps=con.prepareStatement(sql);
