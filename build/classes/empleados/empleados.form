@@ -804,12 +804,14 @@
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="5">
+                          <StringArray count="7">
                             <StringItem index="0" value="Doctor (a)"/>
                             <StringItem index="1" value="Enfermera (o)"/>
                             <StringItem index="2" value="Conductor"/>
                             <StringItem index="3" value="Administrador"/>
                             <StringItem index="4" value="Personal de Servicio"/>
+                            <StringItem index="5" value="Instrumentista"/>
+                            <StringItem index="6" value="Circulante"/>
                           </StringArray>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value=""/>

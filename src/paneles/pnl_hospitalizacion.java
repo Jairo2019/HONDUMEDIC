@@ -39,7 +39,7 @@ PreparedStatement pst=null;
         Reset();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         tableUsers.getTableHeader().setBackground(Color.decode("#006FB0"));
-        tableUsers.getTableHeader().setForeground(Color.white);
+        //tableUsers.getTableHeader().setForeground(Color.white);
 
 
     }

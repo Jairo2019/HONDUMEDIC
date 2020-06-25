@@ -49,6 +49,7 @@ PreparedStatement pst=null;
         this.setLocation(330, 120);
         AWTUtilities.setOpaque(this, false);
         con= Conexion.ConnectDB();
+        txtdireccion.setVisible(false);
         }
 
 
@@ -80,6 +81,7 @@ PreparedStatement pst=null;
         txtPrecio = new javax.swing.JTextField();
         txtedad = new javax.swing.JTextField();
         txttelefono = new javax.swing.JTextField();
+        txtdireccion = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         limpiar = new principal.MaterialButton();
         registrar = new principal.MaterialButton();
@@ -240,6 +242,20 @@ PreparedStatement pst=null;
             }
         });
 
+        txtdireccion.setBackground(new java.awt.Color(255, 255, 255));
+        txtdireccion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtdireccion.setForeground(new java.awt.Color(0, 0, 0));
+        txtdireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdireccionActionPerformed(evt);
+            }
+        });
+        txtdireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtdireccionKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -260,7 +276,10 @@ PreparedStatement pst=null;
                             .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4))
                     .addComponent(nombreUs, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -296,7 +315,9 @@ PreparedStatement pst=null;
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel20)
                             .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(37, 37, 37))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 420, 330));
@@ -455,7 +476,7 @@ PreparedStatement pst=null;
                 return;
             }
             // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into paciente(codigo_paciente,nombre,apellido,edad,telefono) values ('"+txtCodigo.getText()+"','" +txtName.getText()+"','" + txtPrecio.getText()+ "','" +txtedad.getText()+"','" +txttelefono.getText()+ "')";
+            String sql= "insert into paciente(codigo_paciente,nombre,apellido,direccion,edad,telefono) values ('"+txtCodigo.getText()+"','" +txtName.getText()+"','" + txtPrecio.getText()+"','" +txtdireccion.getText()+ "','" +txtedad.getText()+"','" +txttelefono.getText()+ "')";
 
             PreparedStatement pst = con.prepareStatement(sql);
             pst.execute();
@@ -471,6 +492,14 @@ PreparedStatement pst=null;
     private void registrarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_registrarKeyTyped
 
     }//GEN-LAST:event_registrarKeyTyped
+
+    private void txtdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdireccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdireccionActionPerformed
+
+    private void txtdireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdireccionKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdireccionKeyTyped
 
     /**
      * @param args the command line arguments
@@ -790,6 +819,7 @@ PreparedStatement pst=null;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPrecio;
+    public javax.swing.JTextField txtdireccion;
     public javax.swing.JTextField txtedad;
     public javax.swing.JTextField txttelefono;
     // End of variables declaration//GEN-END:variables

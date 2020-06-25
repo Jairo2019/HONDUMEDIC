@@ -244,18 +244,7 @@ PreparedStatement pst=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void Get_Data(){
-        if (("5").equals(cual)){
-        String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', rol as 'Rol' from empleado WHERE rol='Conductor'";
-
-        try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         tabla.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-            
-            }  
-        }else{        
+       
         String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', rol as 'Rol' from empleado";
 
         try{
@@ -264,8 +253,6 @@ PreparedStatement pst=null;
          tabla.setModel(DbUtils.resultSetToTableModel(rs));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-            
-            }
         }
   }
 
@@ -292,7 +279,6 @@ PreparedStatement pst=null;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-                v.add(rs.getString(5));
                 dt.addRow(v);
 
             }
@@ -348,6 +334,9 @@ PreparedStatement pst=null;
                     cual="";
                     }else if (("5").equals(cual)){
                     ambulancia.ambulancia.txtconductor.setText(nom + " "+  apellido);
+                    cual="";
+                    }else if (("6").equals(cual)){
+                    cirugia.registrar_cirugia.txtayudante.setText(nom + " "+  apellido);
                     cual="";
                     }else{
                     registro_examen.examen_laboratorio.txtmedicoindica.setText(nom + " "+  apellido);

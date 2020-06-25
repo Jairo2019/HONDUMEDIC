@@ -442,7 +442,7 @@ PreparedStatement pst=null;
         gridBagConstraints.insets = new java.awt.Insets(63, 205, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
-        txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();

@@ -245,17 +245,7 @@ PreparedStatement pst=null;
     }// </editor-fold>//GEN-END:initComponents
  
     private void Get_Data(){
-        if (("5").equals(cual)){
-            String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', rol as 'Rol' from empleado where rol='Doctor (a)' or rol='Enfermera (o)'";
 
-            try{
-             pst=con.prepareStatement(sql);
-              rs= pst.executeQuery();
-             tabla.setModel(DbUtils.resultSetToTableModel(rs));
-             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, e);
-             }
-        }else{
         String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', rol as 'Rol' from empleado";
 
         try{
@@ -264,7 +254,6 @@ PreparedStatement pst=null;
          tabla.setModel(DbUtils.resultSetToTableModel(rs));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-         }
         }
   }
 
@@ -291,7 +280,6 @@ PreparedStatement pst=null;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-                v.add(rs.getString(5));
                 dt.addRow(v);
 
             }
@@ -347,6 +335,9 @@ PreparedStatement pst=null;
                             cual="";
                         }else if (("5").equals(cual)){
                             ambulancia.ambulancia.txtmedicoadmin.setText(nom + " "+  apellido);
+                            cual="";
+                        }else if (("6").equals(cual)){
+                            cirugia.registrar_cirugia.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";
                         }else{
                             registro_examen.examen_laboratorio.txtmedicoadmin.setText(nom + " "+  apellido);

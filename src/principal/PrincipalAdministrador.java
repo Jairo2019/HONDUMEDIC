@@ -42,6 +42,8 @@ import Registro_Salida.salida_hospitalizacion;
 import registro_examen.examen_rayosx;
 import registro_examen.examen_endoscopia;
 import ambulancia.ambulancia;
+import ambulancia.registrar_ambulancias;
+import cirugia.registrar_cirugia;
 /**
  *
  * @author Rojeru San
@@ -85,6 +87,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static examen_rayosx examen_rayosx=null;
     public static examen_endoscopia examen_endoscopia=null;
     public static ambulancia registro_ambulancia = null;
+    public static registrar_ambulancias registrar_ambulancia = null;
+    public static registrar_cirugia registrar_cirugia;
     public static boolean estacerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();
         boolean cerrado = true;

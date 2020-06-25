@@ -5,17 +5,12 @@
  */
 package lista_productos_servicios;
 
-import ventas.*;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
-import paneles.Conexion;
-import java.awt.Color;
-import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,8 +23,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 import paneles.Conexion;
-import tabla.EstiloTablaHeader;
-import tabla.EstiloTablaRenderer;
 import tabla.MyScrollbarUI;
 
 /**

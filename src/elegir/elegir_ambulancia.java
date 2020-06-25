@@ -14,7 +14,7 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import paneles.pnl_ambulancia;
 import principal.PrincipalAdministrador;
-
+import ambulancia.registrar_ambulancias;
 
 /**
  *
@@ -54,8 +54,9 @@ public class elegir_ambulancia extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         btnListaVentas = new principal.MaterialButtomRectangle();
         btnCancelar = new principal.MaterialButtomRectangle();
-        btnListaVentas1 = new principal.MaterialButtomRectangle();
+        btnlistaambulancia = new principal.MaterialButtomRectangle();
         btnregistrar = new principal.MaterialButtomRectangle();
+        btnListaVentas2 = new principal.MaterialButtomRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -99,25 +100,36 @@ public class elegir_ambulancia extends javax.swing.JDialog {
             }
         });
 
-        btnListaVentas1.setBackground(new java.awt.Color(0, 111, 177));
-        btnListaVentas1.setForeground(new java.awt.Color(255, 255, 255));
-        btnListaVentas1.setText("inventario");
-        btnListaVentas1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnListaVentas1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnListaVentas1.addActionListener(new java.awt.event.ActionListener() {
+        btnlistaambulancia.setBackground(new java.awt.Color(0, 111, 177));
+        btnlistaambulancia.setForeground(new java.awt.Color(255, 255, 255));
+        btnlistaambulancia.setText("ambulancias");
+        btnlistaambulancia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnlistaambulancia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnlistaambulancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListaVentas1ActionPerformed(evt);
+                btnlistaambulanciaActionPerformed(evt);
             }
         });
 
         btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
         btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnregistrar.setText("registrar ambulancia");
+        btnregistrar.setText("registrar ");
         btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnregistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnregistrarActionPerformed(evt);
+            }
+        });
+
+        btnListaVentas2.setBackground(new java.awt.Color(0, 111, 177));
+        btnListaVentas2.setForeground(new java.awt.Color(255, 255, 255));
+        btnListaVentas2.setText("inventario");
+        btnListaVentas2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnListaVentas2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnListaVentas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListaVentas2ActionPerformed(evt);
             }
         });
 
@@ -135,8 +147,9 @@ public class elegir_ambulancia extends javax.swing.JDialog {
                         .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                             .addComponent(btnListaVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btnListaVentas1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btnregistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                            .addComponent(btnlistaambulancia, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                            .addComponent(btnregistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                            .addComponent(btnListaVentas2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                         .addGap(24, 24, 24)))
                 .addContainerGap())
         );
@@ -150,12 +163,14 @@ public class elegir_ambulancia extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnListaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnListaVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnListaVentas2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnlistaambulancia, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,18 +239,18 @@ public class elegir_ambulancia extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnListaVentas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaVentas1ActionPerformed
+    private void btnlistaambulanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlistaambulanciaActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.inventario_ambulancia)) {
-            PrincipalAdministrador.inventario_ambulancia = new inventario_ambulancia();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.registrar_ambulancia)) {
+            PrincipalAdministrador.registrar_ambulancia = new registrar_ambulancias();
             int width = PrincipalAdministrador.escritorio.getWidth();
             int Height = PrincipalAdministrador.escritorio.getHeight();
-            PrincipalAdministrador.inventario_ambulancia.setSize(width, Height);
-            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.inventario_ambulancia);
-            PrincipalAdministrador.inventario_ambulancia.show();
+            PrincipalAdministrador.registrar_ambulancia.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.registrar_ambulancia);
+            PrincipalAdministrador.registrar_ambulancia.show();
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListaVentas1ActionPerformed
+    }//GEN-LAST:event_btnlistaambulanciaActionPerformed
 
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
@@ -249,6 +264,19 @@ public class elegir_ambulancia extends javax.swing.JDialog {
             PrincipalAdministrador.registro_ambulancia.show();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_btnregistrarActionPerformed
+
+    private void btnListaVentas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaVentas2ActionPerformed
+        PrincipalAdministrador.escritorio.removeAll();
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.inventario_ambulancia)) {
+            PrincipalAdministrador.inventario_ambulancia = new inventario_ambulancia();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.inventario_ambulancia.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.inventario_ambulancia);
+            PrincipalAdministrador.inventario_ambulancia.show();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListaVentas2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,7 +354,8 @@ public class elegir_ambulancia extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnCancelar;
     private principal.MaterialButtomRectangle btnListaVentas;
-    private principal.MaterialButtomRectangle btnListaVentas1;
+    private principal.MaterialButtomRectangle btnListaVentas2;
+    private principal.MaterialButtomRectangle btnlistaambulancia;
     private principal.MaterialButtomRectangle btnregistrar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

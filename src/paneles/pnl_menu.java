@@ -940,7 +940,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_quinceMousePressed
 
     private void quinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quinceActionPerformed
-        new elegir.elegir_cirugia(a, true).setVisible(true);
+        new elegir.elegirCirugia(a, true).setVisible(true);
     }//GEN-LAST:event_quinceActionPerformed
 
     private void cuatroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cuatroMousePressed

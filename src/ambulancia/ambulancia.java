@@ -133,6 +133,7 @@ static Conexion cc = new Conexion();
         txtambulancia = new app.bolivia.swing.JCTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        btns_medico2 = new principal.MaterialButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCaja = new javax.swing.JTable();
@@ -546,7 +547,7 @@ static Conexion cc = new Conexion();
                 btns_medico1ActionPerformed(evt);
             }
         });
-        jPanel4.add(btns_medico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 80, 50));
+        jPanel4.add(btns_medico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 80, 50));
 
         txtconductor.setEditable(false);
         txtconductor.setBorder(null);
@@ -562,15 +563,32 @@ static Conexion cc = new Conexion();
 
         txtambulancia.setBorder(null);
         txtambulancia.setForeground(new java.awt.Color(0, 0, 0));
+        txtambulancia.setEnabled(false);
         txtambulancia.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtambulancia.setPlaceholder("AMBULANCIA");
-        jPanel4.add(txtambulancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 240, 30));
+        jPanel4.add(txtambulancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 250, 30));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/num_room.png"))); // NOI18N
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 310, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/indication.png"))); // NOI18N
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 310, -1));
+
+        btns_medico2.setBackground(new java.awt.Color(0, 111, 177));
+        btns_medico2.setBorder(null);
+        btns_medico2.setForeground(new java.awt.Color(255, 255, 255));
+        btns_medico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
+        btns_medico2.setText("buscar");
+        btns_medico2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btns_medico2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btns_medico2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btns_medico2.setRippleColor(new java.awt.Color(60, 63, 65));
+        btns_medico2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btns_medico2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btns_medico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 80, 50));
 
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -1150,9 +1168,13 @@ static Conexion cc = new Conexion();
     }//GEN-LAST:event_btns_adminActionPerformed
 
     private void btns_medico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico1ActionPerformed
-        empleados.lista_empleados_mindica.cual="5";
-        new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
+        new lista_ambulancias(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btns_medico1ActionPerformed
+
+    private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
+        empleados.lista_empleados_mindica.cual="5";
+        new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_btns_medico2ActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1162,6 +1184,7 @@ static Conexion cc = new Conexion();
     private principal.MaterialButton btnedit;
     private principal.MaterialButton btns_admin;
     private principal.MaterialButton btns_medico1;
+    private principal.MaterialButton btns_medico2;
     private principal.MaterialButton btns_paciente;
     private principal.MaterialButton btnservicios;
     private app.bolivia.swing.JCTextField c_search_tbl;
@@ -1202,7 +1225,7 @@ static Conexion cc = new Conexion();
     private javax.swing.JTable tableCaja;
     private javax.swing.JLabel thishide;
     private app.bolivia.swing.JCTextField txtFecha;
-    private app.bolivia.swing.JCTextField txtambulancia;
+    public static app.bolivia.swing.JCTextField txtambulancia;
     public static app.bolivia.swing.JCTextField txtconductor;
     private app.bolivia.swing.JCTextField txtdestino;
     private app.bolivia.swing.JCTextField txtkm;

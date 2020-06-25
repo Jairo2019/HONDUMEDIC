@@ -338,6 +338,9 @@ PreparedStatement pst=null;
                         }else if (("5").equals(cual)){
                             ambulancia.ambulancia.txtpaciente.setText(nom + " "+  apellido);
                             cual="";
+                        }else if (("6").equals(cual)){
+                            cirugia.registrar_cirugia.txtpaciente.setText(nom + " "+  apellido);
+                            cual="";
                         }else{
                              registro_examen.examen_laboratorio.txtpaciente.setText(nom + " "+  apellido);
                              cual="";}

@@ -519,7 +519,7 @@ PreparedStatement pst=null;
         choicerol.setBackground(new java.awt.Color(255, 255, 255));
         choicerol.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         choicerol.setForeground(new java.awt.Color(0, 0, 0));
-        choicerol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor (a)", "Enfermera (o)", "Conductor", "Administrador", "Personal de Servicio" }));
+        choicerol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor (a)", "Enfermera (o)", "Conductor", "Administrador", "Personal de Servicio", "Instrumentista", "Circulante" }));
         choicerol.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
