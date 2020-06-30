@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package paneles;
+import caja.caja;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -859,8 +860,16 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_dos1MousePressed
 
     private void dos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dos1ActionPerformed
-        elegir.elegir_laboratorio f= new elegir.elegir_laboratorio();
-        f.setVisible(true);
+        PrincipalAdministrador.escritorio.removeAll();
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.caja)) {
+            PrincipalAdministrador.caja = new caja();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.caja.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.caja);
+            PrincipalAdministrador.caja.show();
+        }
     }//GEN-LAST:event_dos1ActionPerformed
 
     private void sieteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sieteMousePressed

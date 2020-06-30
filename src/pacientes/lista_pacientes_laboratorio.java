@@ -301,7 +301,7 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_buscarKeyTyped
 
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
-        
+         
         if (tabla.getRowCount() > 0) {
             try {
                 String cant = null;
@@ -340,6 +340,9 @@ PreparedStatement pst=null;
                             cual="";
                         }else if (("6").equals(cual)){
                             cirugia.registrar_cirugia.txtpaciente.setText(nom + " "+  apellido);
+                            cual="";
+                        }else if (("7").equals(cual)){
+                            registro_examen.examen_ultrasonido.txtpaciente.setText(nom + " "+  apellido);
                             cual="";
                         }else{
                              registro_examen.examen_laboratorio.txtpaciente.setText(nom + " "+  apellido);

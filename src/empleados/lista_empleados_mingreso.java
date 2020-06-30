@@ -325,6 +325,9 @@ PreparedStatement pst=null;
                     }else if (("4").equals(cual)){
                     registro_examen.examen_endoscopia.txtmedicoingreso.setText(nom + " "+  apellido);
                     cual="";
+                    }else if (("7").equals(cual)){
+                    registro_examen.examen_ultrasonido.txtmedicoingreso.setText(nom + " "+  apellido);
+                    cual="";
                     }else{
                         
                     cual="";}

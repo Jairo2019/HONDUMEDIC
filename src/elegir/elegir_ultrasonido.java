@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import paneles.pnl_ambulancia;
 import paneles.pnl_ultrasonido;
 import principal.PrincipalAdministrador;
+import registro_examen.examen_ultrasonido;
 
 /**
  *
@@ -54,6 +55,7 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
         btnservice = new principal.MaterialButtomRectangle();
         btnCancelar = new principal.MaterialButtomRectangle();
         btninventario = new principal.MaterialButtomRectangle();
+        btnregistrar = new principal.MaterialButtomRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -108,6 +110,17 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
             }
         });
 
+        btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
+        btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnregistrar.setText("Registrar Endoscopia");
+        btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
         panel3.setLayout(panel3Layout);
         panel3Layout.setHorizontalGroup(
@@ -122,7 +135,8 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
                         .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                             .addComponent(btnservice, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btninventario, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                            .addComponent(btninventario, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                            .addComponent(btnregistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                         .addGap(24, 24, 24)))
                 .addContainerGap())
         );
@@ -133,13 +147,15 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnservice, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btninventario, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,7 +166,7 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -221,6 +237,19 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btninventarioActionPerformed
+
+    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
+        PrincipalAdministrador.escritorio.removeAll();
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.examen_ultrasonido)) {
+            PrincipalAdministrador.examen_ultrasonido = new examen_ultrasonido();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.examen_ultrasonido.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.examen_ultrasonido);
+            PrincipalAdministrador.examen_ultrasonido.show();
+        }  // TODO add your handling code here:
+    }//GEN-LAST:event_btnregistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,6 +359,7 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnCancelar;
     private principal.MaterialButtomRectangle btninventario;
+    private principal.MaterialButtomRectangle btnregistrar;
     private principal.MaterialButtomRectangle btnservice;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

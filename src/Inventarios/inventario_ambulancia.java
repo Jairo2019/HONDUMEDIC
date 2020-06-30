@@ -514,13 +514,13 @@ PreparedStatement pst=null;
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Cantidad de Compra:");
+        jLabel18.setText("Cantidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 230, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(21, 323, 0, 0);
         jPanel9.add(jLabel18, gridBagConstraints);
 
         txtcantidad.setBackground(new java.awt.Color(255, 255, 255));
@@ -543,7 +543,7 @@ PreparedStatement pst=null;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 35, 15, 326);
+        gridBagConstraints.insets = new java.awt.Insets(12, 35, 0, 326);
         jPanel9.add(txtcantidad, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -573,7 +573,7 @@ PreparedStatement pst=null;
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(82, 82, 82)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(140, Short.MAX_VALUE)))
+                    .addContainerGap(155, Short.MAX_VALUE)))
         );
 
         jTabbedPane2.addTab("Nuevo Producto", jPanel3);
