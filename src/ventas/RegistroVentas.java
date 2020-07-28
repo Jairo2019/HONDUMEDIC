@@ -159,6 +159,8 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         eliminar.setBorderPainted(false);
         eliminar.setContentAreaFilled(false);
         eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        eliminar.setEnabled(false);
+        eliminar.setFocusCycleRoot(true);
         eliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         eliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarios/borrar2.png"))); // NOI18N
         eliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -183,6 +185,8 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         eliminarT.setBorderPainted(false);
         eliminarT.setContentAreaFilled(false);
         eliminarT.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        eliminarT.setEnabled(false);
+        eliminarT.setFocusCycleRoot(true);
         eliminarT.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         eliminarT.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarios/borrarT2.png"))); // NOI18N
         eliminarT.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

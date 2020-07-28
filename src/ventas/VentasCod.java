@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author Rojeru San CL
+ *
  */
 public class VentasCod {
     

@@ -237,7 +237,16 @@ public class elegir_endoscopia extends javax.swing.JDialog {
     }//GEN-LAST:event_btnListaVentas1ActionPerformed
 
     private void btnListaVentas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaVentas2ActionPerformed
-        // TODO add your handling code here:
+        PrincipalAdministrador.escritorio.removeAll();
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.inventario_endoscopia)) {
+            PrincipalAdministrador.inventario_endoscopia = new inventario_endoscopia();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.inventario_endoscopia.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.inventario_endoscopia);
+            PrincipalAdministrador.inventario_endoscopia.show();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btnListaVentas2ActionPerformed
 
     /**

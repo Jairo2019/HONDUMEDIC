@@ -140,12 +140,12 @@ public class OpcionesVen {
 //            }
 //
 //            if (c == null) {
-//                ventas.CajaNor.numFac.setText("00000001");
+//               // ventas.CajaNor.numFac.setText("00000001");
 //            } else {
 //                j = Integer.parseInt(c);
 //                GenerarNumero gen = new GenerarNumero();
 //                gen.generar(j);
-//                ventas.CajaNor.numFac.setText(gen.serie());
+//                //ventas.CajaNor.numFac.setText(gen.serie());
 //
 //            }
 //

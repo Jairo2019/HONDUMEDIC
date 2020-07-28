@@ -238,8 +238,8 @@ public class ListaAlimentosAd extends javax.swing.JInternalFrame {
             ventas.CajaAd.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 5);
 
         }
-        ventas.CajaAd.subtotal.setText("L " + Math.rint((total) * 100) / 100);
-        ventas.CajaAd.total.setText("L " + Math.rint((total+isv) * 100) / 100);
+        ventas.CajaAd.subtotal.setText("" + Math.rint((total) * 100) / 100);
+        ventas.CajaAd.total.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
     private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed

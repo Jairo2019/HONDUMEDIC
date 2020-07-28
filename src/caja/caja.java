@@ -1404,8 +1404,7 @@ private void condicionIsv( ){
 // traer los detalles de la factura con el codigo del examen
     
     private void show_detalle(){
-//         int row= tableCaja.getSelectedRow();
-//            lblknowdetail.setText(tableCaja.getModel().getValueAt(row,1).toString());
+
         if (("A").equals(lblknowdetail.getText())){
         String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_ambulancia where idventa='" + codetest.getText() + "' ";
         try{

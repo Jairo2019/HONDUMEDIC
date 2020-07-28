@@ -6,10 +6,7 @@
 package pacientes;
 
 import alertas.principal.AWTUtilities;
-import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,14 +15,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
-import net.proteanit.sql.DbUtils;
 import paneles.Conexion;
-import tabla.MyScrollbarUI;
 
 /**
  *
@@ -116,7 +108,7 @@ PreparedStatement pst=null;
         titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 255, 255));
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("REGISTRE PACIENTE");
+        titulo.setText("REGISTRAR PACIENTE");
         titulo.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -482,7 +474,11 @@ PreparedStatement pst=null;
             pst.execute();
 
             JOptionPane.showMessageDialog(this,"Registrado con éxito","Registro de Pacientes",JOptionPane.INFORMATION_MESSAGE);
-            ambulancia.ambulancia.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
+            if (("1").equals(cual)){
+                unidad_apa.cotizaciones_apa.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
+            }else{
+                ambulancia.ambulancia.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
+            }
             this.dispose();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);

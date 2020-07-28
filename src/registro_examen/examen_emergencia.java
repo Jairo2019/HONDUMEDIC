@@ -889,27 +889,7 @@ static Conexion cc = new Conexion();
 
         }
     }
-//    paciente,num_fac,estado,fecha,isv,codigo,nombre_p, precio, cantidad,importe, subtotal, total
-    void print_bill(){
-//        laboratorio em;// Instaciamos la clase empleado
-//        List <laboratorio>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
-//        for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-//            em = new laboratorio(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
-//            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),lblsubtotal.getText(),lblTotal.getText());
-//            lista.add(em); //Agregamos el objeto empleado a la lista
-//        }
-//        JasperReport reporte; // Instaciamos el objeto reporte
-//        String path = "src\\reportes\\caja_laboratorio.jasper"; //Ponemos la localizacion del reporte creado
-//        try {
-//            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
-//            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
-//            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
-//            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
-//            viewer.setVisible(true); //Se vizualiza el reporte
-//        } catch (JRException ex) {
-//           
-//        } 
-}
+
 
      private void ingresar_detalle(){
     for (int i = 0; i <tablaCaja.getRowCount(); i++) {
@@ -1064,7 +1044,6 @@ static Conexion cc = new Conexion();
             sa.msj.setText("EXAMEN REGISTRADO");
             sa.msj1.setText("CON ÉXITO");
             sa.setVisible(true);
-            print_bill();
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
         }catch(HeadlessException | SQLException ex){

@@ -6,6 +6,11 @@
 package ventas;
 
 import cafeteria.ListaAlimentosAd;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -13,6 +18,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import paneles.Conexion;
 import static principal.cafeteriaPrincipalAd.escritorio;
 
 /**
@@ -22,7 +28,6 @@ import static principal.cafeteriaPrincipalAd.escritorio;
 public class CajaAd extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Usuarios
      */
     public boolean estacerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();
@@ -36,7 +41,10 @@ public class CajaAd extends javax.swing.JInternalFrame {
         }
         return cerrado;
     }
-    
+        Connection con=null;
+        Date dato = null;
+        ResultSet rs=null;
+        PreparedStatement pst=null;  
     public CajaAd() {
         initComponents();
         tablaCaja.getTableHeader().setDefaultRenderer(new principal.EstiloTablaHeader());
@@ -64,6 +72,7 @@ public class CajaAd extends javax.swing.JInternalFrame {
         cambio.setText("");
         total.setText("0.0");
         fecha.setText("");
+        subtotal.setText("0.0");
         fecha.setText(fechaactual());
         OpcionesVen.numeros();
     }
@@ -307,7 +316,7 @@ public class CajaAd extends javax.swing.JInternalFrame {
         vender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/venta2.png"))); // NOI18N
         vender.setBorder(null);
         vender.setContentAreaFilled(false);
-        vender.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        vender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         vender.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         vender.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/venta1.png"))); // NOI18N
         vender.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -327,7 +336,7 @@ public class CajaAd extends javax.swing.JInternalFrame {
         borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/elimina2.png"))); // NOI18N
         borrar.setBorder(null);
         borrar.setContentAreaFilled(false);
-        borrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        borrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         borrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         borrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/elimina1.png"))); // NOI18N
         borrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -347,7 +356,7 @@ public class CajaAd extends javax.swing.JInternalFrame {
         cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/cancela2.png"))); // NOI18N
         cancelar.setBorder(null);
         cancelar.setContentAreaFilled(false);
-        cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         cancelar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/cancela1.png"))); // NOI18N
         cancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -433,7 +442,7 @@ public class CajaAd extends javax.swing.JInternalFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(0, 651, Short.MAX_VALUE)
+                .addGap(0, 728, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,16 +593,16 @@ cafeteria.ListaAlimentosAd la;
     private void calculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculoActionPerformed
         if (tablaCaja.getRowCount() < 1) {
             JOptionPane.showMessageDialog(this, "Imposible realizar operación.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (recibi.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese un valor.", "Caja de cobro", 0,
-                    new ImageIcon(getClass().getResource("/imagenes/usuarios/info.png")));
+        } else if (("").equals(recibi.getText())) {
+            JOptionPane.showMessageDialog(this, "Ingrese un valor.", "Caja de cobro", 0);
+                  //  new ImageIcon(getClass().getResource("/imagenes/usuarios/info.png")));
         } else {
             double recibe = Double.parseDouble(recibi.getText());
             double tota = Double.parseDouble(total.getText());
 
             if (recibe < tota) {
-                JOptionPane.showMessageDialog(this, "Ingrese un valor valido.", "Caja de cobro", 0,
-                        new ImageIcon(getClass().getResource("/imagenes/usuarios/info.png")));
+                JOptionPane.showMessageDialog(this, "Ingrese un valor valido.", "Caja de cobro", 0);
+                     //   new ImageIcon(getClass().getResource("/imagenes/usuarios/info.png")));
             } else {
                 CajaAd.cambio.setText(String.valueOf(recibe - tota));
             }
@@ -604,22 +613,21 @@ cafeteria.ListaAlimentosAd la;
         if (tablaCaja.getRowCount() < 1) {
             JOptionPane.showMessageDialog(this, "Imposible realizar venta.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            VentasCod vc = new VentasCod();
-            vc.setPrimaryKey(numFac.getText());
-            vc.setTotal(total.getText());
-            vc.setFecha(fecha.getText());
-            int opcion = OpcionesVen.registrar(vc);
-            if (opcion != 0) {
-                limpiaCampos();
-                JOptionPane.showMessageDialog(this, "Venta realizada.", "Caja de cobro", 0,
-                        new ImageIcon(getClass().getResource("/imagenes/caja/ralizada.png")));
+            try{
+             con=Conexion.ConnectDB();
+             String sql= "insert into registro_venta(numero,total,fecha) values ('"+numFac.getText()+"','" + total.getText() +"','" +fecha.getText()+ "')";
+             pst=con.prepareStatement(sql);
+             pst.execute();
+                JOptionPane.showMessageDialog(this, "Venta realizada.", "Caja de cobro",0);
                 if (principal.cafeteriaPrincipalAd.cerra1) {
                     OpcionesVen.listar("");
                 }
+                limpiaCampos();
+            }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        } 
+                    
             }
-            
-                
-        }
     }//GEN-LAST:event_venderActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed

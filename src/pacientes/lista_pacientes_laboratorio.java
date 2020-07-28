@@ -45,8 +45,6 @@ PreparedStatement pst=null;
         initComponents();
         
         tabla.getTableHeader().setFont(new Font("Tahoma", 1, 16));
-        tabla.getTableHeader().setBackground(Color.decode("#006FB0"));
-        tabla.getTableHeader().setForeground(Color.white);
         this.tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
@@ -343,6 +341,9 @@ PreparedStatement pst=null;
                             cual="";
                         }else if (("7").equals(cual)){
                             registro_examen.examen_ultrasonido.txtpaciente.setText(nom + " "+  apellido);
+                            cual="";
+                        }else if (("8").equals(cual)){
+                            unidad_apa.cotizaciones_apa.txtpaciente.setText(nom + " "+  apellido);
                             cual="";
                         }else{
                              registro_examen.examen_laboratorio.txtpaciente.setText(nom + " "+  apellido);

@@ -36,10 +36,6 @@ PreparedStatement pst=null;
         con= Conexion.ConnectDB();
         Get_Data();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
-        tableUsers.getTableHeader().setBackground(Color.decode("#006FB0"));
-        tableUsers.getTableHeader().setForeground(Color.white);
-
-
     }
 
     /**

@@ -52,7 +52,7 @@ public class cafeteriaPrincipalAd extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.setIconImage(new ImageIcon(getClass().getResource("/img1/HODUMEDIC.png")).getImage());
-        this.setTitle("MENÚ PRINCIPAL ADMINISTRADOR - SISTEMA ENRAMADA SALAS (SIENSA)");
+        this.setTitle("MENÚ PRINCIPAL ADMINISTRADOR - SISTEMA CAFETERIA HONDUMEDIC");
     }
 
     /**
@@ -70,8 +70,6 @@ public class cafeteriaPrincipalAd extends javax.swing.JFrame {
         caja = new javax.swing.JButton();
         hora = new javax.swing.JLabel();
         fecha = new javax.swing.JLabel();
-        userConect = new javax.swing.JLabel();
-        logoSexo1 = new javax.swing.JLabel();
         usuarios = new javax.swing.JButton();
         alimentos = new javax.swing.JButton();
         ventas = new javax.swing.JButton();
@@ -134,13 +132,6 @@ public class cafeteriaPrincipalAd extends javax.swing.JFrame {
         fecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fecha.setText("DIA - MES - AÑO");
 
-        userConect.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        userConect.setForeground(new java.awt.Color(255, 255, 255));
-        userConect.setText("USUARIO");
-
-        logoSexo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoSexo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/principal/conectado.png"))); // NOI18N
-
         usuarios.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         usuarios.setForeground(new java.awt.Color(255, 255, 255));
         usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/principal/usuario1.png"))); // NOI18N
@@ -194,15 +185,11 @@ public class cafeteriaPrincipalAd extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(logoSexo1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userConect, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(hora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addComponent(alimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,22 +212,16 @@ public class cafeteriaPrincipalAd extends javax.swing.JFrame {
                         .addComponent(usuarios)
                         .addComponent(alimentos)
                         .addComponent(ventas))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(hora)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fecha)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(logoSexo1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(userConect, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(14, 14, 14))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(info)
                         .addComponent(caja)))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(hora)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fecha)
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -411,8 +392,6 @@ public class cafeteriaPrincipalAd extends javax.swing.JFrame {
     private javax.swing.JButton info;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel logoSexo1;
-    public static javax.swing.JLabel userConect;
     private javax.swing.JButton usuarios;
     private javax.swing.JButton ventas;
     // End of variables declaration//GEN-END:variables

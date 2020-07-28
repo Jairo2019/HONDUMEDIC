@@ -39,12 +39,11 @@ Connection con=null;
 Date dato = null;
 ResultSet rs=null;
 PreparedStatement pst=null;
+public static String cual=""; //saber que formulario esta pidiendo información
     public lista_hospitalizacion(JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-                tabla.getTableHeader().setFont(new Font("Tahoma", 1, 16));
-        tabla.getTableHeader().setBackground(Color.decode("#006FB0"));
-        tabla.getTableHeader().setForeground(Color.white);     
+        tabla.getTableHeader().setFont(new Font("Tahoma", 1, 16));   
         this.tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.getViewport().setBackground(new java.awt.Color(255, 255, 255));

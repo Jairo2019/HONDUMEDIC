@@ -191,7 +191,7 @@ PreparedStatement pst=null;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void enter_main(){
+    private  void enter_main( ){
          if(this.txtUserName.getText().equals("") || this.txtPassword.getText().equals("")){
             this.info.setText("¡ USUARIO Y CONTRASEÑA REQUERIDOS !");
             this.txtUserName.requestFocus();
