@@ -217,12 +217,12 @@ static Conexion cc = new Conexion();
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12))
         );
         jPanel22Layout.setVerticalGroup(
@@ -601,12 +601,12 @@ static Conexion cc = new Conexion();
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btns_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_pacienteActionPerformed
-        new pacientes.lista_pacientes_hospitalizados(new JFrame(), true).setVisible(true);  
+        new pacientes.lista_pacientes_hospitalizados_apa(new JFrame(), true).setVisible(true);  
         // TODO add your handling code here:
     }//GEN-LAST:event_btns_pacienteActionPerformed
 
     private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
-        empleados.lista_empleados_mingreso.cual="2.1";
+        empleados.lista_empleados_mingreso.cual="10";
         new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btns_medico2ActionPerformed
   

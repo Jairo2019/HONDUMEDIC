@@ -159,8 +159,7 @@ public class elegir_servicio_cotizacion_apa extends javax.swing.JDialog {
     private void btnserviciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnserviciosActionPerformed
         FadeEffect.fadeOut(this, 50, 0.1f);
        this.dispose();
-       unidad_apa.lista_emergencia_apa.cual="1";
-        new unidad_apa.lista_emergencia_apa(new JFrame(), true).setVisible(true);
+        new unidad_apa.lista_cotizaciones_emergency_apa(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnserviciosActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -206,7 +205,7 @@ public class elegir_servicio_cotizacion_apa extends javax.swing.JDialog {
         FadeEffect.fadeOut(this, 50, 0.1f);
        this.dispose();
         unidad_apa.lista_hospitalizacion_apa.cual="1";
-        new unidad_apa.lista_hospitalizacion_apa(new JFrame(), true).setVisible(true);    // TODO add your handling code here:
+        new unidad_apa.lista_cotizacion_hospitalizacion_apa(new JFrame(), true).setVisible(true);    // TODO add your handling code here:
     }//GEN-LAST:event_btnhospiActionPerformed
     
     /**

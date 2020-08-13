@@ -118,7 +118,6 @@ static Conexion cc = new Conexion();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCaja = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
-        txttotalcaja = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
@@ -341,23 +340,12 @@ static Conexion cc = new Conexion();
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE))
         );
 
-        txttotalcaja.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txttotalcaja.setForeground(new java.awt.Color(0, 0, 0));
-        txttotalcaja.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txttotalcaja.setText("TOTAL A PAGAR: L");
-        txttotalcaja.setToolTipText("");
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel11Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(txttotalcaja, javax.swing.GroupLayout.DEFAULT_SIZE, 1194, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,11 +354,6 @@ static Conexion cc = new Conexion();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(45, 45, 45))
-            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                    .addContainerGap(562, Short.MAX_VALUE)
-                    .addComponent(txttotalcaja, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
         );
 
         jPanel10.add(jPanel11, "card2");
@@ -850,7 +833,7 @@ static Conexion cc = new Conexion();
     //obtener los datos de la base de datos
   private void Get_Data(){
         thishide.setVisible(false);
-        String sql="select codigo as 'Codigo',codigo_servicio as 'Codigo Servicio',paciente as 'Paciente', empleado as 'Dio Cotización' from cotizaciones_apa";
+        String sql="select codigo as 'Codigo',servicio as 'Servicios',paciente as 'Pacientes', empleado as 'Encargados de dar Cotización' from cotizaciones_apa";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -886,7 +869,7 @@ private void condicionPaciente( ){
             lista.add(em); //Agregamos el objeto cotizacion a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
-        String path = "src\\reportes\\cotizacion_apa.jasper"; //Ponemos la localizacion del reporte creado
+        String path = "src\\reportes\\cotiza_apa.jasper"; //Ponemos la localizacion del reporte creado
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
@@ -898,20 +881,6 @@ private void condicionPaciente( ){
         } 
 }
 
-
-// traer los datos del servicio cotizado
-    private void show_detalle(){
-        if (("A").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_ambulancia where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }
-    }
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
@@ -946,22 +915,7 @@ private void condicionPaciente( ){
     }//GEN-LAST:event_c_search_tblKeyReleased
     //select idventa as 'Codigo',codigo_examen as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)'
     private void tableCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCajaMouseClicked
-        try {
-            int row= tableCaja.getSelectedRow();
-            numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
-            lblknowdetail.setText(tableCaja.getModel().getValueAt(row,1).toString());
-            txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            txtempleado.setText(tableCaja.getModel().getValueAt(row,3).toString());
-
-            show_detalle();
-            this.btnpaciente.setEnabled(false);
-            this.btnVender.setEnabled(false);
-            this.jTabbedPane2.setSelectedIndex(1);
-            nopaciente.setEnabled(false);
-            ispaciente.setEnabled(false);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,ex);
-        }        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_tableCajaMouseClicked
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -970,6 +924,12 @@ private void condicionPaciente( ){
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+        String servicio = "";
+        
+        for(int i=0; i<tablaCaja.getRowCount(); i++){
+          servicio +=  (String) tablaCaja.getValueAt(i, 1)+" ";
+            
+        }
         if (this.tablaCaja.getRowCount() < 1) {
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
             er.titulo.setText("OOPS...");
@@ -989,7 +949,7 @@ private void condicionPaciente( ){
                 JOptionPane.showMessageDialog( this, "Ingrese el Encargado de la Cotización","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            String sql= "insert into cotizaciones_apa(idventa,cod_servicio,codigo_examen,paciente,fecha,estado_pago,total) values ('"+numFac.getText()+"','" +lblknowdetail.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" + lblTotal.getText() + "')";
+            String sql= "insert into cotizaciones_apa(codigo,servicio,paciente,empleado) values ('"+numFac.getText()+"','"+servicio+"','" +txtpaciente.getText()+"','" +txtempleado.getText()+ "')";
                 pst=con.prepareStatement(sql);
                 pst.execute();
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
@@ -998,6 +958,7 @@ private void condicionPaciente( ){
             sa.msj1.setText("CON ÉXITO");
             sa.setVisible(true);
             this.jTabbedPane2.setSelectedIndex(0);
+            print_bill();
             limpiaCampos();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
@@ -1108,6 +1069,5 @@ private void condicionPaciente( ){
     public static app.bolivia.swing.JCTextField txtpaciente;
     private javax.swing.JLabel txtsubtotal;
     private javax.swing.JLabel txttotal;
-    private static javax.swing.JLabel txttotalcaja;
     // End of variables declaration//GEN-END:variables
 }

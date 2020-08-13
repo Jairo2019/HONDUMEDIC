@@ -39,6 +39,17 @@ public class ProductoDAO {
        } catch (Exception e) {
        }
        return r;
+   }public int actualizarStock_emergencia_apa(int cant, String idp){
+       String sql="update inventario_emergencia_apa set cantidad=? where codigo_emergencia=?";
+       try {
+           con=acceso.ConnectDB();
+           ps=con.prepareStatement(sql);
+           ps.setInt(1, cant);
+           ps.setString(2, idp);
+           ps.executeUpdate();
+       } catch (Exception e) {
+       }
+       return r;
    }
           public int actualizarStock_hospitalizacion(int cant, String idp){
        String sql="update inventario_hospitalizacion set cantidad=? where codigo_hospitalizacion=?";
@@ -160,7 +171,26 @@ public class ProductoDAO {
         }
         return p;
     }
-          public Producto listarID_hospitalizacion(String id){
+            public Producto listarID_emergencia_APA(String id){
+        Producto p=new Producto();
+        String sql="select * from inventario_emergencia_apa where codigo_emergencia=?";
+        try {
+            con=acceso.ConnectDB();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                p.setId(rs.getString(1));
+                p.setNom(rs.getString(2));
+                p.setPre(rs.getFloat(3));
+                p.setEstado(rs.getString(4));
+                p.setStock(rs.getInt(5));
+            }
+        } catch (Exception e) {
+        }
+        return p;
+    }
+       public Producto listarID_hospitalizacion(String id){
         Producto p=new Producto();
         String sql="select * from inventario_hospitalizacion where codigo_hospitalizacion=?";
         try {

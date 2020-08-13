@@ -361,67 +361,35 @@ static Conexion cc = new Conexion();
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
         jPanel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
+        jPanel22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 111, 177));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("CODIGO DE REGISTRO");
+        jPanel22.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 306, -1));
 
         numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numFac.setForeground(new java.awt.Color(0, 111, 177));
         numFac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numFac.setText("NO. VENTA");
+        jPanel22.add(numFac, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 32, 306, -1));
 
         txtnumhabitacion.setBorder(null);
         txtnumhabitacion.setForeground(new java.awt.Color(0, 0, 0));
         txtnumhabitacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtnumhabitacion.setPlaceholder("NUM. HABITACIÓN");
+        jPanel22.add(txtnumhabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 77, 240, 30));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/num_room.png"))); // NOI18N
+        jPanel22.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 67, -1, -1));
 
         txtdescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtdescripcion.setPlaceholder("MOTIVO DE INGRESO");
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(numFac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel11)
-                                .addGroup(jPanel22Layout.createSequentialGroup()
-                                    .addGap(60, 60, 60)
-                                    .addComponent(txtnumhabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(numFac)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtnumhabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+        jPanel22.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 290, 70));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -667,7 +635,7 @@ static Conexion cc = new Conexion();
 
         btnVender.setBackground(new java.awt.Color(0, 111, 177));
         btnVender.setForeground(new java.awt.Color(255, 255, 255));
-        btnVender.setText("REGISTRAR EXAMEN");
+        btnVender.setText("           Guardar               ");
         btnVender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -750,7 +718,7 @@ static Conexion cc = new Conexion();
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1097,7 +1065,7 @@ static Conexion cc = new Conexion();
     }//GEN-LAST:event_btnserviciosActionPerformed
 
     private void btns_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_pacienteActionPerformed
-        pacientes.lista_pacientes_laboratorio.cual="2";
+        pacientes.lista_pacientes_laboratorio.cual="9";
         new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);  
         // TODO add your handling code here:
     }//GEN-LAST:event_btns_pacienteActionPerformed
@@ -1107,17 +1075,17 @@ static Conexion cc = new Conexion();
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btns_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_adminActionPerformed
-        empleados.lista_empleados_admin.cual="2";
+        empleados.lista_empleados_admin.cual="8";
         new empleados.lista_empleados_admin(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_btns_adminActionPerformed
 
     private void btns_medico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico1ActionPerformed
-        empleados.lista_empleados_mindica.cual="2";
+        empleados.lista_empleados_mindica.cual="9";
         new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btns_medico1ActionPerformed
 
     private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
-        empleados.lista_empleados_mingreso.cual="2";
+        empleados.lista_empleados_mingreso.cual="8";
         new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btns_medico2ActionPerformed
   

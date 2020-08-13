@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="print" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b78a9b5c-970a-4cd4-98c5-17bac53640c9">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -29,7 +30,6 @@ FROM
 	</queryString>
 	<field name="paciente" class="java.lang.String"/>
 	<field name="num_fac" class="java.lang.String"/>
-	<field name="estado" class="java.lang.String"/>
 	<field name="fecha" class="java.lang.String"/>
 	<field name="isv" class="java.lang.String"/>
 	<field name="codigo" class="java.lang.String"/>
@@ -218,7 +218,7 @@ FROM
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma"/>
 				</textElement>
-				<text><![CDATA[Servicio]]></text>
+				<text><![CDATA[Servicios]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" mode="Opaque" x="251" y="3" width="108" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="c65e64df-360d-4d31-9a2a-c83294fe7b91"/>

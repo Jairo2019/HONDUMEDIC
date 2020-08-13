@@ -85,10 +85,11 @@ static Conexion cc = new Conexion();
         tablaCaja.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         con= Conexion.ConnectDB();
         limpiaCampos();
-        thishide.setVisible(false);
+        thishide.hide();
         txtcredito.hide();
         backcredit.hide();
         codetest.hide();
+        lblknowdetail.hide();
     }
 
     /**

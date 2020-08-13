@@ -277,7 +277,7 @@ public class PrincipalAPA extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //Fehca del sistema
         Date sistemaFech = new Date();

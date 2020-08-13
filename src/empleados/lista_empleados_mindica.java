@@ -343,6 +343,12 @@ PreparedStatement pst=null;
                     }else if (("8").equals(cual)){
                     unidad_apa.cotizaciones_apa.txtempleado.setText(nom + " "+  apellido);
                     cual="";
+                    }else if (("9").equals(cual)){
+                    unidad_apa.examen_hospitalizacion_apa.txtmedicoindica.setText(nom + " "+  apellido);
+                    cual="";
+                    }else if (("10").equals(cual)){
+                    unidad_apa.examen_emergencia_apa.txtmedicoindica.setText(nom + " "+  apellido);
+                    cual="";
                     }else{
                     registro_examen.examen_laboratorio.txtmedicoindica.setText(nom + " "+  apellido);
                     cual="";}

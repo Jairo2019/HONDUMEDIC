@@ -286,31 +286,6 @@ public static String cual="";
        unidad_apa.examen_hospitalizacion_apa.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
-        public void calcular_cotizacion() {
-        String pre;
-        String can;
-        double total = 0;
-        double precio;
-        int cantidad;
-        double imp = 0.0;
-        double isv= 0.0;
-
-        for (int i = 0; i <unidad_apa.cotizaciones_apa.tablaCaja.getRowCount(); i++) {
-            pre =unidad_apa.cotizaciones_apa.tablaCaja.getValueAt(i, 2).toString();
-            can =unidad_apa.cotizaciones_apa.tablaCaja.getValueAt(i, 3).toString();
-            precio = Double.parseDouble(pre);
-            cantidad = Integer.parseInt(can);
-            imp = precio * cantidad;
-            total = total + imp;
-           double value = Double.valueOf(unidad_apa.cotizaciones_apa.isv.getText());
-            isv=((value/100) * total);
-            unidad_apa.cotizaciones_apa.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
-
-        }
-        unidad_apa.cotizaciones_apa.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
-       unidad_apa.cotizaciones_apa.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
-
-    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
@@ -356,9 +331,7 @@ public static String cual="";
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
         if (tabla.getRowCount() > 0) {
             try {
-                String cant = null;
                 DefaultTableModel tabladet = (DefaultTableModel)unidad_apa.examen_hospitalizacion_apa.tablaCaja.getModel();
-                 DefaultTableModel tabladet_cotizacion = (DefaultTableModel)unidad_apa.cotizaciones_apa.tablaCaja.getModel();
                 String[] dato = new String[6];
 
                 int fila = tabla.getSelectedRow();
@@ -382,8 +355,7 @@ public static String cual="";
                         er.msj1.setText("CANTIDAD");
                         er.setVisible(true);
                     } else {
-                        cant= txtCantidad.getText();
-                        for (int i = 0; i <unidad_apa.examen_hospitalizacion_apa.tablaCaja.getRowCount(); i++) {
+                        for (int i = 0; i < unidad_apa.examen_hospitalizacion_apa.tablaCaja.getRowCount(); i++) {
                             Object com =unidad_apa.examen_hospitalizacion_apa.tablaCaja.getValueAt(i, 0);
                             if (cod.equals(com)) {
                                 j = i;
@@ -396,40 +368,15 @@ public static String cual="";
                                 calcular();
                             }
                         }//evaluar los registros enviados a cotizaciones
-                            for (int i = 0; i < unidad_apa.cotizaciones_apa.tablaCaja.getRowCount(); i++) {
-                            Object com = unidad_apa.cotizaciones_apa.tablaCaja.getValueAt(i, 0);
-                            if (cod.equals(com)) {
-                                j = i;
-                                ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                                er.titulo.setText("OOPS...");
-                                er.msj.setText("EL SERVICIO");
-                                er.msj1.setText("YA SE INGRESO");
-                                er.setVisible(true);
-                                    c++;
-                                calcular_cotizacion();
-                            }
-                        }
                         this.dispose();
                         if (c == 0) {
-                            if (("1").equals(cual)){
-                                dato[0] = cod;
-                                dato[1] = nom;
-                                dato[2] = precio;
-                                dato[3] = cant;
-                                tabladet_cotizacion.addRow(dato);
-                                unidad_apa.cotizaciones_apa.tablaCaja.setModel(tabladet_cotizacion);
-                                calcular_cotizacion();
-                                cual="";
-                            }else if(("2").equals(cual)){
-                                dato[0] = cod;
-                                dato[1] = nom;
-                                dato[2] = precio;
-                                dato[3] = cant;
-                                tabladet.addRow(dato);
-                                unidad_apa.examen_hospitalizacion_apa.tablaCaja.setModel(tabladet);
-                                calcular();
-                                cual="";
-                            }
+                            dato[0] = cod;
+                            dato[1] = nom;
+                            dato[2] = precio;
+                            dato[3] = txtCantidad.getText();
+                            tabladet.addRow(dato);
+                            unidad_apa.examen_hospitalizacion_apa.tablaCaja.setModel(tabladet);
+                            calcular();
                         }
                     }
                 }

@@ -72,7 +72,6 @@ PreparedStatement pst=null;
         pnlChange = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         c_search_tbl = new app.bolivia.swing.JCTextField();
-        btnprint = new rsbuttom.RSButtonMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsers = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -191,30 +190,6 @@ PreparedStatement pst=null;
             }
         });
         jPanel5.add(c_search_tbl);
-
-        btnprint.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnprint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Print_32.png"))); // NOI18N
-        btnprint.setText("Imprimir");
-        btnprint.setToolTipText("");
-        btnprint.setColorBorde(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnprint.setColorHover(new java.awt.Color(12, 140, 143));
-        btnprint.setColorPressed(new java.awt.Color(12, 140, 143));
-        btnprint.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnprint.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnprint.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnprint.setIconTextGap(19);
-        btnprint.setPreferredSize(new java.awt.Dimension(150, 32));
-        btnprint.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnprintMouseClicked(evt);
-            }
-        });
-        btnprint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnprintActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnprint);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
@@ -695,15 +670,6 @@ private void Get_Data(){
         }          // TODO add your handling code here:
     }//GEN-LAST:event_c_search_tblKeyReleased
 
-    private void btnprintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnprintMouseClicked
-        JasperReport reporte; //Creo el objeto reporte
-        reporte = JasperCompilerManager.compileReport("src/Reportes/rptCaja.jrml");      // TODO add your handling code here:
-    }//GEN-LAST:event_btnprintMouseClicked
-
-    private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
-        jTabbedPane2.setSelectedIndex(0);        // TODO add your handling code here:
-    }//GEN-LAST:event_btnprintActionPerformed
-
     private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
         try {
             con=Conexion.ConnectDB();
@@ -831,7 +797,6 @@ private void Get_Data(){
     private rsbuttom.RSButtonMetro btnDelete;
     private rsbuttom.RSButtonMetro btnUpdate;
     private rsbuttom.RSButtonMetro btncancel;
-    private rsbuttom.RSButtonMetro btnprint;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
