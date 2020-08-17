@@ -16,19 +16,20 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import cafeteria.Alimentos;
 import ventas.CajaAd;
 import ventas.RegistroVentas;
+import Farmacia.*;
 
 /**
  *
- * @author Rojeru San CL
+ * @author Rojeru San CL/*1`    0
  */
 public class Farmacia_Principal extends javax.swing.JFrame {
 
     public static boolean cerra = false;
     public static boolean cerra1 = false;
-    public Alimentos al=null;
+    public inventario_farmacia inventario=null;
+    public caja_cobro caja_cobro =null;
     public boolean estacerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();
         boolean cerrado = true;
@@ -72,7 +73,6 @@ public class Farmacia_Principal extends javax.swing.JFrame {
         fecha = new javax.swing.JLabel();
         usuarios = new javax.swing.JButton();
         alimentos = new javax.swing.JButton();
-        ventas = new javax.swing.JButton();
         escritorio = new principal.Escritorio();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,13 +150,13 @@ public class Farmacia_Principal extends javax.swing.JFrame {
 
         alimentos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         alimentos.setForeground(new java.awt.Color(255, 255, 255));
-        alimentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/principal/alimentos1.png"))); // NOI18N
-        alimentos.setText("ALIMENTOS");
+        alimentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/principal/pharnacy.png"))); // NOI18N
+        alimentos.setText("INVENTARIO");
+        alimentos.setToolTipText("");
         alimentos.setBorder(null);
         alimentos.setContentAreaFilled(false);
         alimentos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         alimentos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        alimentos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/principal/alimentos2.png"))); // NOI18N
         alimentos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         alimentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,57 +164,33 @@ public class Farmacia_Principal extends javax.swing.JFrame {
             }
         });
 
-        ventas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        ventas.setForeground(new java.awt.Color(255, 255, 255));
-        ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/principal/ventas1.png"))); // NOI18N
-        ventas.setText("REGISTRO VENTAS");
-        ventas.setBorder(null);
-        ventas.setContentAreaFilled(false);
-        ventas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ventas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ventas.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/principal/ventas2.png"))); // NOI18N
-        ventas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ventas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ventasActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(hora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(usuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
-                .addComponent(alimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                .addComponent(ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(caja)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGap(189, 189, 189)
+                .addComponent(alimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                .addGap(161, 161, 161)
+                .addComponent(caja, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                .addGap(168, 168, 168)
                 .addComponent(info)
                 .addContainerGap())
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {caja, info});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(usuarios)
-                        .addComponent(alimentos)
-                        .addComponent(ventas))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(info)
-                        .addComponent(caja)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(caja)
+                    .addComponent(usuarios)
+                    .addComponent(alimentos)
+                    .addComponent(info))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -272,45 +248,28 @@ public class Farmacia_Principal extends javax.swing.JFrame {
 
     private void alimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alimentosActionPerformed
         Farmacia_Principal.escritorio.removeAll();
-        if (estacerrado(al)) {
-            al = new Alimentos();
+        if (estacerrado(inventario)) {
+            inventario = new inventario_farmacia();
             int width = escritorio.getWidth();
             int Height = escritorio.getHeight();
-            al.setSize(width, Height);
-            escritorio.add(al);
-            al.show();
+            inventario.setSize(width, Height);
+            escritorio.add(inventario);
+            inventario.show();
         } else {
-            JOptionPane.showMessageDialog(this, "La ventana ALIMENTOS\nya esta abierta !!!", "Aviso", 0,
+            JOptionPane.showMessageDialog(this, "La ventana Inventario\nya esta abierta !!!", "Aviso", 0,
                     new ImageIcon(getClass().getResource("/imagenes/principal/adver.png")));
         }
     }//GEN-LAST:event_alimentosActionPerformed
-    CajaAd ca;
-    RegistroVentas rv;
-    private void ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventasActionPerformed
-        Farmacia_Principal.escritorio.removeAll();
-        if (estacerrado(rv)) {
-            rv = new RegistroVentas();
-             int width = escritorio.getWidth();
-            int Height = escritorio.getHeight();
-            rv.setSize(width, Height);
-            escritorio.add(rv);
-            rv.show();
-            cerra1 = true;
-        } else {
-            JOptionPane.showMessageDialog(this, "La ventana REGISTRO VENTAS\nya esta abierta !!!", "Aviso", 0,
-                    new ImageIcon(getClass().getResource("/imagenes/principal/adver.png")));
-        }
-    }//GEN-LAST:event_ventasActionPerformed
 
     private void cajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajaActionPerformed
         Farmacia_Principal.escritorio.removeAll();
-        if (estacerrado(ca)) {
-            ca = new CajaAd();
+        if (estacerrado(caja)) {
+            caja_cobro = new caja_cobro();
              int width = escritorio.getWidth();
             int Height = escritorio.getHeight();
-            ca.setSize(width, Height);
-            escritorio.add(ca);
-            ca.show();
+            caja_cobro.setSize(width, Height);
+            escritorio.add(caja_cobro);
+            caja_cobro.show();
             cerra = true;
         } else {
             JOptionPane.showMessageDialog(this, "La ventana CAJA DE COBRO\nya esta abierta !!!", "Aviso", 0,
@@ -397,6 +356,5 @@ public class Farmacia_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton usuarios;
-    private javax.swing.JButton ventas;
     // End of variables declaration//GEN-END:variables
 }

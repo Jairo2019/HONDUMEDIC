@@ -5,7 +5,7 @@
  */
 package paneles;
 import caja.caja;
-import principal.PrincipalAdministrador;
+import principal.*;
 /**
  *
  * @author Rojeru San
@@ -722,7 +722,9 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnendoscopiaActionPerformed
 
     private void btnfarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfarmaciaActionPerformed
-         new ventas.ModalElegir(a, true).setVisible(true);       // TODO add your handling code here:
+        Farmacia_Principal f = new Farmacia_Principal();
+        f.setVisible(true);
+        this.dispose();    // TODO add your handling code here:
     }//GEN-LAST:event_btnfarmaciaActionPerformed
 
     private void btnhopitalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhopitalizacionActionPerformed

@@ -799,7 +799,7 @@ static Conexion cc = new Conexion();
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 957, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txttotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -846,7 +846,7 @@ static Conexion cc = new Conexion();
 
         btnVender.setBackground(new java.awt.Color(0, 111, 177));
         btnVender.setForeground(new java.awt.Color(255, 255, 255));
-        btnVender.setText("REALIZAR VENTA");
+        btnVender.setText("           GUARDAR           ");
         btnVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnVender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVender.addActionListener(new java.awt.event.ActionListener() {
@@ -875,7 +875,7 @@ static Conexion cc = new Conexion();
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                    .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1663,7 +1663,20 @@ private void condicionIsv( ){
             }
                // insertar datos en caja_servicios
             if (rbcredito.isSelected()){
-            String sql= "insert into caja_servicios(idventa,cod_servicio,codigo_examen,paciente,fecha,estado_pago,abonado,pendiente,total) values ('"+numFac.getText()+"','" +lblknowdetail.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" +condiciones(Estado_actual)+"','" + Double.parseDouble(txtcredito.getText())+"','" +credito(Num)+"','" +lblTotal.getText()+ "')";
+            String sql= "insert into caja_servicios(idventa,"
+                    + "cod_servicio,codigo_examen,"
+                    + "paciente,fecha,"
+                    + "estado_pago,"
+                    + "abonado,"
+                    + "pendiente,total) values ('"+numFac.getText()
+                    +"','" +lblknowdetail.getText()
+                    +"','" +codetest.getText()
+                    +"','" +txtpaciente.getText()
+                    +"','" +txtFecha.getText()
+                    +"','" +condiciones(Estado_actual)
+                    +"','" + Double.parseDouble(txtcredito.getText())
+                    +"','" +credito(Num)+"','" 
+                    +lblTotal.getText()+ "')";
             pst=con.prepareStatement(sql);
             pst.execute();}else{
             String sql= "insert into caja_servicios(idventa,cod_servicio,codigo_examen,paciente,fecha,estado_pago,total) values ('"+numFac.getText()+"','" +lblknowdetail.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" +condiciones(Estado_actual)+"','" + lblTotal.getText() + "')";

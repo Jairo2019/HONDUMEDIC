@@ -1195,7 +1195,7 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane2" pref="957" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane2" pref="937" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="txttotal" max="32767" attributes="0"/>
@@ -1354,7 +1354,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="btnCancelar" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnVender" alignment="1" pref="168" max="32767" attributes="0"/>
+                                      <Component id="btnVender" alignment="1" max="32767" attributes="0"/>
                                       <Component id="btnedit" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -1405,7 +1405,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="REALIZAR VENTA"/>
+                            <Property name="text" type="java.lang.String" value="           GUARDAR           "/>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                               <Color id="Hand Cursor"/>
                             </Property>

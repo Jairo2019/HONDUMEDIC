@@ -27,6 +27,17 @@ public class ProductoDAO {
        } catch (Exception e) {
        }
        return r;
+   }public int actualizarStock_farmacia(int cant, String idp){
+       String sql="update inventario_farmacia set cantidad=? where codigo_farmacia=?";
+       try {
+           con=acceso.ConnectDB();
+           ps=con.prepareStatement(sql);
+           ps.setInt(1, cant);
+           ps.setString(2, idp);
+           ps.executeUpdate();
+       } catch (Exception e) {
+       }
+       return r;
    }
      public int actualizarStock_emergencia(int cant, String idp){
        String sql="update inventario_emergencia set cantidad=? where codigo_emergencia=?";
@@ -147,6 +158,25 @@ public class ProductoDAO {
                 p.setPre(rs.getFloat(3));
                 p.setEstado(rs.getString(4));
                 p.setStock(rs.getInt(5));
+            }
+        } catch (Exception e) {
+        }
+        return p;
+    }
+    public Producto listarID_inventarioFarmacia(String id){
+        Producto p=new Producto();
+        String sql="select * from inventario_farmacia where codigo_farmacia=?";
+        try {
+            con=acceso.ConnectDB();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                p.setId(rs.getString(1));
+                p.setNom(rs.getString(2));
+                p.setPre(rs.getFloat(3));
+                p.setEstado(rs.getString(4));
+                p.setStock(rs.getInt(6));
             }
         } catch (Exception e) {
         }
