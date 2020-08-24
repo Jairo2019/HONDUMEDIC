@@ -76,6 +76,7 @@ static Conexion cc = new Conexion();
         con= Conexion.ConnectDB();
         Get_Data();
         thishide.setVisible(false);
+        lbledittotal.hide();
     }
 
     /**
@@ -94,6 +95,7 @@ static Conexion cc = new Conexion();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         thishide = new javax.swing.JLabel();
+        lbledittotal = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -132,6 +134,7 @@ static Conexion cc = new Conexion();
         txtmedicoingreso = new app.bolivia.swing.JCTextField();
         btns_medico2 = new principal.MaterialButton();
         jLabel8 = new javax.swing.JLabel();
+        btnnewinsumo = new principal.MaterialButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCaja = new javax.swing.JTable();
@@ -184,7 +187,9 @@ static Conexion cc = new Conexion();
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(172, 172, 172)
                 .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 744, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
+                .addComponent(lbledittotal, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -202,6 +207,10 @@ static Conexion cc = new Conexion();
                 .addGap(19, 19, 19)
                 .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbledittotal, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -362,67 +371,35 @@ static Conexion cc = new Conexion();
 
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
         jPanel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
+        jPanel22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 111, 177));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("CODIGO DE EXAMEN");
+        jPanel22.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 306, -1));
 
         numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numFac.setForeground(new java.awt.Color(0, 111, 177));
         numFac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         numFac.setText("NO. VENTA");
+        jPanel22.add(numFac, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 32, 306, -1));
 
         txtnumhabitacion.setBorder(null);
         txtnumhabitacion.setForeground(new java.awt.Color(0, 0, 0));
         txtnumhabitacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtnumhabitacion.setPlaceholder("NUM. HABITACIÓN");
+        jPanel22.add(txtnumhabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 77, 240, 30));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/num_room.png"))); // NOI18N
+        jPanel22.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 67, -1, -1));
 
         txtdescripcion.setBackground(new java.awt.Color(204, 204, 204));
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtdescripcion.setPlaceholder("OBSERVACIONES");
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(numFac, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel11)
-                                .addGroup(jPanel22Layout.createSequentialGroup()
-                                    .addGap(60, 60, 60)
-                                    .addComponent(txtnumhabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(numFac)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtnumhabitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtdescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+        jPanel22.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 129, 300, 82));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -583,6 +560,18 @@ static Conexion cc = new Conexion();
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/insert.png"))); // NOI18N
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 310, -1));
 
+        btnnewinsumo.setBackground(new java.awt.Color(0, 111, 177));
+        btnnewinsumo.setForeground(new java.awt.Color(255, 255, 255));
+        btnnewinsumo.setText("Más Insumos");
+        btnnewinsumo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnnewinsumo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnnewinsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnewinsumoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnnewinsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 190, 50));
+
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
 
@@ -668,7 +657,7 @@ static Conexion cc = new Conexion();
 
         btnVender.setBackground(new java.awt.Color(0, 111, 177));
         btnVender.setForeground(new java.awt.Color(255, 255, 255));
-        btnVender.setText("REGISTRAR EXAMEN");
+        btnVender.setText("       REGISTRAR      ");
         btnVender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -690,7 +679,7 @@ static Conexion cc = new Conexion();
 
         btnedit.setBackground(new java.awt.Color(0, 111, 177));
         btnedit.setForeground(new java.awt.Color(255, 255, 255));
-        btnedit.setText("Actualizar");
+        btnedit.setText("actualizar");
         btnedit.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
         btnedit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnedit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -710,7 +699,7 @@ static Conexion cc = new Conexion();
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -749,9 +738,9 @@ static Conexion cc = new Conexion();
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -852,6 +841,11 @@ static Conexion cc = new Conexion();
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
+        btns_admin.setEnabled(true);
+        btns_medico1.setEnabled(true);
+        btns_medico2.setEnabled(true);;
+        btns_paciente.setEnabled(true);
+        btnVender.setEnabled(true);
         txtpaciente.setText("");
         txtdescripcion.setText("");
         txtmedicoadmin.setText("");
@@ -860,13 +854,24 @@ static Conexion cc = new Conexion();
         txtnumhabitacion.setText("");
         lblTotal.setText("0.0");
         txtFecha.setText(fechaactual());
-        btnedit.setVisible(false);
         thishide.setVisible(false);
+        txtdescripcion.setEnabled(true);
+        txtnumhabitacion.setEnabled(true);
         numeros();
+        btnnewinsumo.hide();
+        btnedit.hide();
     }
   private void Get_Data(){
         limpiaCampos();
-        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',medico_3 as 'Ordeno Ingreso',num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_emergencia";
+        String sql="select codigo as 'Codigo',"
+                + "paciente as 'Paciente',"
+                + "medico_1 as 'Realizo Examen',"
+                + " medico_2 as 'Indico Examen',"
+                + "medico_3 as 'Ordeno Ingreso',"
+                + "num_habitacion as 'Habitación',"
+                + "observaciones as'Observaciones',"
+                + "fecha as 'Fecha y Hora', "
+                + "total as 'Total (L)' from test_emergencia";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -898,7 +903,18 @@ static Conexion cc = new Conexion();
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_emergencia(idventa,codigo,p_s,precio,cantidad,importe) values ('"+numFac.getText()+"','" +codigo+"','" + p_s +"','" +precio+"','" +cantidad+"','" +importe+ "')";
+        String sql= "insert into detalle_test_emergencia(idventa,"
+                + "codigo,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe) values ('"
+                +numFac.getText()+"','" 
+                +codigo+"','" 
+                + p_s +"','" 
+                +precio+"','" 
+                +cantidad+"','" 
+                +importe+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -910,8 +926,70 @@ static Conexion cc = new Conexion();
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
+     void sum_ingreso(){
+         try{
+         String sql= "select sum(importe) FROM detalle_test_emergencia WHERE idventa='"+numFac.getText()+"'";
+         Statement st = con.createStatement();
+         ResultSet rs = st.executeQuery(sql);
+         while (rs.next()) {
+         String sum="";
+         sum=rs.getString(1);
+         lbledittotal.setText(sum);
+         }
+         }catch(SQLException ex) {
+
+        }
+
+     }
+     void edit_ingreso(){
+         double total= Double.parseDouble(lbledittotal.getText())+Double.parseDouble(lblTotal.getText());
+         String sql= "UPDATE test_emergencia set total ='"+total+"' where codigo='"+numFac.getText()+"'";
+         try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+     }
+private void edit_detalle(){
+    for (int i = 0; i <tablaCaja.getRowCount(); i++) {
+        String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
+        String p_s= tablaCaja.getModel().getValueAt(i, 1).toString();
+        String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
+        String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
+        String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into detalle_test_emergencia(idventa,"
+                + "codigo,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe) values ('"
+                +numFac.getText()+"','" 
+                +codigo+"','" 
+                + p_s +"','" 
+                +precio+"','" 
+                +cantidad+"','" 
+                +importe+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            edit_ingreso();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
     private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_emergencia where idventa='" + numFac.getText() + "' ";
+        String sql="select codigo as 'Codigo',"
+                + "p_s as 'Prodcuto/Servicio',"
+                + "precio as 'Precio',"
+                + "cantidad as 'Cantidad',"
+                + "importe as 'Importe' "
+                + "from detalle_test_emergencia where idventa='" + numFac.getText() + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -963,6 +1041,7 @@ static Conexion cc = new Conexion();
     //select idventa as 'Codigo',isv as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)'
     private void tableCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCajaMouseClicked
         try {
+            limpiaCampos();
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
@@ -973,12 +1052,15 @@ static Conexion cc = new Conexion();
             txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
             txtdescripcion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
             txtFecha.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
-            txttotal.setText("TOTAL PAGADO: L");
             thishide.setVisible(true);
             btnVender.setEnabled(false);
             quitar.setEnabled(false);
+            btnnewinsumo.setVisible(true);
+            sum_ingreso();
             this.jTabbedPane2.setSelectedIndex(1);
             show_detalle();
+            txtdescripcion.setEnabled(false);
+            txtnumhabitacion.setEnabled(false);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
         }        // TODO add your handling code here:
@@ -1004,7 +1086,7 @@ static Conexion cc = new Conexion();
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
             er.titulo.setText("OOPS...");
             er.msj.setText("IMPOSIBLE INGRESAR");
-            er.msj1.setText("EXAMEN");
+            er.msj1.setText("REGISTRO");
             er.setVisible(true);
         } else {
         try{
@@ -1034,14 +1116,29 @@ static Conexion cc = new Conexion();
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_emergencia(codigo,paciente,medico_1,medico_2,medico_3,num_habitacion,observaciones,fecha,total) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtmedicoindica.getText()+"','" +txtmedicoingreso.getText()+"','"+txtnumhabitacion.getText()+"','" +txtdescripcion.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
+            String sql= "insert into test_emergencia(codigo,"
+                    + "paciente,medico_1,"
+                    + "medico_2,medico_3,"
+                    + "num_habitacion,"
+                    + "observaciones,"
+                    + "fecha,"
+                    + "total) values ('"
+                    +numFac.getText()
+                    +"','" +txtpaciente.getText()
+                    +"','" +txtmedicoadmin.getText()
+                    +"','" +txtmedicoindica.getText()
+                    +"','" +txtmedicoingreso.getText()
+                    +"','"+txtnumhabitacion.getText()
+                    +"','" +txtdescripcion.getText()
+                    +"','" + txtFecha.getText()
+                    +"','" +lblTotal.getText() + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 
             ingresar_detalle();
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
             sa.titulo.setText("¡HECHO!");
-            sa.msj.setText("EXAMEN REGISTRADO");
+            sa.msj.setText("REGISTRADO");
             sa.msj1.setText("CON ÉXITO");
             sa.setVisible(true);
             this.jTabbedPane2.setSelectedIndex(0);
@@ -1099,24 +1196,6 @@ static Conexion cc = new Conexion();
         // TODO add your handling code here:
     }//GEN-LAST:event_btns_pacienteActionPerformed
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-//        try{
-//            con=Conexion.ConnectDB();
-//            String sql= "update test_laboratorio set estado_pago='" + condiciones(Estado_actual) + "' where idventa='" + numFac.getText()+ "'";
-//            pst=con.prepareStatement(sql);
-//            pst.execute();
-//            SuccessAlert sa = new SuccessAlert(new JFrame(), true);
-//            sa.titulo.setText("¡HECHO!");
-//            sa.msj.setText("SE HAN GUARDADO LOS CAMBIOS");
-//            sa.msj1.setText("");
-//            sa.setVisible(true);
-//            print_bill();
-//
-//        }catch(HeadlessException | SQLException ex){
-//            JOptionPane.showMessageDialog(this,ex);
-//        }          // TODO add your handling code here:
-    }//GEN-LAST:event_btneditActionPerformed
-
     private void btns_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_adminActionPerformed
         empleados.lista_empleados_admin.cual="1";
         new empleados.lista_empleados_admin(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
@@ -1131,6 +1210,41 @@ static Conexion cc = new Conexion();
         empleados.lista_empleados_mingreso.cual="1";
         new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btns_medico2ActionPerformed
+
+    private void btnnewinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewinsumoActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        btns_admin.setEnabled(false);
+        btns_medico1.setEnabled(false);
+        btns_medico2.setEnabled(false);
+        btns_paciente.setEnabled(false);
+        btnedit.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_btnnewinsumoActionPerformed
+
+    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
+        if (this.tablaCaja.getRowCount() < 1) {
+            ErrorAlert er = new ErrorAlert(new JFrame(), true);
+            er.titulo.setText("OOPS...");
+            er.msj.setText("IMPOSIBLE INGRESAR");
+            er.msj1.setText("REGISTRO");
+            er.setVisible(true);
+        } else {
+            edit_detalle();
+            actualizarStock();
+            SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+            sa.titulo.setText("¡HECHO!");
+            sa.msj.setText("ACTUALIZADO");
+            sa.msj1.setText("CON ÉXITO");
+            sa.setVisible(true);
+            this.jTabbedPane2.setSelectedIndex(0);
+            Get_Data();
+            limpiaCampos();
+        }
+   // TODO add your handling code here:
+    }//GEN-LAST:event_btneditActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1138,6 +1252,7 @@ static Conexion cc = new Conexion();
     private principal.MaterialButton btnVender;
     private principal.MaterialButton btnVender1;
     private principal.MaterialButton btnedit;
+    private principal.MaterialButton btnnewinsumo;
     private principal.MaterialButton btns_admin;
     private principal.MaterialButton btns_medico1;
     private principal.MaterialButton btns_medico2;
@@ -1174,6 +1289,7 @@ static Conexion cc = new Conexion();
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane2;
     public static javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lbledittotal;
     public static javax.swing.JLabel numFac;
     private javax.swing.JPanel pnlChange;
     private principal.MaterialButton quitar;

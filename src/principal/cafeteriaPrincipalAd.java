@@ -5,6 +5,7 @@
  */
 package principal;
 
+import alertas.principal.FadeEffect;
 import alertas.principal.WarningAlertCerrar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,6 +54,7 @@ public class cafeteriaPrincipalAd extends javax.swing.JFrame {
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.setIconImage(new ImageIcon(getClass().getResource("/img1/HODUMEDIC.png")).getImage());
         this.setTitle("MENÚ PRINCIPAL ADMINISTRADOR - SISTEMA CAFETERIA HONDUMEDIC");
+        FadeEffect.fadeInFrame(this, 50, 0.1f);
     }
 
     /**

@@ -352,6 +352,9 @@ PreparedStatement pst=null;
                     }else if (("11").equals(cual)){
                     Farmacia.caja_cobro.txtmedicoindica.setText(nom + " "+  apellido);
                     cual="";
+                    }else if (("12").equals(cual)){
+                    cotizaciones.cotizaciones_general.txtempleado.setText(nom + " "+  apellido);
+                    cual="";
                     }else{
                     registro_examen.examen_laboratorio.txtmedicoindica.setText(nom + " "+  apellido);
                     cual="";}

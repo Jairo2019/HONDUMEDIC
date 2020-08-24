@@ -1089,7 +1089,12 @@ static Conexion cc = new Conexion();
     //obtener los datos de la base de datos
   private void Get_Data(){
         thishide.setVisible(false);
-        String sql="select idventa as 'Codigo',codigo_examen as 'Codig Examen',cod_servicio as 'Codigo Servicio', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_servicios_apa where estado_pago='Contado'";
+        String sql="select idventa as 'Codigo',"
+                + "codigo_examen as 'Codig Examen',"
+                + "cod_servicio as 'Codigo Servicio', "
+                + "paciente as 'Paciente',"
+                + " fecha as 'Fecha',estado_pago as "
+                + "'Estado de Pago',total as 'Total (L)' from caja_servicios_apa where estado_pago='Contado'";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();

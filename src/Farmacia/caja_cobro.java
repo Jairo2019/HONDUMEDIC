@@ -7,7 +7,6 @@ package Farmacia;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import clases_cajas_servicios.laboratorio;
 import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
@@ -39,6 +38,7 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import principal.GenerarCodigos;
+import unidad_apa.class_cotizacion_apa;
 /**
  *
  * @author Rojeru San
@@ -145,7 +145,6 @@ static Conexion cc = new Conexion();
         btnCancelar = new principal.MaterialButton();
         btnVender = new principal.MaterialButton();
         quitar = new principal.MaterialButton();
-        btnedit = new principal.MaterialButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -188,7 +187,7 @@ static Conexion cc = new Conexion();
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(172, 172, 172)
                 .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 744, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -613,18 +612,6 @@ static Conexion cc = new Conexion();
             }
         });
 
-        btnedit.setBackground(new java.awt.Color(0, 111, 177));
-        btnedit.setForeground(new java.awt.Color(255, 255, 255));
-        btnedit.setText("Actualizar");
-        btnedit.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
-        btnedit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnedit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnedit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -634,8 +621,7 @@ static Conexion cc = new Conexion();
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -645,8 +631,6 @@ static Conexion cc = new Conexion();
                 .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -788,7 +772,6 @@ static Conexion cc = new Conexion();
         txtmedicoindica.setText("");
         lblTotal.setText("0.0");
         txtFecha.setText(fechaactual());
-        btnedit.setVisible(false);
         thishide.setVisible(false);
         btnmedico.setVisible(false);
         txtmedicoindica.setVisible(false);
@@ -836,24 +819,28 @@ static Conexion cc = new Conexion();
     }
 //    paciente,num_fac,estado,fecha,isv,codigo,nombre_p, precio, cantidad,importe, subtotal, total
     void print_bill(){
-//        laboratorio em;// Instaciamos la clase empleado
-//        List <laboratorio>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
-//        for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-//            em = new laboratorio(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
-//            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),lblsubtotal.getText(),lblsubtotal.getText());
-//            lista.add(em); //Agregamos el objeto empleado a la lista
-//        }
-//        JasperReport reporte; // Instaciamos el objeto reporte
-//        String path = "src\\reportes\\caja_laboratorio.jasper"; //Ponemos la localizacion del reporte creado
-//        try {
-//            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
-//            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
-//            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
-//            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
-//            viewer.setVisible(true); //Se vizualiza el reporte
-//        } catch (JRException ex) {
-//           
-//        } 
+        Double subtotal= (Double.parseDouble(lblTotal.getText()))-(Double.parseDouble(lblTotal.getText())* ((Double.parseDouble(thishide.getText()))/100));
+        class_cotizacion_apa em;// Instaciamos la clase empleado
+        List <class_cotizacion_apa>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
+            Double canti=0.0,sub=0.0;
+            canti = canti + Double.valueOf(tablaCaja.getValueAt(i, 3).toString());
+            sub =  canti+subtotal;
+            em = new class_cotizacion_apa(txtpaciente.getText(),numFac.getText(), txtFecha.getText(),thishide.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),String.valueOf(Math.ceil(sub)),lblTotal.getText());
+            lista.add(em); //Agregamos el objeto empleado a la lista
+        }
+        JasperReport reporte; // Instaciamos el objeto reporte
+        String path = "src\\reportes\\caja_farmacia.jasper"; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+           
+        } 
 }
 
      private void ingresar_detalle(){
@@ -915,7 +902,12 @@ private void show_detalle(){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM test_laboratorio WHERE paciente LIKE '%"+name+"%' ");
+                ResultSet rs = s.executeQuery("select idventa as 'codigo'," +
+"                medico as 'Medico que Indica'," +
+"               cliente as 'Cliente'," +
+"              fecha as 'Fecha'," +
+"              total as 'Total'" +
+"              from caja_farmacia WHERE cliente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -924,10 +916,6 @@ private void show_detalle(){
                         v.add(rs.getString(3));
                         v.add(rs.getString(4));
                         v.add(rs.getString(5));
-                        v.add(rs.getString(6));
-                        v.add(rs.getString(7));
-                        v.add(rs.getString(8));
-                        v.add(rs.getString(9));
 
                         dt.addRow(v);
                     }
@@ -1052,24 +1040,6 @@ private void show_detalle(){
         }
     }//GEN-LAST:event_quitarActionPerformed
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-//        try{
-//            con=Conexion.ConnectDB();
-//            String sql= "update test_laboratorio set estado_pago='" + condiciones(Estado_actual) + "' where idventa='" + numFac.getText()+ "'";
-//            pst=con.prepareStatement(sql);
-//            pst.execute();
-//            SuccessAlert sa = new SuccessAlert(new JFrame(), true);
-//            sa.titulo.setText("¡HECHO!");
-//            sa.msj.setText("SE HAN GUARDADO LOS CAMBIOS");
-//            sa.msj1.setText("");
-//            sa.setVisible(true);
-//            print_bill();
-//
-//        }catch(HeadlessException | SQLException ex){
-//            JOptionPane.showMessageDialog(this,ex);
-//        }          // TODO add your handling code here:
-    }//GEN-LAST:event_btneditActionPerformed
-
     private void btnmedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmedicoActionPerformed
         empleados.lista_empleados_mindica.cual="11";
         new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
@@ -1127,7 +1097,6 @@ private void show_detalle(){
     private principal.MaterialButton btnCancelar;
     private principal.MaterialButton btnProducto;
     private principal.MaterialButton btnVender;
-    private principal.MaterialButton btnedit;
     private principal.MaterialButton btnmedico;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
@@ -1165,7 +1134,7 @@ private void show_detalle(){
     private javax.swing.ButtonGroup selectmedico;
     public static javax.swing.JTable tablaCaja;
     private javax.swing.JTable tableCaja;
-    private javax.swing.JLabel thishide;
+    public static javax.swing.JLabel thishide;
     private app.bolivia.swing.JCTextField txtFecha;
     public static app.bolivia.swing.JCTextField txtmedicoindica;
     private app.bolivia.swing.JCTextField txtpaciente;

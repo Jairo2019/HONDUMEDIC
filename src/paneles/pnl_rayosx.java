@@ -664,7 +664,6 @@ PreparedStatement pst=null;
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);

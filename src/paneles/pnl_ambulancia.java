@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package paneles;
+import cafeteria.OpcionesAl;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -16,8 +17,11 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import principal.GenerarCodigos;
 /**
  *
  * @author Rojeru San
@@ -546,6 +550,7 @@ PreparedStatement pst=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 private void Get_Data(){
+    Reset();
         String sql="select codigo_ambulancia as 'Codigo', nombre as 'Nombre', descripcion as 'Descripción', precio as 'Precio' from servicio_ambulancia";
         try{
          pst=con.prepareStatement(sql);
@@ -557,6 +562,40 @@ private void Get_Data(){
           
 }
   }
+public void extraerID() {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_ambulancia) FROM servicio_ambulancia";
+
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                txtCodigo.setText("SA0001");
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                txtCodigo.setText("SA" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void Reset()
 {
     txtCodigo.setText("");
@@ -568,6 +607,7 @@ private void Get_Data(){
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
+    extraerID();
    
 }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
@@ -626,7 +666,6 @@ private void Get_Data(){
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
@@ -650,7 +689,7 @@ private void Get_Data(){
             }
 
             // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into servicio_ambulancia(nombre,descripcion,precio) values ('"+txtName.getText()+"','" + txtDescripcion.getText() +"','" +txtPrecio.getText()+ "')";
+            String sql= "insert into servicio_ambulancia(codigo_ambulancia,nombre,descripcion,precio) values ('"+txtCodigo.getText()+"','"+txtName.getText()+"','" + txtDescripcion.getText() +"','" +txtPrecio.getText()+ "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();

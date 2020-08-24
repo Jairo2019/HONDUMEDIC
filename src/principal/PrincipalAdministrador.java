@@ -28,6 +28,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.Timer;
+import cotizaciones.*;
+
 /**
  *
  * @author Rojeru San
@@ -74,6 +76,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static ambulancia registro_ambulancia = null;
     public static registrar_ambulancias registrar_ambulancia = null;
     public static registrar_cirugia registrar_cirugia=null;
+    public static cotizaciones_general cotizacion = null;
     public static caja caja=null;
     public static boolean estacerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();

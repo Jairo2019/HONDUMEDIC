@@ -666,7 +666,7 @@ private void Get_Data(){
             String sql= "update registrar_ambulancia set nombre='"+ txtName.getText()+ "',marca='" + txtDescripcion.getText() + "',year='" + txtPrecio.getText() + "' where codigo_ambulancia='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this,"Servico Actualizado","Servicio de Ambulancia",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Ambulancia Actualizado","Ambulancia de Ambulancia",JOptionPane.INFORMATION_MESSAGE);
             btnUpdate.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();

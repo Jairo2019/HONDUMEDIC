@@ -476,6 +476,8 @@ PreparedStatement pst=null;
             JOptionPane.showMessageDialog(this,"Registrado con éxito","Registro de Pacientes",JOptionPane.INFORMATION_MESSAGE);
             if (("1").equals(cual)){
                 unidad_apa.cotizaciones_apa.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
+            }else if (("2").equals(cual)){
+                cotizaciones.cotizaciones_general.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
             }else{
                 ambulancia.ambulancia.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
             }

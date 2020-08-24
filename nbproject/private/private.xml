@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/HONDUMEDIC/src/Farmacia/caja_cobro.java</file>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/HONDUMEDIC/src/caja/caja.java</file>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/HONDUMEDIC/src/Farmacia/inventario_farmacia.java</file>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/HONDUMEDIC/src/principal/Farmacia_Principal.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/HONDUMEDIC/src/principal/PrincipalAdministrador.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/HONDUMEDIC/src/registro_examen/examen_emergencia.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/HONDUMEDIC/src/paneles/pnl_emergencia.java</file>
         </group>
     </open-files>
 </project-private>

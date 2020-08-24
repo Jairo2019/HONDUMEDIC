@@ -201,6 +201,25 @@ public class ProductoDAO {
         }
         return p;
     }
+       public Producto listarID_emergencia_no(String id){
+        Producto p=new Producto();
+        String sql="select * from WHERE NOT EXISTS (SELECT codigo_emergencia FROM inventario_emergencia WHERE codigo_emergencia=?)";
+        try {
+            con=acceso.ConnectDB();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                p.setId(rs.getString(1));
+                p.setNom(rs.getString(2));
+                p.setPre(rs.getFloat(3));
+                p.setEstado(rs.getString(4));
+                p.setStock(rs.getInt(5));
+            }
+        } catch (Exception e) {
+        }
+        return p;
+    }
             public Producto listarID_emergencia_APA(String id){
         Producto p=new Producto();
         String sql="select * from inventario_emergencia_apa where codigo_emergencia=?";

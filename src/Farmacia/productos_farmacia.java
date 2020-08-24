@@ -274,7 +274,8 @@ PreparedStatement pst=null;
         String sql="select codigo_farmacia as 'Codigo', "
                 + "nombre as 'Nombre', "
                 + "precio_venta as 'Precio', "
-                + "cantidad as 'Cantidad Disponible' "
+                + "cantidad as 'Cantidad Disponible', "
+                + "isv as 'Impuesto' "
                 + "from inventario_farmacia";
 
         try{
@@ -288,7 +289,6 @@ PreparedStatement pst=null;
 }
 
  }
- 
     public void calcular() {
         String pre;
         String can;
@@ -328,7 +328,8 @@ PreparedStatement pst=null;
             ResultSet rs = s.executeQuery("select codigo_farmacia as 'Codigo',"
                     + " nombre as 'Nombre', "
                     + "precio_venta as 'Precio', "
-                    + "cantidad as 'Cantidad Disponible' "
+                    + "cantidad as 'Cantidad Disponible', "
+                    + "isv as 'Impuesto' "
                     + "from inventario_farmacia WHERE nombre LIKE '%"+name+"%' ");
 
             while (rs.next()) {
@@ -378,6 +379,7 @@ PreparedStatement pst=null;
                     String cod = tabla.getValueAt(fila, 0).toString();
                     String nom = tabla.getValueAt(fila, 1).toString();
                     String precio = tabla.getValueAt(fila, 2).toString();
+                    String isv = tabla.getValueAt(fila, 4).toString();
                     int c = 0;
                     int j = 0;
                     if (this.txtCantidad.getText().equals("") || this.txtCantidad.getText().equals("0") ) {
@@ -429,7 +431,7 @@ PreparedStatement pst=null;
                             dato[3] = cant;
 
                             tabladet.addRow(dato);
-
+                            Farmacia.caja_cobro.thishide.setText(isv);
                             Farmacia.caja_cobro.tablaCaja.setModel(tabladet);
                             calcular();
 

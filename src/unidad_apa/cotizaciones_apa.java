@@ -864,8 +864,14 @@ private void condicionPaciente( ){
         class_cotizacion_apa em;// Instaciamos la clase cotizacion
         List <class_cotizacion_apa>lista = new ArrayList<>(); //Creamos una lista de cotizacions con ArrayList para obtener cada cotizacion
         for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-            em = new class_cotizacion_apa(txtpaciente.getText(),numFac.getText(), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto cotizacion
-            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),lblsubtotal.getText(),lblTotal.getText());
+            em = new class_cotizacion_apa(txtpaciente.getText(),
+            numFac.getText(), txtFecha.getText(),isv.getText(),
+            tablaCaja.getValueAt(i, 0).toString(),
+            tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto cotizacion
+            tablaCaja.getValueAt(i, 2).toString(),
+            tablaCaja.getValueAt(i, 3).toString(),
+            tablaCaja.getValueAt(i, 4).toString(),
+            lblsubtotal.getText(),lblTotal.getText());
             lista.add(em); //Agregamos el objeto cotizacion a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -957,8 +963,8 @@ private void condicionPaciente( ){
             sa.msj.setText("COTIZACIÓN GUARDADA");
             sa.msj1.setText("CON ÉXITO");
             sa.setVisible(true);
-            this.jTabbedPane2.setSelectedIndex(0);
             print_bill();
+            this.jTabbedPane2.setSelectedIndex(0);
             limpiaCampos();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);

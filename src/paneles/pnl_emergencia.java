@@ -580,7 +580,7 @@ PreparedStatement pst=null;
             }
 
             if (c == null) {
-                txtCodigo.setText("SE0001");
+                txtCodigo.setText("SM0001");
             } else {
                 char r1 = c.charAt(2);
                 char r2 = c.charAt(3);
@@ -591,7 +591,7 @@ PreparedStatement pst=null;
                 j = Integer.parseInt(r);
                 GenerarCodigos gen = new GenerarCodigos();
                 gen.generar(j);
-                txtCodigo.setText("SE" + gen.serie());
+                txtCodigo.setText("SM" + gen.serie());
 
             }
 
@@ -669,7 +669,6 @@ PreparedStatement pst=null;
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
@@ -711,7 +710,11 @@ PreparedStatement pst=null;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
-            String sql= "update servicio_emergencia set nombre='"+ txtName.getText()+ "',descripcion='" + txtDescripcion.getText() + "',precio='" + txtPrecio.getText() + "' where codigo_emergencia='" + txtCodigo.getText()+ "'";
+            String sql= "update servicio_emergencia set "
+                    + "nombre='"+ txtName.getText()
+                    + "',descripcion='" + txtDescripcion.getText() 
+                    + "',precio='" + txtPrecio.getText() 
+                    + "' where codigo_emergencia='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this,"Servico Actualizado","Servicio de Emergencia",JOptionPane.INFORMATION_MESSAGE);

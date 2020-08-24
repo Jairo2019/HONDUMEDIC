@@ -19,7 +19,6 @@ public class class_cotizacion_apa {
         this.total = total;
     }
 
-
     public String getPaciente() {
         return paciente;
     }

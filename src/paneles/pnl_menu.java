@@ -6,6 +6,7 @@
 package paneles;
 import caja.caja;
 import principal.*;
+import cotizaciones.*;
 /**
  *
  * @author Rojeru San
@@ -200,7 +201,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         btnadmin.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnadmin.setForeground(new java.awt.Color(0, 111, 177));
         btnadmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnadmin.png"))); // NOI18N
-        btnadmin.setText("ADMINISTRACIÓN");
+        btnadmin.setText("COTIZACIONES");
         btnadmin.setToolTipText("");
         btnadmin.setBorder(null);
         btnadmin.setContentAreaFilled(false);
@@ -689,7 +690,16 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnambulanciaActionPerformed
 
     private void btnadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadminActionPerformed
-        // TODO add your handling code here:
+                PrincipalAdministrador.escritorio.removeAll();
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.cotizacion)) {
+            PrincipalAdministrador.cotizacion = new cotizaciones_general();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.cotizacion.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.cotizacion);
+            PrincipalAdministrador.cotizacion.show();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btnadminActionPerformed
 
     private void btncajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaActionPerformed

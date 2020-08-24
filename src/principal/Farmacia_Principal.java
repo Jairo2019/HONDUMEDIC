@@ -19,6 +19,7 @@ import javax.swing.Timer;
 import ventas.CajaAd;
 import ventas.RegistroVentas;
 import Farmacia.*;
+import alertas.principal.FadeEffect;
 
 /**
  *
@@ -53,7 +54,8 @@ public class Farmacia_Principal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.setIconImage(new ImageIcon(getClass().getResource("/img1/HODUMEDIC.png")).getImage());
-        this.setTitle("MENÚ PRINCIPAL ADMINISTRADOR - SISTEMA CAFETERIA HONDUMEDIC");
+        this.setTitle("MENÚ PRINCIPAL ADMINISTRADOR - SISTEMA FARMACIA HONDUMEDIC");
+        FadeEffect.fadeInFrame(this, 50, 0.1f);
     }
 
     /**

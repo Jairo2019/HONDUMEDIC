@@ -254,7 +254,7 @@ public static Double value ;
         send.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         send.setForeground(new java.awt.Color(0, 0, 0));
         send.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        send.setText("Agregar a Caja");
+        send.setText("Agregar");
         send.setToolTipText("");
         jPanel1.add(send, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 80, 140, 40));
 

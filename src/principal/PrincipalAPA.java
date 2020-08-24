@@ -5,6 +5,7 @@
  */
 package principal;
 
+import alertas.principal.FadeEffect;
 import alertas.principal.WarningAlertCerrar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import cafeteria.Alimentos;
 import ventas.CajaAd;
-import ventas.RegistroVentas;
 import unidad_apa.*;
 
 /**
@@ -62,7 +62,8 @@ public class PrincipalAPA extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.setIconImage(new ImageIcon(getClass().getResource("/img1/HODUMEDIC.png")).getImage());
-        this.setTitle("MENÚ PRINCIPAL ADMINISTRADOR - SISTEMA ENRAMADA SALAS (SIENSA)");
+        this.setTitle("MENÚ PRINCIPAL ADMINISTRADOR - SISTEMA HODUMEDIC");
+        FadeEffect.fadeInFrame(this, 50, 0.1f);
     }
 
     /**
