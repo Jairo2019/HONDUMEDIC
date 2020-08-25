@@ -14,7 +14,12 @@ import principal.PrincipalAdministrador;
 import cirugia.registrar_cirugia;
 import javax.swing.JFrame;
 import paneles.pnl_cirugia;
+import reportes_registros.lista_caja_apa;
+import reportes_registros.lista_caja_cafeteria;
+import reportes_registros.lista_caja_farmacia;
 import reportes_registros.lista_caja_general;
+import reportes_registros.lista_caja_laboratorio;
+import reportes_registros.lista_caja_rayosx;
 /**
  *
  * @author Rojeru San
@@ -268,40 +273,28 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void btncajalaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajalaboratorioActionPerformed
-        PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.inventario_cirugia)) {
-            PrincipalAdministrador.inventario_cirugia = new inventario_cirugia();
-            int width = PrincipalAdministrador.escritorio.getWidth();
-            int Height = PrincipalAdministrador.escritorio.getHeight();
-            PrincipalAdministrador.inventario_cirugia.setSize(width, Height);
-            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.inventario_cirugia);
-            PrincipalAdministrador.inventario_cirugia.show();        // TODO add your handling code here:
-    }      // TODO add your handling code here:
+        new lista_caja_laboratorio(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btncajalaboratorioActionPerformed
 
     private void btncajarayosxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajarayosxActionPerformed
-            PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.registrar_cirugia)) {
-            PrincipalAdministrador.registrar_cirugia = new registrar_cirugia();
-            int width = PrincipalAdministrador.escritorio.getWidth();
-            int Height = PrincipalAdministrador.escritorio.getHeight();
-            PrincipalAdministrador.registrar_cirugia.setSize(width, Height);
-            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.registrar_cirugia);
-            PrincipalAdministrador.registrar_cirugia.show();  }       // TODO add your handling code here:
+        new lista_caja_rayosx(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btncajarayosxActionPerformed
 
     private void btncajaapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaapaActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new lista_caja_apa(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btncajaapaActionPerformed
 
     private void btncajacafeteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajacafeteriaActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new lista_caja_cafeteria(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btncajacafeteriaActionPerformed
 
     private void btncajafarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajafarmaciaActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new lista_caja_farmacia(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btncajafarmaciaActionPerformed
     
     /**

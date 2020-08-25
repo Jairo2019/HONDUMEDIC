@@ -305,7 +305,7 @@ public static Double value ;
         List <class_caja>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_caja(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
-            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString());
+            tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 4).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte

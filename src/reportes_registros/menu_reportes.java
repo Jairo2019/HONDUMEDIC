@@ -138,7 +138,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnambulancia.setContentAreaFilled(false);
         btnambulancia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnambulancia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnambulancia.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backambulance.png"))); // NOI18N
         btnambulancia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnambulancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +172,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btncaja.setContentAreaFilled(false);
         btncaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncaja.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncaja.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backbill.png"))); // NOI18N
         btncaja.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btncaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +206,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnadmin.setContentAreaFilled(false);
         btnadmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnadmin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnadmin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backadmin.png"))); // NOI18N
         btnadmin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnadmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,7 +240,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btncirugia.setContentAreaFilled(false);
         btncirugia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncirugia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncirugia.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backcit=rugy.png"))); // NOI18N
         btncirugia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btncirugia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,7 +321,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnemergenciaapa.setContentAreaFilled(false);
         btnemergenciaapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnemergenciaapa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnemergenciaapa.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backcontability.png"))); // NOI18N
         btnemergenciaapa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnemergenciaapa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -360,7 +355,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnemergencia.setContentAreaFilled(false);
         btnemergencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnemergencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnemergencia.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backemergency.png"))); // NOI18N
         btnemergencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnemergencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,7 +389,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnendoscopia.setContentAreaFilled(false);
         btnendoscopia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnendoscopia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnendoscopia.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backendoscope.png"))); // NOI18N
         btnendoscopia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnendoscopia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -430,7 +423,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnfarmacia.setContentAreaFilled(false);
         btnfarmacia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnfarmacia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnfarmacia.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backfarmacy.png"))); // NOI18N
         btnfarmacia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnfarmacia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -498,7 +490,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnhopitalizacion.setContentAreaFilled(false);
         btnhopitalizacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnhopitalizacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnhopitalizacion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backhospitalization.png"))); // NOI18N
         btnhopitalizacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnhopitalizacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -533,7 +524,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnrayosx.setContentAreaFilled(false);
         btnrayosx.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnrayosx.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnrayosx.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backrayx.png"))); // NOI18N
         btnrayosx.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnrayosx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -568,7 +558,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnultrasonido.setContentAreaFilled(false);
         btnultrasonido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnultrasonido.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnultrasonido.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backultrasound.png"))); // NOI18N
         btnultrasonido.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnultrasonido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -603,7 +592,6 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnlaboratorio.setContentAreaFilled(false);
         btnlaboratorio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnlaboratorio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnlaboratorio.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/backlaboratory.png"))); // NOI18N
         btnlaboratorio.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnlaboratorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -715,23 +703,23 @@ public class menu_reportes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnendoscopiaActionPerformed
 
     private void btnfarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfarmaciaActionPerformed
-        new lista_examen_ambulancia(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
+        new lista_pacientes(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_btnfarmaciaActionPerformed
 
     private void btnhopitalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhopitalizacionActionPerformed
-          new elegir.elegir_hospitalizacion(a, true).setVisible(true);      // TODO add your handling code here:
+          new lista_examen_hospitalizacion(a, true).setVisible(true);      // TODO add your handling code here:
     }//GEN-LAST:event_btnhopitalizacionActionPerformed
 
     private void btnlaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlaboratorioActionPerformed
-        new elegir.elegir_laboratorio(a, true).setVisible(true);        // TODO add your handling code here:
+        new lista_examen_laboratorio(a, true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnlaboratorioActionPerformed
 
     private void btnrayosxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrayosxActionPerformed
-        new elegir.elegir_rayosx(a, true).setVisible(true);// TODO add your handling code here:
+        new lista_examen_rayosx(a, true).setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btnrayosxActionPerformed
 
     private void btnultrasonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnultrasonidoActionPerformed
-     new elegir.elegir_ultrasonido(a, true).setVisible(true);   // TODO add your handling code here:
+     new lista_examen_ultrasonido(a, true).setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_btnultrasonidoActionPerformed
 
 

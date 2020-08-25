@@ -157,42 +157,49 @@ FROM
 				<reportElement x="0" y="0" width="54" height="18" uuid="863f8288-6507-4418-afcd-903097bf1285">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="185edcc6-3f23-44f9-86c9-0fd8e1bbd2c2"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement stretchType="RelativeToTallestObject" x="54" y="0" width="66" height="17" uuid="a8a15ebb-2463-4c19-997d-289ff37c1186">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="364dee1d-4c8f-41c9-b15f-6e37de1cc082"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="121" y="0" width="62" height="18" uuid="e6ef3a3a-3517-43fb-a8fc-915baa9771f8">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8188c95-ffde-48ae-8a45-0b052c2970b9"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="183" y="0" width="81" height="17" uuid="53c870af-360b-4a24-9b23-294a175bfce9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cce7e6f8-8a99-49b5-bc34-e764ef869d1e"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{habitacion}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="264" y="0" width="119" height="17" uuid="a3a5157e-c91b-4e95-8266-c782f9747753">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="825b5973-69b3-48e5-a9e0-baf45cdbf306"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="383" y="1" width="81" height="17" uuid="4c0006cc-ab9e-49b3-b616-c76a88e67e9e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="825b5973-69b3-48e5-a9e0-baf45cdbf306"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="464" y="1" width="91" height="17" uuid="4a232324-c8ba-43a4-a8cc-040fd9783b5e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="825b5973-69b3-48e5-a9e0-baf45cdbf306"/>
 				</reportElement>
+				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
 		</band>

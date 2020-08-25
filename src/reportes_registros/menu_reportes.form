@@ -249,9 +249,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backambulance.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -308,9 +305,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backbill.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -367,9 +361,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backadmin.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -426,9 +417,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backcit=rugy.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -548,9 +536,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backcontability.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -607,9 +592,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backemergency.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -666,9 +648,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backendoscope.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -724,9 +703,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backfarmacy.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -832,9 +808,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backhospitalization.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -891,9 +864,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backrayx.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -950,9 +920,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backultrasound.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
@@ -1009,9 +976,6 @@
                           <Color id="Hand Cursor"/>
                         </Property>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/backlaboratory.png"/>
-                        </Property>
                         <Property name="verticalTextPosition" type="int" value="3"/>
                       </Properties>
                       <Events>
