@@ -12,14 +12,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import paneles.Conexion;
+import static reportes_registros.lista_examen_ambulancia.tabla;
 import tabla.MyScrollbarUI;
 
 /**
@@ -289,7 +300,26 @@ public static Double value ;
 
         }  
     }//GEN-LAST:event_buscarKeyReleased
-
+      void print_bill(){
+        class_caja em;// Instaciamos la clase empleado
+        List <class_caja>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
+            em = new class_caja(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
+            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString());
+            lista.add(em); //Agregamos el objeto empleado a la lista
+        }
+        JasperReport reporte; // Instaciamos el objeto reporte
+        String path = "src\\reportes_registros\\rpt_caja_apa.jasper"; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+           
+        } 
+}
     private void buscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarKeyTyped
         char letras = evt.getKeyChar();
 
@@ -305,7 +335,8 @@ public static Double value ;
     }//GEN-LAST:event_tablaMouseClicked
 
     private void btnambulanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnambulanciaActionPerformed
-
+        this.dispose();
+        print_bill();
     }//GEN-LAST:event_btnambulanciaActionPerformed
 
     /**

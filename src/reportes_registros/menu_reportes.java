@@ -687,42 +687,34 @@ public class menu_reportes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cerrarActionPerformed
 
     private void btnambulanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnambulanciaActionPerformed
-        this.dispose();
         new lista_examen_ambulancia(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnambulanciaActionPerformed
 
     private void btnadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadminActionPerformed
-        this.dispose();
         new lista_examen_hospitalizacion_apa (new JFrame(), true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnadminActionPerformed
 
     private void btncajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaActionPerformed
-        this.dispose();
         new elegir.elegir_caja_reportes(new JFrame(), true).setVisible(true);       // TODO add your handling code here:
     }//GEN-LAST:event_btncajaActionPerformed
 
     private void btncirugiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncirugiaActionPerformed
-        this.dispose();
         new lista_examen_cirugia(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_btncirugiaActionPerformed
 
     private void btnemergenciaapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaapaActionPerformed
-        this.dispose();
         new lista_examen_emergencia_apa(new JFrame(), true).setVisible(true);              // TODO add your handling code here:
     }//GEN-LAST:event_btnemergenciaapaActionPerformed
 
     private void btnemergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaActionPerformed
-        this.dispose();
         new lista_examen_emergencia(new JFrame(), true).setVisible(true);     // TODO add your handling code here:
     }//GEN-LAST:event_btnemergenciaActionPerformed
 
     private void btnendoscopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnendoscopiaActionPerformed
-        this.dispose();
         new lista_examen_endocopia(new JFrame(), true).setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_btnendoscopiaActionPerformed
 
     private void btnfarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfarmaciaActionPerformed
-        this.dispose();
         new lista_examen_ambulancia(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_btnfarmaciaActionPerformed
 

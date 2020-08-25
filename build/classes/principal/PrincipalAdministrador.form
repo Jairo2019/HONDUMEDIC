@@ -233,19 +233,6 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnUsuarios" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                          <Component id="btnProductos" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                          <Component id="btnGastos" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                          <Component id="btnfarmacia" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                          <Component id="btnempleados" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                          <Component id="btnVentas" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                          <Component id="btnmenu" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
                   <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -257,6 +244,24 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cerrarSesion" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="btnUsuarios" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btnProductos" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btnGastos" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btnfarmacia" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btnempleados" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btnVentas" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btnmenu" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnreportes" alignment="1" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -280,7 +285,9 @@
                       <Component id="btnfarmacia" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnUsuarios" min="-2" pref="53" max="-2" attributes="0"/>
-                      <EmptySpace pref="153" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnreportes" min="-2" pref="53" max="-2" attributes="0"/>
+                      <EmptySpace pref="94" max="32767" attributes="0"/>
                       <Component id="cerrarSesion" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -489,6 +496,26 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnfarmaciaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="principal.MaterialButtomRectangle" name="btnreportes">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="b1" green="6f" red="0" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="reportes"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Tahoma" size="18" style="1"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnreportesActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

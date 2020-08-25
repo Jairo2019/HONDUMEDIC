@@ -19,10 +19,17 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import paneles.Conexion;
 import tabla.MyScrollbarUI;
 
@@ -259,33 +266,27 @@ public static Double value ;
 }
 
  }
- 
-    public void calcular() {
-        String pre;
-        String can;
-        double total = 0;
-        double precio;
-        int cantidad;
-        double imp = 0.0;
-        double isv= 0.0;
-
-        for (int i = 0; i < caja.tablaCaja.getRowCount(); i++) {
-            pre = caja.tablaCaja.getValueAt(i, 2).toString();
-            can = caja.tablaCaja.getValueAt(i, 3).toString();
-            precio = Double.parseDouble(pre);
-            cantidad = Integer.parseInt(can);
-            imp = precio * cantidad;
-            total = total + imp;
-            double value = Double.valueOf(caja.isv.getText());
-            isv=((value/100) * total);
-            caja.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
-
+ //codigo,paciente, medico, habitacion,observaciones, fecha, total
+     void print_bill(){
+        class_registros em;// Instaciamos la clase empleado
+        List <class_registros>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
+            em = new class_registros(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
+            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString(),tabla.getValueAt(i, 5).toString(),tabla.getValueAt(i, 6).toString());
+            lista.add(em); //Agregamos el objeto empleado a la lista
         }
-        caja.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
-        caja.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
-
-    }
-
+        JasperReport reporte; // Instaciamos el objeto reporte
+        String path = "src\\reportes_registros\\rpt_emergencia.jasper"; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+           
+        } 
+}
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
@@ -343,7 +344,8 @@ public static Double value ;
     }//GEN-LAST:event_tablaMouseClicked
 
     private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
-
+        this.dispose();
+        print_bill();
     }//GEN-LAST:event_btnprintActionPerformed
 
     /**

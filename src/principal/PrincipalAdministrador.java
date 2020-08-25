@@ -29,6 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.Timer;
 import cotizaciones.*;
+import reportes_registros.*;
 
 /**
  *
@@ -48,6 +49,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static ListaVentas lista = null;
     public static Ventas ventas = null;
     public static pnl_menu menu = null;
+    public static menu_reportes menu_report = null;
     public static pnl_emergencia servicio_emergencia= null;
     public static pnl_laboratorio servicio_laboratorio=null;
     public static pnl_ambulancia servicio_ambulancia=null;
@@ -135,6 +137,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnfarmacia = new principal.MaterialButtomRectangle();
+        btnreportes = new principal.MaterialButtomRectangle();
         jScrollPane1 = new javax.swing.JScrollPane();
         escritorio = new principal.Escritorio();
 
@@ -339,21 +342,21 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             }
         });
 
+        btnreportes.setBackground(new java.awt.Color(0, 111, 177));
+        btnreportes.setForeground(new java.awt.Color(255, 255, 255));
+        btnreportes.setText("reportes");
+        btnreportes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnreportes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnreportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreportesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnfarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnempleados, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +366,21 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnfarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnempleados, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btnreportes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -383,7 +400,9 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                 .addComponent(btnfarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnreportes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
@@ -557,6 +576,18 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnfarmaciaActionPerformed
 
+    private void btnreportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreportesActionPerformed
+        PrincipalAdministrador.escritorio.removeAll();
+        if (estacerrado(menu_report)) {
+            menu_report = new menu_reportes();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            menu_report.setSize(width, Height);
+            escritorio.add(menu_report);
+            menu_report.show();
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_btnreportesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -610,6 +641,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private principal.MaterialButtomRectangle btnempleados;
     private principal.MaterialButtomRectangle btnfarmacia;
     private principal.MaterialButtomRectangle btnmenu;
+    private principal.MaterialButtomRectangle btnreportes;
     private principal.MaterialButton cerrar;
     private principal.MaterialButtomRectangle cerrarSesion;
     public static principal.Escritorio escritorio;
