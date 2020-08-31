@@ -30,6 +30,7 @@ import java.util.Date;
 import javax.swing.Timer;
 import cotizaciones.*;
 import reportes_registros.*;
+import contabilidad.*;
 
 /**
  *
@@ -80,6 +81,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static registrar_cirugia registrar_cirugia=null;
     public static cotizaciones_general cotizacion = null;
     public static caja caja=null;
+    public static formeresultado eresultado=null;
     public static boolean estacerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();
         boolean cerrado = true;

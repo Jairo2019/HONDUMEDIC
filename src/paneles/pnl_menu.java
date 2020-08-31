@@ -720,7 +720,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btncirugiaActionPerformed
 
     private void btncontabilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncontabilidadActionPerformed
-        // TODO add your handling code here:
+        new elegir.elegir_contabilidad(a, true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btncontabilidadActionPerformed
 
     private void btnemergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaActionPerformed
