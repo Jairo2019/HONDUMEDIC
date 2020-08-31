@@ -33,7 +33,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel3" min="-2" pref="649" max="-2" attributes="0"/>
+          <Component id="panel3" min="-2" pref="706" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -66,15 +66,20 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="btncajalaboratorio" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                               <Component id="btncajageneral" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
-                              <Component id="btnCancelar" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                               <Component id="btncajaapa" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                               <Component id="btncajarayosx" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                               <Component id="btncajacafeteria" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                               <Component id="btncajafarmacia" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                              <Component id="btncajaapa1" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="btnCancelar" min="-2" pref="340" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -98,8 +103,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btncajaapa" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btncajaapa1" min="-2" pref="55" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnCancelar" min="-2" pref="55" max="-2" attributes="0"/>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -264,6 +271,27 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncajafarmaciaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="principal.MaterialButtomRectangle" name="btncajaapa1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b1" green="6f" red="0" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Balance general"/>
+            <Property name="actionCommand" type="java.lang.String" value="registrar emrgencia"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncajaapa1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

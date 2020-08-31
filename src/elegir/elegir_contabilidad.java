@@ -7,6 +7,7 @@ package elegir;
 
 import elegir.*;
 import alertas.principal.AWTUtilities;
+import contabilidad.formbgeneral;
 import java.util.Timer;
 import java.util.TimerTask;
 import principal.PrincipalAdministrador;
@@ -60,6 +61,7 @@ public class elegir_contabilidad extends javax.swing.JDialog {
         btncajaapa = new principal.MaterialButtomRectangle();
         btncajacafeteria = new principal.MaterialButtomRectangle();
         btncajafarmacia = new principal.MaterialButtomRectangle();
+        btncajaapa1 = new principal.MaterialButtomRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -163,6 +165,18 @@ public class elegir_contabilidad extends javax.swing.JDialog {
             }
         });
 
+        btncajaapa1.setBackground(new java.awt.Color(0, 111, 177));
+        btncajaapa1.setForeground(new java.awt.Color(255, 255, 255));
+        btncajaapa1.setText("Balance general");
+        btncajaapa1.setActionCommand("registrar emrgencia");
+        btncajaapa1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncajaapa1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btncajaapa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncajaapa1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
         panel3.setLayout(panel3Layout);
         panel3Layout.setHorizontalGroup(
@@ -180,12 +194,16 @@ public class elegir_contabilidad extends javax.swing.JDialog {
                         .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btncajalaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btncajageneral, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btncajaapa, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btncajarayosx, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btncajacafeteria, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btncajafarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btncajafarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btncajaapa1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))))
+            .addGroup(panel3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panel3Layout.setVerticalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,8 +225,10 @@ public class elegir_contabilidad extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btncajaapa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btncajaapa1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,7 +239,7 @@ public class elegir_contabilidad extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -301,6 +321,19 @@ public class elegir_contabilidad extends javax.swing.JDialog {
         this.dispose();
         new lista_caja_farmacia(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btncajafarmaciaActionPerformed
+
+    private void btncajaapa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaapa1ActionPerformed
+        this.dispose();
+        PrincipalAdministrador.escritorio.removeAll();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.bgeneral)) {
+            PrincipalAdministrador.bgeneral = new formbgeneral();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.bgeneral.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.bgeneral);
+            PrincipalAdministrador.bgeneral.show();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btncajaapa1ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -410,6 +443,7 @@ public class elegir_contabilidad extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnCancelar;
     private principal.MaterialButtomRectangle btncajaapa;
+    private principal.MaterialButtomRectangle btncajaapa1;
     private principal.MaterialButtomRectangle btncajacafeteria;
     private principal.MaterialButtomRectangle btncajafarmacia;
     private principal.MaterialButtomRectangle btncajageneral;
