@@ -265,7 +265,7 @@ public static String cual=""; //saber que formulario esta pidiendo información
             
 }
   }
-
+ //Metodo calcular, calcula la suma de cada servicio y el descuento
     public void calcular() {
         String pre;
         String can;
@@ -282,13 +282,13 @@ public static String cual=""; //saber que formulario esta pidiendo información
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            double value = Double.valueOf(cotizaciones.cotizaciones_general.isv.getText());
+            double value = Double.valueOf(cotizaciones.cotizaciones_general.txtdescuento.getText());
             isv=((value/100) * total);
             cotizaciones.cotizaciones_general.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
 
         }
         cotizaciones.cotizaciones_general.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
-        cotizaciones.cotizaciones_general.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
+        cotizaciones.cotizaciones_general.lblTotal.setText("" + Math.rint((total-isv) * 100) / 100);
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         FadeEffect.fadeOut(this, 50, 0.1f);

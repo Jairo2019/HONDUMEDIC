@@ -74,7 +74,7 @@ FROM
 					<textElement textAlignment="Right">
 						<font size="10"/>
 					</textElement>
-					<text><![CDATA[ISV:]]></text>
+					<text><![CDATA[Descuento:]]></text>
 				</staticText>
 				<line>
 					<reportElement x="413" y="22" width="136" height="1" uuid="7fc112e1-e11b-4cd6-ae7a-400e7d5625b9"/>

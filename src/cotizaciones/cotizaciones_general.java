@@ -18,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -37,7 +36,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import clases_cajas_servicios.laboratorio;
 import principal.PrincipalAdministrador;
 /**
  *
@@ -86,9 +84,7 @@ static Conexion cc = new Conexion();
         limpiaCampos();
         thishide.setVisible(false);
         codetest.hide();
-        isv.hide();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -138,9 +134,10 @@ static Conexion cc = new Conexion();
         jLabel1 = new javax.swing.JLabel();
         codetest = new javax.swing.JLabel();
         txtempleado = new app.bolivia.swing.JCTextField();
-        jLabel5 = new javax.swing.JLabel();
         btnempleado = new principal.MaterialButton();
-        isv = new app.bolivia.swing.JCTextField();
+        txtdescuento = new app.bolivia.swing.JCTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCaja = new javax.swing.JTable();
@@ -382,7 +379,7 @@ static Conexion cc = new Conexion();
         numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numFac.setForeground(new java.awt.Color(0, 111, 177));
         numFac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        numFac.setText("NO. VENTA");
+        numFac.setText("NO. COTIZACIÓN");
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -460,7 +457,7 @@ static Conexion cc = new Conexion();
         selectisv.add(ispaciente);
         ispaciente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         ispaciente.setForeground(new java.awt.Color(0, 0, 0));
-        ispaciente.setText("ES PACIENTE ");
+        ispaciente.setText("SUBSIGUIENTE");
         ispaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ispaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -473,7 +470,7 @@ static Conexion cc = new Conexion();
         selectisv.add(nopaciente);
         nopaciente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nopaciente.setForeground(new java.awt.Color(0, 0, 0));
-        nopaciente.setText("NO ES PACIENTE");
+        nopaciente.setText("PRIMERA VEZ");
         nopaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nopaciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -508,6 +505,7 @@ static Conexion cc = new Conexion();
         jPanel4.add(nopaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, -1, -1));
 
         txtpaciente.setEditable(false);
+        txtpaciente.setBackground(new java.awt.Color(255, 255, 255));
         txtpaciente.setBorder(null);
         txtpaciente.setForeground(new java.awt.Color(58, 159, 171));
         txtpaciente.setToolTipText("");
@@ -521,16 +519,14 @@ static Conexion cc = new Conexion();
         jPanel4.add(codetest, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 10, 12));
 
         txtempleado.setEditable(false);
+        txtempleado.setBackground(new java.awt.Color(255, 255, 255));
         txtempleado.setBorder(null);
         txtempleado.setForeground(new java.awt.Color(58, 159, 171));
         txtempleado.setToolTipText("");
         txtempleado.setEnabled(false);
         txtempleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtempleado.setPlaceholder("ENCARGADO DE COTIZACIÓN");
-        jPanel4.add(txtempleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 240, 30));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/indication.png"))); // NOI18N
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 310, -1));
+        jPanel4.add(txtempleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 240, 30));
 
         btnempleado.setBackground(new java.awt.Color(0, 111, 177));
         btnempleado.setForeground(new java.awt.Color(255, 255, 255));
@@ -544,15 +540,18 @@ static Conexion cc = new Conexion();
         });
         jPanel4.add(btnempleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, 190, 48));
 
-        isv.setEditable(false);
-        isv.setBorder(null);
-        isv.setForeground(new java.awt.Color(58, 159, 171));
-        isv.setText("15");
-        isv.setToolTipText("");
-        isv.setEnabled(false);
-        isv.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        isv.setPlaceholder("ISV");
-        jPanel4.add(isv, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 240, 30));
+        txtdescuento.setBackground(new java.awt.Color(255, 255, 255));
+        txtdescuento.setBorder(null);
+        txtdescuento.setForeground(new java.awt.Color(0, 0, 0));
+        txtdescuento.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtdescuento.setPlaceholder("% DE DESCUENTO");
+        jPanel4.add(txtdescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 240, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/num_room.png"))); // NOI18N
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 310, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/indication.png"))); // NOI18N
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, 310, -1));
 
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -788,7 +787,6 @@ static Conexion cc = new Conexion();
             if (rs.next()) {
                 c = rs.getString(1);
             }
-
             if (c == null) {
                 numFac.setText("00000001");
             } else {
@@ -796,21 +794,18 @@ static Conexion cc = new Conexion();
                 GenerarNumero gen = new GenerarNumero();
                 gen.generar(j);
                 numFac.setText(gen.serie());
-
             }
-
         } catch (SQLException ex) {
 //           Logger.getLogger(opciones_serviciosVen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    //Método para saber la fecha actual
    public static String fechaactual() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
         return formatofecha.format(fecha);
-
     }
-
+//Metodo para limpiar las cajas de texto
     void limpiaCampos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
 
@@ -827,6 +822,7 @@ static Conexion cc = new Conexion();
         txtpaciente.setText("");
         txtsubtotal.setText("SUBTOTAL: L");
         btnVender.setEnabled(true);
+        txtdescuento.setText("");
         
         numeros();
     }
@@ -865,7 +861,7 @@ private void condicionPaciente( ){
         List <class_cotizacion_apa>lista = new ArrayList<>(); //Creamos una lista de cotizacions con ArrayList para obtener cada cotizacion
         for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_cotizacion_apa(txtpaciente.getText(),
-            numFac.getText(), txtFecha.getText(),isv.getText(),
+            numFac.getText(), txtFecha.getText(),"1",
             tablaCaja.getValueAt(i, 0).toString(),
             tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto cotizacion
             tablaCaja.getValueAt(i, 2).toString(),
@@ -1013,7 +1009,12 @@ private void condicionPaciente( ){
     }//GEN-LAST:event_nopacienteMouseEntered
 
     private void btnservicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnservicioActionPerformed
-         new elegir.elegir_servicio_cotizar(a, true).setVisible(true);        // TODO add your handling code here:
+         //condicion para agregar descuento
+         if(txtdescuento.getText().isEmpty()){
+         JOptionPane.showMessageDialog( this, "Ingrese el porcentaje de Descuento","Info", JOptionPane.INFORMATION_MESSAGE);
+    }else{
+        //muestra la opción de elegir los servicios a cotizar
+        new elegir.elegir_servicio_cotizar(a, true).setVisible(true);  }      // TODO add your handling code here:
     }//GEN-LAST:event_btnservicioActionPerformed
 
     private void btnempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnempleadoActionPerformed
@@ -1032,7 +1033,6 @@ private void condicionPaciente( ){
     private principal.MaterialButton cerrar;
     public static javax.swing.JLabel codetest;
     private javax.swing.JRadioButton ispaciente;
-    public static app.bolivia.swing.JCTextField isv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
@@ -1040,6 +1040,7 @@ private void condicionPaciente( ){
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1071,6 +1072,7 @@ private void condicionPaciente( ){
     private javax.swing.JTable tableCaja;
     private javax.swing.JLabel thishide;
     private app.bolivia.swing.JCTextField txtFecha;
+    public static app.bolivia.swing.JCTextField txtdescuento;
     public static app.bolivia.swing.JCTextField txtempleado;
     public static app.bolivia.swing.JCTextField txtpaciente;
     private javax.swing.JLabel txtsubtotal;
