@@ -263,7 +263,7 @@ static Conexion cc = new Conexion();
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Nombre");
+        c_search_tbl.setPlaceholder("Buscar por Nombre o Identidad");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(300, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1286,7 +1286,7 @@ private void condicionIsv( ){
            
         } 
 }
-    //metodo obtener las ventas del dia, de la 
+    //metodo obtener las ventas del dia, de la tabla caja_servicios
       private void Get_Data_today(){
         Date sistemaFech = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -1296,12 +1296,13 @@ private void condicionIsv( ){
                 + "codigo_examen as 'Codig Examen',"
                 + "cod_servicio as 'Codigo Servicio',"
                 + "codigo_paciente as 'Identidad',"
-                + " paciente as 'Paciente', "
+                + " CONCAT(nombre, ' ' , apellido) as 'Paciente', "
                 + "fecha as 'Fecha',"
                 + "estado_pago as 'Estado de Pago',"
                 + "total as 'Total (L)'"
                 + " from caja_servicios "
-                + ""
+                + " inner join paciente on "
+                + " paciente = codigo_paciente "
                 + "where estado_pago='Contado' and fecha='"+fecH+"'";
         try{
          pst=con.prepareStatement(sql);
@@ -1325,7 +1326,7 @@ private void condicionIsv( ){
         }
         caja.txttotalcaja.setText("TOTAL EN CAJA: L " + Math.rint((total) * 100) / 100);
   }
-    //obtener las ventas seleccionando la fecha que se quiera
+    //metodo obtener las ventas por fecah de la tabla caja_servicios
     void sales_date(){
             String formato = fecha.getDateFormatString();
             Date date = fecha.getDate();
@@ -1338,7 +1339,17 @@ private void condicionIsv( ){
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select idventa as 'Codigo',codigo_examen as 'Codigo Examen',cod_servicio as 'Codigo Servicio', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_servicios WHERE fecha ='" + fecH + "' and estado_pago='Contado'");
+            ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
+                    + "codigo_examen as 'Codigo Examen',"
+                    + "cod_servicio as 'Codigo Servicio',"
+                    + "codigo_paciente as 'Identidad',"
+                    + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
+                    + "fecha as 'Fecha',estado_pago as 'Estado de Pago',"
+                    + "total as 'Total (L)' "
+                    + "from caja_servicios"
+                    + " inner join paciente on "
+                    + " paciente = codigo_paciente "
+                    + "WHERE fecha ='" + fecH + "' and estado_pago='Contado'");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -1355,11 +1366,11 @@ private void condicionIsv( ){
         float cantidad;
 
         for (int i = 0; i < tableCaja.getRowCount(); i++) {
-            can = tableCaja.getValueAt(i, 3).toString();
+            can = tableCaja.getValueAt(i, 4).toString();
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
-        caja.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);
+        caja.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);//rint (double to num entero)
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -1578,7 +1589,20 @@ private void condicionIsv( ){
                 caja.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
                     }
               }else {
-                    ResultSet rs = s.executeQuery("select idventa as 'Codigo',codigo_examen as 'Codig Examen',cod_servicio as 'Codigo Servicio', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_servicios WHERE paciente LIKE '%"+name+"%' and estado_pago='Contado'");
+                //query para buscar por identidad el paciente en la tabla caja_servicios
+                    ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
+                            + "codigo_examen as 'Codig Examen',"
+                            + "cod_servicio as 'Codigo Servicio',"
+                            + "codigo_paciente as 'Identidad',"
+                            + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
+                            + "fecha as 'Fecha',"
+                            + "estado_pago as 'Estado de Pago',"
+                            + "total as 'Total (L)' "
+                            + "from caja_servicios "
+                            + "inner join paciente on "
+                            + " paciente = codigo_paciente "
+                            + " WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' "
+                            + "and estado_pago='Contado'");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1589,13 +1613,14 @@ private void condicionIsv( ){
                         v.add(rs.getString(5));
                         v.add(rs.getString(6));
                         v.add(rs.getString(7));
+                        v.add(rs.getString(8));
                         dt.addRow(v);
                 String can;
                 double total = 0;
                 float cantidad;
 
                 for (int i = 0; i < tableCaja.getRowCount(); i++) {
-                    can = tableCaja.getValueAt(i, 3).toString();
+                    can = tableCaja.getValueAt(i, 4).toString();
                     cantidad = Float.parseFloat(can);
                     total = total + cantidad;
                 }
@@ -1706,7 +1731,7 @@ private void condicionIsv( ){
             }
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
             sa.titulo.setText("¡HECHO!");
-            sa.msj.setText("VENTA REALIZADA CON");
+            sa.msj.setText("REGISTRADO CON");
             sa.msj1.setText("ÉXITO");
             sa.setVisible(true);
 //funcion de factura

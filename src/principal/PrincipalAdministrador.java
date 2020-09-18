@@ -59,6 +59,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static pnl_rayosx servicio_rayosx= null;
     public static pnl_ultrasonido servicio_ultrasonido=null;
     public static pnl_cirugia servicio_cirugia = null;
+    public almacen almacen= null;
     public static inventario_ambulancia inventario_ambulancia=null;
     public static inventario_cirugia inventario_cirugia = null;
     public static inventario_emergencia inventario_emergencia=null;
@@ -336,7 +337,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         btnfarmacia.setBackground(new java.awt.Color(0, 111, 177));
         btnfarmacia.setForeground(new java.awt.Color(255, 255, 255));
-        btnfarmacia.setText("Unidad apa");
+        btnfarmacia.setText("almacén");
         btnfarmacia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnfarmacia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnfarmacia.addActionListener(new java.awt.event.ActionListener() {
@@ -574,9 +575,15 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnempleadosActionPerformed
 
     private void btnfarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfarmaciaActionPerformed
-        PrincipalAPA f = new PrincipalAPA();
-        f.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
+        PrincipalAdministrador.escritorio.removeAll();
+        if (estacerrado(almacen)) {
+            almacen = new almacen();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            almacen.setSize(width, Height);
+            escritorio.add(almacen);
+            almacen.show();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btnfarmaciaActionPerformed
 
     private void btnreportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreportesActionPerformed
