@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ambulancia;
-import registro_examen.*;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
@@ -18,7 +17,6 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -78,6 +76,7 @@ static Conexion cc = new Conexion();
         Get_Data();
         thishide.setVisible(false);
         lbledittotal.hide();
+        lblidpaciente.hide();
     }
 
     /**
@@ -137,6 +136,7 @@ static Conexion cc = new Conexion();
         jLabel12 = new javax.swing.JLabel();
         btns_medico2 = new principal.MaterialButton();
         btnnewinsumo = new principal.MaterialButton();
+        lblidpaciente = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCaja = new javax.swing.JTable();
@@ -247,7 +247,7 @@ static Conexion cc = new Conexion();
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Nombre");
+        c_search_tbl.setPlaceholder("Buscar por Nombre o identidad");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(400, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -446,6 +446,7 @@ static Conexion cc = new Conexion();
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtpaciente.setEditable(false);
+        txtpaciente.setBackground(null);
         txtpaciente.setBorder(null);
         txtpaciente.setForeground(new java.awt.Color(58, 159, 171));
         txtpaciente.setToolTipText("");
@@ -517,7 +518,7 @@ static Conexion cc = new Conexion();
         jPanel4.add(btnservicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 190, 48));
 
         txtmedicoadmin.setEditable(false);
-        txtmedicoadmin.setBackground(new java.awt.Color(204, 204, 204));
+        txtmedicoadmin.setBackground(null);
         txtmedicoadmin.setBorder(null);
         txtmedicoadmin.setForeground(new java.awt.Color(58, 159, 171));
         txtmedicoadmin.setToolTipText("");
@@ -562,6 +563,7 @@ static Conexion cc = new Conexion();
         jPanel4.add(btns_medico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 80, 50));
 
         txtconductor.setEditable(false);
+        txtconductor.setBackground(null);
         txtconductor.setBorder(null);
         txtconductor.setForeground(new java.awt.Color(58, 159, 171));
         txtconductor.setToolTipText("");
@@ -573,6 +575,7 @@ static Conexion cc = new Conexion();
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/indication.png"))); // NOI18N
         jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 310, -1));
 
+        txtambulancia.setBackground(null);
         txtambulancia.setBorder(null);
         txtambulancia.setForeground(new java.awt.Color(0, 0, 0));
         txtambulancia.setEnabled(false);
@@ -613,6 +616,9 @@ static Conexion cc = new Conexion();
             }
         });
         jPanel4.add(btnnewinsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 190, 50));
+
+        lblidpaciente.setText("jLabel11");
+        jPanel4.add(lblidpaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -907,9 +913,20 @@ static Conexion cc = new Conexion();
     }
   private void Get_Data(){
         limpiaCampos();
-        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Medico(a)/Enfermera(o)',"
-                + " conductor as 'Conductor',ambulancia as 'Ambulancia',origen as'Origen',destino as 'Destino',"
-                + "km as 'Kilometros',fecha as 'Fecha y Hora', total as 'Total (L)' from test_ambulancia";
+        String sql="select codigo as 'Codigo',\n" +
+"			codigo_paciente as 'Identidad',\n" +
+"                	CONCAT(nombre, ' ' , apellido) as 'Paciente',\n" +
+"                	medico_1 as 'Medico(a)/Enfermera(o)',\n" +
+"                	conductor as 'Conductor',\n" +
+"                	ambulancia as 'Ambulancia',\n" +
+"                	origen as'Origen',\n" +
+"                	destino as 'Destino',\n" +
+"                	km as 'Kilometros',\n" +
+"                	fecha as 'Fecha y Hora',\n" +
+"                	total as 'Total (L)' \n" +
+"                	from test_ambulancia \n" +
+"			inner join paciente on\n" +
+"                	paciente = codigo_paciente";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -990,7 +1007,7 @@ private void edit_detalle(){
     }
          }
 
-     private void ingresar_detalle(){
+    private void ingresar_detalle(){
     for (int i = 0; i <tablaCaja.getRowCount(); i++) {
         String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
         String p_s= tablaCaja.getModel().getValueAt(i, 1).toString();
@@ -1020,7 +1037,12 @@ private void edit_detalle(){
     }
          }
     private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Producto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_ambulancia where idventa='" + numFac.getText() + "' ";
+        String sql="select codigo as 'Codigo',"
+                + "p_s as 'Producto/Servicio',"
+                + "precio as 'Precio',"
+                + "cantidad as 'Cantidad',"
+                + "importe as 'Importe' "
+                + "from detalle_test_ambulancia where idventa='" + numFac.getText() + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1047,7 +1069,20 @@ private void edit_detalle(){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM test_ambulancia WHERE paciente LIKE '%"+name+"%' ");
+                ResultSet rs = s.executeQuery("select codigo as 'Codigo',\n" +
+"			codigo_paciente as 'Identidad',\n" +
+"                	CONCAT(nombre, ' ' , apellido) as 'Paciente',\n" +
+"                	medico_1 as 'Medico(a)/Enfermera(o)',\n" +
+"                	conductor as 'Conductor',\n" +
+"                	ambulancia as 'Ambulancia',\n" +
+"                	origen as'Origen',\n" +
+"                	destino as 'Destino',\n" +
+"                	km as 'Kilometros',\n" +
+"                	fecha as 'Fecha y Hora',\n" +
+"                	total as 'Total (L)' \n" +
+"                	from test_ambulancia \n" +
+"			inner join paciente on\n" +
+"                	paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%'");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1060,6 +1095,7 @@ private void edit_detalle(){
                         v.add(rs.getString(7));
                         v.add(rs.getString(8));
                         v.add(rs.getString(9));
+                        v.add(rs.getString(10));
 
                         dt.addRow(v);
                     }
@@ -1075,15 +1111,15 @@ private void edit_detalle(){
             limpiaCampos();
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
-            txtpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
-            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,9).toString());
-            txtconductor.setText(tableCaja.getModel().getValueAt(row,3).toString()) ;
-            txtambulancia.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
-            txtorigen.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
-            txtdestino.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
-            txtkm.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,8).toString()) ;
+            txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
+            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,10).toString());
+            txtconductor.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            txtambulancia.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
+            txtorigen.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
+            txtdestino.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
+            txtkm.setText(tableCaja.getModel().getValueAt(row,8).toString()) ;
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,9).toString()) ;
             thishide.setVisible(true);
             btnVender.setEnabled(false);
             quitar.setEnabled(false);
@@ -1157,7 +1193,7 @@ private void edit_detalle(){
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_ambulancia(codigo,paciente,medico_1,conductor,ambulancia,origen,destino,km,fecha,total) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtconductor.getText()+"','"+txtambulancia.getText()+"','" +txtorigen.getText()+"','"+txtdestino.getText()+"','"+txtkm.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
+            String sql= "insert into test_ambulancia(codigo,paciente,medico_1,conductor,ambulancia,origen,destino,km,fecha,total) values ('"+numFac.getText()+"','" +lblidpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtconductor.getText()+"','"+txtambulancia.getText()+"','" +txtorigen.getText()+"','"+txtdestino.getText()+"','"+txtkm.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 
@@ -1323,6 +1359,7 @@ private void edit_detalle(){
     private javax.swing.JTabbedPane jTabbedPane2;
     public static javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lbledittotal;
+    public static javax.swing.JLabel lblidpaciente;
     public static javax.swing.JLabel numFac;
     private javax.swing.JPanel pnlChange;
     private principal.MaterialButton quitar;

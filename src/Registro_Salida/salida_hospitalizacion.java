@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Registro_Salida;
-import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import paneles.*;
 import java.util.Date;
@@ -239,6 +238,7 @@ static Conexion cc = new Conexion();
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtpaciente.setEditable(false);
+        txtpaciente.setBackground(null);
         txtpaciente.setBorder(null);
         txtpaciente.setForeground(new java.awt.Color(58, 159, 171));
         txtpaciente.setToolTipText("");
@@ -247,6 +247,7 @@ static Conexion cc = new Conexion();
         txtpaciente.setPlaceholder("PACIENTE DADO DE ALTA");
         jPanel4.add(txtpaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 240, 30));
 
+        txtFecha.setBackground(null);
         txtFecha.setBorder(null);
         txtFecha.setForeground(new java.awt.Color(0, 0, 0));
         txtFecha.setEnabled(false);
@@ -286,6 +287,7 @@ static Conexion cc = new Conexion();
         jPanel4.add(btns_paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 80, 50));
 
         txtmedicosalida.setEditable(false);
+        txtmedicosalida.setBackground(null);
         txtmedicosalida.setBorder(null);
         txtmedicosalida.setForeground(new java.awt.Color(58, 159, 171));
         txtmedicosalida.setToolTipText("");
@@ -321,7 +323,7 @@ static Conexion cc = new Conexion();
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("BUSCAR PACIENTE");
+        c_search_tbl.setPlaceholder("Buscar Paciente");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(400, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -488,9 +490,18 @@ static Conexion cc = new Conexion();
         txtFecha.setText(fechaactual());
         thishide.setVisible(false);
     }
+    //metodo obtener datos de la tabla test_laboratorio dado de alta
   private void Get_Data(){
         limpiaCampos();
-        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Ordeno Salida',fecha as 'Fecha y Hora de Salida' from test_hospitalizacion where estado=0 ";
+        String sql="select codigo as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " medico_1 as 'Ordeno Salida',"
+                + "fecha as 'Fecha y Hora de Salida' "
+                + " from test_hospitalizacion "
+                + " inner join paciente on"
+                + " paciente = codigo_paciente"
+                + " where estado=0 ";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -505,7 +516,7 @@ static Conexion cc = new Conexion();
     void actualizarIngreso() {
         try{
             con=Conexion.ConnectDB();
-            String sql= "update test_hospitalizacion set medico_1='"+ txtmedicosalida.getText()+ "',fecha='" + txtFecha.getText() + "',estado='" + 0+ "' where codigo='" + lblcodigo.getText()+ "'";
+            String sql= " '"+ txtmedicosalida.getText()+ "',fecha='" + txtFecha.getText() + "',estado='" + 0+ "' where codigo='" + lblcodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
             this.jTabbedPane2.setSelectedIndex(0);
@@ -513,40 +524,6 @@ static Conexion cc = new Conexion();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
         } 
-    }
-//    paciente,num_fac,estado,fecha,isv,codigo,nombre_p, precio, cantidad,importe, subtotal, total
-    void print_bill(){
-//        laboratorio em;// Instaciamos la clase empleado
-//        List <laboratorio>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
-//        for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-//            em = new laboratorio(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
-//            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),lblsubtotal.getText(),lblTotal.getText());
-//            lista.add(em); //Agregamos el objeto empleado a la lista
-//        }
-//        JasperReport reporte; // Instaciamos el objeto reporte
-//        String path = "src\\reportes\\caja_laboratorio.jasper"; //Ponemos la localizacion del reporte creado
-//        try {
-//            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
-//            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
-//            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
-//            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
-//            viewer.setVisible(true); //Se vizualiza el reporte
-//        } catch (JRException ex) {
-//           
-//        } 
-}
-
-
-    private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_hospitalizacion where idventa='" +lblcodigo.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-          
-}    
     }
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
@@ -565,7 +542,15 @@ static Conexion cc = new Conexion();
             DefaultTableModel dt = (DefaultTableModel) tablaCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM test_hospitalizacion WHERE paciente LIKE '%"+name+"%' and estado=0 ");
+                ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " medico_1 as 'Ordeno Salida',"
+                + "fecha as 'Fecha y Hora de Salida' "
+                + "from test_hospitalizacion "
+                + " inner join paciente on"
+                + " paciente = codigo_paciente "
+                + "WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' and estado=0 ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -573,6 +558,7 @@ static Conexion cc = new Conexion();
                         v.add(rs.getString(2));
                         v.add(rs.getString(3));
                         v.add(rs.getString(4));
+                        v.add(rs.getString(5));
 
                         dt.addRow(v);
                     }
@@ -615,7 +601,6 @@ static Conexion cc = new Conexion();
             sa.msj.setText("REGISTRADO");
             sa.msj1.setText("CON ÉXITO");
             sa.setVisible(true);
-            print_bill();
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
         }catch(HeadlessException ex){

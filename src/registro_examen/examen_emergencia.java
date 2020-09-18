@@ -77,6 +77,7 @@ static Conexion cc = new Conexion();
         Get_Data();
         thishide.setVisible(false);
         lbledittotal.hide();
+        lblidpaciente.hide();
     }
 
     /**
@@ -135,6 +136,7 @@ static Conexion cc = new Conexion();
         btns_medico2 = new principal.MaterialButton();
         jLabel8 = new javax.swing.JLabel();
         btnnewinsumo = new principal.MaterialButton();
+        lblidpaciente = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCaja = new javax.swing.JTable();
@@ -242,7 +244,7 @@ static Conexion cc = new Conexion();
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Nombre");
+        c_search_tbl.setPlaceholder("Buscar por Nombre o Identidad");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(400, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -406,6 +408,7 @@ static Conexion cc = new Conexion();
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtpaciente.setEditable(false);
+        txtpaciente.setBackground(new java.awt.Color(255, 255, 255));
         txtpaciente.setBorder(null);
         txtpaciente.setForeground(new java.awt.Color(58, 159, 171));
         txtpaciente.setToolTipText("");
@@ -477,6 +480,7 @@ static Conexion cc = new Conexion();
         jPanel4.add(btnservicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 190, 48));
 
         txtmedicoadmin.setEditable(false);
+        txtmedicoadmin.setBackground(new java.awt.Color(255, 255, 255));
         txtmedicoadmin.setBorder(null);
         txtmedicoadmin.setForeground(new java.awt.Color(58, 159, 171));
         txtmedicoadmin.setToolTipText("");
@@ -505,6 +509,7 @@ static Conexion cc = new Conexion();
         jPanel4.add(btns_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 80, 50));
 
         txtmedicoindica.setEditable(false);
+        txtmedicoindica.setBackground(new java.awt.Color(255, 255, 255));
         txtmedicoindica.setBorder(null);
         txtmedicoindica.setForeground(new java.awt.Color(58, 159, 171));
         txtmedicoindica.setToolTipText("");
@@ -533,6 +538,7 @@ static Conexion cc = new Conexion();
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 310, -1));
 
         txtmedicoingreso.setEditable(false);
+        txtmedicoingreso.setBackground(new java.awt.Color(255, 255, 255));
         txtmedicoingreso.setBorder(null);
         txtmedicoingreso.setForeground(new java.awt.Color(58, 159, 171));
         txtmedicoingreso.setToolTipText("");
@@ -571,6 +577,9 @@ static Conexion cc = new Conexion();
             }
         });
         jPanel4.add(btnnewinsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 190, 50));
+
+        lblidpaciente.setText("jLabel11");
+        jPanel4.add(lblidpaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -861,17 +870,21 @@ static Conexion cc = new Conexion();
         btnnewinsumo.hide();
         btnedit.hide();
     }
+    //obtener datos del registro de emergencia
   private void Get_Data(){
         limpiaCampos();
         String sql="select codigo as 'Codigo',"
-                + "paciente as 'Paciente',"
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
                 + "medico_1 as 'Realizo Examen',"
-                + " medico_2 as 'Indico Examen',"
+                + "medico_2 as 'Indico Examen',"
                 + "medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Observaciones',"
                 + "fecha as 'Fecha y Hora', "
-                + "total as 'Total (L)' from test_emergencia";
+                + "total as 'Total (L)' from test_emergencia "
+                + "inner join paciente on " //unir la tabla registro de emergencia con paciente
+                + "paciente = codigo_paciente";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -1016,7 +1029,18 @@ private void edit_detalle(){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM test_emergencia WHERE paciente LIKE '%"+name+"%' ");
+                ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + "medico_1 as 'Realizo Examen',"
+                + "medico_2 as 'Indico Examen',"
+                + "medico_3 as 'Ordeno Ingreso',"
+                + "num_habitacion as 'Habitación',"
+                + "observaciones as'Observaciones',"
+                + "fecha as 'Fecha y Hora', "
+                + "total as 'Total (L)' from test_emergencia "
+                + "inner join paciente on " //unir la tabla registro de emergencia con paciente
+                + "paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1029,7 +1053,7 @@ private void edit_detalle(){
                         v.add(rs.getString(7));
                         v.add(rs.getString(8));
                         v.add(rs.getString(9));
-
+                        v.add(rs.getString(10));
                         dt.addRow(v);
                     }
 
@@ -1044,14 +1068,14 @@ private void edit_detalle(){
             limpiaCampos();
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
-            txtpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
-            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());
-            txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,3).toString()) ;
-            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
-            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
-            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
+            txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
+            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,9).toString());
+            txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
+            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
+            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,8).toString()) ;
             thishide.setVisible(true);
             btnVender.setEnabled(false);
             quitar.setEnabled(false);
@@ -1124,7 +1148,7 @@ private void edit_detalle(){
                     + "fecha,"
                     + "total) values ('"
                     +numFac.getText()
-                    +"','" +txtpaciente.getText()
+                    +"','" +lblidpaciente.getText()
                     +"','" +txtmedicoadmin.getText()
                     +"','" +txtmedicoindica.getText()
                     +"','" +txtmedicoingreso.getText()
@@ -1290,6 +1314,7 @@ private void edit_detalle(){
     private javax.swing.JTabbedPane jTabbedPane2;
     public static javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lbledittotal;
+    public static javax.swing.JLabel lblidpaciente;
     public static javax.swing.JLabel numFac;
     private javax.swing.JPanel pnlChange;
     private principal.MaterialButton quitar;

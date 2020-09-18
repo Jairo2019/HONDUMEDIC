@@ -240,9 +240,15 @@ PreparedStatement pst=null;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    //metodo obtener pacientes que estan hospitalizados,de la tabla test_hospitalización
     private void Get_Data(){
-        String sql="select codigo as 'Codigo', Paciente as 'Paciente', medico_1 as 'Medico que lo Atendio', fecha as 'Fecha y Hora de Ingreso' from test_hospitalizacion where estado=1";
+        String sql="select codigo as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + " CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + "medico_1 as 'Medico que lo Atendio', "
+                + "fecha as 'Fecha y Hora de Ingreso' "
+                + "from test_hospitalizacion inner join paciente on  paciente = codigo_paciente "
+                + "where estado=1";
 
         try{
          pst=con.prepareStatement(sql);
@@ -269,7 +275,13 @@ PreparedStatement pst=null;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select codigo as 'Codigo', Paciente as 'Paciente', medico_1 as 'Medico que lo Atendio', fecha as 'Fecha y Hora de Ingreso' from test_hospitalizacion where paciente LIKE '%"+name+"%' and  estado=1");
+            ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + " CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + "medico_1 as 'Medico que lo Atendio', "
+                + "fecha as 'Fecha y Hora de Ingreso' "
+                + "from test_hospitalizacion inner join paciente on  paciente = codigo_paciente "
+                + " WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' and  estado=1");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -277,7 +289,7 @@ PreparedStatement pst=null;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-//                v.add(rs.getString(5));
+                v.add(rs.getString(5));
                 dt.addRow(v);
 
             }
@@ -311,8 +323,7 @@ PreparedStatement pst=null;
                     er.setVisible(true);
                 } else {
                     String cod = tabla.getValueAt(fila, 0).toString();
-                    String nom = tabla.getValueAt(fila, 1).toString();
-                    String apellido = tabla.getValueAt(fila, 2).toString();
+                    String nom = tabla.getValueAt(fila, 2).toString();
                     int c = 0;
                     int j = 0;
                     Registro_Salida.salida_hospitalizacion.txtpaciente.setText(nom);

@@ -5,16 +5,11 @@
  */
 package elegir;
 
-import Inventarios.inventario_hospitalizacion;
-import Registro_Salida.salida_hospitalizacion;
 import alertas.principal.AWTUtilities;
 import alertas.principal.FadeEffect;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
-import paneles.pnl_hospitalizacion;
-import principal.PrincipalAdministrador;
-import registro_examen.examen_hospitalizacion;
 
 /**
  *

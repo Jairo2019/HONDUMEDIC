@@ -264,8 +264,16 @@ public static Double value ;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- private void Get_Data(){
-        String sql="select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', conductor as 'Conductor',origen as'Origen',destino as 'Destino',fecha as 'Fecha y Hora', total as 'Total (L)' from test_ambulancia";
+ //metodo para obtener datos de db hondumedic
+    private void Get_Data(){
+        String sql="select codigo as 'Codigo',"
+                + "paciente as 'Paciente',"
+                + "medico_1 as 'Realizo Examen', "
+                + "conductor as 'Conductor',"
+                + "origen as'Origen',"
+                + "destino as 'Destino',"
+                + "fecha as 'Fecha y Hora', "
+                + "total as 'Total (L)' from test_ambulancia";
 
         try{
          pst=con.prepareStatement(sql);

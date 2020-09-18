@@ -1088,10 +1088,21 @@ static Conexion cc = new Conexion();
         
         numeros();
     }
-    //obtener los datos de la base de datos
+    //metodo obtener los datos de la tabla caja_servicios
   private void Get_Data(){
         thishide.setVisible(false);
-        String sql="select idventa as 'Codigo',codigo_examen as 'Codig Examen',cod_servicio as 'Codigo Servicio', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_servicios where estado_pago='Contado'";
+        String sql="select idventa as 'Codigo',"
+                + "codigo_examen as 'Codig Examen',"
+                + "cod_servicio as 'Codigo Servicio',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " fecha as 'Fecha',"
+                + "estado_pago as 'Estado de Pago',"
+                + "total as 'Total (L)' "
+                + "from caja_servicios "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente"
+                + " where estado_pago='Contado'";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -1108,7 +1119,7 @@ static Conexion cc = new Conexion();
         float cantidad;
 
         for (int i = 0; i < tableCaja.getRowCount(); i++) {
-            can = tableCaja.getValueAt(i, 3).toString();
+            can = tableCaja.getValueAt(i, 4).toString(); //valores en la columna 5
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
@@ -1275,13 +1286,23 @@ private void condicionIsv( ){
            
         } 
 }
-    //obtener las ventas del dia al contado
+    //metodo obtener las ventas del dia, de la 
       private void Get_Data_today(){
         Date sistemaFech = new Date();
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String fecH = formato.format(sistemaFech);
         thishide.setVisible(false);
-        String sql="select idventa as 'Codigo',codigo_examen as 'Codig Examen',cod_servicio as 'Codigo Servicio', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)' from caja_servicios where estado_pago='Contado' and fecha='"+fecH+"'";
+        String sql="select idventa as 'Codigo',"
+                + "codigo_examen as 'Codig Examen',"
+                + "cod_servicio as 'Codigo Servicio',"
+                + "codigo_paciente as 'Identidad',"
+                + " paciente as 'Paciente', "
+                + "fecha as 'Fecha',"
+                + "estado_pago as 'Estado de Pago',"
+                + "total as 'Total (L)'"
+                + " from caja_servicios "
+                + ""
+                + "where estado_pago='Contado' and fecha='"+fecH+"'";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -1298,7 +1319,7 @@ private void condicionIsv( ){
         float cantidad;
 
         for (int i = 0; i < tableCaja.getRowCount(); i++) {
-            can = tableCaja.getValueAt(i, 3).toString();
+            can = tableCaja.getValueAt(i, 4).toString();
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }

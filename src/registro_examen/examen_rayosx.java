@@ -132,6 +132,7 @@ static Conexion cc = new Conexion();
         btns_medico1 = new principal.MaterialButton();
         jLabel6 = new javax.swing.JLabel();
         btnnewinsumo = new principal.MaterialButton();
+        lblidpaciente = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCaja = new javax.swing.JTable();
@@ -539,6 +540,9 @@ static Conexion cc = new Conexion();
         });
         jPanel4.add(btnnewinsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 190, 50));
 
+        lblidpaciente.setText("jLabel11");
+        jPanel4.add(lblidpaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, -1, -1));
+
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
 
@@ -827,14 +831,26 @@ static Conexion cc = new Conexion();
         btnnewinsumo.hide();
         btnedit.hide();
     }
+    //metodo obtener datos de la tabla  test_rayosx
   private void Get_Data(){
         limpiaCampos();
-        String sql="select codigo as 'Codigo',paciente as 'Paciente', medico_1 as 'Realizo Examen', medico_2 as 'Indico Examen',num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_rayosx";
+        String sql="select codigo as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " medico_1 as 'Realizo Examen', "
+                + "medico_2 as 'Indico Examen',"
+                + "num_habitacion as 'Habitación',"
+                + "observaciones as'Observaciones',"
+                + "fecha as 'Fecha y Hora', "
+                + "total as 'Total (L)' "
+                + "from test_rayosx"
+                + " inner join paciente on "
+                + " paciente = codigo_paciente";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
+         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0)); //elimina la primera columna para no mostrar el id
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
           } 
@@ -955,7 +971,20 @@ private void edit_detalle(){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM test_rayosx WHERE paciente LIKE '%"+name+"%' ");
+                ResultSet rs = s.executeQuery("select codigo as 'Codigo'," //query buscar pacientes en la tabla test_rayosx por id, nombre, o apellido
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " medico_1 as 'Realizo Examen', "
+                + "medico_2 as 'Indico Examen',"
+                + "num_habitacion as 'Habitación',"
+                + "observaciones as'Observaciones',"
+                + "fecha as 'Fecha y Hora', "
+                + "total as 'Total (L)' "
+                + "from test_rayosx"
+                + " inner join paciente on "
+                + " paciente = codigo_paciente"
+                + " WHERE  CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' "
+                + "or codigo_paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -968,7 +997,7 @@ private void edit_detalle(){
                         v.add(rs.getString(7));
                         v.add(rs.getString(8));
                         v.add(rs.getString(9));
-
+                        v.add(rs.getString(10));
                         dt.addRow(v);
                     }
 
@@ -980,16 +1009,16 @@ private void edit_detalle(){
     //select idventa as 'Codigo',isv as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)'
     private void tableCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCajaMouseClicked
         try {
-            limpiaCampos();
+            limpiaCampos(); // limpea todas las caja de texto para luego eniarle los datos de la tabla a las cajas de texto
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
-            txtpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
-            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,7).toString());
-            txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,3).toString()) ;
-            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
-            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
+            txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
+            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());
+            txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
+            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
             thishide.setVisible(true);
             btnVender.setEnabled(false);
             quitar.setEnabled(false);
@@ -1049,15 +1078,31 @@ private void edit_detalle(){
                 JOptionPane.showMessageDialog( this, "Ingrese Fecha","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-               // insertar datos en test_rayosx
-            String sql= "insert into test_rayosx(codigo,paciente,medico_1,medico_2,num_habitacion,observaciones,fecha,total) values ('"+numFac.getText()+"','" +txtpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtmedicoindica.getText()+"','"+txtnumhabitacion.getText()+"','" +txtdescripcion.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
+               //query para insertar datos en la tabla test_rayosx
+            String sql= "insert into test_rayosx(codigo,"
+                    + "paciente,"
+                    + "medico_1,"
+                    + "medico_2,"
+                    + "num_habitacion,"
+                    + "observaciones,"
+                    + "fecha,"
+                    + "total) values ('"
+                    +numFac.getText()+"','" 
+                    +lblidpaciente.getText()+"','" 
+                    +txtmedicoadmin.getText()+"','" 
+                    +txtmedicoindica.getText()+"','"
+                    +txtnumhabitacion.getText()+"','" 
+                    +txtdescripcion.getText()+"','" 
+                    + txtFecha.getText()+"','" 
+                    +lblTotal.getText() + "')";
+        
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 
             ingresar_detalle();
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
             sa.titulo.setText("¡HECHO!");
-            sa.msj.setText("EXAMEN REGISTRADO");
+            sa.msj.setText("REGISTRADO");
             sa.msj1.setText("CON ÉXITO");
             sa.setVisible(true);
             this.jTabbedPane2.setSelectedIndex(0);
@@ -1110,7 +1155,7 @@ private void edit_detalle(){
     }//GEN-LAST:event_btnserviciosActionPerformed
 
     private void btns_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_pacienteActionPerformed
-        pacientes.lista_pacientes_laboratorio.cual="3";
+        pacientes.lista_pacientes_laboratorio.cual="3"; //idicarl al formulario cual le esta pidiendo información
         new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);  
         // TODO add your handling code here:
     }//GEN-LAST:event_btns_pacienteActionPerformed
@@ -1200,6 +1245,7 @@ private void edit_detalle(){
     private javax.swing.JTabbedPane jTabbedPane2;
     public static javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lbledittotal;
+    public static javax.swing.JLabel lblidpaciente;
     public static javax.swing.JLabel numFac;
     private javax.swing.JPanel pnlChange;
     private principal.MaterialButton quitar;

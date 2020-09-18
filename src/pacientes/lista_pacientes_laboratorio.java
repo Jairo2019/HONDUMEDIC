@@ -242,7 +242,10 @@ PreparedStatement pst=null;
     }// </editor-fold>//GEN-END:initComponents
     
     private void Get_Data(){
-        String sql="select codigo_paciente as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', edad as 'Edad' from paciente";
+        String sql="select codigo_paciente as 'Codigo',"
+                + " nombre as 'Nombre',"
+                + " apellido as 'Apellido',"
+                + " edad as 'Edad' from paciente";
 
         try{
          pst=con.prepareStatement(sql);
@@ -259,7 +262,6 @@ PreparedStatement pst=null;
         FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
-//String hola= cual;//saber de donde viene la petición para poder enviar información
     private void buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarKeyReleased
         // search btn code
         String name = buscar.getText();
@@ -268,8 +270,14 @@ PreparedStatement pst=null;
             DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-
-            ResultSet rs = s.executeQuery("select codigo_paciente as 'Codigo', nombre as 'Nombre', apellido as 'Apellido', edad as 'Edad' from paciente WHERE nombre LIKE '%"+name+"%' ");
+//query buscar por identidad, nombre o appellido al paciente
+            ResultSet rs = s.executeQuery("select codigo_paciente as 'Codigo',"
+                    + " nombre as 'Nombre',"
+                    + " apellido as 'Apellido',"
+                    + " edad as 'Edad' "
+                    + "from paciente"
+                    + " WHERE CONCAT(nombre, ' ' , apellido) "
+                    + "LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -277,13 +285,12 @@ PreparedStatement pst=null;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-//                v.add(rs.getString(5));
                 dt.addRow(v);
 
             }
 
         } catch (Exception e) {
-            Get_Data();
+            Get_Data(); //llama al metodo que otiene todos los registros de la tabla paciente
 
         }  
     }//GEN-LAST:event_buscarKeyReleased
@@ -323,24 +330,31 @@ PreparedStatement pst=null;
                     int j = 0;
                         if (("1").equals(cual)){
                             registro_examen.examen_emergencia.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_emergencia.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("2").equals(cual)){
                             registro_examen.examen_hospitalizacion.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_hospitalizacion.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("3").equals(cual)){
                             registro_examen.examen_rayosx.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_rayosx.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("4").equals(cual)){
                             registro_examen.examen_endoscopia.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_endoscopia.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("5").equals(cual)){
                             ambulancia.ambulancia.txtpaciente.setText(nom + " "+  apellido);
+                            ambulancia.ambulancia.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("6").equals(cual)){
                             cirugia.registrar_cirugia.txtpaciente.setText(nom + " "+  apellido);
+                            cirugia.registrar_cirugia.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("7").equals(cual)){
                             registro_examen.examen_ultrasonido.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_ultrasonido.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("8").equals(cual)){
                             unidad_apa.cotizaciones_apa.txtpaciente.setText(nom + " "+  apellido);
@@ -356,6 +370,7 @@ PreparedStatement pst=null;
                             cual="";
                         }else{
                              registro_examen.examen_laboratorio.txtpaciente.setText(nom + " "+  apellido);
+                             registro_examen.examen_laboratorio.lblidpaciente.setText(cod);
                              cual="";}
                         this.dispose();
                 }
