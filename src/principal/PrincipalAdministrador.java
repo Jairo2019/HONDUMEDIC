@@ -84,6 +84,9 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static caja caja=null;
     public static formeresultado eresultado=null;
     public static formbgeneral bgeneral=null;
+    public static cuentas_cobrar.cuentas_cobrar cuentas_por_cobrar = null;
+    public static deposito.depositos depositos = null;
+    public static estadosde_cuenta.estadosde_cuenta estadosde_cuenta = null;
     public static boolean estacerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();
         boolean cerrado = true;

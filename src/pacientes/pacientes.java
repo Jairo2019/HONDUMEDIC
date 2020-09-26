@@ -74,7 +74,6 @@ PreparedStatement pst=null;
         pnlChange = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         c_search_tbl = new app.bolivia.swing.JCTextField();
-        btnprint = new rsbuttom.RSButtonMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsers = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -189,7 +188,7 @@ PreparedStatement pst=null;
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Producto");
+        c_search_tbl.setPlaceholder("Buscar por Nombre o Identidad");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(300, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,30 +201,6 @@ PreparedStatement pst=null;
             }
         });
         jPanel5.add(c_search_tbl);
-
-        btnprint.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnprint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Print_32.png"))); // NOI18N
-        btnprint.setText("Imprimir");
-        btnprint.setToolTipText("");
-        btnprint.setColorBorde(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnprint.setColorHover(new java.awt.Color(12, 140, 143));
-        btnprint.setColorPressed(new java.awt.Color(12, 140, 143));
-        btnprint.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnprint.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnprint.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnprint.setIconTextGap(19);
-        btnprint.setPreferredSize(new java.awt.Dimension(150, 32));
-        btnprint.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnprintMouseClicked(evt);
-            }
-        });
-        btnprint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnprintActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnprint);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
@@ -789,7 +764,7 @@ PreparedStatement pst=null;
 //obtener datos de la tabla pacientes
     private void Get_Data(){
         Reset();
-        String sql="select p.codigo_paciente as 'Codigo',"+
+        String sql="select p.codigo_paciente as 'Num. Identidad',"+
                     " e.codigo_empleado as 'Codigo',"+
                     "p.nombre as 'Nombre'," +
                     "p.apellido as 'Apellido'," +
@@ -804,8 +779,7 @@ PreparedStatement pst=null;
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
-        tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
-         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
+         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(1));
         lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(3);
        tableUsers.setDefaultRenderer (Object.class, colorear);
          }catch(Exception e){
@@ -844,8 +818,21 @@ PreparedStatement pst=null;
             DefaultTableModel dt = (DefaultTableModel) tableUsers.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-
-            ResultSet rs = s.executeQuery("SELECT * FROM paciente WHERE nombre LIKE '%"+name+"%' ");
+            //query buscar paciente por nombre, apllido e identidad 
+            ResultSet rs = s.executeQuery("select p.codigo_paciente as 'Num. Identidad',"+
+                    " e.codigo_empleado as 'Codigo',"+
+                    "p.nombre as 'Nombre'," +
+                    "p.apellido as 'Apellido'," +
+                    "CONCAT(e.nombre, ' ' ,e.apellido) as 'Encargado'," +
+                    "p.direccion as 'Dirección'," +
+                    "p.edad as 'Edad'," +
+                    "p.telefono as 'Teléfono'," +
+                    "p.unidad as 'Unidad', " +
+                    "p.unidad_referente as 'Unidad Referente'  from paciente p INNER join empleado e on " +
+                    "id_empleado=codigo_empleado "
+                    + "WHERE CONCAT(p.nombre, ' ' , p.apellido) "
+                    + "LIKE '%"+name+"%' "
+                    + "or codigo_paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -857,6 +844,8 @@ PreparedStatement pst=null;
                 v.add(rs.getString(6));
                 v.add(rs.getString(7));
                 v.add(rs.getString(8));
+                v.add(rs.getString(9));
+                v.add(rs.getString(10));
                 dt.addRow(v);
 
             }
@@ -866,15 +855,6 @@ PreparedStatement pst=null;
 
         }          // TODO add your handling code here:
     }//GEN-LAST:event_c_search_tblKeyReleased
-
-    private void btnprintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnprintMouseClicked
-        JasperReport reporte; //Creo el objeto reporte
-        reporte = JasperCompilerManager.compileReport("src/Reportes/rptCaja.jrml");      // TODO add your handling code here:
-    }//GEN-LAST:event_btnprintMouseClicked
-
-    private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
-        jTabbedPane2.setSelectedIndex(0);        // TODO add your handling code here:
-    }//GEN-LAST:event_btnprintActionPerformed
 
     private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
         try {
@@ -1122,7 +1102,6 @@ PreparedStatement pst=null;
     private rsbuttom.RSButtonMetro btnDelete;
     private rsbuttom.RSButtonMetro btnUpdate;
     private rsbuttom.RSButtonMetro btncancel;
-    private rsbuttom.RSButtonMetro btnprint;
     private principal.MaterialButton btns_admin;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;

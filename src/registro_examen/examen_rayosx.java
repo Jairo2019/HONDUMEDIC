@@ -394,7 +394,7 @@ static Conexion cc = new Conexion();
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtdescripcion.setPlaceholder("OBSERVACIONES");
+        txtdescripcion.setPlaceholder("DIAGNÓSTICO");
         jPanel22.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 129, 300, 82));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));

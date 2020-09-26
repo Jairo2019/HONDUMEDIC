@@ -16,6 +16,9 @@ import paneles.pnl_ambulancia;
 import principal.PrincipalAdministrador;
 import ambulancia.registrar_ambulancias;
 import cotizaciones.cotizaciones_general;
+import cuentas_cobrar.cuentas_cobrar;
+import deposito.depositos;
+import estadosde_cuenta.estadosde_cuenta;
 
 /**
  *
@@ -243,39 +246,39 @@ public class elegir_administracion extends javax.swing.JDialog {
     private void btndepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositosActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.registrar_ambulancia)) {
-            PrincipalAdministrador.registrar_ambulancia = new registrar_ambulancias();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.depositos)) {
+            PrincipalAdministrador.depositos = new depositos();
             int width = PrincipalAdministrador.escritorio.getWidth();
             int Height = PrincipalAdministrador.escritorio.getHeight();
-            PrincipalAdministrador.registrar_ambulancia.setSize(width, Height);
-            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.registrar_ambulancia);
-            PrincipalAdministrador.registrar_ambulancia.show();
+            PrincipalAdministrador.depositos.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.depositos);
+            PrincipalAdministrador.depositos.show();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btndepositosActionPerformed
 
     private void btnestadoscuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnestadoscuentaActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.registro_ambulancia)) {
-            PrincipalAdministrador.registro_ambulancia = new ambulancia();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.estadosde_cuenta)) {
+            PrincipalAdministrador.estadosde_cuenta = new estadosde_cuenta();
             int width = PrincipalAdministrador.escritorio.getWidth();
             int Height = PrincipalAdministrador.escritorio.getHeight();
-            PrincipalAdministrador.registro_ambulancia.setSize(width, Height);
-            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.registro_ambulancia);
-            PrincipalAdministrador.registro_ambulancia.show();
+            PrincipalAdministrador.estadosde_cuenta.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.estadosde_cuenta);
+            PrincipalAdministrador.estadosde_cuenta.show();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_btnestadoscuentaActionPerformed
 
     private void btncuentascobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncuentascobrarActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.inventario_ambulancia)) {
-            PrincipalAdministrador.inventario_ambulancia = new inventario_ambulancia();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.cuentas_por_cobrar)) {
+            PrincipalAdministrador.cuentas_por_cobrar = new cuentas_cobrar();
             int width = PrincipalAdministrador.escritorio.getWidth();
             int Height = PrincipalAdministrador.escritorio.getHeight();
-            PrincipalAdministrador.inventario_ambulancia.setSize(width, Height);
-            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.inventario_ambulancia);
-            PrincipalAdministrador.inventario_ambulancia.show();
+            PrincipalAdministrador.cuentas_por_cobrar.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.cuentas_por_cobrar);
+            PrincipalAdministrador.cuentas_por_cobrar.show();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btncuentascobrarActionPerformed
 
