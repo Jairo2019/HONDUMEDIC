@@ -295,6 +295,19 @@ CREATE TABLE IF NOT EXISTS `cuentaspagar` (
 /*!40000 ALTER TABLE `cuentaspagar` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cuentaspagar` ENABLE KEYS */;
 
+-- Volcando estructura para tabla hondumedic.depositos
+CREATE TABLE IF NOT EXISTS `depositos` (
+  `id` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL,
+  `valor` float NOT NULL,
+  `fecha` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.depositos: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `depositos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `depositos` ENABLE KEYS */;
+
 -- Volcando estructura para tabla hondumedic.detalle_laboratorio
 CREATE TABLE IF NOT EXISTS `detalle_laboratorio` (
   `id_detalle` int(11) NOT NULL AUTO_INCREMENT,
@@ -794,21 +807,21 @@ REPLACE INTO `nfactura` (`id`, `val`) VALUES
 -- Volcando estructura para tabla hondumedic.paciente
 CREATE TABLE IF NOT EXISTS `paciente` (
   `codigo_paciente` varchar(20) NOT NULL DEFAULT '',
+  `id_empleado` varchar(20) NOT NULL DEFAULT '',
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `direccion` varchar(150) DEFAULT NULL,
   `edad` int(3) NOT NULL,
   `telefono` int(15) NOT NULL,
+  `unidad` varchar(50) NOT NULL DEFAULT '',
+  `unidad_referente` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`codigo_paciente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla hondumedic.paciente: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla hondumedic.paciente: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `paciente` DISABLE KEYS */;
-REPLACE INTO `paciente` (`codigo_paciente`, `nombre`, `apellido`, `direccion`, `edad`, `telefono`) VALUES
-	('0121199805416', 'Mosa', 'Nayon', '', 45, 98754895),
-	('0198111140802', 'EMILIANO', 'AGUILAR MALLQUI', '', 50, 35897458),
-	('0801199502154', 'Ximena', 'Jaramillo', 'jk', 45, 89745814),
-	('1502032151465', 'Liz', 'Nilzen', '', 22, 879451032);
+REPLACE INTO `paciente` (`codigo_paciente`, `id_empleado`, `nombre`, `apellido`, `direccion`, `edad`, `telefono`, `unidad`, `unidad_referente`) VALUES
+	('1502032151465', '0801995757955', 'Liz', 'Nilzen', '', 22, 879451032, 'APA', 'Emergencia');
 /*!40000 ALTER TABLE `paciente` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.prestamos
