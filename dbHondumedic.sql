@@ -53,15 +53,20 @@ REPLACE INTO `alimentos` (`codigo_al`, `tipo_al`, `nombre_al`, `precio_al`) VALU
 -- Volcando estructura para tabla hondumedic.almacen
 CREATE TABLE IF NOT EXISTS `almacen` (
   `codigo_almacen` varchar(20) NOT NULL DEFAULT '',
-  `nombre` varchar(50) NOT NULL,
-  `precio` float NOT NULL,
-  `descripcion` varchar(150) DEFAULT NULL,
+  `producto` varchar(50) NOT NULL,
+  `proveedor` varchar(50) DEFAULT NULL,
+  `precio_compra` float NOT NULL DEFAULT 0,
+  `utilidad` int(11) NOT NULL DEFAULT 0,
+  `precio_venta` decimal(10,0) NOT NULL DEFAULT 0,
   `cantidad` int(11) NOT NULL,
+  `descripcion` text DEFAULT NULL,
   PRIMARY KEY (`codigo_almacen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla hondumedic.almacen: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `almacen` DISABLE KEYS */;
+REPLACE INTO `almacen` (`codigo_almacen`, `producto`, `proveedor`, `precio_compra`, `utilidad`, `precio_venta`, `cantidad`, `descripcion`) VALUES
+	('PA0001', 'holo', 'sdf', 20, 15, 23, 5, '');
 /*!40000 ALTER TABLE `almacen` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.caja
@@ -689,7 +694,7 @@ CREATE TABLE IF NOT EXISTS `inventario_farmacia` (
 -- Volcando datos para la tabla hondumedic.inventario_farmacia: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `inventario_farmacia` DISABLE KEYS */;
 REPLACE INTO `inventario_farmacia` (`codigo_farmacia`, `nombre`, `casa_farmaceutica`, `precio_compra`, `precio_venta`, `cantidad`, `isv`, `descripcion`) VALUES
-	('PF0001', ' BRONCOPULMIN GOTAS X 30 ML', '', 50, 58, 4, '15', ''),
+	('PF0001', ' BRONCOPULMIN GOTAS X 30 ML', '', 5, 6, 4, '15', ''),
 	('PF0002', 'RHINOMER', 'Farmacias Kielsa', 500, 575, 2, '15', 'Nebulizador de agua de mar isotónica y estéril para la limpieza nasal. Fuerza 3 (ROJO) ha sido especialmente concebido para aquellos casos en que es necesario un gran lavado nasal en adultos y niños mayores de 6 años');
 /*!40000 ALTER TABLE `inventario_farmacia` ENABLE KEYS */;
 
