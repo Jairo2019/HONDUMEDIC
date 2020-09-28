@@ -687,6 +687,7 @@ PreparedStatement pst=null;
           
 }
   }
+    //limpiar cajas de texto
     private void Reset()
 {
     txtCodigo.setText("");

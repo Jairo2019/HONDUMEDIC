@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 import principal.GenerarNumero;
@@ -43,6 +44,7 @@ PreparedStatement pst=null;
         Get_Data();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         tableUsers.getTableHeader().setBackground(Color.decode("#006FB0"));
+        txtidpaciente.hide();
         //tableUsers.getTableHeader().setForeground(Color.white);
 
 
@@ -68,7 +70,6 @@ PreparedStatement pst=null;
         pnlChange = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         c_search_tbl = new app.bolivia.swing.JCTextField();
-        btnprint = new rsbuttom.RSButtonMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsers = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -88,6 +89,8 @@ PreparedStatement pst=null;
         txtpaciente = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         txtvalor = new javax.swing.JTextField();
+        btns_paciente = new principal.MaterialButton();
+        txtidpaciente = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -156,7 +159,7 @@ PreparedStatement pst=null;
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Nombre");
+        c_search_tbl.setPlaceholder("Buscar por Nombre o Identidad");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(300, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,30 +172,6 @@ PreparedStatement pst=null;
             }
         });
         jPanel5.add(c_search_tbl);
-
-        btnprint.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnprint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Print_32.png"))); // NOI18N
-        btnprint.setText("Imprimir");
-        btnprint.setToolTipText("");
-        btnprint.setColorBorde(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnprint.setColorHover(new java.awt.Color(12, 140, 143));
-        btnprint.setColorPressed(new java.awt.Color(12, 140, 143));
-        btnprint.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnprint.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnprint.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnprint.setIconTextGap(19);
-        btnprint.setPreferredSize(new java.awt.Dimension(150, 32));
-        btnprint.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnprintMouseClicked(evt);
-            }
-        });
-        btnprint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnprintActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnprint);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
@@ -387,7 +366,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 384, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(33, 387, 0, 0);
         jPanel9.add(jLabel17, gridBagConstraints);
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -405,7 +384,7 @@ PreparedStatement pst=null;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 31, 0, 388);
+        gridBagConstraints.insets = new java.awt.Insets(25, 31, 0, 0);
         jPanel9.add(txtCodigo, gridBagConstraints);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -413,10 +392,10 @@ PreparedStatement pst=null;
         jLabel23.setText("Paciente: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(65, 371, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(59, 374, 0, 0);
         jPanel9.add(jLabel23, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -424,10 +403,10 @@ PreparedStatement pst=null;
         jLabel19.setText("Fecha:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(63, 400, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(57, 403, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
         txtfecha.setBackground(new java.awt.Color(255, 255, 255));
@@ -436,25 +415,26 @@ PreparedStatement pst=null;
         txtfecha.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(53, 31, 0, 388);
+        gridBagConstraints.insets = new java.awt.Insets(47, 31, 0, 0);
         jPanel9.add(txtfecha, gridBagConstraints);
 
         txtpaciente.setBackground(new java.awt.Color(255, 255, 255));
         txtpaciente.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtpaciente.setForeground(new java.awt.Color(0, 0, 0));
+        txtpaciente.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(55, 31, 0, 388);
+        gridBagConstraints.insets = new java.awt.Insets(55, 31, 0, 0);
         jPanel9.add(txtpaciente, gridBagConstraints);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -462,10 +442,10 @@ PreparedStatement pst=null;
         jLabel25.setText("Valor (Cantidad):");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(60, 312, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(60, 315, 0, 0);
         jPanel9.add(jLabel25, gridBagConstraints);
 
         txtvalor.setBackground(new java.awt.Color(255, 255, 255));
@@ -478,13 +458,50 @@ PreparedStatement pst=null;
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(51, 31, 20, 388);
+        gridBagConstraints.insets = new java.awt.Insets(51, 31, 2, 0);
         jPanel9.add(txtvalor, gridBagConstraints);
+
+        btns_paciente.setBackground(new java.awt.Color(0, 111, 177));
+        btns_paciente.setBorder(null);
+        btns_paciente.setForeground(new java.awt.Color(255, 255, 255));
+        btns_paciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
+        btns_paciente.setText("buscar");
+        btns_paciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btns_paciente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btns_paciente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btns_paciente.setRippleColor(new java.awt.Color(60, 63, 65));
+        btns_paciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btns_pacienteActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 34;
+        gridBagConstraints.ipady = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(49, 6, 0, 299);
+        jPanel9.add(btns_paciente, gridBagConstraints);
+
+        txtidpaciente.setBackground(new java.awt.Color(255, 255, 255));
+        txtidpaciente.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtidpaciente.setForeground(new java.awt.Color(0, 0, 0));
+        txtidpaciente.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 32, 0, 0);
+        jPanel9.add(txtidpaciente, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -531,18 +548,23 @@ PreparedStatement pst=null;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void Get_Data(){
+    //metodo obtener datos de la tabla depositos
+    private void Get_Data(){
+        numeros();
         String sql="select id as 'Codigo',"
-                + " paciente as 'Paciente', "
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
                 + "valor as 'Valor', "
                 + "fecha as 'Fecha' "
-                + "from depositos";
+                + "from depositos"
+                + " inner join paciente on "
+                + "paciente = codigo_paciente";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
-        tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
-        txtfecha.setText(fechaactual());
+        tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));//ocultar columna del codigo
+        txtfecha.setText(fechaactual()); 
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);      
 }
@@ -553,13 +575,13 @@ private void Get_Data(){
         return formatofecha.format(fecha);
 
     }
+   //metodo limpiar las cajas de texto
     private void Reset()
 {
-    txtCodigo.setText("");
+    numeros();
     txtpaciente.setText("");
     txtfecha.setText("");
     txtvalor.setText("");
-    txtCodigo.setText("");
     btnsave.setEnabled(true);
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
@@ -583,7 +605,14 @@ private void Get_Data(){
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM registrar_ambulancia WHERE nombre LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select id as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + "valor as 'Valor', "
+                + "fecha as 'Fecha' "
+                + "from depositos"
+                + " inner join paciente on "
+                + "paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -591,6 +620,7 @@ private void Get_Data(){
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
+                v.add(rs.getString(5));
                 dt.addRow(v);
 
             }
@@ -628,22 +658,14 @@ private void Get_Data(){
 //           Logger.getLogger(opciones_serviciosVen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void btnprintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnprintMouseClicked
-        JasperReport reporte; //Creo el objeto reporte
-        reporte = JasperCompilerManager.compileReport("src/Reportes/rptCaja.jrml");      // TODO add your handling code here:
-    }//GEN-LAST:event_btnprintMouseClicked
-
-    private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
-        jTabbedPane2.setSelectedIndex(0);        // TODO add your handling code here:
-    }//GEN-LAST:event_btnprintActionPerformed
-
     private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
         try {
             con=Conexion.ConnectDB();
             int row= tableUsers.getSelectedRow();
             txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
-            txtpaciente.setText(tableUsers.getModel().getValueAt(row,1).toString());
-            txtfecha.setText(tableUsers.getModel().getValueAt(row,2).toString());
+            txtidpaciente.setText(tableUsers.getModel().getValueAt(row,1).toString());
+            txtpaciente.setText(tableUsers.getModel().getValueAt(row,2).toString());
+            txtfecha.setText(tableUsers.getModel().getValueAt(row,4).toString());
             txtvalor.setText(tableUsers.getModel().getValueAt(row,3).toString());
 
             this.btnsave.setEnabled(false);
@@ -671,13 +693,20 @@ private void Get_Data(){
                 JOptionPane.showMessageDialog( this, "Ingrese Cantidad a Depositar","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into depositos(id,paciente,valor,fecha) values ('"+txtCodigo.getText()+"','" +txtpaciente.getText()+"','" + txtvalor.getText() +"','" +txtfecha.getText()+ "')";
+            //QUEry insert datos a tabla depositos
+            String sql= "insert into depositos(id,"
+                    + "paciente,"
+                    + "valor,"
+                    + "fecha) values ('"
+                    +txtCodigo.getText()+"','" 
+                    +txtidpaciente.getText()+"','" 
+                    + txtvalor.getText() +"','" 
+                    +txtfecha.getText()+ "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
 
-            JOptionPane.showMessageDialog(this,"Registrado con éxito","Servicio Ambulancia",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Registrado con éxito","Depositos",JOptionPane.INFORMATION_MESSAGE);
             btnsave.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
@@ -690,15 +719,16 @@ private void Get_Data(){
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
-            String sql= "update depositos set paciente='"+ txtpaciente.getText()+ "',valor='" + txtvalor.getText() + "',fecha='" + txtfecha.getText() + "' where id='" + txtCodigo.getText()+ "'";
+            String sql= "update depositos set paciente='"+ txtidpaciente.getText()
+                    + "',valor='" + txtvalor.getText() 
+                    + "',fecha='" + txtfecha.getText() + "' where id='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this,"Ambulancia Actualizado","Ambulancia de Ambulancia",JOptionPane.INFORMATION_MESSAGE);
             btnUpdate.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(0);
-            Get_Data();
             Reset();
-
+            Get_Data();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
         }        // TODO add your handling code here:
@@ -741,12 +771,18 @@ private void Get_Data(){
         if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();          // TODO add your handling code here:
     }//GEN-LAST:event_txtvalorKeyTyped
 
+    private void btns_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_pacienteActionPerformed
+        pacientes.lista_pacientes_laboratorio.cual="12";
+        new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btns_pacienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnDelete;
     private rsbuttom.RSButtonMetro btnUpdate;
     private rsbuttom.RSButtonMetro btncancel;
-    private rsbuttom.RSButtonMetro btnprint;
+    private principal.MaterialButton btns_paciente;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
@@ -771,7 +807,8 @@ private void Get_Data(){
     private javax.swing.JTable tableUsers;
     public javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtfecha;
-    public javax.swing.JTextField txtpaciente;
+    public static javax.swing.JTextField txtidpaciente;
+    public static javax.swing.JTextField txtpaciente;
     public javax.swing.JTextField txtvalor;
     // End of variables declaration//GEN-END:variables
 }

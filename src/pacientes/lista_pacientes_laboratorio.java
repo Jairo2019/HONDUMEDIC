@@ -368,6 +368,10 @@ PreparedStatement pst=null;
                         }else if (("11").equals(cual)){
                             cotizaciones.cotizaciones_general.txtpaciente.setText(nom + " "+  apellido);
                             cual="";
+                        }else if (("12").equals(cual)){
+                            deposito.depositos.txtpaciente.setText(nom + " "+  apellido);
+                            deposito.depositos.txtidpaciente.setText(cod );
+                            cual="";
                         }else{
                              registro_examen.examen_laboratorio.txtpaciente.setText(nom + " "+  apellido);
                              registro_examen.examen_laboratorio.lblidpaciente.setText(cod);
