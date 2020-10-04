@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Inventarios;
+import alertas.principal.ErrorAlert;
+import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
 import paneles.JasperCompilerManager;
 import paneles.*;
@@ -23,6 +25,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import lista_productos_servicios.Producto;
+import lista_productos_servicios.ProductoDAO;
 import net.proteanit.sql.DbUtils;
 import principal.GenerarCodigos;
 /**
@@ -37,6 +41,10 @@ PreparedStatement pst=null;
     static Conexion cc = new Conexion();
     static Connection cn = cc.ConnectDB();
     static PreparedStatement ps;
+    ProductoDAO pdao = new ProductoDAO();
+     DefaultTableModel modelo = new DefaultTableModel();
+    String idp;
+    int cant;
     /**
      * Creates new form NewJInternalFrame
      */
@@ -98,10 +106,14 @@ PreparedStatement pst=null;
         jPanel4 = new javax.swing.JPanel();
         pnlChange1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        choiceunidad = new javax.swing.JComboBox();
+        cmbunidad = new javax.swing.JComboBox();
         jLabel20 = new javax.swing.JLabel();
         btnasignar = new rsbuttom.RSButtonMetro();
-        btnenviar = new rsbuttom.RSButtonMetro();
+        jPanel12 = new javax.swing.JPanel();
+        btnCancelar = new principal.MaterialButton();
+        btnenviar = new principal.MaterialButton();
+        quitar = new principal.MaterialButton();
+        jPanel13 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_almacen = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
@@ -627,31 +639,32 @@ PreparedStatement pst=null;
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.GridBagLayout());
 
-        choiceunidad.setBackground(new java.awt.Color(255, 255, 255));
-        choiceunidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        choiceunidad.setForeground(new java.awt.Color(0, 0, 0));
-        choiceunidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambulancia", "APA", "Cirugía", "Emergencia", "Endoscopia", "Hospitalización", "Laboratorio", "RayosX", "Ultrasonido", " " }));
+        cmbunidad.setBackground(new java.awt.Color(255, 255, 255));
+        cmbunidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        cmbunidad.setForeground(new java.awt.Color(0, 0, 0));
+        cmbunidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambulancia", "Cirugía", "Emergencia", "Endoscopia", "Hospitalización", "Laboratorio", "RayosX", "Ultrasonido" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 49;
         gridBagConstraints.ipady = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 6, 12, 0);
-        jPanel8.add(choiceunidad, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(14, 6, 0, 0);
+        jPanel8.add(cmbunidad, gridBagConstraints);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Elegir Unidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 113, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(23, 294, 0, 0);
         jPanel8.add(jLabel20, gridBagConstraints);
 
-        btnasignar.setText("Asignar Productos");
+        btnasignar.setText("Buscar Productos");
         btnasignar.setToolTipText("");
         btnasignar.setColorHover(new java.awt.Color(12, 140, 143));
         btnasignar.setColorPressed(new java.awt.Color(12, 140, 143));
@@ -670,42 +683,80 @@ PreparedStatement pst=null;
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 34;
+        gridBagConstraints.ipadx = 36;
         gridBagConstraints.ipady = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 63, 12, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 275);
         jPanel8.add(btnasignar, gridBagConstraints);
 
-        btnenviar.setText("Enviar Productos");
-        btnenviar.setToolTipText("");
-        btnenviar.setColorHover(new java.awt.Color(12, 140, 143));
-        btnenviar.setColorPressed(new java.awt.Color(12, 140, 143));
-        btnenviar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnenviar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnenviar.setIconTextGap(10);
-        btnenviar.setPreferredSize(new java.awt.Dimension(150, 32));
-        btnenviar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnenviarMouseClicked(evt);
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+        org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder2 = new org.jdesktop.swingx.border.DropShadowBorder();
+        dropShadowBorder2.setShowLeftShadow(true);
+        dropShadowBorder2.setShowTopShadow(true);
+        jPanel12.setBorder(dropShadowBorder2);
+
+        btnCancelar.setBackground(new java.awt.Color(0, 111, 177));
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("LIMPIAR");
+        btnCancelar.setToolTipText("");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
             }
         });
+
+        btnenviar.setBackground(new java.awt.Color(0, 111, 177));
+        btnenviar.setForeground(new java.awt.Color(255, 255, 255));
+        btnenviar.setText("          Enviar Productos          ");
+        btnenviar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnenviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnenviarActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 45;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 159, 12, 64);
-        jPanel8.add(btnenviar, gridBagConstraints);
+
+        quitar.setBackground(new java.awt.Color(0, 111, 177));
+        quitar.setForeground(new java.awt.Color(255, 255, 255));
+        quitar.setText("QUITAR");
+        quitar.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
+        quitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        quitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        quitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnenviar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnenviar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel13.setBackground(new java.awt.Color(0, 111, 177));
+        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
@@ -727,28 +778,43 @@ PreparedStatement pst=null;
         });
         jScrollPane2.setViewportView(tabla_almacen);
 
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout pnlChange1Layout = new javax.swing.GroupLayout(pnlChange1);
         pnlChange1.setLayout(pnlChange1Layout);
         pnlChange1Layout.setHorizontalGroup(
-            pnlChange1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlChange1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChange1Layout.createSequentialGroup()
-                    .addGap(5, 5, 5)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
-                    .addContainerGap()))
+            pnlChange1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+            .addGroup(pnlChange1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlChange1Layout.setVerticalGroup(
             pnlChange1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChange1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                .addGap(383, 383, 383))
-            .addGroup(pnlChange1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlChange1Layout.createSequentialGroup()
-                    .addGap(84, 84, 84)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(pnlChange1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -767,7 +833,7 @@ PreparedStatement pst=null;
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlChange1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -797,6 +863,8 @@ PreparedStatement pst=null;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    String id="";
+//metodo para obtener el maximo id y asignar id a la tabla almacen
     public void extraerID() {
         int j;
         int cont = 1;
@@ -831,6 +899,538 @@ PreparedStatement pst=null;
             Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    //metodo para obtener el maximo id y asignar id a la tabla ambulancia
+    public String extraerID_ambulancia(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_ambulancia) FROM inventario_ambulancia";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "IA0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("IA" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
+        //metodo guardar productos en el inventario de ambulancia
+    private void ingresar_inventario_ambulancia(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_ambulancia( "
+                + "codigo_ambulancia,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_ambulancia(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+     //metodo para obtener el maximo id y asignar id a la tabla cirugia
+    public String extraerID_cirugia(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_cirugia) FROM inventario_cirugia";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "IC0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("IC" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
+        //metodo guardar productos en el inventario de cirugia
+    private void ingresar_inventario_cirugia(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_cirugia( "
+                + "codigo_cirugia,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_cirugia(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+         //metodo para obtener el maximo id y asignar id a la tabla Emergencia
+    public String extraerID_Emergencia(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_emergencia) FROM inventario_emergencia";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "PE0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("PE" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
+        //metodo guardar productos en el inventario de Emergencia
+    private void ingresar_inventario_Emergencia(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_emergencia( "
+                + "codigo_emergencia,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_Emergencia(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+     //metodo para obtener el maximo id y asignar id a la tabla Endoscopia
+    public String extraerID_Endoscopia(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_endoscopia) FROM inventario_endoscopia";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "IE0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("IE" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
+        //metodo guardar productos en el inventario de Emergencia
+    private void ingresar_inventario_Endoscopia(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_endoscopia( "
+                + "codigo_endoscopia,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_Endoscopia(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+    //metodo para obtener el maximo id y asignar id a la tabla Hospitalización
+    public String extraerID_Hospitalización(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_hospitalizacion) FROM inventario_hospitalizacion";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "IH0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("IH" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
+        //metodo guardar productos en el inventario de Hospitalización
+    private void ingresar_inventario_Hospitalización(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_hospitalizacion( "
+                + "codigo_hospitalizacion,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_Hospitalización(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+    //metodo para obtener el maximo id y asignar id a la tabla Laboratorio
+    public String extraerID_Laboratorio(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_laboratorio) FROM inventario_laboratorio";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "PL0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("PL" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
+        //metodo guardar productos en el inventario de Laboratorio
+    private void ingresar_inventario_Laboratorio(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_laboratorio( "
+                + "codigo_laboratorio,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_Laboratorio(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+    //metodo para obtener el maximo id y asignar id a la tabla RayosX
+    public String extraerID_RayosX(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_rayosx) FROM inventario_rayosx";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "IR0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("IR" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
+        //metodo guardar productos en el inventario de RayosX
+    private void ingresar_inventario_RayosX(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_rayosx( "
+                + "codigo_rayosx,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_Laboratorio(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+     //metodo para obtener el maximo id y asignar id a la tabla Ultrasonido
+    public String extraerID_Ultrasonido(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_ultrasonido) FROM inventario_ultrasonido";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "IU0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("IU" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
+        //metodo guardar productos en el inventario de Ultrasonido
+    private void ingresar_inventario_Ultrasonido(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_ultrasonido( "
+                + "codigo_ultrasonido,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_Laboratorio(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+    //metodo actualizar stock de ambulancia
+        void editStock_almacen() {
+        for (int i = 0; i < tabla_almacen.getRowCount(); i++) {
+            Producto pr = new Producto();
+            idp = tabla_almacen.getValueAt(i, 0).toString();
+            cant = Integer.parseInt(tabla_almacen.getValueAt(i, 4).toString());
+            pr = pdao.listarID_almacen(idp);
+            int sa = pr.getStock() - cant;
+            pdao.actualizarStock_almacen(sa, idp);
+        }
+    }
+        
     //metodo obtener data de la tabla almacen
     private void Get_Data(){
         Reset();
@@ -844,20 +1444,23 @@ PreparedStatement pst=null;
                 + "descripcion as 'Descripción' "
                 + "from almacen";
         try{
-         pst=con.prepareStatement(sql);
+         pst=con.prepareStatement(sql); 
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
         lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(3);
        tableUsers.setDefaultRenderer (Object.class, colorear);
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-          
-}
+            JOptionPane.showMessageDialog(null, e);}
   }
     //metodo limpiar cajas de texto
     private void Reset()
 {
+    DefaultTableModel modelo = (DefaultTableModel) tabla_almacen.getModel();
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
     txtCodigo.setText("");
     txtproducto.setText("");
     txtproveedor.setText("");
@@ -1085,25 +1688,123 @@ PreparedStatement pst=null;
         new lista_productos_servicios.productos_almacen(new JFrame(), true).setVisible(true);                // TODO add your handling code here:
     }//GEN-LAST:event_btnasignarActionPerformed
 
-    private void btnenviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnenviarMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnenviarMouseClicked
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Reset();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenviarActionPerformed
-        // TODO add your handling code here:
+        if (this.tabla_almacen.getRowCount() < 1) {
+            ErrorAlert er = new ErrorAlert(new JFrame(), true);
+            er.titulo.setText("OOPS...");
+            er.msj.setText("IMPOSIBLE INGRESAR");
+            er.msj1.setText("REGISTRO");
+            er.setVisible(true);
+        }else{
+            if ("Ambulancia".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_ambulancia();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+            }else if ("Cirugía".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_cirugia();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+            }else if ("Emergencia".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_Emergencia();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+            }else if ("Endoscopia".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_Endoscopia();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+            }else if ("Hospitalización".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_Hospitalización();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+            }else if ("Laboratorio".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_Laboratorio();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+            }else if ("RayosX".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_RayosX();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+            }else if ("Ultrasonido".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_Ultrasonido();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_btnenviarActionPerformed
+
+    private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) this.tabla_almacen.getModel();
+        if (modelo.getRowCount() > 0) {
+
+            int fila = this.tabla_almacen.getSelectedRow();
+            if (this.tabla_almacen.getSelectedRowCount() < 1) {
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("OOPS...");
+                er.msj.setText("SELECCIONA UN");
+                er.msj1.setText("REGISTRO");
+                er.setVisible(true);
+            } else {
+                modelo.removeRow(fila);
+            }
+        }
+    }//GEN-LAST:event_quitarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private principal.MaterialButton btnCancelar;
     private rsbuttom.RSButtonMetro btnDelete;
     private rsbuttom.RSButtonMetro btnUpdate;
     private rsbuttom.RSButtonMetro btnasignar;
     private rsbuttom.RSButtonMetro btncancel;
-    private rsbuttom.RSButtonMetro btnenviar;
+    private principal.MaterialButton btnenviar;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
-    private javax.swing.JComboBox choiceunidad;
+    private javax.swing.JComboBox cmbunidad;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
@@ -1120,6 +1821,8 @@ PreparedStatement pst=null;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1133,6 +1836,7 @@ PreparedStatement pst=null;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JPanel pnlChange1;
+    private principal.MaterialButton quitar;
     public static javax.swing.JTable tabla_almacen;
     private javax.swing.JTable tableUsers;
     public javax.swing.JTextField txtCodigo;

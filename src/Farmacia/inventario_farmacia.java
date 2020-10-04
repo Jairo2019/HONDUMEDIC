@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 package Farmacia;
-import Inventarios.*;
 import cafeteria.OpcionesAl;
-import paneles.JasperCompilerManager;
 import paneles.*;
-import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
 import java.sql.Connection;
@@ -18,7 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;

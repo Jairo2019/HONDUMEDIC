@@ -15,7 +15,19 @@ public class ProductoDAO {
     Connection con;
     Conexion acceso = new Conexion();
     Producto pro = new Producto();
-    
+    //metodo actualizar la tabla almacen
+     public int actualizarStock_almacen (int cant, String idp){
+       String sql="update almacen set cantidad=? where codigo_almacen=?";
+       try {
+           con=acceso.ConnectDB();
+           ps=con.prepareStatement(sql);
+           ps.setInt(1, cant);
+           ps.setString(2, idp);
+           ps.executeUpdate();
+       } catch (Exception e) {
+       }
+       return r;
+   }
    public int actualizarStock(int cant, String idp){
        String sql="update inventario_laboratorio set cantidad=? where codigo_laboratorio=?";
        try {
@@ -147,6 +159,26 @@ public class ProductoDAO {
     public Producto listarID(String id){
         Producto p=new Producto();
         String sql="select * from inventario_laboratorio where codigo_laboratorio=?";
+        try {
+            con=acceso.ConnectDB();
+            ps=con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                p.setId(rs.getString(1));
+                p.setNom(rs.getString(2));
+                p.setPre(rs.getFloat(3));
+                p.setEstado(rs.getString(4));
+                p.setStock(rs.getInt(5));
+            }
+        } catch (Exception e) {
+        }
+        return p;
+    }
+    //metodo listar el id de la tabla alamacen para actulizar stock
+    public Producto listarID_almacen(String id){
+        Producto p=new Producto();
+        String sql="select codigo_almacen, producto, precio_venta,descripcion, cantidad from almacen where codigo_almacen=?";
         try {
             con=acceso.ConnectDB();
             ps=con.prepareStatement(sql);

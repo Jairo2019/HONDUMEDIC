@@ -431,6 +431,7 @@ PreparedStatement pst=null;
                             dato[2] = precio;
                             dato[3] = descripcion;
                             dato[4] = cant;
+                            
 
                             tabladet.addRow(dato);
                             Inventarios.almacen.tabla_almacen.setModel(tabladet);
