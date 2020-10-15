@@ -4,41 +4,22 @@
  * and open the template in the editor.
  */
 package estadosde_cuenta;
-import caja.*;
-import alertas.principal.ErrorAlert;
-import alertas.principal.SuccessAlert;
 import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
-import principal.GenerarNumero;
 import static principal.PrincipalAdministrador.escritorio;
-import java.awt.HeadlessException;
-import java.util.ArrayList;
-import java.util.List;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import lista_productos_servicios.ProductoDAO;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
-import clases_cajas_servicios.laboratorio;
-import clases_cajas_servicios.laboratorio_Credito;
 import principal.PrincipalAdministrador;
 /**
  *

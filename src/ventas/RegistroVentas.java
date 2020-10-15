@@ -5,12 +5,17 @@
  */
 package ventas;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import paneles.Conexion;
 
 /**
  *
@@ -34,11 +39,42 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         if (tablaVentas.getSelectedRow() > -1) {
             tablaVentas.removeRowSelectionInterval(tablaVentas.getSelectedRow(), tablaVentas.getSelectedRow());
         }
-        fecha.setDate(null);
+        dtfecha1.setDate(null);
+        dtfecha2.setDate(null);
         buscar.setText("");
         OpcionesVen.listar("");
     }
+    //metodo obtener ventas por rango de fechas
+void between_date(){
+            String formato = dtfecha1.getDateFormatString();
+            Date date = dtfecha1.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat(formato); 
+            String fecH1 = (String.valueOf(sdf.format(date)));
+            /////////////////////
+            String formato2 = dtfecha2.getDateFormatString();
+            Date date2 = dtfecha2.getDate();
+            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2); 
+            String fecH2 = (String.valueOf(sdf2.format(date2)));
 
+       try {
+
+            DefaultTableModel dt = (DefaultTableModel) tablaVentas.getModel();
+            dt.setRowCount(0);
+            Statement s = Conexion.ConnectDB().createStatement();
+
+            ResultSet rs = s.executeQuery("SELECT * FROM registro_venta WHERE fecha BETWEEN '" + fecH1 + "' and '" + fecH2 + "' ");
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                dt.addRow(v);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }          
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,9 +89,7 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVentas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        buscar = new app.bolivia.swing.JCTextField();
-        codigoL1 = new javax.swing.JLabel();
-        fecha = new com.toedter.calendar.JDateChooser();
+        dtfecha1 = new com.toedter.calendar.JDateChooser();
         eliminar = new javax.swing.JButton();
         eliminarT = new javax.swing.JButton();
         limpiar = new javax.swing.JButton();
@@ -63,6 +97,10 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         ventasH = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        dtfecha2 = new com.toedter.calendar.JDateChooser();
+        jPanel2 = new javax.swing.JPanel();
+        buscar = new app.bolivia.swing.JCTextField();
+        codigoL1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -96,61 +134,17 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "OPCIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        buscar.setBackground(new java.awt.Color(0, 111, 177));
-        buscar.setBorder(null);
-        buscar.setForeground(new java.awt.Color(255, 255, 255));
-        buscar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        buscar.setOpaque(false);
-        buscar.setPhColor(new java.awt.Color(255, 255, 255));
-        buscar.setPlaceholder("No. VENTA");
-        buscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buscarMouseClicked(evt);
-            }
-        });
-        buscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                buscarKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                buscarKeyTyped(evt);
-            }
-        });
+        dtfecha1.setDateFormatString("dd/MM/yyyy");
+        dtfecha1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 180;
-        gridBagConstraints.ipady = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 150, 0, 0);
-        jPanel4.add(buscar, gridBagConstraints);
-
-        codigoL1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        codigoL1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarios/buscarL.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 6;
-        gridBagConstraints.ipady = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 130, 0, 0);
-        jPanel4.add(codigoL1, gridBagConstraints);
-
-        fecha.setDateFormatString("dd/MM/yyyy");
-        fecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 190;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.ipadx = 141;
         gridBagConstraints.ipady = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 37, 0, 0);
-        jPanel4.add(fecha, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(28, 36, 0, 0);
+        jPanel4.add(dtfecha1, gridBagConstraints);
 
         eliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarios/borrar1.png"))); // NOI18N
@@ -171,11 +165,11 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(58, 67, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 23, 22, 0);
         jPanel4.add(eliminar, gridBagConstraints);
 
         eliminarT.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -196,12 +190,12 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 9;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(68, 90, 22, 116);
+        gridBagConstraints.insets = new java.awt.Insets(30, 22, 22, 70);
         jPanel4.add(eliminarT, gridBagConstraints);
 
         limpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -221,11 +215,11 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(58, 30, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(30, 40, 22, 0);
         jPanel4.add(limpiar, gridBagConstraints);
 
         buscF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -244,22 +238,21 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridx = 11;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 3, 0, 0);
         jPanel4.add(buscF, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("Buscar por Fecha de Venta:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 27, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(70, 108, 0, 0);
         jPanel4.add(jLabel1, gridBagConstraints);
 
         ventasH.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -279,9 +272,10 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(78, 20, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(50, 94, 0, 0);
         jPanel4.add(ventasH, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -290,10 +284,60 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 70, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(70, 88, 0, 0);
         jPanel4.add(jLabel2, gridBagConstraints);
+
+        dtfecha2.setDateFormatString("dd/MM/yyyy");
+        dtfecha2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 141;
+        gridBagConstraints.ipady = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(28, 46, 0, 0);
+        jPanel4.add(dtfecha2, gridBagConstraints);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buscar.setBackground(new java.awt.Color(0, 111, 177));
+        buscar.setBorder(null);
+        buscar.setForeground(new java.awt.Color(255, 255, 255));
+        buscar.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        buscar.setOpaque(false);
+        buscar.setPhColor(new java.awt.Color(255, 255, 255));
+        buscar.setPlaceholder("No. VENTA");
+        buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                buscarMouseClicked(evt);
+            }
+        });
+        buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                buscarKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                buscarKeyTyped(evt);
+            }
+        });
+        jPanel2.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 180, -1));
+
+        codigoL1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        codigoL1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuarios/buscarL.png"))); // NOI18N
+        jPanel2.add(codigoL1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 250, 52));
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 88, 0, 0);
+        jPanel4.add(jPanel2, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -302,16 +346,16 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1100, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -373,13 +417,11 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_eliminarTActionPerformed
 
     private void buscFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscFActionPerformed
-        if (fecha.getDate() == null) {
+        if (dtfecha1.getDate() == null || dtfecha2.equals("")) {
             OpcionesVen.listar("");
+            JOptionPane.showMessageDialog( this, "Seleccione el Rango de Fechas","Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            String formato = fecha.getDateFormatString();
-            Date date = fecha.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-            OpcionesVen.listar(String.valueOf(sdf.format(date)));
+            between_date();
         }
     }//GEN-LAST:event_buscFActionPerformed
 
@@ -388,7 +430,7 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String fecH = formato.format(sistemaFech);
         OpcionesVen.listar(fecH);
-        fecha.setDate(null);
+        dtfecha1.setDate(null);
     }//GEN-LAST:event_ventasHActionPerformed
 
     private void buscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarKeyTyped
@@ -403,7 +445,7 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buscarKeyReleased
 
     private void buscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarMouseClicked
-        fecha.setDate(null);
+        dtfecha1.setDate(null);
         OpcionesVen.listar("");
     }//GEN-LAST:event_buscarMouseClicked
 
@@ -412,12 +454,14 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
     private javax.swing.JButton buscF;
     private app.bolivia.swing.JCTextField buscar;
     private javax.swing.JLabel codigoL1;
+    private com.toedter.calendar.JDateChooser dtfecha1;
+    private com.toedter.calendar.JDateChooser dtfecha2;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton eliminarT;
-    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton limpiar;
