@@ -323,7 +323,7 @@ PreparedStatement pst=null;
                     registro_examen.examen_emergencia.txtmedicoindica.setText(nom + " "+  apellido);
                     cual="";
                     }else if (("2").equals(cual)){
-                    registro_examen.examen_hospitalizacion.txtmedicoindica.setText(nom + " "+  apellido);
+                    //registro_examen.examen_hospitalizacion.txtmedicoindica.setText(nom + " "+  apellido);
                     cual="";
                     }else if (("3").equals(cual)){
                     registro_examen.examen_rayosx.txtmedicoindica.setText(nom + " "+  apellido);

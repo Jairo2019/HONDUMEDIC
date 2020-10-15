@@ -910,7 +910,21 @@ static Conexion cc = new Conexion();
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_ultrasonido(idventa,codigo,p_s,precio,cantidad,importe) values ('"+numFac.getText()+"','" +codigo+"','" + p_s +"','" +precio+"','" +cantidad+"','" +importe+ "')";
+        String sql= "insert into detalle_test_ultrasonido(idventa,"
+                + "codigo,"
+                + "id_paciente,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe) "
+                + "values ('"
+                +numFac.getText()+"','" 
+                +codigo+"','" 
+                +lblidpaciente+"','" 
+                + p_s +"','" 
+                +precio+"','" 
+                +cantidad+"','"
+                +importe+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -968,12 +982,14 @@ private void edit_detalle(){
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
         String sql= "insert into detalle_test_ultrasonido(idventa,"
                 + "codigo,"
+                + "id_paciente,"
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
                 + "importe) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
+                +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
@@ -1050,14 +1066,15 @@ private void edit_detalle(){
             limpiaCampos();
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
-            txtpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
-            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());
-            txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,3).toString()) ;
-            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
-            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
-            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
+            lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
+            txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
+            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,9).toString());
+            txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
+            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
+            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,8).toString()) ;
             thishide.setVisible(true);
             btnVender.setEnabled(false);
             quitar.setEnabled(false);

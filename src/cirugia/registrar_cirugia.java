@@ -901,6 +901,7 @@ static Conexion cc = new Conexion();
                 JOptionPane.showMessageDialog(this,ex);
         }
      }
+     //metodo ingresar mas detalles en la tabla detalle_test_cirugia
 private void edit_detalle(){
     for (int i = 0; i <tablaCaja.getRowCount(); i++) {
         String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
@@ -910,12 +911,14 @@ private void edit_detalle(){
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
         String sql= "insert into detalle_test_cirugia(idventa,"
                 + "codigo,"
+                + "id_paciente,"
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
                 + "importe) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
+                +lblidpaciente.getText()+"','"
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
@@ -931,6 +934,7 @@ private void edit_detalle(){
         }
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
+    //metodo ingresar detalle de registro de cirugia en la tabla detalle_test_cirugia
          }     private void ingresar_detalle(){
     for (int i = 0; i <tablaCaja.getRowCount(); i++) {
         String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
@@ -938,7 +942,18 @@ private void edit_detalle(){
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_cirugia(idventa,codigo,p_s,precio,cantidad,importe) values ('"+numFac.getText()+"','" +codigo+"','" + p_s +"','" +precio+"','" +cantidad+"','" +importe+ "')";
+        String sql= "insert into detalle_test_cirugia(idventa,"
+                + "codigo,"
+                + "id_paciente,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe) values ('"
+                +numFac.getText()+"','" 
+                +codigo+"','" 
+                +lblidpaciente.getText()+"','" 
+                + p_s +"','" 
+                +precio+"','" +cantidad+"','" +importe+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -1016,6 +1031,7 @@ private void edit_detalle(){
             limpiaCampos();
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
+            lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
             txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
             lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());

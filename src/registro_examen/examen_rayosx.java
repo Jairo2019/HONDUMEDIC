@@ -875,7 +875,22 @@ static Conexion cc = new Conexion();
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_rayosx(idventa,codigo,p_s,precio,cantidad,importe) values ('"+numFac.getText()+"','" +codigo+"','" + p_s +"','" +precio+"','" +cantidad+"','" +importe+ "')";
+        String sql= "insert into detalle_test_rayosx("
+                + "idventa,"
+                + "codigo,"
+                + "id_paciente,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe) "
+                + "values ('"
+                +numFac.getText()+"','" 
+                +codigo+"','" 
+                +lblidpaciente.getText()+"','" 
+                + p_s +"','" 
+                +precio+"','" 
+                +cantidad+"','" 
+                +importe+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -933,12 +948,14 @@ private void edit_detalle(){
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
         String sql= "insert into detalle_test_rayosx(idventa,"
                 + "codigo,"
+                + "id_paciente,"
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
                 + "importe) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
+                +lblidpaciente.getText()+"','"                
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
@@ -1012,6 +1029,7 @@ private void edit_detalle(){
             limpiaCampos(); // limpea todas las caja de texto para luego eniarle los datos de la tabla a las cajas de texto
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
+            lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
             txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
             lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());

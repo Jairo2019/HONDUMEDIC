@@ -324,7 +324,7 @@ PreparedStatement pst=null;
                             registro_examen.examen_emergencia.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";
                         }else if (("2").equals(cual)){
-                            registro_examen.examen_hospitalizacion.txtmedicoadmin.setText(nom + " "+  apellido);
+                           // registro_examen.examen_hospitalizacion.txtencargado.setText(nom + " "+  apellido);
                             cual="";
                         }else if (("3").equals(cual)){
                             registro_examen.examen_rayosx.txtmedicoadmin.setText(nom + " "+  apellido);

@@ -125,12 +125,8 @@ static Conexion cc = new Conexion();
         jLabel9 = new javax.swing.JLabel();
         btns_paciente = new principal.MaterialButton();
         btnservicios = new principal.MaterialButton();
-        txtmedicoadmin = new app.bolivia.swing.JCTextField();
+        txtencargado = new app.bolivia.swing.JCTextField();
         jLabel5 = new javax.swing.JLabel();
-        btns_admin = new principal.MaterialButton();
-        txtmedicoindica = new app.bolivia.swing.JCTextField();
-        btns_medico1 = new principal.MaterialButton();
-        jLabel6 = new javax.swing.JLabel();
         txtmedicoingreso = new app.bolivia.swing.JCTextField();
         btns_medico2 = new principal.MaterialButton();
         jLabel8 = new javax.swing.JLabel();
@@ -398,7 +394,7 @@ static Conexion cc = new Conexion();
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtdescripcion.setPlaceholder("MOTIVO DE INGRESO");
+        txtdescripcion.setPlaceholder("DIAGNÓSTICO");
         jPanel22.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 129, 300, 82));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -477,63 +473,15 @@ static Conexion cc = new Conexion();
         });
         jPanel4.add(btnservicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 190, 48));
 
-        txtmedicoadmin.setEditable(false);
-        txtmedicoadmin.setBackground(new java.awt.Color(255, 255, 255));
-        txtmedicoadmin.setBorder(null);
-        txtmedicoadmin.setForeground(new java.awt.Color(58, 159, 171));
-        txtmedicoadmin.setToolTipText("");
-        txtmedicoadmin.setEnabled(false);
-        txtmedicoadmin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtmedicoadmin.setPlaceholder("PERSONA QUE REALIZA EXAMEN");
-        jPanel4.add(txtmedicoadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 240, 30));
+        txtencargado.setBackground(new java.awt.Color(255, 255, 255));
+        txtencargado.setBorder(null);
+        txtencargado.setForeground(new java.awt.Color(0, 0, 0));
+        txtencargado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtencargado.setPlaceholder("RESPONSABLE DEL PACIENTE");
+        jPanel4.add(txtencargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 240, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/atiende.png"))); // NOI18N
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 310, -1));
-
-        btns_admin.setBackground(new java.awt.Color(0, 111, 177));
-        btns_admin.setBorder(null);
-        btns_admin.setForeground(new java.awt.Color(255, 255, 255));
-        btns_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_admin.setText("buscar");
-        btns_admin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_admin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_admin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_admin.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_admin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_adminActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btns_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 80, 50));
-
-        txtmedicoindica.setEditable(false);
-        txtmedicoindica.setBackground(new java.awt.Color(255, 255, 255));
-        txtmedicoindica.setBorder(null);
-        txtmedicoindica.setForeground(new java.awt.Color(58, 159, 171));
-        txtmedicoindica.setToolTipText("");
-        txtmedicoindica.setEnabled(false);
-        txtmedicoindica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtmedicoindica.setPlaceholder("MEDICO QUE INDICA");
-        jPanel4.add(txtmedicoindica, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 240, 30));
-
-        btns_medico1.setBackground(new java.awt.Color(0, 111, 177));
-        btns_medico1.setBorder(null);
-        btns_medico1.setForeground(new java.awt.Color(255, 255, 255));
-        btns_medico1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_medico1.setText("buscar");
-        btns_medico1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_medico1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_medico1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_medico1.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_medico1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_medico1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btns_medico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 80, 50));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/indication.png"))); // NOI18N
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 310, -1));
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 310, -1));
 
         txtmedicoingreso.setEditable(false);
         txtmedicoingreso.setBackground(new java.awt.Color(255, 255, 255));
@@ -636,7 +584,7 @@ static Conexion cc = new Conexion();
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addGap(26, 26, 26)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -746,7 +694,7 @@ static Conexion cc = new Conexion();
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -848,15 +796,12 @@ static Conexion cc = new Conexion();
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        btns_admin.setEnabled(true);
-        btns_medico1.setEnabled(true);
         btns_medico2.setEnabled(true);;
         btns_paciente.setEnabled(true);
         btnVender.setEnabled(true);
         txtpaciente.setText("");
         txtdescripcion.setText("");
-        txtmedicoadmin.setText("");
-        txtmedicoindica.setText("");
+        txtencargado.setText("");
         txtmedicoingreso.setText("");
         txtnumhabitacion.setText("");
         lblTotal.setText("0.0");
@@ -875,8 +820,7 @@ static Conexion cc = new Conexion();
         String sql="select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
-                + "medico_1 as 'Realizo Examen',"
-                + " medico_2 as 'Indico Examen',"
+                + "encargado as 'Encargado del paciente',"
                 + "medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Motivo de Ingreso',"
@@ -930,12 +874,14 @@ private void edit_detalle(){
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
         String sql= "insert into detalle_test_hospitalizacion(idventa,"
                 + "codigo,"
+                + "id_paciente,"
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
                 + "importe) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
+                +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
@@ -971,7 +917,22 @@ private void edit_detalle(){
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_hospitalizacion(idventa,codigo,p_s,precio,cantidad,importe) values ('"+numFac.getText()+"','" +codigo+"','" + p_s +"','" +precio+"','" +cantidad+"','" +importe+ "')";
+        String sql= "insert into detalle_test_hospitalizacion("
+                + "idventa,"
+                + "codigo,"
+                + "id_paciente,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe) "
+                + "values ('"
+                +numFac.getText()+"','" 
+                +codigo+"','" 
+                +lblidpaciente.getText()+"','" 
+                + p_s +"','" 
+                +precio+"','" 
+                +cantidad+"','" 
+                +importe+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -1015,8 +976,7 @@ private void edit_detalle(){
                 ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
-                + "medico_1 as 'Realizo Examen',"
-                + " medico_2 as 'Indico Examen',"
+                + "encargado as 'Responsable del Paciente',"
                 + "medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Motivo de Ingreso',"
@@ -1038,7 +998,6 @@ private void edit_detalle(){
                         v.add(rs.getString(7));
                         v.add(rs.getString(8));
                         v.add(rs.getString(9));
-                        v.add(rs.getString(10));
 
                         dt.addRow(v);
                     }
@@ -1053,14 +1012,14 @@ private void edit_detalle(){
         try {
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
+            lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,9).toString());
-            txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
-            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
-            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
-            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,8).toString()) ;
+            txtencargado.setText(tableCaja.getModel().getValueAt(row,3).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());
+            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
+            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
             thishide.setVisible(true);
             btnVender.setEnabled(false);
             quitar.setEnabled(false);
@@ -1104,14 +1063,11 @@ private void edit_detalle(){
                 JOptionPane.showMessageDialog( this, "Ingrese Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (txtmedicoadmin.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Persona que Realiza el Examen","Error", JOptionPane.ERROR_MESSAGE);
+            if (txtencargado.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Persona que Responsable del Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (txtmedicoindica.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Medico que Indica el Examen","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }  
+
             if (txtmedicoingreso.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese el Medico que Ordeno el Ingreso del Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -1131,8 +1087,7 @@ private void edit_detalle(){
                // query insertar datos en test_laboratorio
             String sql= "insert into test_hospitalizacion(codigo,"
                     + "paciente,"
-                    + "medico_1,"
-                    + "medico_2,"
+                    + "encargado,"
                     + "medico_3,"
                     + "num_habitacion,"
                     + "observaciones,"
@@ -1141,8 +1096,7 @@ private void edit_detalle(){
                     + "estado) values ('"
                     +numFac.getText()+"','" 
                     +lblidpaciente.getText()+"','" 
-                    +txtmedicoadmin.getText()+"','" 
-                    +txtmedicoindica.getText()+"','" 
+                    +txtencargado.getText()+"','" 
                     +txtmedicoingreso.getText()+"','"
                     +txtnumhabitacion.getText()+"','" 
                     +txtdescripcion.getText()+"','" 
@@ -1233,16 +1187,6 @@ private void edit_detalle(){
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btneditActionPerformed
 
-    private void btns_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_adminActionPerformed
-        empleados.lista_empleados_admin.cual="2";
-        new empleados.lista_empleados_admin(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
-    }//GEN-LAST:event_btns_adminActionPerformed
-
-    private void btns_medico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico1ActionPerformed
-        empleados.lista_empleados_mindica.cual="2";
-        new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
-    }//GEN-LAST:event_btns_medico1ActionPerformed
-
     private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
         empleados.lista_empleados_mingreso.cual="2";
         new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
@@ -1254,8 +1198,6 @@ private void edit_detalle(){
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        btns_admin.setEnabled(false);
-        btns_medico1.setEnabled(false);
         btns_medico2.setEnabled(false);
         btns_paciente.setEnabled(false);
         
@@ -1269,8 +1211,6 @@ private void edit_detalle(){
     private principal.MaterialButton btnVender1;
     private principal.MaterialButton btnedit;
     private principal.MaterialButton btnnewinsumo;
-    private principal.MaterialButton btns_admin;
-    private principal.MaterialButton btns_medico1;
     private principal.MaterialButton btns_medico2;
     private principal.MaterialButton btns_paciente;
     private principal.MaterialButton btnservicios;
@@ -1284,7 +1224,6 @@ private void edit_detalle(){
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1315,8 +1254,7 @@ private void edit_detalle(){
     private javax.swing.JLabel thishide;
     private app.bolivia.swing.JCTextField txtFecha;
     private app.bolivia.swing.JCTextField txtdescripcion;
-    public static app.bolivia.swing.JCTextField txtmedicoadmin;
-    public static app.bolivia.swing.JCTextField txtmedicoindica;
+    private app.bolivia.swing.JCTextField txtencargado;
     public static app.bolivia.swing.JCTextField txtmedicoingreso;
     private app.bolivia.swing.JCTextField txtnumhabitacion;
     public static app.bolivia.swing.JCTextField txtpaciente;

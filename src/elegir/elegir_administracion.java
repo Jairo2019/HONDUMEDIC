@@ -5,16 +5,10 @@
  */
 package elegir;
 
-import Inventarios.inventario_ambulancia;
-import ventas.*;
 import alertas.principal.AWTUtilities;
-import ambulancia.ambulancia;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JFrame;
-import paneles.pnl_ambulancia;
 import principal.PrincipalAdministrador;
-import ambulancia.registrar_ambulancias;
 import cotizaciones.cotizaciones_general;
 import cuentas_cobrar.cuentas_cobrar;
 import deposito.depositos;

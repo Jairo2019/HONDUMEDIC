@@ -89,6 +89,7 @@ static Conexion cc = new Conexion();
         txtcredito.hide();
         backcredit.hide();
         codetest.hide();
+        btnallsales.hide();
         //lblknowdetail.hide();
     }
 
@@ -651,7 +652,7 @@ static Conexion cc = new Conexion();
 
         btnservicios.setBackground(new java.awt.Color(0, 111, 177));
         btnservicios.setForeground(new java.awt.Color(255, 255, 255));
-        btnservicios.setText("BUSCAR Registro");
+        btnservicios.setText("BUSCAR Servicio");
         btnservicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnservicios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnservicios.addActionListener(new java.awt.event.ActionListener() {
@@ -1601,7 +1602,8 @@ private void condicionIsv( ){
                             + "from caja_servicios "
                             + "inner join paciente on "
                             + " paciente = codigo_paciente "
-                            + " WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' "
+                            + " WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' "
+                            + "or codigo_paciente LIKE '%"+name+"%' "
                             + "and estado_pago='Contado'");
 
                     while (rs.next()) {

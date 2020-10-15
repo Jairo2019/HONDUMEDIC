@@ -919,12 +919,14 @@ static Conexion cc = new Conexion();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
         String sql= "insert into detalle_test_emergencia(idventa,"
                 + "codigo,"
+                + "id_paciente,"
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
                 + "importe) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
+                +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
@@ -975,12 +977,14 @@ private void edit_detalle(){
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
         String sql= "insert into detalle_test_emergencia(idventa,"
                 + "codigo,"
+                + "id_paciente,"
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
                 + "importe) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
+                +lblidpaciente.getText()+"','"
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
@@ -1069,6 +1073,7 @@ private void edit_detalle(){
             limpiaCampos();
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
+            lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
             txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
             lblTotal.setText(tableCaja.getModel().getValueAt(row,9).toString());
