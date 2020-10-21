@@ -347,10 +347,6 @@ PreparedStatement pst=null;
                         }else if (("9").equals(cual)){
                             unidad_apa.examen_emergencia_apa.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";
-                        }else if (("10").equals(cual)){
-                            pacientes.txtencargado.setText(nom + " "+  apellido);
-                            pacientes.txtidempleado.setText(cod);
-                            cual="";
                         }
                         else{
                             registro_examen.examen_laboratorio.txtmedicoadmin.setText(nom + " "+  apellido);

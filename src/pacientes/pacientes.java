@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package pacientes;
-import Inventarios.*;
-import paneles.JasperCompilerManager;
 import paneles.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -17,14 +15,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-import principal.GenerarCodigos;
 /**
  *
  * @author Rojeru San
@@ -89,10 +82,10 @@ PreparedStatement pst=null;
         txtCodigo = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
+        txtdireccion = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
+        txtapellido = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txtedad = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
@@ -102,7 +95,7 @@ PreparedStatement pst=null;
         jLabel22 = new javax.swing.JLabel();
         choiceunidad = new javax.swing.JComboBox();
         jLabel24 = new javax.swing.JLabel();
-        txtencargado = new javax.swing.JTextField();
+        txtresponsable = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         txtcorreo = new javax.swing.JTextField();
 
@@ -449,9 +442,9 @@ PreparedStatement pst=null;
         gridBagConstraints.insets = new java.awt.Insets(27, 96, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
-        txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
-        txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        txtdireccion.setBackground(new java.awt.Color(204, 204, 204));
+        txtdireccion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtdireccion.setForeground(new java.awt.Color(0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -460,7 +453,7 @@ PreparedStatement pst=null;
         gridBagConstraints.ipady = 117;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 6, 38, 0);
-        jPanel9.add(txtDescripcion, gridBagConstraints);
+        jPanel9.add(txtdireccion, gridBagConstraints);
 
         txtName.setBackground(new java.awt.Color(255, 255, 255));
         txtName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -491,12 +484,12 @@ PreparedStatement pst=null;
         gridBagConstraints.insets = new java.awt.Insets(27, 104, 0, 0);
         jPanel9.add(jLabel25, gridBagConstraints);
 
-        txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
-        txtPrecio.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
-        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtapellido.setBackground(new java.awt.Color(255, 255, 255));
+        txtapellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtapellido.setForeground(new java.awt.Color(0, 0, 0));
+        txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPrecioKeyTyped(evt);
+                txtapellidoKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -507,7 +500,7 @@ PreparedStatement pst=null;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
-        jPanel9.add(txtPrecio, gridBagConstraints);
+        jPanel9.add(txtapellido, gridBagConstraints);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
@@ -644,17 +637,17 @@ PreparedStatement pst=null;
         gridBagConstraints.insets = new java.awt.Insets(16, 342, 0, 0);
         jPanel9.add(jLabel24, gridBagConstraints);
 
-        txtencargado.setBackground(new java.awt.Color(255, 255, 255));
-        txtencargado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtencargado.setForeground(new java.awt.Color(0, 0, 0));
-        txtencargado.addActionListener(new java.awt.event.ActionListener() {
+        txtresponsable.setBackground(new java.awt.Color(255, 255, 255));
+        txtresponsable.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtresponsable.setForeground(new java.awt.Color(0, 0, 0));
+        txtresponsable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtencargadoActionPerformed(evt);
+                txtresponsableActionPerformed(evt);
             }
         });
-        txtencargado.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtresponsable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtencargadoKeyTyped(evt);
+                txtresponsableKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -665,7 +658,7 @@ PreparedStatement pst=null;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 72);
-        jPanel9.add(txtencargado, gridBagConstraints);
+        jPanel9.add(txtresponsable, gridBagConstraints);
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
@@ -748,22 +741,20 @@ PreparedStatement pst=null;
 //obtener datos de la tabla pacientes
     private void Get_Data(){
         Reset();
-        String sql="select p.codigo_paciente as 'Num. Identidad',"+
-                    " e.codigo_empleado as 'Codigo',"+
-                    "p.nombre as 'Nombre'," +
-                    "p.apellido as 'Apellido'," +
-                    "CONCAT(e.nombre, ' ' ,e.apellido) as 'Encargado'," +
-                    "p.direccion as 'Dirección'," +
-                    "p.edad as 'Edad'," +
-                    "p.telefono as 'Teléfono'," +
-                    "p.unidad as 'Unidad', " +
-                    "p.unidad_referente as 'Unidad Referente'  from paciente p INNER join empleado e on " +
-                    "id_empleado=codigo_empleado";
+        String sql="select codigo_paciente as 'Num. Identidad',"+
+                    "responsable as 'Responsable del Paciente',"+
+                    "nombre as 'Nombre del Paciente'," +
+                    "apellido as 'Apellido del Paciente'," +
+                    "direccion as 'Dirección'," +
+                    "edad as 'Edad'," +
+                    "telefono as 'Teléfono'," +
+                    "unidad as 'Unidad', " +
+                    "unidad_referente as 'Unidad Referente', " +
+                    "correo as 'Correo'  from paciente";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
-         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(1));
         lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(3);
        tableUsers.setDefaultRenderer (Object.class, colorear);
          }catch(Exception e){
@@ -776,8 +767,8 @@ PreparedStatement pst=null;
 {
     txtCodigo.setText("");
     txtName.setText("");
-    txtDescripcion.setText("");
-    txtPrecio.setText("");
+    txtdireccion.setText("");
+    txtapellido.setText("");
     txtCodigo.setText("");
     txtedad.setText("");
     btnsave.setEnabled(true);
@@ -803,18 +794,17 @@ PreparedStatement pst=null;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
             //query buscar paciente por nombre, apllido e identidad 
-            ResultSet rs = s.executeQuery("select p.codigo_paciente as 'Num. Identidad',"+
-                    " e.codigo_empleado as 'Codigo',"+
-                    "p.nombre as 'Nombre'," +
-                    "p.apellido as 'Apellido'," +
-                    "CONCAT(e.nombre, ' ' ,e.apellido) as 'Encargado'," +
-                    "p.direccion as 'Dirección'," +
-                    "p.edad as 'Edad'," +
-                    "p.telefono as 'Teléfono'," +
-                    "p.unidad as 'Unidad', " +
-                    "p.unidad_referente as 'Unidad Referente'  from paciente p INNER join empleado e on " +
-                    "id_empleado=codigo_empleado "
-                    + "WHERE CONCAT(p.nombre, ' ' , p.apellido) "
+            ResultSet rs = s.executeQuery("select codigo_paciente as 'Num. Identidad',"+
+                    "responsable as 'Responsable del Paciente',"+
+                    "nombre as 'Nombre del Paciente'," +
+                    "apellido as 'Apellido del Paciente'," +
+                    "direccion as 'Dirección'," +
+                    "edad as 'Edad'," +
+                    "telefono as 'Teléfono'," +
+                    "unidad as 'Unidad', " +
+                    "unidad_referente as 'Unidad Referente', " +
+                    "correo as 'Correo'  from paciente "
+                    + "WHERE CONCAT(nombre, ' ' , apellido) "
                     + "LIKE '%"+name+"%' "
                     + "or codigo_paciente LIKE '%"+name+"%' ");
 
@@ -847,9 +837,9 @@ PreparedStatement pst=null;
             txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
             //txtidempleado.setText(tableUsers.getModel().getValueAt(row,1).toString());
             txtName.setText(tableUsers.getModel().getValueAt(row,2).toString());
-            txtPrecio.setText(tableUsers.getModel().getValueAt(row,3).toString());
-            txtencargado.setText(tableUsers.getModel().getValueAt(row,4).toString());
-            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,5).toString());
+            txtapellido.setText(tableUsers.getModel().getValueAt(row,3).toString());
+            txtresponsable.setText(tableUsers.getModel().getValueAt(row,4).toString());
+            txtdireccion.setText(tableUsers.getModel().getValueAt(row,5).toString());
             txtedad.setText(tableUsers.getModel().getValueAt(row,6).toString());
             txttelefono.setText(tableUsers.getModel().getValueAt(row,7).toString());
             choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,8).toString());
@@ -880,7 +870,7 @@ PreparedStatement pst=null;
                 JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (txtPrecio.getText().equals("")) {
+            if (txtapellido.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Apellido","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -892,8 +882,8 @@ PreparedStatement pst=null;
                 JOptionPane.showMessageDialog( this, "Ingrese el Numero de Telefono","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (txtencargado.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Empleado Encargado","Error", JOptionPane.ERROR_MESSAGE);
+            if (txtresponsable.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese La Persona Responsable del Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtunidadreferente.getText().equals("")) {
@@ -917,23 +907,25 @@ PreparedStatement pst=null;
                 }
             // query ingresar Paciente
             String sql= "insert into paciente(codigo_paciente,"
+                    + "responsable,"
                     + "nombre,"
                     + "apellido,"
-                    + "id_empleado,"
                     + "direccion,"
                     + "edad,"
                     + "telefono,"
                     + "unidad,"
-                    + "unidad_referente) values ('"
+                    + "unidad_referente,"
+                    + "correo) values ('"
                     +txtCodigo.getText()+"','" 
+                    +txtresponsable.getText()+"','" 
                     +txtName.getText()+"','" 
-                    + txtPrecio.getText() +"','" 
-//                    + txtidempleado.getText() +"','" 
-                    +txtDescripcion.getText()+ "','" 
+                    + txtapellido.getText() +"','" 
+                    +txtdireccion.getText()+ "','" 
                     +txtedad.getText()+"','"
+                    +txttelefono.getText()+"','" 
                     +choiceunidad.getSelectedItem()+"','" 
                     +txtunidadreferente.getText()+"','" 
-                    +txttelefono.getText()+ "')";
+                    +txtcorreo.getText()+ "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -952,14 +944,15 @@ PreparedStatement pst=null;
         try{
             con=Conexion.ConnectDB();
             //query actualizar paciente de la tabla paciente
-            String sql= "update paciente set nombre='"+ txtName.getText()
-                    + "',apellido='" + txtPrecio.getText() 
-//                    + "',id_empleado='" + txtidempleado.getText() 
-                    + "',direccion='" + txtDescripcion.getText() 
+            String sql= "update paciente set responsable='"+ txtresponsable.getText()
+                    + "',nombre='" + txtName.getText() 
+                    + "',apellido='" + txtapellido.getText() 
+                    + "',direccion='" + txtdireccion.getText() 
                     +"',edad='" + txtedad.getText()
                     +"',telefono='" + txttelefono.getText() 
                     +"',unidad='" + choiceunidad.getSelectedItem()
                     + "',unidad_referente='" + txtunidadreferente.getText() 
+                    +"',correo='" + txtcorreo.getText()
                     + "' where codigo_paciente='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -1012,9 +1005,9 @@ PreparedStatement pst=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtedadActionPerformed
 
-    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+    private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
     // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioKeyTyped
+    }//GEN-LAST:event_txtapellidoKeyTyped
 
     private void txtedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtedadKeyTyped
         int limite  = 3;
@@ -1060,13 +1053,13 @@ PreparedStatement pst=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtunidadreferenteActionPerformed
 
-    private void txtencargadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtencargadoActionPerformed
+    private void txtresponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtresponsableActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtencargadoActionPerformed
+    }//GEN-LAST:event_txtresponsableActionPerformed
 
-    private void txtencargadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtencargadoKeyTyped
+    private void txtresponsableKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtresponsableKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtencargadoKeyTyped
+    }//GEN-LAST:event_txtresponsableKeyTyped
 
     private void txtcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreoActionPerformed
         // TODO add your handling code here:
@@ -1113,12 +1106,12 @@ PreparedStatement pst=null;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JTable tableUsers;
     public javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtName;
-    public javax.swing.JTextField txtPrecio;
+    public javax.swing.JTextField txtapellido;
     public javax.swing.JTextField txtcorreo;
+    private javax.swing.JTextField txtdireccion;
     public javax.swing.JTextField txtedad;
-    public static javax.swing.JTextField txtencargado;
+    public static javax.swing.JTextField txtresponsable;
     public javax.swing.JTextField txttelefono;
     public javax.swing.JTextField txtunidadreferente;
     // End of variables declaration//GEN-END:variables
