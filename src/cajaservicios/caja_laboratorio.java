@@ -86,7 +86,7 @@ static Conexion cc = new Conexion();
         thishide.setVisible(false);
         txtcredito.hide();
         backcredit.hide();
-        codetest.hide();
+       codetest.hide();
     }
 
     /**
@@ -1406,7 +1406,12 @@ private void condicionIsv( ){
     }
 // traer los detalles de la factura con el codigo del examen
     private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_laboratorio where idventa='" + codetest.getText() + "' ";
+        String sql="select codigo as 'Codigo',"
+                + "p_s as 'Prodcuto/Servicio',"
+                + "precio as 'Precio',"
+                + "cantidad as 'Cantidad',"
+                + "importe as 'Importe' "
+                + "from detalle_test_laboratorio where idventa='" + codetest.getText() + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();

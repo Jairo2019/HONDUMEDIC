@@ -273,7 +273,16 @@ public static Double value ;
         pack();
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
-        String sql="select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_rayosx";
+        String sql="select codigo as 'Codigo'," +
+"                CONCAT(nombre, ' ' , apellido) as 'Paciente', " +
+"                 medico_1 as 'Realizo Examen'," +
+"                 num_habitacion as 'Habitación'," +
+"                 observaciones as'Observaciones'," +
+"                 fecha as 'Fecha y Hora'," +
+"                  total as 'Total (L)' " +
+"                  from test_rayosx " +
+"                  inner join paciente on " +
+"                 paciente = codigo_paciente ";
 
         try{
          pst=con.prepareStatement(sql);

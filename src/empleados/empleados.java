@@ -180,7 +180,7 @@ PreparedStatement pst=null;
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Producto");
+        c_search_tbl.setPlaceholder("Buscar Empleado");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(300, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -47,7 +47,7 @@ PreparedStatement pst=null;
         Get_Data();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         tableUsers.getTableHeader().setBackground(Color.decode("#006FB0"));
-        txtidempleado.hide();
+        //txtidempleado.hide();
 
 
     }
@@ -97,14 +97,14 @@ PreparedStatement pst=null;
         txtedad = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         txttelefono = new javax.swing.JTextField();
-        txtidempleado = new javax.swing.JTextField();
         txtunidadreferente = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         choiceunidad = new javax.swing.JComboBox();
-        btns_admin = new principal.MaterialButton();
         jLabel24 = new javax.swing.JLabel();
         txtencargado = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        txtcorreo = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -229,7 +229,7 @@ PreparedStatement pst=null;
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChangeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1087, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1186, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
@@ -400,8 +400,9 @@ PreparedStatement pst=null;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 152, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(53, 60, 0, 0);
         jPanel9.add(jLabel17, gridBagConstraints);
 
         txtCodigo.setBackground(new java.awt.Color(255, 255, 255));
@@ -420,11 +421,11 @@ PreparedStatement pst=null;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(44, 6, 0, 0);
         jPanel9.add(txtCodigo, gridBagConstraints);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -432,9 +433,10 @@ PreparedStatement pst=null;
         jLabel23.setText("Nombre: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 194, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 102, 0, 0);
         jPanel9.add(jLabel23, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -442,9 +444,9 @@ PreparedStatement pst=null;
         jLabel19.setText("Dirección:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 188, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 96, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
         txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
@@ -452,12 +454,12 @@ PreparedStatement pst=null;
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridheight = 7;
         gridBagConstraints.ipadx = 246;
-        gridBagConstraints.ipady = 62;
+        gridBagConstraints.ipady = 117;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 38, 0);
         jPanel9.add(txtDescripcion, gridBagConstraints);
 
         txtName.setBackground(new java.awt.Color(255, 255, 255));
@@ -470,8 +472,8 @@ PreparedStatement pst=null;
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -483,9 +485,10 @@ PreparedStatement pst=null;
         jLabel25.setText("Apellido:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 196, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 104, 0, 0);
         jPanel9.add(jLabel25, gridBagConstraints);
 
         txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
@@ -498,8 +501,8 @@ PreparedStatement pst=null;
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -511,9 +514,9 @@ PreparedStatement pst=null;
         jLabel18.setText("Edad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 129, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 359, 0, 0);
         jPanel9.add(jLabel18, gridBagConstraints);
 
         txtedad.setBackground(new java.awt.Color(255, 255, 255));
@@ -531,13 +534,12 @@ PreparedStatement pst=null;
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 72);
         jPanel9.add(txtedad, gridBagConstraints);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -548,7 +550,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 94, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(44, 324, 0, 0);
         jPanel9.add(jLabel20, gridBagConstraints);
 
         txttelefono.setBackground(new java.awt.Color(255, 255, 255));
@@ -567,35 +569,12 @@ PreparedStatement pst=null;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(35, 6, 0, 72);
         jPanel9.add(txttelefono, gridBagConstraints);
-
-        txtidempleado.setBackground(new java.awt.Color(255, 255, 255));
-        txtidempleado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtidempleado.setForeground(new java.awt.Color(0, 0, 0));
-        txtidempleado.setEnabled(false);
-        txtidempleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtidempleadoActionPerformed(evt);
-            }
-        });
-        txtidempleado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtidempleadoKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 18;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 55, 71, 0);
-        jPanel9.add(txtidempleado, gridBagConstraints);
 
         txtunidadreferente.setBackground(new java.awt.Color(255, 255, 255));
         txtunidadreferente.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -612,23 +591,22 @@ PreparedStatement pst=null;
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 72);
         jPanel9.add(txtunidadreferente, gridBagConstraints);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("Encargado:");
+        jLabel21.setText("Responsable del Paciente:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 84, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 190, 0, 0);
         jPanel9.add(jLabel21, gridBagConstraints);
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -636,9 +614,9 @@ PreparedStatement pst=null;
         jLabel22.setText("Unidad Referente:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 25, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 255, 0, 0);
         jPanel9.add(jLabel22, gridBagConstraints);
 
         choiceunidad.setBackground(new java.awt.Color(255, 255, 255));
@@ -648,53 +626,27 @@ PreparedStatement pst=null;
         choiceunidad.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 169;
         gridBagConstraints.ipady = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 72);
         jPanel9.add(choiceunidad, gridBagConstraints);
-
-        btns_admin.setBackground(new java.awt.Color(0, 111, 177));
-        btns_admin.setBorder(null);
-        btns_admin.setForeground(new java.awt.Color(255, 255, 255));
-        btns_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_admin.setText("buscar");
-        btns_admin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_admin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_admin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_admin.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_admin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_adminActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 34;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 25);
-        jPanel9.add(btns_admin, gridBagConstraints);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Unidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 112, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(16, 342, 0, 0);
         jPanel9.add(jLabel24, gridBagConstraints);
 
         txtencargado.setBackground(new java.awt.Color(255, 255, 255));
         txtencargado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtencargado.setForeground(new java.awt.Color(0, 0, 0));
-        txtencargado.setEnabled(false);
         txtencargado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtencargadoActionPerformed(evt);
@@ -707,14 +659,46 @@ PreparedStatement pst=null;
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 6;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 72);
         jPanel9.add(txtencargado, gridBagConstraints);
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Correo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 344, 0, 0);
+        jPanel9.add(jLabel26, gridBagConstraints);
+
+        txtcorreo.setBackground(new java.awt.Color(204, 204, 204));
+        txtcorreo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtcorreo.setForeground(new java.awt.Color(0, 0, 0));
+        txtcorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcorreoActionPerformed(evt);
+            }
+        });
+        txtcorreo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcorreoKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 246;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 6, 0, 72);
+        jPanel9.add(txtcorreo, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -746,7 +730,7 @@ PreparedStatement pst=null;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1101, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -861,7 +845,7 @@ PreparedStatement pst=null;
             con=Conexion.ConnectDB();
             int row= tableUsers.getSelectedRow();
             txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
-            txtidempleado.setText(tableUsers.getModel().getValueAt(row,1).toString());
+            //txtidempleado.setText(tableUsers.getModel().getValueAt(row,1).toString());
             txtName.setText(tableUsers.getModel().getValueAt(row,2).toString());
             txtPrecio.setText(tableUsers.getModel().getValueAt(row,3).toString());
             txtencargado.setText(tableUsers.getModel().getValueAt(row,4).toString());
@@ -944,7 +928,7 @@ PreparedStatement pst=null;
                     +txtCodigo.getText()+"','" 
                     +txtName.getText()+"','" 
                     + txtPrecio.getText() +"','" 
-                    + txtidempleado.getText() +"','" 
+//                    + txtidempleado.getText() +"','" 
                     +txtDescripcion.getText()+ "','" 
                     +txtedad.getText()+"','"
                     +choiceunidad.getSelectedItem()+"','" 
@@ -970,7 +954,7 @@ PreparedStatement pst=null;
             //query actualizar paciente de la tabla paciente
             String sql= "update paciente set nombre='"+ txtName.getText()
                     + "',apellido='" + txtPrecio.getText() 
-                    + "',id_empleado='" + txtidempleado.getText() 
+//                    + "',id_empleado='" + txtidempleado.getText() 
                     + "',direccion='" + txtDescripcion.getText() 
                     +"',edad='" + txtedad.getText()
                     +"',telefono='" + txttelefono.getText() 
@@ -1076,19 +1060,6 @@ PreparedStatement pst=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtunidadreferenteActionPerformed
 
-    private void txtidempleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidempleadoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidempleadoKeyTyped
-
-    private void txtidempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidempleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidempleadoActionPerformed
-
-    private void btns_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_adminActionPerformed
-        empleados.lista_empleados_admin.cual="10";
-        new empleados.lista_empleados_admin(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
-    }//GEN-LAST:event_btns_adminActionPerformed
-
     private void txtencargadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtencargadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtencargadoActionPerformed
@@ -1097,12 +1068,19 @@ PreparedStatement pst=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtencargadoKeyTyped
 
+    private void txtcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcorreoActionPerformed
+
+    private void txtcorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcorreoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcorreoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnDelete;
     private rsbuttom.RSButtonMetro btnUpdate;
     private rsbuttom.RSButtonMetro btncancel;
-    private principal.MaterialButton btns_admin;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
@@ -1118,6 +1096,7 @@ PreparedStatement pst=null;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -1137,9 +1116,9 @@ PreparedStatement pst=null;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPrecio;
+    public javax.swing.JTextField txtcorreo;
     public javax.swing.JTextField txtedad;
     public static javax.swing.JTextField txtencargado;
-    public static javax.swing.JTextField txtidempleado;
     public javax.swing.JTextField txttelefono;
     public javax.swing.JTextField txtunidadreferente;
     // End of variables declaration//GEN-END:variables

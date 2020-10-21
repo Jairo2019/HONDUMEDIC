@@ -676,14 +676,14 @@ static Conexion cc = new Conexion();
 // metodo para obtener los detalles de cada servicio e insumo brindado a un determinado paciente
     private void show_detalle(){
 
-        String sql="SELECT id_paciente AS 'Id Paciente', p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT id_paciente AS 'Id Paciente',p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT id_paciente AS 'Id Paciente',p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT id_paciente AS 'Id Paciente',p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_endoscopia WHERE id_paciente ='" + numFac.getText() + "'"
-        + "UNION SELECT id_paciente AS 'Id Paciente',p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT id_paciente AS 'Id Paciente',p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_laboratorio WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT id_paciente AS 'Id Paciente',p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_rayosx WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT id_paciente AS 'Id Paciente',p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ultrasonido WHERE id_paciente ='" + numFac.getText() + "' ";
+        String sql="SELECT  p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + numFac.getText() + "' "
+        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + numFac.getText() + "' "
+        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + numFac.getText() + "' "
+        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_endoscopia WHERE id_paciente ='" + numFac.getText() + "'"
+        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + numFac.getText() + "' "
+        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_laboratorio WHERE id_paciente ='" + numFac.getText() + "' "
+        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_rayosx WHERE id_paciente ='" + numFac.getText() + "' "
+        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ultrasonido WHERE id_paciente ='" + numFac.getText() + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
