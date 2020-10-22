@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lista_productos_servicios;
+package Farmacia;
 
+import lista_productos_servicios.*;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTable;
@@ -14,9 +15,9 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author JOAHAN-PC
  */
-public class ColorearFilas extends DefaultTableCellRenderer{
+public class ColorearFilasFarmacia extends DefaultTableCellRenderer{
     private int columna_patron ;
-    public ColorearFilas(int Colpatron)
+    public ColorearFilasFarmacia(int Colpatron)
     {
         this.columna_patron = Colpatron;
     }

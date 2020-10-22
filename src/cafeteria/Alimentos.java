@@ -216,7 +216,7 @@ public class Alimentos extends javax.swing.JInternalFrame {
 
         tipoAl.setBackground(new java.awt.Color(0, 111, 177));
         tipoAl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 10));
-        tipoAl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO ALIMENTO", "BEBIDAS", "BOTANAS", "CALDOS", "CAMARONES", "COCTELES", "DESAYUNOS", "FILETE", "LANGOSTA", "LANGOSTINO", "PESCADO", "PULPO" }));
+        tipoAl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO ALIMENTO", "BEBIDAS", "BOTANAS", "CALDOS", "CAMARONES", "COCTELES", "DESAYUNOS", "FILETE", "LANGOSTA", "LANGOSTINO", "PESCADO" }));
         tipoAl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel2.add(tipoAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 183, 40));
 

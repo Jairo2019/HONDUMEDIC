@@ -775,7 +775,9 @@ PreparedStatement pst=null;
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
-   
+    txttelefono.setText("");
+    txtresponsable.setText("");
+    txtunidadreferente.setText("");   
 }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
@@ -835,15 +837,15 @@ PreparedStatement pst=null;
             con=Conexion.ConnectDB();
             int row= tableUsers.getSelectedRow();
             txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
-            //txtidempleado.setText(tableUsers.getModel().getValueAt(row,1).toString());
+            txtresponsable.setText(tableUsers.getModel().getValueAt(row,1).toString());
             txtName.setText(tableUsers.getModel().getValueAt(row,2).toString());
             txtapellido.setText(tableUsers.getModel().getValueAt(row,3).toString());
-            txtresponsable.setText(tableUsers.getModel().getValueAt(row,4).toString());
-            txtdireccion.setText(tableUsers.getModel().getValueAt(row,5).toString());
-            txtedad.setText(tableUsers.getModel().getValueAt(row,6).toString());
-            txttelefono.setText(tableUsers.getModel().getValueAt(row,7).toString());
-            choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,8).toString());
-            txtunidadreferente.setText(tableUsers.getModel().getValueAt(row,9).toString());
+            txtdireccion.setText(tableUsers.getModel().getValueAt(row,4).toString());
+            txtedad.setText(tableUsers.getModel().getValueAt(row,5).toString());
+            txttelefono.setText(tableUsers.getModel().getValueAt(row,6).toString());
+            choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,7).toString());
+            txtunidadreferente.setText(tableUsers.getModel().getValueAt(row,8).toString());
+            txtcorreo.setText(tableUsers.getModel().getValueAt(row,9).toString());
             txtCodigo.setEnabled(false);
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
