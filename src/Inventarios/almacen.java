@@ -25,8 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import lista_productos_servicios.Producto;
-import lista_productos_servicios.ProductoDAO;
+import lista_productos_servicios.*;
 import net.proteanit.sql.DbUtils;
 import principal.GenerarCodigos;
 /**
@@ -54,6 +53,9 @@ PreparedStatement pst=null;
         con= Conexion.ConnectDB();
         Get_Data();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
+        btnimprimir.setVisible(false);
+        ColorearFilas colorear=new ColorearFilas(5);
+        tableUsers.setDefaultRenderer (Object.class, colorear);
     }
 
     /**
@@ -96,13 +98,15 @@ PreparedStatement pst=null;
         jLabel18 = new javax.swing.JLabel();
         txtcantidad = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
-        txtutilidad = new javax.swing.JTextField();
+        txtimpuesto = new javax.swing.JTextField();
         txtproducto = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        txtPrecioventa = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         pnlChange1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -112,7 +116,8 @@ PreparedStatement pst=null;
         jPanel12 = new javax.swing.JPanel();
         btnCancelar = new principal.MaterialButton();
         btnenviar = new principal.MaterialButton();
-        quitar = new principal.MaterialButton();
+        btnquitar = new principal.MaterialButton();
+        btnimprimir = new principal.MaterialButton();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_almacen = new javax.swing.JTable();
@@ -470,9 +475,9 @@ PreparedStatement pst=null;
         jLabel18.setText("Cantidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(44, 108, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(36, 108, 0, 0);
         jPanel9.add(jLabel18, gridBagConstraints);
 
         txtcantidad.setBackground(new java.awt.Color(255, 255, 255));
@@ -490,12 +495,12 @@ PreparedStatement pst=null;
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 41, 0, 61);
+        gridBagConstraints.insets = new java.awt.Insets(27, 41, 0, 61);
         jPanel9.add(txtcantidad, gridBagConstraints);
 
         txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
@@ -503,31 +508,31 @@ PreparedStatement pst=null;
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridheight = 4;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 39;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 41, 80, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 41, 71, 0);
         jPanel9.add(txtDescripcion, gridBagConstraints);
 
-        txtutilidad.setBackground(new java.awt.Color(255, 255, 255));
-        txtutilidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtutilidad.setForeground(new java.awt.Color(0, 0, 0));
-        txtutilidad.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtimpuesto.setBackground(new java.awt.Color(255, 255, 255));
+        txtimpuesto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtimpuesto.setForeground(new java.awt.Color(0, 0, 0));
+        txtimpuesto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtutilidadKeyTyped(evt);
+                txtimpuestoKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 41, 0, 0);
-        jPanel9.add(txtutilidad, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(44, 41, 0, 0);
+        jPanel9.add(txtimpuesto, gridBagConstraints);
 
         txtproducto.setBackground(new java.awt.Color(255, 255, 255));
         txtproducto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -587,12 +592,12 @@ PreparedStatement pst=null;
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setText("% de Utilidad:");
+        jLabel26.setText("Impuesto:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(44, 93, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(45, 129, 0, 0);
         jPanel9.add(jLabel26, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -600,10 +605,44 @@ PreparedStatement pst=null;
         jLabel19.setText("Descripción:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(50, 113, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel27.setText("Precio Venta:");
+        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 35;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(53, 42, 0, 0);
+        jPanel9.add(jLabel27, gridBagConstraints);
+
+        txtPrecioventa.setBackground(new java.awt.Color(255, 255, 255));
+        txtPrecioventa.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtPrecioventa.setForeground(new java.awt.Color(0, 0, 0));
+        txtPrecioventa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioventaKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 246;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(35, 41, 0, 61);
+        jPanel9.add(txtPrecioventa, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -719,15 +758,27 @@ PreparedStatement pst=null;
             }
         });
 
-        quitar.setBackground(new java.awt.Color(0, 111, 177));
-        quitar.setForeground(new java.awt.Color(255, 255, 255));
-        quitar.setText("QUITAR");
-        quitar.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
-        quitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        quitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        quitar.addActionListener(new java.awt.event.ActionListener() {
+        btnquitar.setBackground(new java.awt.Color(0, 111, 177));
+        btnquitar.setForeground(new java.awt.Color(255, 255, 255));
+        btnquitar.setText("QUITAR");
+        btnquitar.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
+        btnquitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnquitar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnquitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quitarActionPerformed(evt);
+                btnquitarActionPerformed(evt);
+            }
+        });
+
+        btnimprimir.setBackground(new java.awt.Color(0, 111, 177));
+        btnimprimir.setForeground(new java.awt.Color(255, 255, 255));
+        btnimprimir.setText("imprimir");
+        btnimprimir.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Imprimir</h4> </body> </html>");
+        btnimprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnimprimir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnimprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnimprimirActionPerformed(evt);
             }
         });
 
@@ -740,7 +791,8 @@ PreparedStatement pst=null;
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnenviar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnquitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnimprimir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -749,8 +801,10 @@ PreparedStatement pst=null;
                 .addContainerGap()
                 .addComponent(btnenviar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addComponent(btnquitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnimprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1438,7 +1492,7 @@ PreparedStatement pst=null;
                 + "producto as 'Producto', "
                 + "proveedor as 'Proveedor', "
                 + "precio_compra as 'Precio de Compra', "
-                + "utilidad as 'Margen de Utilidad', "
+                + "impuesto as 'Impuesto', "
                 + "precio_venta as 'Precio de Venta', "
                 + "cantidad as 'Cantidad Disponible', "
                 + "descripcion as 'Descripción' "
@@ -1448,23 +1502,23 @@ PreparedStatement pst=null;
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
-        lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(3);
-       tableUsers.setDefaultRenderer (Object.class, colorear);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);}
   }
-    //metodo limpiar cajas de texto
-    private void Reset()
-{
-    DefaultTableModel modelo = (DefaultTableModel) tabla_almacen.getModel();
-
+    //metodo para eliminar las filas de la tabla que distribuye el almacen
+    private void elimar_filas(){
+        DefaultTableModel modelo = (DefaultTableModel) tabla_almacen.getModel();
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
+    }
+    //metodo limpiar cajas de texto
+    private void Reset()
+{
     txtCodigo.setText("");
     txtproducto.setText("");
     txtproveedor.setText("");
-    txtutilidad.setText("");
+    txtimpuesto.setText("");
     txtDescripcion.setText("");
     txtPrecio.setText("");
     txtcantidad.setText("");
@@ -1472,8 +1526,16 @@ PreparedStatement pst=null;
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
+    
     extraerID();
 }
+    //metodo para restringir funciones de algunos bobotes
+    private void bloquear_botones(){
+        btnenviar.setEnabled(false);
+        btnquitar.setEnabled(false);
+        btnasignar.setEnabled(false);
+        btnimprimir.setVisible(true);
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -1508,14 +1570,15 @@ PreparedStatement pst=null;
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         //formula para calcular el precio de compra
-            double precio=0.0;
-            precio= Double.parseDouble(txtPrecio.getText())* (1+ (Double.parseDouble(txtutilidad.getText()))/100);
+           double precio=0.0;
+            precio= Double.parseDouble(txtPrecioventa.getText())* (1+ (Double.parseDouble(txtimpuesto.getText()))/100);
         try{
             con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
             String sql= "update almacen set producto='"+ txtproducto.getText()
                     + "',proveedor='" + txtproveedor.getText() 
                     + "',precio_compra='" + txtPrecio.getText() 
-                    + "',utilidad='" + txtutilidad.getText() 
+                    + "',impuesto='" + txtimpuesto.getText() 
                     + "',precio_venta='" + precio
                     +"',cantidad='" + txtcantidad.getText() 
                     + "',descripcion='" + txtDescripcion.getText()
@@ -1543,8 +1606,8 @@ PreparedStatement pst=null;
             if (txtPrecio.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
                 return;
-            }if (txtutilidad.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese % de Utilidad","Error", JOptionPane.ERROR_MESSAGE);
+            }if (txtimpuesto.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese % de impuesto ","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } if (txtcantidad.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
@@ -1552,13 +1615,13 @@ PreparedStatement pst=null;
             }
             //formula para calcular el precio de compra
             double precio=0.0;
-            precio= Double.parseDouble(txtPrecio.getText())* (1+ (Double.parseDouble(txtutilidad.getText()))/100);
-            // String Password1= String.valueOf(txtPassword.getText());
+            precio= Double.parseDouble(txtPrecioventa.getText())* (1+ (Double.parseDouble(txtimpuesto.getText()))/100);
+            // query para ingresar productos a almacen
             String sql= "insert into almacen(codigo_almacen,"
             + "producto,"
             + "proveedor,"
             + "precio_compra,"
-            + "utilidad,"
+            + "impuesto,"
             + "precio_venta,"
             + "cantidad,"
             + "descripcion"
@@ -1567,7 +1630,7 @@ PreparedStatement pst=null;
             +txtproducto.getText()+"','" 
             + txtproveedor.getText() +"','" 
             + txtPrecio.getText() +"','" 
-            + txtutilidad.getText() +"','" 
+            + txtimpuesto.getText() +"','" 
             + precio +"','" 
             + txtcantidad.getText() +"','" 
             +txtDescripcion.getText()+ "')";
@@ -1596,7 +1659,7 @@ PreparedStatement pst=null;
             txtproducto.setText(tableUsers.getModel().getValueAt(row,1).toString());
             txtproveedor.setText(tableUsers.getModel().getValueAt(row,2).toString());
             txtPrecio.setText(tableUsers.getModel().getValueAt(row,3).toString());
-            txtutilidad.setText(tableUsers.getModel().getValueAt(row,4).toString());
+            txtimpuesto.setText(tableUsers.getModel().getValueAt(row,4).toString());
             txtcantidad.setText(tableUsers.getModel().getValueAt(row,6).toString());
             txtDescripcion.setText(tableUsers.getModel().getValueAt(row,7).toString());
 
@@ -1620,7 +1683,7 @@ PreparedStatement pst=null;
             Statement s = Conexion.ConnectDB().createStatement();
 
             ResultSet rs = s.executeQuery("SELECT * FROM almacen WHERE producto LIKE '%"+name+"%' ");
-
+            
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
@@ -1632,9 +1695,7 @@ PreparedStatement pst=null;
                 v.add(rs.getString(7));
                 v.add(rs.getString(8));
                 dt.addRow(v);
-
             }
-
         } catch (Exception e) {
             Get_Data();
 
@@ -1663,10 +1724,10 @@ PreparedStatement pst=null;
         if((car<'0' || car>'9')) evt.consume();          // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadKeyTyped
 
-    private void txtutilidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtutilidadKeyTyped
+    private void txtimpuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtimpuestoKeyTyped
         char car = evt.getKeyChar();
         if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();         // TODO add your handling code here:
-    }//GEN-LAST:event_txtutilidadKeyTyped
+    }//GEN-LAST:event_txtimpuestoKeyTyped
 
     private void txtproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproductoActionPerformed
         // TODO add your handling code here:
@@ -1690,6 +1751,11 @@ PreparedStatement pst=null;
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         Reset();
+        elimar_filas();
+        btnenviar.setEnabled(true);
+        btnquitar.setEnabled(true);
+        btnasignar.setEnabled(true);
+        btnimprimir.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnenviarActionPerformed
@@ -1709,6 +1775,8 @@ PreparedStatement pst=null;
                 sa.msj.setText("GUARDADO");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
+                bloquear_botones();
+                
             }else if ("Cirugía".equals(cmbunidad.getSelectedItem())){
                 editStock_almacen();
                 ingresar_inventario_cirugia();
@@ -1718,6 +1786,7 @@ PreparedStatement pst=null;
                 sa.msj.setText("GUARDADO");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
+                bloquear_botones();
             }else if ("Emergencia".equals(cmbunidad.getSelectedItem())){
                 editStock_almacen();
                 ingresar_inventario_Emergencia();
@@ -1727,6 +1796,7 @@ PreparedStatement pst=null;
                 sa.msj.setText("GUARDADO");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
+                bloquear_botones();
             }else if ("Endoscopia".equals(cmbunidad.getSelectedItem())){
                 editStock_almacen();
                 ingresar_inventario_Endoscopia();
@@ -1736,6 +1806,7 @@ PreparedStatement pst=null;
                 sa.msj.setText("GUARDADO");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
+                bloquear_botones();
             }else if ("Hospitalización".equals(cmbunidad.getSelectedItem())){
                 editStock_almacen();
                 ingresar_inventario_Hospitalización();
@@ -1754,6 +1825,7 @@ PreparedStatement pst=null;
                 sa.msj.setText("GUARDADO");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
+                bloquear_botones();
             }else if ("RayosX".equals(cmbunidad.getSelectedItem())){
                 editStock_almacen();
                 ingresar_inventario_RayosX();
@@ -1763,6 +1835,7 @@ PreparedStatement pst=null;
                 sa.msj.setText("GUARDADO");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
+                bloquear_botones();
             }else if ("Ultrasonido".equals(cmbunidad.getSelectedItem())){
                 editStock_almacen();
                 ingresar_inventario_Ultrasonido();
@@ -1772,11 +1845,12 @@ PreparedStatement pst=null;
                 sa.msj.setText("GUARDADO");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
+                bloquear_botones();
             }
         }
     }//GEN-LAST:event_btnenviarActionPerformed
 
-    private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
+    private void btnquitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquitarActionPerformed
         DefaultTableModel modelo = (DefaultTableModel) this.tabla_almacen.getModel();
         if (modelo.getRowCount() > 0) {
 
@@ -1791,7 +1865,15 @@ PreparedStatement pst=null;
                 modelo.removeRow(fila);
             }
         }
-    }//GEN-LAST:event_quitarActionPerformed
+    }//GEN-LAST:event_btnquitarActionPerformed
+
+    private void txtPrecioventaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioventaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioventaKeyTyped
+
+    private void btnimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnimprimirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1801,6 +1883,8 @@ PreparedStatement pst=null;
     private rsbuttom.RSButtonMetro btnasignar;
     private rsbuttom.RSButtonMetro btncancel;
     private principal.MaterialButton btnenviar;
+    private principal.MaterialButton btnimprimir;
+    private principal.MaterialButton btnquitar;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
@@ -1815,6 +1899,7 @@ PreparedStatement pst=null;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1836,15 +1921,15 @@ PreparedStatement pst=null;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JPanel pnlChange1;
-    private principal.MaterialButton quitar;
     public static javax.swing.JTable tabla_almacen;
     private javax.swing.JTable tableUsers;
     public javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtPrecio;
+    public javax.swing.JTextField txtPrecioventa;
     public javax.swing.JTextField txtcantidad;
+    public javax.swing.JTextField txtimpuesto;
     public javax.swing.JTextField txtproducto;
     public javax.swing.JTextField txtproveedor;
-    public javax.swing.JTextField txtutilidad;
     // End of variables declaration//GEN-END:variables
 }
