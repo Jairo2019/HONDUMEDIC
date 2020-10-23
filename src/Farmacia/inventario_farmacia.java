@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,6 +27,7 @@ import principal.GenerarCodigos;
  * @author Rojeru San
  */
 public class inventario_farmacia extends javax.swing.JInternalFrame {
+SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
 Connection con=null;
 Date dato = null;
 ResultSet rs=null;
@@ -95,12 +97,12 @@ PreparedStatement pst=null;
         txtcodbarras = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         txtfechaingreso = new javax.swing.JTextField();
-        txtcantidad1 = new javax.swing.JTextField();
+        txtcantidadminima = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         txtPrecioventa = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        dtFechaNac = new com.toedter.calendar.JDateChooser();
+        dtFechaVec = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -659,17 +661,17 @@ PreparedStatement pst=null;
         gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
         jPanel9.add(txtfechaingreso, gridBagConstraints);
 
-        txtcantidad1.setBackground(new java.awt.Color(255, 255, 255));
-        txtcantidad1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtcantidad1.setForeground(new java.awt.Color(0, 0, 0));
-        txtcantidad1.addActionListener(new java.awt.event.ActionListener() {
+        txtcantidadminima.setBackground(new java.awt.Color(255, 255, 255));
+        txtcantidadminima.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtcantidadminima.setForeground(new java.awt.Color(0, 0, 0));
+        txtcantidadminima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcantidad1ActionPerformed(evt);
+                txtcantidadminimaActionPerformed(evt);
             }
         });
-        txtcantidad1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtcantidadminima.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtcantidad1KeyTyped(evt);
+                txtcantidadminimaKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -680,7 +682,7 @@ PreparedStatement pst=null;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 22, 0, 51);
-        jPanel9.add(txtcantidad1, gridBagConstraints);
+        jPanel9.add(txtcantidadminima, gridBagConstraints);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
@@ -737,12 +739,12 @@ PreparedStatement pst=null;
         gridBagConstraints.insets = new java.awt.Insets(25, 17, 0, 0);
         jPanel9.add(jLabel29, gridBagConstraints);
 
-        dtFechaNac.setBackground(new java.awt.Color(255, 255, 255));
-        dtFechaNac.setForeground(new java.awt.Color(0, 0, 0));
-        dtFechaNac.setToolTipText("");
-        dtFechaNac.setDateFormatString("dd/MM/yyyy");
-        dtFechaNac.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        dtFechaNac.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        dtFechaVec.setBackground(new java.awt.Color(255, 255, 255));
+        dtFechaVec.setForeground(new java.awt.Color(0, 0, 0));
+        dtFechaVec.setToolTipText("");
+        dtFechaVec.setDateFormatString("dd/MM/yyyy");
+        dtFechaVec.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtFechaVec.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
@@ -751,7 +753,7 @@ PreparedStatement pst=null;
         gridBagConstraints.ipady = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(18, 18, 0, 0);
-        jPanel9.add(dtFechaNac, gridBagConstraints);
+        jPanel9.add(dtFechaVec, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -800,7 +802,14 @@ PreparedStatement pst=null;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    Double precio_venta=0.0;
+    Double precio_venta=0.0;   
+    public static String fechaactual() {
+        Date fecha = new Date();
+        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
+        return formatofecha.format(fecha);
+
+    }
+    
     public void extraerID() {
         int j;
         int cont = 1;
@@ -851,7 +860,7 @@ PreparedStatement pst=null;
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
-        lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(3);
+        lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(9);
        tableUsers.setDefaultRenderer (Object.class, colorear);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -873,7 +882,40 @@ PreparedStatement pst=null;
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
     extraerID();
+    txtfechaingreso.setText(fechaactual());
 }
+    //Metodo para no permitir campos vacios
+    private void notallowempty(){
+        if (txtcodbarras.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Código de Barras","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (txtName.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtPreciocompra.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtPrecioventa.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Venta","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtisv.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Porcentaje de Impuesto","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtfechaingreso.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la fecha de Hoy","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (dtFechaVec.getDate().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Fecha de Vencimiento","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtcantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtcantidadminima.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad Mínima Establecida para este Producto","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -941,25 +983,7 @@ PreparedStatement pst=null;
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         try{
             con=Conexion.ConnectDB();
-            if (txtcodbarras.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Código de Barras","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtName.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtPreciocompra.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtisv.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Precio de Venta","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtcantidad.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            notallowempty();
             precio_venta= (Double.parseDouble(txtPreciocompra.getText()))*(1 + (Double.parseDouble(txtisv.getText()))/100);
             String sql= "insert into inventario_farmacia(codigo_farmacia,"
                     + "codigo_barras,"
@@ -967,17 +991,23 @@ PreparedStatement pst=null;
                     + "casa_farmaceutica,"
                     + "precio_compra,"
                     + "precio_venta,"
-                    + "cantidad,"
                     + "isv,"
+                    + "fechaingreso,"
+                    + "fechavencimiento,"
+                    + "cantidad,"
+                    + "cantidad_minima,"
                     + "descripcion) values ('"
                     +txtCodigo.getText()+"','" 
                     +txtcodbarras.getText()+"','" 
                     +txtName.getText()+"','"
                     +txtfarmacia.getText()+"','" 
                     + txtPreciocompra.getText() +"','" 
-                    + precio_venta +"','" 
-                    +txtcantidad.getText()+ "','" 
+                    + precio_venta +"','"  
                     + txtisv.getText() +"','"
+                    +txtfechaingreso.getText()+ "','"
+                    +formatofecha.format( dtFechaVec.getDate())+"','"
+                    +txtcantidad.getText()+ "','"
+                    +txtcantidadminima.getText()+ "','"
                     +txtDescripcion.getText()+ "')";
 
             pst=con.prepareStatement(sql);
@@ -995,14 +1025,19 @@ PreparedStatement pst=null;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
+            notallowempty();
             precio_venta= (Double.parseDouble(txtPreciocompra.getText()))*(1 + (Double.parseDouble(txtisv.getText()))/100);
+            //query para actualizar inventario de farmacia
             String sql= "update inventario_farmacia set codigo_barras='"+ txtcodbarras.getText()+
                     "',nombre='" + txtName.getText() + 
                     "',casa_farmaceutica='" + txtfarmacia.getText() + 
                     "',precio_compra='" + txtPreciocompra.getText() +
                     "',precio_venta='" + precio_venta+ 
-                    "',cantidad='" + txtcantidad.getText() + 
                     "',isv='" + txtisv.getText() +
+                    "',fechaingreso='" + txtfechaingreso.getText() +
+                    "',fechavencimiento='" + formatofecha.format( dtFechaVec.getDate()) +
+                    "',cantidad='" + txtcantidad.getText() + 
+                    "',cantidad_minima='" + txtcantidadminima.getText() + 
                     "',descripcion='" + txtDescripcion.getText() +
                     "' where codigo_farmacia='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
@@ -1089,13 +1124,13 @@ PreparedStatement pst=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfechaingresoKeyTyped
 
-    private void txtcantidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidad1ActionPerformed
+    private void txtcantidadminimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadminimaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidad1ActionPerformed
+    }//GEN-LAST:event_txtcantidadminimaActionPerformed
 
-    private void txtcantidad1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidad1KeyTyped
+    private void txtcantidadminimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadminimaKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidad1KeyTyped
+    }//GEN-LAST:event_txtcantidadminimaKeyTyped
 
     private void txtPrecioventaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioventaKeyTyped
         // TODO add your handling code here:
@@ -1109,7 +1144,7 @@ PreparedStatement pst=null;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
-    public com.toedter.calendar.JDateChooser dtFechaNac;
+    public com.toedter.calendar.JDateChooser dtFechaVec;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
@@ -1145,7 +1180,7 @@ PreparedStatement pst=null;
     public javax.swing.JTextField txtPreciocompra;
     public javax.swing.JTextField txtPrecioventa;
     public javax.swing.JTextField txtcantidad;
-    public javax.swing.JTextField txtcantidad1;
+    public javax.swing.JTextField txtcantidadminima;
     public javax.swing.JTextField txtcodbarras;
     public javax.swing.JTextField txtfarmacia;
     public javax.swing.JTextField txtfechaingreso;

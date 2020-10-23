@@ -907,7 +907,28 @@ PreparedStatement pst=null;
                 txtUserName.requestDefaultFocus();
                 return;
             }
-            String sql= "insert into usuarios(nombre,apellido,fecha_nacimiento,sexo,telefono,correo,direccion,unidad,rol,usuario,password) values ('"+txtName.getText()+"','" + txtLastname.getText()+"','"+formatofecha.format( dtFechaNac.getDate())+"','"+ choicesex.getSelectedItem()+"','"+ txtTelefono.getText()+"','"+ txtEmail.getText()+"','"+txtDireccion.getText()+"','"+ choiceunidad.getSelectedItem()+"','"+choiceacces.getSelectedItem()+"','" +txtUserName.getText() + "','" + txtPassword.getText()  + "')";
+            String sql= "insert into usuarios(nombre,"
+                    + "apellido,"
+                    + "fecha_nacimiento,"
+                    + "sexo,"
+                    + "telefono,"
+                    + "correo,"
+                    + "direccion,"
+                    + "unidad,"
+                    + "rol,"
+                    + "usuario,"
+                    + "password) values ('"
+                    +txtName.getText()+"','" 
+                    + txtLastname.getText()+"','"
+                    +formatofecha.format( dtFechaNac.getDate())+"','"
+                    + choicesex.getSelectedItem()+"','"
+                    + txtTelefono.getText()+"','"
+                    + txtEmail.getText()+"','"
+                    +txtDireccion.getText()+"','"
+                    + choiceunidad.getSelectedItem()+"','"
+                    +choiceacces.getSelectedItem()+"','" 
+                    +txtUserName.getText() + "','" 
+                    + txtPassword.getText()  + "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();

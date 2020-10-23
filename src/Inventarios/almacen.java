@@ -918,6 +918,7 @@ PreparedStatement pst=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
     String id="";
+    double precio=0;
 //metodo para obtener el maximo id y asignar id a la tabla almacen
     public void extraerID() {
         int j;
@@ -1526,7 +1527,7 @@ PreparedStatement pst=null;
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
-    
+    precio=0;
     extraerID();
 }
     //metodo para restringir funciones de algunos bobotes
@@ -1570,7 +1571,6 @@ PreparedStatement pst=null;
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         //formula para calcular el precio de compra
-           double precio=0.0;
             precio= Double.parseDouble(txtPrecioventa.getText())* (1+ (Double.parseDouble(txtimpuesto.getText()))/100);
         try{
             con=Conexion.ConnectDB();
@@ -1614,7 +1614,6 @@ PreparedStatement pst=null;
                 return;
             }
             //formula para calcular el precio de compra
-            double precio=0.0;
             precio= Double.parseDouble(txtPrecioventa.getText())* (1+ (Double.parseDouble(txtimpuesto.getText()))/100);
             // query para ingresar productos a almacen
             String sql= "insert into almacen(codigo_almacen,"
@@ -1653,6 +1652,7 @@ PreparedStatement pst=null;
 
     private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
         try {
+            Reset();
             con=Conexion.ConnectDB();
             int row= tableUsers.getSelectedRow();
             txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
@@ -1660,13 +1660,14 @@ PreparedStatement pst=null;
             txtproveedor.setText(tableUsers.getModel().getValueAt(row,2).toString());
             txtPrecio.setText(tableUsers.getModel().getValueAt(row,3).toString());
             txtimpuesto.setText(tableUsers.getModel().getValueAt(row,4).toString());
+            precio=((Double.parseDouble(tableUsers.getModel().getValueAt(row,5).toString())) / (1+((Double.parseDouble(tableUsers.getModel().getValueAt(row,4).toString()))/100)));
+            txtPrecioventa.setText(String.valueOf(Math.round(precio)));
             txtcantidad.setText(tableUsers.getModel().getValueAt(row,6).toString());
             txtDescripcion.setText(tableUsers.getModel().getValueAt(row,7).toString());
 
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
