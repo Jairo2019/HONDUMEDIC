@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -802,7 +803,7 @@ PreparedStatement pst=null;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    Double precio_venta=0.0;   
+      double precio=0; 
     public static String fechaactual() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
@@ -852,15 +853,18 @@ PreparedStatement pst=null;
                 + " casa_farmaceutica as 'Casa Farmaceutica',"
                 + " precio_compra as 'Precio Compra',"
                 + " precio_venta as 'Precio Venta',"
-                + " cantidad as 'Cantidad',"
                 + " isv as 'Impuesto',"
+                + " fechaingreso as 'Fecha Ingreso',"
+                + " fechavencimiento as 'Fecha Vencimiento',"
+                + " cantidad as 'Cantidad',"
+                + " cantidad_minima as 'Cantidad Minima',"
                 + " descripcion as 'Descripción' from inventario_farmacia";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
-        lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(9);
+       ColorearFilasFarmacia colorear=new ColorearFilasFarmacia(8);
        tableUsers.setDefaultRenderer (Object.class, colorear);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -868,8 +872,7 @@ PreparedStatement pst=null;
 }
   }
     //limpiar cajas de texto
-    private void Reset()
-{
+    private void Reset(){
     txtCodigo.setText("");
     txtName.setText("");
     txtDescripcion.setText("");
@@ -883,6 +886,11 @@ PreparedStatement pst=null;
     btnDelete.setEnabled(false);
     extraerID();
     txtfechaingreso.setText(fechaactual());
+    precio=0;
+    txtcodbarras.setText("");
+    txtPrecioventa.setText("");
+    txtcantidadminima.setText("");
+    dtFechaVec.setDate(null);
 }
     //Metodo para no permitir campos vacios
     private void notallowempty(){
@@ -944,6 +952,11 @@ PreparedStatement pst=null;
                 v.add(rs.getString(5));
                 v.add(rs.getString(6));
                 v.add(rs.getString(7));
+                v.add(rs.getString(8));
+                v.add(rs.getString(9));
+                v.add(rs.getString(10));
+                v.add(rs.getString(11));
+                v.add(rs.getString(12));
                 dt.addRow(v);
 
             }
@@ -963,9 +976,22 @@ PreparedStatement pst=null;
             txtName.setText(tableUsers.getModel().getValueAt(row,2).toString());
             txtfarmacia.setText(tableUsers.getModel().getValueAt(row,3).toString());
             txtPreciocompra.setText(tableUsers.getModel().getValueAt(row,4).toString());
-            txtcantidad.setText(tableUsers.getModel().getValueAt(row,6).toString());
-            txtisv.setText(tableUsers.getModel().getValueAt(row,7).toString());
-            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,8).toString());
+            precio=((Double.parseDouble(tableUsers.getModel().getValueAt(row,5).toString())) / (1+((Double.parseDouble(tableUsers.getModel().getValueAt(row,6).toString()))/100)));
+            txtPrecioventa.setText(String.valueOf(Math.round(precio)));
+            txtisv.setText(tableUsers.getModel().getValueAt(row,6).toString());
+            txtfechaingreso.setText(tableUsers.getModel().getValueAt(row,7).toString());
+            String fecha = tableUsers.getModel().getValueAt(tableUsers.getSelectedRow(),8).toString().trim() ;
+            try {
+
+                dato = formatofecha.parse(fecha);
+
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+            dtFechaVec.setDate(dato);
+            txtcantidad.setText(tableUsers.getModel().getValueAt(row,9).toString());
+            txtcantidadminima.setText(tableUsers.getModel().getValueAt(row,10).toString());
+            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,11).toString());
 
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
@@ -984,7 +1010,7 @@ PreparedStatement pst=null;
         try{
             con=Conexion.ConnectDB();
             notallowempty();
-            precio_venta= (Double.parseDouble(txtPreciocompra.getText()))*(1 + (Double.parseDouble(txtisv.getText()))/100);
+            precio= (Double.parseDouble(txtPrecioventa.getText()))*(1 + (Double.parseDouble(txtisv.getText()))/100);
             String sql= "insert into inventario_farmacia(codigo_farmacia,"
                     + "codigo_barras,"
                     + "nombre,"
@@ -1002,7 +1028,7 @@ PreparedStatement pst=null;
                     +txtName.getText()+"','"
                     +txtfarmacia.getText()+"','" 
                     + txtPreciocompra.getText() +"','" 
-                    + precio_venta +"','"  
+                    + precio +"','"  
                     + txtisv.getText() +"','"
                     +txtfechaingreso.getText()+ "','"
                     +formatofecha.format( dtFechaVec.getDate())+"','"
@@ -1026,13 +1052,13 @@ PreparedStatement pst=null;
         try{
             con=Conexion.ConnectDB();
             notallowempty();
-            precio_venta= (Double.parseDouble(txtPreciocompra.getText()))*(1 + (Double.parseDouble(txtisv.getText()))/100);
+            precio= (Double.parseDouble(txtPrecioventa.getText()))*(1 + (Double.parseDouble(txtisv.getText()))/100);
             //query para actualizar inventario de farmacia
             String sql= "update inventario_farmacia set codigo_barras='"+ txtcodbarras.getText()+
                     "',nombre='" + txtName.getText() + 
                     "',casa_farmaceutica='" + txtfarmacia.getText() + 
                     "',precio_compra='" + txtPreciocompra.getText() +
-                    "',precio_venta='" + precio_venta+ 
+                    "',precio_venta='" + precio+ 
                     "',isv='" + txtisv.getText() +
                     "',fechaingreso='" + txtfechaingreso.getText() +
                     "',fechavencimiento='" + formatofecha.format( dtFechaVec.getDate()) +

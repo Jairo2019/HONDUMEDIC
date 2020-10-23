@@ -1537,6 +1537,25 @@ PreparedStatement pst=null;
         btnasignar.setEnabled(false);
         btnimprimir.setVisible(true);
     }
+    //metodo para no permitir dejar campos vacios que es obligatorio llenar
+    private void notallowempty(){
+            if (txtproducto.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtPrecio.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtPrecioventa.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Venta","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtimpuesto.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese % de impuesto ","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } if (txtcantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -1574,6 +1593,7 @@ PreparedStatement pst=null;
             precio= Double.parseDouble(txtPrecioventa.getText())* (1+ (Double.parseDouble(txtimpuesto.getText()))/100);
         try{
             con=Conexion.ConnectDB();
+            notallowempty();
             //query para actualizar los productos de almacen
             String sql= "update almacen set producto='"+ txtproducto.getText()
                     + "',proveedor='" + txtproveedor.getText() 
@@ -1599,20 +1619,7 @@ PreparedStatement pst=null;
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         try{
             con=Conexion.ConnectDB();
-            if (txtproducto.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtPrecio.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtimpuesto.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese % de impuesto ","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } if (txtcantidad.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            notallowempty();
             //formula para calcular el precio de compra
             precio= Double.parseDouble(txtPrecioventa.getText())* (1+ (Double.parseDouble(txtimpuesto.getText()))/100);
             // query para ingresar productos a almacen
