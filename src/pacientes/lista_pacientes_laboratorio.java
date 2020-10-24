@@ -243,9 +243,10 @@ PreparedStatement pst=null;
     
     private void Get_Data(){
         String sql="select codigo_paciente as 'Codigo',"
-                + " nombre as 'Nombre',"
-                + " apellido as 'Apellido',"
-                + " edad as 'Edad' from paciente";
+                    + " concat(nombre,' ',apellido) as 'Paciente',"
+                    + " telefono as 'Teléfono',"
+                    + " edad as 'Edad' "
+                    + "from paciente";
 
         try{
          pst=con.prepareStatement(sql);
@@ -272,8 +273,8 @@ PreparedStatement pst=null;
             Statement s = Conexion.ConnectDB().createStatement();
 //query buscar por identidad, nombre o appellido al paciente
             ResultSet rs = s.executeQuery("select codigo_paciente as 'Codigo',"
-                    + " nombre as 'Nombre',"
-                    + " apellido as 'Apellido',"
+                    + " concat(nombre,' ',apellido) as 'Paciente',"
+                    + " telefono as 'Teléfono',"
                     + " edad as 'Edad' "
                     + "from paciente"
                     + " WHERE CONCAT(nombre, ' ' , apellido) "
@@ -325,55 +326,57 @@ PreparedStatement pst=null;
                 } else {
                     String cod = tabla.getValueAt(fila, 0).toString();
                     String nom = tabla.getValueAt(fila, 1).toString();
-                    String apellido = tabla.getValueAt(fila, 2).toString();
+                    String tel = tabla.getValueAt(fila, 2).toString();
                     int c = 0;
                     int j = 0;
                         if (("1").equals(cual)){
-                            registro_examen.examen_emergencia.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_emergencia.txtpaciente.setText(nom);
                             registro_examen.examen_emergencia.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("2").equals(cual)){
-                            registro_examen.examen_hospitalizacion.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_hospitalizacion.txtpaciente.setText(nom);
                             registro_examen.examen_hospitalizacion.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("3").equals(cual)){
-                            registro_examen.examen_rayosx.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_rayosx.txtpaciente.setText(nom);
                             registro_examen.examen_rayosx.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("4").equals(cual)){
-                            registro_examen.examen_endoscopia.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_endoscopia.txtpaciente.setText(nom);
                             registro_examen.examen_endoscopia.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("5").equals(cual)){
-                            ambulancia.ambulancia.txtpaciente.setText(nom + " "+  apellido);
+                            ambulancia.ambulancia.txtpaciente.setText(nom);
                             ambulancia.ambulancia.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("6").equals(cual)){
-                            cirugia.registrar_cirugia.txtpaciente.setText(nom + " "+  apellido);
+                            cirugia.registrar_cirugia.txtpaciente.setText(nom);
                             cirugia.registrar_cirugia.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("7").equals(cual)){
-                            registro_examen.examen_ultrasonido.txtpaciente.setText(nom + " "+  apellido);
+                            registro_examen.examen_ultrasonido.txtpaciente.setText(nom);
                             registro_examen.examen_ultrasonido.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("8").equals(cual)){
-                            unidad_apa.cotizaciones_apa.txtpaciente.setText(nom + " "+  apellido);
+                            unidad_apa.cotizaciones_apa.txtpaciente.setText(nom);
                             cual="";
                         }else if (("9").equals(cual)){
-                            unidad_apa.examen_hospitalizacion_apa.txtpaciente.setText(nom + " "+  apellido);
+                            unidad_apa.examen_hospitalizacion_apa.txtpaciente.setText(nom);
                             cual="";
                         }else if (("10").equals(cual)){
-                            unidad_apa.examen_emergencia_apa.txtpaciente.setText(nom + " "+  apellido);
+                            unidad_apa.examen_emergencia_apa.txtpaciente.setText(nom);
                             cual="";
                         }else if (("11").equals(cual)){
-                            cotizaciones.cotizaciones_general.txtpaciente.setText(nom + " "+  apellido);
+                            cotizaciones.cotizaciones_general.lblidpaciente.setText(cod);
+                            cotizaciones.cotizaciones_general.txtpaciente.setText(nom);
+                            cotizaciones.cotizaciones_general.numTel.setText(tel);
                             cual="";
                         }else if (("12").equals(cual)){
-                            deposito.depositos.txtpaciente.setText(nom + " "+  apellido);
+                            deposito.depositos.txtpaciente.setText(nom);
                             deposito.depositos.txtidpaciente.setText(cod );
                             cual="";
                         }else{
-                             registro_examen.examen_laboratorio.txtpaciente.setText(nom + " "+  apellido);
+                             registro_examen.examen_laboratorio.txtpaciente.setText(nom);
                              registro_examen.examen_laboratorio.lblidpaciente.setText(cod);
                              cual="";}
                         this.dispose();

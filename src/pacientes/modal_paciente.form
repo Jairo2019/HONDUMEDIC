@@ -188,7 +188,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="txttelefono" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
                                       <Component id="txtedad" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
-                                      <Component id="txtPrecio" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
+                                      <Component id="txtapellido" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
                                       <Component id="txtName" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
                                       <Component id="txtCodigo" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
@@ -229,7 +229,7 @@
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtPrecio" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtapellido" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -356,7 +356,7 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtPrecio">
+                <Component class="javax.swing.JTextField" name="txtapellido">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -369,8 +369,8 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrecioActionPerformed"/>
-                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPrecioKeyTyped"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtapellidoActionPerformed"/>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtapellidoKeyTyped"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

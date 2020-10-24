@@ -70,7 +70,7 @@ PreparedStatement pst=null;
         jLabel18 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
-        txtPrecio = new javax.swing.JTextField();
+        txtapellido = new javax.swing.JTextField();
         txtedad = new javax.swing.JTextField();
         txttelefono = new javax.swing.JTextField();
         txtdireccion = new javax.swing.JTextField();
@@ -192,17 +192,17 @@ PreparedStatement pst=null;
             }
         });
 
-        txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
-        txtPrecio.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
-        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+        txtapellido.setBackground(new java.awt.Color(255, 255, 255));
+        txtapellido.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtapellido.setForeground(new java.awt.Color(0, 0, 0));
+        txtapellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioActionPerformed(evt);
+                txtapellidoActionPerformed(evt);
             }
         });
-        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPrecioKeyTyped(evt);
+                txtapellidoKeyTyped(evt);
             }
         });
 
@@ -266,7 +266,7 @@ PreparedStatement pst=null;
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -298,7 +298,7 @@ PreparedStatement pst=null;
                         .addGap(28, 28, 28)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel25)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18)
@@ -360,7 +360,7 @@ PreparedStatement pst=null;
         this.txtCodigo.requestFocus();
         this.txtCodigo.setText("");
         this.txtName.setText("");
-        this.txtPrecio.setText("");
+        this.txtapellido.setText("");
         this.txtedad.setText("");
         this.txttelefono.setText("");
     }
@@ -391,13 +391,13 @@ PreparedStatement pst=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameKeyTyped
 
-    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+    private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioActionPerformed
+    }//GEN-LAST:event_txtapellidoActionPerformed
 
-    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+    private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioKeyTyped
+    }//GEN-LAST:event_txtapellidoKeyTyped
 
     private void txtedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtedadActionPerformed
         // TODO add your handling code here:
@@ -440,7 +440,7 @@ PreparedStatement pst=null;
                 JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (txtPrecio.getText().equals("")) {
+            if (txtapellido.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Apellido","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -468,18 +468,20 @@ PreparedStatement pst=null;
                 return;
             }
             // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into paciente(codigo_paciente,nombre,apellido,direccion,edad,telefono) values ('"+txtCodigo.getText()+"','" +txtName.getText()+"','" + txtPrecio.getText()+"','" +txtdireccion.getText()+ "','" +txtedad.getText()+"','" +txttelefono.getText()+ "')";
+            String sql= "insert into paciente(codigo_paciente,nombre,apellido,direccion,edad,telefono) values ('"+txtCodigo.getText()+"','" +txtName.getText()+"','" + txtapellido.getText()+"','" +txtdireccion.getText()+ "','" +txtedad.getText()+"','" +txttelefono.getText()+ "')";
 
             PreparedStatement pst = con.prepareStatement(sql);
             pst.execute();
 
             JOptionPane.showMessageDialog(this,"Registrado con éxito","Registro de Pacientes",JOptionPane.INFORMATION_MESSAGE);
             if (("1").equals(cual)){
-                unidad_apa.cotizaciones_apa.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
+                unidad_apa.cotizaciones_apa.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
             }else if (("2").equals(cual)){
-                cotizaciones.cotizaciones_general.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
+                cotizaciones.cotizaciones_general.lblidpaciente.setText(txtCodigo.getText());
+                cotizaciones.cotizaciones_general.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
+                cotizaciones.cotizaciones_general.numTel.setText(txttelefono.getText());
             }else{
-                ambulancia.ambulancia.txtpaciente.setText(txtName.getText() +" "+ txtPrecio.getText());
+                ambulancia.ambulancia.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
             }
             this.dispose();
         }catch(HeadlessException | SQLException ex){
@@ -816,7 +818,7 @@ PreparedStatement pst=null;
     public static javax.swing.JLabel titulo;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtName;
-    public javax.swing.JTextField txtPrecio;
+    public javax.swing.JTextField txtapellido;
     public javax.swing.JTextField txtdireccion;
     public javax.swing.JTextField txtedad;
     public javax.swing.JTextField txttelefono;
