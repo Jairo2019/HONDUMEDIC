@@ -915,14 +915,20 @@ private void edit_detalle(){
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "importe) values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
-                +lblidpaciente.getText()+"','"
+                +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
-                +cantidad+"','" 
-                +importe+ "')";
+                +cantidad+"','"
+                +importe+"','"
+                +txtFecha.getText()+"','"
+                +"Cirugia"+"','"
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -948,12 +954,20 @@ private void edit_detalle(){
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "importe) values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
                 +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
-                +precio+"','" +cantidad+"','" +importe+ "')";
+                +precio+"','" 
+                +cantidad+"','"
+                +importe+"','"
+                +txtFecha.getText()+"','"
+                +"Cirugia"+"','"
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -966,7 +980,9 @@ private void edit_detalle(){
     }
          }
     private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Producto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_cirugia where idventa='" + numFac.getText() + "' ";
+        String sql="select codigo as 'Codigo',"
+                + "p_s as 'Producto/Servicio"
+                + "precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_cirugia where idventa='" + numFac.getText() + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1106,7 +1122,8 @@ private void edit_detalle(){
                     + "num_habitacion,"
                     + "observaciones,"
                     + "fecha,"
-                    + "total) "
+                    + "total,"
+                    + "estado) "
                     + "values ('"
                     +numFac.getText()+"','" 
                     +lblidpaciente.getText()+"','" 
@@ -1114,8 +1131,9 @@ private void edit_detalle(){
                     +txtayudante.getText()+"','"
                     +txtnumhabitacion.getText()+"','" 
                     +txtdescripcion.getText()+"','" 
-                    + txtFecha.getText()+"','" 
-                    +lblTotal.getText() + "')";
+                    +txtFecha.getText()+"','" 
+                    +lblTotal.getText()+"','" 
+                    +"1" + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 

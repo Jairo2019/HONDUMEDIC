@@ -926,7 +926,7 @@ static Conexion cc = new Conexion();
 "                	total as 'Total (L)' \n" +
 "                	from test_ambulancia \n" +
 "			inner join paciente on\n" +
-"                	paciente = codigo_paciente";
+"                	paciente = codigo_paciente where estado=1 ";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -988,14 +988,20 @@ private void edit_detalle(){
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "importe) values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
                 +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
-                +importe+ "')";
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Ambulancia"+"','" 
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -1008,7 +1014,7 @@ private void edit_detalle(){
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
-
+//metodo ingresar detalles del registro de ambulancia en la tabla detalle_test_ambulancia
     private void ingresar_detalle(){
     for (int i = 0; i <tablaCaja.getRowCount(); i++) {
         String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
@@ -1022,14 +1028,20 @@ private void edit_detalle(){
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "importe) values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
                 +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
-                +importe+ "')";
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Ambulancia"+"','" 
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -1047,7 +1059,7 @@ private void edit_detalle(){
                 + "precio as 'Precio',"
                 + "cantidad as 'Cantidad',"
                 + "importe as 'Importe' "
-                + "from detalle_test_ambulancia where idventa='" + numFac.getText() + "' ";
+                + "from detalle_test_ambulancia where idventa='" + numFac.getText() + "' and estado=1 ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1087,7 +1099,7 @@ private void edit_detalle(){
 "                	total as 'Total (L)' \n" +
 "                	from test_ambulancia \n" +
 "			inner join paciente on\n" +
-"                	paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%'");
+"                	paciente = codigo_paciente where estado=1 and CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1101,10 +1113,13 @@ private void edit_detalle(){
                         v.add(rs.getString(8));
                         v.add(rs.getString(9));
                         v.add(rs.getString(10));
-
+                        v.add(rs.getString(11));
                         dt.addRow(v);
+                        if(c_search_tbl.getText().isEmpty()){
+                            Get_Data();
+                        }
                     }
-
+                    
         } catch (Exception e) {
             Get_Data();
 
@@ -1199,7 +1214,28 @@ private void edit_detalle(){
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_ambulancia(codigo,paciente,medico_1,conductor,ambulancia,origen,destino,km,fecha,total) values ('"+numFac.getText()+"','" +lblidpaciente.getText()+"','" +txtmedicoadmin.getText()+"','" +txtconductor.getText()+"','"+txtambulancia.getText()+"','" +txtorigen.getText()+"','"+txtdestino.getText()+"','"+txtkm.getText()+"','" + txtFecha.getText()+"','" +lblTotal.getText() + "')";
+            String sql= "insert into test_ambulancia(codigo,"
+                    + "paciente,"
+                    + "medico_1,"
+                    + "conductor,"
+                    + "ambulancia,"
+                    + "origen,"
+                    + "destino,"
+                    + "km,"
+                    + "fecha,"
+                    + "total,"
+                    + "estado) values ('"
+                    +numFac.getText()+"','" 
+                    +lblidpaciente.getText()+"','" 
+                    +txtmedicoadmin.getText()+"','" 
+                    +txtconductor.getText()+"','"
+                    +txtambulancia.getText()+"','" 
+                    +txtorigen.getText()+"','"
+                    +txtdestino.getText()+"','"
+                    +txtkm.getText()+"','" 
+                    + txtFecha.getText()+"','" 
+                    + lblTotal.getText()+"','" 
+                    +"1" + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 

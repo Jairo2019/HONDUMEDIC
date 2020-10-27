@@ -617,20 +617,15 @@ static Conexion cc = new Conexion();
     //metodo obtener los datos de la tabla caja_servicios
   private void Get_Data(){
 
-        String sql="SELECT p.codigo_paciente AS 'Identidad', "
-                + "CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', "
-                + "p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
-                "SUM(IFNULL(a.importe,0) + IFNULL(c.importe,0) + IFNULL(e.importe,0) + IFNULL(en.importe,0) " +
-                "+ IFNULL(h.importe,0) + IFNULL(l.importe,0) + IFNULL(r.importe,0) + IFNULL(u.importe,0)) AS 'Total' " +
-                "FROM paciente p " +
-                "LEFT JOIN detalle_test_ambulancia a ON p.codigo_paciente=a.id_paciente" +
-                "   LEFT JOIN detalle_test_cirugia c ON p.codigo_paciente=c.id_paciente" +
-                "   LEFT JOIN detalle_test_emergencia e ON p.codigo_paciente=e.id_paciente" +
-                "   LEFT JOIN detalle_test_endoscopia en ON p.codigo_paciente=en.id_paciente" +
-                "   LEFT JOIN detalle_test_hospitalizacion h ON p.codigo_paciente=h.id_paciente" +
-                "   LEFT JOIN detalle_test_laboratorio l ON p.codigo_paciente=l.id_paciente" +
-                "   LEFT JOIN detalle_test_rayosx r ON p.codigo_paciente=r.id_paciente" +
-                "   LEFT JOIN detalle_test_ultrasonido u ON p.codigo_paciente=u.id_paciente ";
+        String sql="SELECT p.codigo_paciente AS 'Identidad', " +
+        " CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', " +
+        " p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
+        " SUM(IFNULL(a.importe,0) + IFNULL(c.importe,0) + IFNULL(e.importe,0)  + IFNULL(h.importe,0))  AS 'Total'" +
+        " FROM paciente p " +
+        " LEFT JOIN detalle_test_ambulancia a ON p.codigo_paciente=a.id_paciente AND a.estado=1 " +
+        " LEFT JOIN detalle_test_cirugia c ON p.codigo_paciente=c.id_paciente AND c.estado=1 " +
+        " LEFT JOIN detalle_test_emergencia e ON p.codigo_paciente=e.id_paciente AND e.estado=1 " +
+        " LEFT JOIN detalle_test_hospitalizacion h ON p.codigo_paciente=h.id_paciente AND h.estado=1 " ;
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -676,14 +671,11 @@ static Conexion cc = new Conexion();
 // metodo para obtener los detalles de cada servicio e insumo brindado a un determinado paciente
     private void show_detalle(){
 
-        String sql="SELECT  p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_endoscopia WHERE id_paciente ='" + numFac.getText() + "'"
-        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_laboratorio WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_rayosx WHERE id_paciente ='" + numFac.getText() + "' "
-        + "UNION SELECT p_s AS 'Servicio/Insumo', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ultrasonido WHERE id_paciente ='" + numFac.getText() + "' ";
+        String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + numFac.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + numFac.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + numFac.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + numFac.getText() + "' and estado=1 ";
+       
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -757,21 +749,15 @@ static Conexion cc = new Conexion();
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT p.codigo_paciente AS 'Identidad', "
-                + "CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', "
-                + "p.edad AS 'Edad', "
-                + "p.telefono AS 'Teléfono', " +
-                "SUM(IFNULL(a.importe,0) + IFNULL(c.importe,0) + IFNULL(e.importe,0) + IFNULL(en.importe,0) "
-                + "+ IFNULL(h.importe,0) + IFNULL(l.importe,0) + IFNULL(r.importe,0) + IFNULL(u.importe,0)) AS 'Total' " +
-                "FROM paciente p " 
-                +"   LEFT JOIN detalle_test_ambulancia a ON p.codigo_paciente=a.id_paciente" +
-                "   LEFT JOIN detalle_test_cirugia c ON p.codigo_paciente=c.id_paciente" +
-                "   LEFT JOIN detalle_test_emergencia e ON p.codigo_paciente=e.id_paciente" +
-                "   LEFT JOIN detalle_test_endoscopia en ON p.codigo_paciente=en.id_paciente" +
-                "   LEFT JOIN detalle_test_hospitalizacion h ON p.codigo_paciente=h.id_paciente" +
-                "   LEFT JOIN detalle_test_laboratorio l ON p.codigo_paciente=l.id_paciente" +
-                "   LEFT JOIN detalle_test_rayosx r ON p.codigo_paciente=r.id_paciente" +
-                "   LEFT JOIN detalle_test_ultrasonido u ON p.codigo_paciente=u.id_paciente "
+                ResultSet rs = s.executeQuery("SELECT p.codigo_paciente AS 'Identidad', " +
+        " CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', " +
+        " p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
+        " SUM(IFNULL(a.importe,0) + IFNULL(c.importe,0) + IFNULL(e.importe,0)  + IFNULL(h.importe,0))  AS 'Total'" +
+        " FROM paciente p " +
+        " LEFT JOIN detalle_test_ambulancia a ON p.codigo_paciente=a.id_paciente AND a.estado=1 " +
+        " LEFT JOIN detalle_test_cirugia c ON p.codigo_paciente=c.id_paciente AND c.estado=1 " +
+        " LEFT JOIN detalle_test_emergencia e ON p.codigo_paciente=e.id_paciente AND e.estado=1 " +
+        " LEFT JOIN detalle_test_hospitalizacion h ON p.codigo_paciente=h.id_paciente AND h.estado=1  "
                 + " WHERE CONCAT(p.nombre,' ',p.apellido) LIKE '%"+name+"%' or p.codigo_paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
