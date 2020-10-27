@@ -56,18 +56,19 @@ CREATE TABLE IF NOT EXISTS `almacen` (
   `producto` varchar(50) NOT NULL,
   `proveedor` varchar(50) DEFAULT NULL,
   `precio_compra` float NOT NULL DEFAULT 0,
-  `utilidad` int(11) NOT NULL DEFAULT 0,
+  `impuesto` int(11) NOT NULL DEFAULT 0,
   `precio_venta` decimal(10,0) NOT NULL DEFAULT 0,
   `cantidad` int(11) NOT NULL,
   `descripcion` text DEFAULT NULL,
   PRIMARY KEY (`codigo_almacen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla hondumedic.almacen: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla hondumedic.almacen: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `almacen` DISABLE KEYS */;
-REPLACE INTO `almacen` (`codigo_almacen`, `producto`, `proveedor`, `precio_compra`, `utilidad`, `precio_venta`, `cantidad`, `descripcion`) VALUES
-	('PA0001', 'holo', 'sdf', 20, 15, 23, 10, '16515'),
-	('PA0002', 'mono', '', 150, 15, 173, 5, '');
+REPLACE INTO `almacen` (`codigo_almacen`, `producto`, `proveedor`, `precio_compra`, `impuesto`, `precio_venta`, `cantidad`, `descripcion`) VALUES
+	('PA0001', 'holo', 'sdf', 20, 15, 29, 6, ''),
+	('PA0002', 'mono', '', 150, 15, 218, 3, ''),
+	('PA0003', 'Snadia', 'ads', 50, 15, 63, 6, '');
 /*!40000 ALTER TABLE `almacen` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.caja
@@ -132,30 +133,8 @@ CREATE TABLE IF NOT EXISTS `caja_laboratorio` (
   PRIMARY KEY (`idventa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla hondumedic.caja_laboratorio: ~21 rows (aproximadamente)
+-- Volcando datos para la tabla hondumedic.caja_laboratorio: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `caja_laboratorio` DISABLE KEYS */;
-REPLACE INTO `caja_laboratorio` (`idventa`, `codigo_examen`, `paciente`, `fecha`, `estado_pago`, `abonado`, `pendiente`, `total`) VALUES
-	('00000001', 'EL0001', 'Mosa Nayon', '16/06/2020', 'Contado', 0, NULL, 124),
-	('00000002', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Crédito', 100, 43, 143),
-	('00000003', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Crédito', 50, 74, 124),
-	('00000004', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', 75, 68, 143),
-	('00000005', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', 84, 40, 124),
-	('00000006', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 143),
-	('00000007', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 124),
-	('00000008', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 124),
-	('00000009', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 143),
-	('00000010', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', 120, 4, 124),
-	('00000011', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 124),
-	('00000012', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 143),
-	('00000013', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 124),
-	('00000014', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 124),
-	('00000015', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 124),
-	('00000016', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Contado', NULL, NULL, 124),
-	('00000017', 'EL0001', 'Mosa Nayon', '17/06/2020', 'Crédito', 125, 18, 143),
-	('00000018', 'EL0001', 'Mosa Nayon', '19/06/2020', 'Contado', NULL, NULL, 143),
-	('00000019', 'EL0001', 'Mosa Nayon', '19/06/2020', 'Crédito', 21, 124, 145),
-	('00000020', 'EL0002', 'jason class', '19/06/2020', 'Contado', 100, 105, 205),
-	('00000021', 'EL0001', 'Mosa Nayon', '10/07/2020', 'Contado', NULL, NULL, 143);
 /*!40000 ALTER TABLE `caja_laboratorio` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.caja_rayosx
@@ -170,16 +149,8 @@ CREATE TABLE IF NOT EXISTS `caja_rayosx` (
   `total` decimal(10,0) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla hondumedic.caja_rayosx: ~7 rows (aproximadamente)
+-- Volcando datos para la tabla hondumedic.caja_rayosx: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `caja_rayosx` DISABLE KEYS */;
-REPLACE INTO `caja_rayosx` (`idventa`, `codigo_examen`, `paciente`, `fecha`, `estado_pago`, `abonado`, `pendiente`, `total`) VALUES
-	('00000001', 'RX0001', 'jonas cruz', '19/06/2020', 'Contado', 200, 200, 400),
-	('00000002', 'RX0001', 'jonas cruz', '19/06/2020', 'Contado', NULL, NULL, 460),
-	('00000003', 'RX0001', 'jonas cruz', '19/06/2020', 'Contado', NULL, NULL, 464),
-	('00000004', 'RX0001', 'Greicy Cruz', '19/06/2020', 'Contado', NULL, NULL, 400),
-	('00000005', 'RX0001', 'jonas cruz', '19/06/2020', 'Contado', NULL, NULL, 460),
-	('00000006', 'RX0001', 'jonas cruz', '19/06/2020', 'Contado', NULL, NULL, 400),
-	('00000007', 'RX0001', 'jonas cruz', '19/06/2020', 'Contado', 400, 60, 460);
 /*!40000 ALTER TABLE `caja_rayosx` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.caja_servicios
@@ -262,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `cotizaciones_general` (
 -- Volcando datos para la tabla hondumedic.cotizaciones_general: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cotizaciones_general` DISABLE KEYS */;
 REPLACE INTO `cotizaciones_general` (`codigo`, `servicio`, `paciente`, `empleado`) VALUES
-	('00000001', 'De instalaciones de HONDUMEDIC a su domicilio. ', 'EMILIANO AGUILAR MALLQUI', 'Lauren Cruz');
+	('00000001', 'De instalaciones de HONDUMEDIC a su domicilio. ', '1502032151465', 'Lauren Cruz');
 /*!40000 ALTER TABLE `cotizaciones_general` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.cuentascobrar
@@ -340,13 +311,16 @@ CREATE TABLE IF NOT EXISTS `detalle_test_ambulancia` (
   `precio` varchar(50) NOT NULL,
   `cantidad` varchar(50) NOT NULL,
   `importe` varchar(50) NOT NULL,
+  `fecha` varchar(20) DEFAULT NULL,
+  `unidad` varchar(20) DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
--- Volcando datos para la tabla hondumedic.detalle_test_ambulancia: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla hondumedic.detalle_test_ambulancia: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_test_ambulancia` DISABLE KEYS */;
-REPLACE INTO `detalle_test_ambulancia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(14, 'RA0002', 'SA0001', '1502032151465', 'De instalaciones de HONDUMEDIC a su domicilio.', '3000', '1', '3000.0');
+REPLACE INTO `detalle_test_ambulancia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
+	(15, 'RA0001', 'SA0001', '1502032151465', 'De instalaciones de HONDUMEDIC a su domicilio.', '3000', '1', '3000.0', '26/10/2020 07:30:49', 'Ambulancia', 1);
 /*!40000 ALTER TABLE `detalle_test_ambulancia` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.detalle_test_cirugia
@@ -359,13 +333,16 @@ CREATE TABLE IF NOT EXISTS `detalle_test_cirugia` (
   `precio` varchar(50) NOT NULL,
   `cantidad` varchar(50) NOT NULL,
   `importe` varchar(50) NOT NULL,
+  `fecha` varchar(20) DEFAULT NULL,
+  `unidad` varchar(20) DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Volcando datos para la tabla hondumedic.detalle_test_cirugia: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_test_cirugia` DISABLE KEYS */;
-REPLACE INTO `detalle_test_cirugia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(6, 'RC0001', 'SC0001', '1502032151465', 'Cierre de Herida ', '100', '1', '100.0');
+REPLACE INTO `detalle_test_cirugia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
+	(6, 'RC0001', 'SC0001', '1502032151465', 'Cierre de Herida ', '100', '1', '100.0', NULL, NULL, 1);
 /*!40000 ALTER TABLE `detalle_test_cirugia` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.detalle_test_emergencia
@@ -378,33 +355,17 @@ CREATE TABLE IF NOT EXISTS `detalle_test_emergencia` (
   `precio` varchar(50) NOT NULL,
   `cantidad` varchar(50) NOT NULL,
   `importe` varchar(50) NOT NULL,
+  `fecha` varchar(20) DEFAULT NULL,
+  `unidad` varchar(20) DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Volcando datos para la tabla hondumedic.detalle_test_emergencia: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_test_emergencia` DISABLE KEYS */;
-REPLACE INTO `detalle_test_emergencia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(22, 'EE0001', 'SM0001', '1502032151465', 'Nebulización con salbutamol', '100', '2', '200.0');
+REPLACE INTO `detalle_test_emergencia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
+	(22, 'EE0001', 'SM0001', '1502032151465', 'Nebulización con salbutamol', '100', '2', '200.0', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `detalle_test_emergencia` ENABLE KEYS */;
-
--- Volcando estructura para tabla hondumedic.detalle_test_emergencia_apa
-CREATE TABLE IF NOT EXISTS `detalle_test_emergencia_apa` (
-  `id_detalle` int(11) NOT NULL AUTO_INCREMENT,
-  `idventa` varchar(50) NOT NULL,
-  `codigo` varchar(50) NOT NULL,
-  `p_s` varchar(100) NOT NULL,
-  `precio` varchar(50) NOT NULL,
-  `cantidad` varchar(50) NOT NULL,
-  `importe` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_detalle`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
--- Volcando datos para la tabla hondumedic.detalle_test_emergencia_apa: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `detalle_test_emergencia_apa` DISABLE KEYS */;
-REPLACE INTO `detalle_test_emergencia_apa` (`id_detalle`, `idventa`, `codigo`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(11, 'EE0001', 'SE0001', 'Nebulización con salbutamo', '100', '1', '100.0'),
-	(12, 'EE0001', 'PE0001', 'Guantes', '10.0', '2', '20.0');
-/*!40000 ALTER TABLE `detalle_test_emergencia_apa` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.detalle_test_endoscopia
 CREATE TABLE IF NOT EXISTS `detalle_test_endoscopia` (
@@ -416,13 +377,16 @@ CREATE TABLE IF NOT EXISTS `detalle_test_endoscopia` (
   `precio` varchar(50) NOT NULL,
   `cantidad` varchar(50) NOT NULL,
   `importe` varchar(50) NOT NULL,
+  `fecha` varchar(20) DEFAULT NULL,
+  `unidad` varchar(20) DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Volcando datos para la tabla hondumedic.detalle_test_endoscopia: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_test_endoscopia` DISABLE KEYS */;
-REPLACE INTO `detalle_test_endoscopia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(5, 'RE0001', 'SE0001', '15644153665', 'Endoscopia gástrica', '150', '1', '150.0');
+REPLACE INTO `detalle_test_endoscopia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
+	(5, 'RE0001', 'SE0001', '15644153665', 'Endoscopia gástrica', '150', '1', '150.0', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `detalle_test_endoscopia` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.detalle_test_hospitalizacion
@@ -435,34 +399,17 @@ CREATE TABLE IF NOT EXISTS `detalle_test_hospitalizacion` (
   `precio` varchar(50) NOT NULL,
   `cantidad` varchar(50) NOT NULL,
   `importe` varchar(50) NOT NULL,
+  `fecha` varchar(20) DEFAULT NULL,
+  `unidad` varchar(20) DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Volcando datos para la tabla hondumedic.detalle_test_hospitalizacion: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_test_hospitalizacion` DISABLE KEYS */;
-REPLACE INTO `detalle_test_hospitalizacion` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(12, 'EH0001', 'SH0001', '1502032151465', 'Cuidados de enfermería por día ', '75', '1', '75.0');
+REPLACE INTO `detalle_test_hospitalizacion` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
+	(12, 'EH0001', 'SH0001', '1502032151465', 'Cuidados de enfermería por día ', '75', '1', '75.0', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `detalle_test_hospitalizacion` ENABLE KEYS */;
-
--- Volcando estructura para tabla hondumedic.detalle_test_hospitalizacion_apa
-CREATE TABLE IF NOT EXISTS `detalle_test_hospitalizacion_apa` (
-  `id_detalle` int(11) NOT NULL AUTO_INCREMENT,
-  `idventa` varchar(50) NOT NULL,
-  `codigo` varchar(50) NOT NULL,
-  `p_s` varchar(100) NOT NULL,
-  `precio` varchar(50) NOT NULL,
-  `cantidad` varchar(50) NOT NULL,
-  `importe` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_detalle`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-
--- Volcando datos para la tabla hondumedic.detalle_test_hospitalizacion_apa: ~3 rows (aproximadamente)
-/*!40000 ALTER TABLE `detalle_test_hospitalizacion_apa` DISABLE KEYS */;
-REPLACE INTO `detalle_test_hospitalizacion_apa` (`id_detalle`, `idventa`, `codigo`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(8, 'EH0001', 'SH0001', 'Cuidados de enfermería por día ', '200', '1', '200.0'),
-	(9, 'EH0002', 'SH0001', 'Cuidados de enfermería por día ', '200', '1', '200.0'),
-	(10, 'EH0002', 'IH0001', 'Curas', '10.0', '2', '20.0');
-/*!40000 ALTER TABLE `detalle_test_hospitalizacion_apa` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.detalle_test_laboratorio
 CREATE TABLE IF NOT EXISTS `detalle_test_laboratorio` (
@@ -474,6 +421,9 @@ CREATE TABLE IF NOT EXISTS `detalle_test_laboratorio` (
   `precio` varchar(50) NOT NULL,
   `cantidad` varchar(50) NOT NULL,
   `importe` varchar(50) NOT NULL,
+  `fecha` varchar(20) DEFAULT NULL,
+  `unidad` varchar(20) DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
@@ -491,15 +441,18 @@ CREATE TABLE IF NOT EXISTS `detalle_test_rayosx` (
   `precio` varchar(50) NOT NULL,
   `cantidad` varchar(50) NOT NULL,
   `importe` varchar(50) NOT NULL,
+  `fecha` varchar(20) DEFAULT NULL,
+  `unidad` varchar(20) DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Volcando datos para la tabla hondumedic.detalle_test_rayosx: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_test_rayosx` DISABLE KEYS */;
-REPLACE INTO `detalle_test_rayosx` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(6, 'RX0001', 'IR0001', '1502032151465', 'rayo', '100.0', '2', '200.0'),
-	(7, 'RX0001', 'SR0001', '', 'Localizar Lesiones', '200', '1', '200.0'),
-	(8, 'RX0001', 'IR0001', '', 'rayo', '100.0', '2', '200.0');
+REPLACE INTO `detalle_test_rayosx` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
+	(6, 'RX0001', 'IR0001', '1502032151465', 'rayo', '100.0', '2', '200.0', NULL, NULL, NULL),
+	(7, 'RX0001', 'SR0001', '', 'Localizar Lesiones', '200', '1', '200.0', NULL, NULL, NULL),
+	(8, 'RX0001', 'IR0001', '', 'rayo', '100.0', '2', '200.0', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `detalle_test_rayosx` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.detalle_test_ultrasonido
@@ -512,15 +465,18 @@ CREATE TABLE IF NOT EXISTS `detalle_test_ultrasonido` (
   `precio` varchar(50) NOT NULL,
   `cantidad` varchar(50) NOT NULL,
   `importe` varchar(50) NOT NULL,
+  `fecha` varchar(20) DEFAULT NULL,
+  `unidad` varchar(20) DEFAULT NULL,
+  `estado` int(1) DEFAULT NULL,
   PRIMARY KEY (`id_detalle`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- Volcando datos para la tabla hondumedic.detalle_test_ultrasonido: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_test_ultrasonido` DISABLE KEYS */;
-REPLACE INTO `detalle_test_ultrasonido` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`) VALUES
-	(5, 'RU0001', 'IU0001', '', 'Guantes', '10.0', '1', '10.0'),
-	(6, 'RU0001', 'SU0001', '', 'Ultrasonido Doppler', '500', '1', '500.0'),
-	(7, 'RU0001', 'IU0001', '', 'Guantes', '10.0', '2', '20.0');
+REPLACE INTO `detalle_test_ultrasonido` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
+	(5, 'RU0001', 'IU0001', '', 'Guantes', '10.0', '1', '10.0', NULL, NULL, NULL),
+	(6, 'RU0001', 'SU0001', '', 'Ultrasonido Doppler', '500', '1', '500.0', NULL, NULL, NULL),
+	(7, 'RU0001', 'IU0001', '', 'Guantes', '10.0', '2', '20.0', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `detalle_test_ultrasonido` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.edificios
@@ -655,22 +611,6 @@ REPLACE INTO `inventario_emergencia` (`codigo_emergencia`, `nombre`, `precio`, `
 	('PE0002', 'Mascarilla', 30, '', 4);
 /*!40000 ALTER TABLE `inventario_emergencia` ENABLE KEYS */;
 
--- Volcando estructura para tabla hondumedic.inventario_emergencia_apa
-CREATE TABLE IF NOT EXISTS `inventario_emergencia_apa` (
-  `codigo_emergencia` varchar(20) NOT NULL DEFAULT '',
-  `nombre` varchar(50) NOT NULL,
-  `precio` float NOT NULL,
-  `descripcion` varchar(150) DEFAULT NULL,
-  `cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`codigo_emergencia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla hondumedic.inventario_emergencia_apa: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `inventario_emergencia_apa` DISABLE KEYS */;
-REPLACE INTO `inventario_emergencia_apa` (`codigo_emergencia`, `nombre`, `precio`, `descripcion`, `cantidad`) VALUES
-	('PE0001', 'Guantes', 10, '', 8);
-/*!40000 ALTER TABLE `inventario_emergencia_apa` ENABLE KEYS */;
-
 -- Volcando estructura para tabla hondumedic.inventario_endoscopia
 CREATE TABLE IF NOT EXISTS `inventario_endoscopia` (
   `codigo_endoscopia` varchar(20) NOT NULL DEFAULT '',
@@ -689,23 +629,25 @@ REPLACE INTO `inventario_endoscopia` (`codigo_endoscopia`, `nombre`, `precio`, `
 
 -- Volcando estructura para tabla hondumedic.inventario_farmacia
 CREATE TABLE IF NOT EXISTS `inventario_farmacia` (
-  `codigo_farmacia` varchar(20) NOT NULL DEFAULT '',
-  `codigo_barras` varchar(20) NOT NULL DEFAULT '',
+  `codigo_farmacia` varchar(20) NOT NULL,
+  `codigo_barras` varchar(20) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `casa_farmaceutica` varchar(50) DEFAULT NULL,
   `precio_compra` float NOT NULL,
   `precio_venta` decimal(10,0) NOT NULL DEFAULT 0,
+  `isv` varchar(150) NOT NULL,
+  `fechaingreso` varchar(20) NOT NULL,
+  `fechavencimiento` varchar(20) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `isv` varchar(150) DEFAULT NULL,
+  `cantidad_minima` int(11) NOT NULL DEFAULT 0,
   `descripcion` text DEFAULT NULL,
   PRIMARY KEY (`codigo_farmacia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla hondumedic.inventario_farmacia: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `inventario_farmacia` DISABLE KEYS */;
-REPLACE INTO `inventario_farmacia` (`codigo_farmacia`, `codigo_barras`, `nombre`, `casa_farmaceutica`, `precio_compra`, `precio_venta`, `cantidad`, `isv`, `descripcion`) VALUES
-	('PF0001', '12345678', 'BRONCOPULMIN GOTAS X 30 ML', '', 5, 6, 4, '15', ''),
-	('PF0002', '', 'RHINOMER', 'Farmacias Kielsa', 500, 575, 2, '15', 'Nebulizador de agua de mar isotónica y estéril para la limpieza nasal. Fuerza 3 (ROJO) ha sido especialmente concebido para aquellos casos en que es necesario un gran lavado nasal en adultos y niños mayores de 6 años');
+REPLACE INTO `inventario_farmacia` (`codigo_farmacia`, `codigo_barras`, `nombre`, `casa_farmaceutica`, `precio_compra`, `precio_venta`, `isv`, `fechaingreso`, `fechavencimiento`, `cantidad`, `cantidad_minima`, `descripcion`) VALUES
+	('PF0001', '445343', 'fcxb', 'uhjjhgk', 45, 63, '33', '22/10/2020', '23/10/2023', 5, 10, '');
 /*!40000 ALTER TABLE `inventario_farmacia` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.inventario_hospitalizacion
@@ -723,22 +665,6 @@ CREATE TABLE IF NOT EXISTS `inventario_hospitalizacion` (
 REPLACE INTO `inventario_hospitalizacion` (`codigo_hospitalizacion`, `nombre`, `precio`, `descripcion`, `cantidad`) VALUES
 	('IH0001', 'Curas', 10, '', 42);
 /*!40000 ALTER TABLE `inventario_hospitalizacion` ENABLE KEYS */;
-
--- Volcando estructura para tabla hondumedic.inventario_hospitalizacion_apa
-CREATE TABLE IF NOT EXISTS `inventario_hospitalizacion_apa` (
-  `codigo_hospitalizacion` varchar(50) NOT NULL DEFAULT '',
-  `nombre` varchar(50) NOT NULL,
-  `precio` float NOT NULL,
-  `descripcion` varchar(150) DEFAULT NULL,
-  `cantidad` int(11) NOT NULL,
-  PRIMARY KEY (`codigo_hospitalizacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Volcando datos para la tabla hondumedic.inventario_hospitalizacion_apa: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `inventario_hospitalizacion_apa` DISABLE KEYS */;
-REPLACE INTO `inventario_hospitalizacion_apa` (`codigo_hospitalizacion`, `nombre`, `precio`, `descripcion`, `cantidad`) VALUES
-	('IH0001', 'Curas', 10, '', 6);
-/*!40000 ALTER TABLE `inventario_hospitalizacion_apa` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.inventario_laboratorio
 CREATE TABLE IF NOT EXISTS `inventario_laboratorio` (
@@ -824,7 +750,7 @@ REPLACE INTO `nfactura` (`id`, `val`) VALUES
 -- Volcando estructura para tabla hondumedic.paciente
 CREATE TABLE IF NOT EXISTS `paciente` (
   `codigo_paciente` varchar(20) NOT NULL DEFAULT '',
-  `id_empleado` varchar(20) NOT NULL DEFAULT '',
+  `responsable` varchar(20) NOT NULL DEFAULT '',
   `nombre` varchar(20) NOT NULL,
   `apellido` varchar(20) NOT NULL,
   `direccion` varchar(150) DEFAULT NULL,
@@ -832,13 +758,14 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `telefono` int(15) NOT NULL,
   `unidad` varchar(50) NOT NULL DEFAULT '',
   `unidad_referente` varchar(50) NOT NULL DEFAULT '',
+  `correo` varchar(50) DEFAULT '',
   PRIMARY KEY (`codigo_paciente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla hondumedic.paciente: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `paciente` DISABLE KEYS */;
-REPLACE INTO `paciente` (`codigo_paciente`, `id_empleado`, `nombre`, `apellido`, `direccion`, `edad`, `telefono`, `unidad`, `unidad_referente`) VALUES
-	('1502032151465', '0801995757955', 'Liz', 'Nilzen', '', 22, 879451032, 'APA', 'Emergencia');
+REPLACE INTO `paciente` (`codigo_paciente`, `responsable`, `nombre`, `apellido`, `direccion`, `edad`, `telefono`, `unidad`, `unidad_referente`, `correo`) VALUES
+	('1502032151465', 'Bely Mendoza', 'Liz', 'Nilzen', '', 22, 879451032, 'APA', 'Emergencia', '');
 /*!40000 ALTER TABLE `paciente` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.prestamos
@@ -859,3 +786,366 @@ CREATE TABLE IF NOT EXISTS `prestamos` (
 
 -- Volcando datos para la tabla hondumedic.prestamos: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `prestamos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prestamos` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.registrar_ambulancia
+CREATE TABLE IF NOT EXISTS `registrar_ambulancia` (
+  `codigo_ambulancia` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `marca` varchar(50) DEFAULT NULL,
+  `year` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo_ambulancia`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.registrar_ambulancia: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `registrar_ambulancia` DISABLE KEYS */;
+REPLACE INTO `registrar_ambulancia` (`codigo_ambulancia`, `nombre`, `marca`, `year`) VALUES
+	(2, 'Ambulancia Individual. ', 'Toyota', 1998),
+	(3, 'Ambulancia Colectiva', 'Toyota', 2000);
+/*!40000 ALTER TABLE `registrar_ambulancia` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.registro_venta
+CREATE TABLE IF NOT EXISTS `registro_venta` (
+  `numero` varchar(20) NOT NULL DEFAULT '',
+  `total` decimal(10,2) DEFAULT NULL,
+  `fecha` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`numero`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.registro_venta: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `registro_venta` DISABLE KEYS */;
+REPLACE INTO `registro_venta` (`numero`, `total`, `fecha`) VALUES
+	('45', 516.00, '25/04/2020');
+/*!40000 ALTER TABLE `registro_venta` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.servicio_ambulancia
+CREATE TABLE IF NOT EXISTS `servicio_ambulancia` (
+  `codigo_ambulancia` varchar(50) NOT NULL DEFAULT '',
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `precio` decimal(10,0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo_ambulancia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.servicio_ambulancia: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `servicio_ambulancia` DISABLE KEYS */;
+REPLACE INTO `servicio_ambulancia` (`codigo_ambulancia`, `nombre`, `descripcion`, `precio`) VALUES
+	('SA0001', 'De instalaciones de HONDUMEDIC a su domicilio.', '', 3000);
+/*!40000 ALTER TABLE `servicio_ambulancia` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.servicio_emergencia
+CREATE TABLE IF NOT EXISTS `servicio_emergencia` (
+  `codigo_emergencia` varchar(20) NOT NULL DEFAULT '',
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(150) DEFAULT NULL,
+  `precio` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`codigo_emergencia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.servicio_emergencia: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `servicio_emergencia` DISABLE KEYS */;
+REPLACE INTO `servicio_emergencia` (`codigo_emergencia`, `nombre`, `descripcion`, `precio`) VALUES
+	('SM0001', 'Nebulización con salbutamol', '', 100);
+/*!40000 ALTER TABLE `servicio_emergencia` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.servicio_endoscopia
+CREATE TABLE IF NOT EXISTS `servicio_endoscopia` (
+  `codigo_endoscopia` varchar(20) NOT NULL DEFAULT '',
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(150) DEFAULT NULL,
+  `precio` decimal(10,0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo_endoscopia`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.servicio_endoscopia: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `servicio_endoscopia` DISABLE KEYS */;
+REPLACE INTO `servicio_endoscopia` (`codigo_endoscopia`, `nombre`, `descripcion`, `precio`) VALUES
+	('SE0001', 'Endoscopia gástrica', '', 150),
+	('SE0002', 'Endoscopia colónica ', '', 300);
+/*!40000 ALTER TABLE `servicio_endoscopia` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.servicio_hospitalizacion
+CREATE TABLE IF NOT EXISTS `servicio_hospitalizacion` (
+  `codigo_hospitalizacion` varchar(20) NOT NULL DEFAULT '',
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(150) DEFAULT NULL,
+  `precio` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`codigo_hospitalizacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.servicio_hospitalizacion: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `servicio_hospitalizacion` DISABLE KEYS */;
+REPLACE INTO `servicio_hospitalizacion` (`codigo_hospitalizacion`, `nombre`, `descripcion`, `precio`) VALUES
+	('SH0001', 'Cuidados de enfermería por día ', '', 75);
+/*!40000 ALTER TABLE `servicio_hospitalizacion` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.servicio_laboratorio
+CREATE TABLE IF NOT EXISTS `servicio_laboratorio` (
+  `codigo_laboratorio` varchar(20) NOT NULL DEFAULT '',
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(150) DEFAULT NULL,
+  `precio` decimal(10,0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo_laboratorio`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.servicio_laboratorio: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `servicio_laboratorio` DISABLE KEYS */;
+REPLACE INTO `servicio_laboratorio` (`codigo_laboratorio`, `nombre`, `descripcion`, `precio`) VALUES
+	('SL0001', 'Muestra de Sangre', 'dmfv', 100);
+/*!40000 ALTER TABLE `servicio_laboratorio` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.servicio_rayosx
+CREATE TABLE IF NOT EXISTS `servicio_rayosx` (
+  `codigo_rayosx` varchar(20) NOT NULL DEFAULT 'AUTO_INCREMENT',
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(150) DEFAULT NULL,
+  `precio` decimal(10,0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo_rayosx`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.servicio_rayosx: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `servicio_rayosx` DISABLE KEYS */;
+REPLACE INTO `servicio_rayosx` (`codigo_rayosx`, `nombre`, `descripcion`, `precio`) VALUES
+	('SR0001', 'Localizar Lesiones', '', 200);
+/*!40000 ALTER TABLE `servicio_rayosx` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.servicio_ultrasonido
+CREATE TABLE IF NOT EXISTS `servicio_ultrasonido` (
+  `codigo_ultrasonido` varchar(20) NOT NULL DEFAULT '',
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(150) DEFAULT NULL,
+  `precio` decimal(10,0) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo_ultrasonido`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.servicio_ultrasonido: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `servicio_ultrasonido` DISABLE KEYS */;
+REPLACE INTO `servicio_ultrasonido` (`codigo_ultrasonido`, `nombre`, `descripcion`, `precio`) VALUES
+	('SU0001', 'Ultrasonido Doppler', 'Permite estudiar el cordón umbilical, la circulación cerebral y cardiaca fetal, así como la circulación uterina.', 500);
+/*!40000 ALTER TABLE `servicio_ultrasonido` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.test_ambulancia
+CREATE TABLE IF NOT EXISTS `test_ambulancia` (
+  `codigo` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL DEFAULT '',
+  `medico_1` varchar(20) DEFAULT NULL,
+  `conductor` varchar(20) NOT NULL,
+  `ambulancia` varchar(30) NOT NULL,
+  `origen` varchar(50) NOT NULL,
+  `destino` varchar(50) NOT NULL,
+  `km` varchar(50) NOT NULL,
+  `fecha` varchar(50) NOT NULL,
+  `total` double NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo`),
+  KEY `paciente` (`paciente`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.test_ambulancia: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `test_ambulancia` DISABLE KEYS */;
+REPLACE INTO `test_ambulancia` (`codigo`, `paciente`, `medico_1`, `conductor`, `ambulancia`, `origen`, `destino`, `km`, `fecha`, `total`, `estado`) VALUES
+	('RA0001', '1502032151465', '', 'Cristian Antunez', 'Ambulancia Individual. ', 'Catacamas', 'Juticalpa', '100', '26/10/2020 07:30:49', 3000, 1);
+/*!40000 ALTER TABLE `test_ambulancia` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.test_cirugia
+CREATE TABLE IF NOT EXISTS `test_cirugia` (
+  `codigo` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL,
+  `medico_1` varchar(20) NOT NULL,
+  `medico_2` varchar(20) NOT NULL,
+  `num_habitacion` varchar(15) NOT NULL,
+  `observaciones` varchar(150) DEFAULT NULL,
+  `fecha` varchar(50) NOT NULL,
+  `total` double NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.test_cirugia: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `test_cirugia` DISABLE KEYS */;
+REPLACE INTO `test_cirugia` (`codigo`, `paciente`, `medico_1`, `medico_2`, `num_habitacion`, `observaciones`, `fecha`, `total`, `estado`) VALUES
+	('RC0001', '1502032151465', 'Rocio Paz', 'Lauren Cruz', '202', '', '16/09/2020 18:08:04', 100, 0);
+/*!40000 ALTER TABLE `test_cirugia` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.test_emergencia
+CREATE TABLE IF NOT EXISTS `test_emergencia` (
+  `codigo` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL DEFAULT '',
+  `medico_1` varchar(20) NOT NULL,
+  `medico_2` varchar(20) NOT NULL,
+  `medico_3` varchar(20) NOT NULL,
+  `num_habitacion` varchar(15) NOT NULL,
+  `observaciones` varchar(150) DEFAULT NULL,
+  `fecha` varchar(50) NOT NULL,
+  `total` double NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo`),
+  KEY `paciente` (`paciente`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.test_emergencia: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `test_emergencia` DISABLE KEYS */;
+REPLACE INTO `test_emergencia` (`codigo`, `paciente`, `medico_1`, `medico_2`, `medico_3`, `num_habitacion`, `observaciones`, `fecha`, `total`, `estado`) VALUES
+	('EE0001', '0801199502154', 'Lauren Cruz', 'Lauren Cruz', 'Cristian Antunez', '105', '', '16/09/2020 15:31:52', 110, 0);
+/*!40000 ALTER TABLE `test_emergencia` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.test_endoscopia
+CREATE TABLE IF NOT EXISTS `test_endoscopia` (
+  `codigo` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL,
+  `medico_1` varchar(20) NOT NULL,
+  `medico_2` varchar(20) NOT NULL,
+  `medico_3` varchar(20) NOT NULL,
+  `num_habitacion` varchar(15) NOT NULL,
+  `observaciones` varchar(150) DEFAULT NULL,
+  `fecha` varchar(50) NOT NULL,
+  `total` double NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo`),
+  KEY `paciente` (`paciente`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.test_endoscopia: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `test_endoscopia` DISABLE KEYS */;
+REPLACE INTO `test_endoscopia` (`codigo`, `paciente`, `medico_1`, `medico_2`, `medico_3`, `num_habitacion`, `observaciones`, `fecha`, `total`, `estado`) VALUES
+	('RE0001', '0198111140802', 'Rocio Paz', 'Rocio Paz', 'Lauren Cruz', '101', '', '16/09/2020 17:42:39', 150, 0);
+/*!40000 ALTER TABLE `test_endoscopia` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.test_hospitalizacion
+CREATE TABLE IF NOT EXISTS `test_hospitalizacion` (
+  `codigo` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL,
+  `encargado` varchar(20) NOT NULL,
+  `medico_3` varchar(20) DEFAULT NULL,
+  `num_habitacion` varchar(15) DEFAULT NULL,
+  `observaciones` varchar(150) DEFAULT NULL,
+  `fecha` varchar(50) NOT NULL,
+  `total` double DEFAULT NULL,
+  `estado` int(1) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.test_hospitalizacion: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `test_hospitalizacion` DISABLE KEYS */;
+REPLACE INTO `test_hospitalizacion` (`codigo`, `paciente`, `encargado`, `medico_3`, `num_habitacion`, `observaciones`, `fecha`, `total`, `estado`) VALUES
+	('EH0001', '0801199502154', 'Rocio Paz', 'Rocio Paz', '101', 'Desconocido', '17/09/2020 13:20:42', 75, 1);
+/*!40000 ALTER TABLE `test_hospitalizacion` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.test_laboratorio
+CREATE TABLE IF NOT EXISTS `test_laboratorio` (
+  `codigo` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL,
+  `medico_1` varchar(20) NOT NULL,
+  `medico_2` varchar(20) NOT NULL,
+  `num_habitacion` varchar(15) NOT NULL,
+  `observaciones` varchar(150) DEFAULT NULL,
+  `fecha` varchar(50) NOT NULL,
+  `total` double NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.test_laboratorio: ~1 rows (aproximadamente)
+/*!40000 ALTER TABLE `test_laboratorio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `test_laboratorio` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.test_rayosx
+CREATE TABLE IF NOT EXISTS `test_rayosx` (
+  `codigo` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL,
+  `medico_1` varchar(20) NOT NULL,
+  `medico_2` varchar(20) NOT NULL,
+  `num_habitacion` varchar(15) NOT NULL,
+  `observaciones` varchar(150) DEFAULT NULL,
+  `fecha` varchar(50) NOT NULL,
+  `total` double NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.test_rayosx: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `test_rayosx` DISABLE KEYS */;
+REPLACE INTO `test_rayosx` (`codigo`, `paciente`, `medico_1`, `medico_2`, `num_habitacion`, `observaciones`, `fecha`, `total`, `estado`) VALUES
+	('RX0001', '1502032151465', 'Lauren Cruz', 'Lauren Cruz', '23', '', '19/06/2020 15:03:53', 600, 0);
+/*!40000 ALTER TABLE `test_rayosx` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.test_ultrasonido
+CREATE TABLE IF NOT EXISTS `test_ultrasonido` (
+  `codigo` varchar(20) NOT NULL DEFAULT '',
+  `paciente` varchar(20) NOT NULL,
+  `medico_1` varchar(20) NOT NULL,
+  `medico_2` varchar(20) NOT NULL,
+  `medico_3` varchar(20) NOT NULL,
+  `num_habitacion` varchar(15) NOT NULL,
+  `observaciones` varchar(150) DEFAULT NULL,
+  `fecha` varchar(50) NOT NULL,
+  `total` double NOT NULL,
+  `estado` int(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla hondumedic.test_ultrasonido: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `test_ultrasonido` DISABLE KEYS */;
+REPLACE INTO `test_ultrasonido` (`codigo`, `paciente`, `medico_1`, `medico_2`, `medico_3`, `num_habitacion`, `observaciones`, `fecha`, `total`, `estado`) VALUES
+	('RU0001', 'Liz Nilzen', 'Lauren Cruz', 'Lauren Cruz', 'Lauren Cruz', '0021', '', '27/06/2020 15:05:59', 530, 0);
+/*!40000 ALTER TABLE `test_ultrasonido` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.unidad_apa
+CREATE TABLE IF NOT EXISTS `unidad_apa` (
+  `codigo_unidad_apa` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` varchar(100) DEFAULT NULL,
+  `precio` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`codigo_unidad_apa`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.unidad_apa: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `unidad_apa` DISABLE KEYS */;
+REPLACE INTO `unidad_apa` (`codigo_unidad_apa`, `nombre`, `descripcion`, `precio`) VALUES
+	(2, 're', 'er', 568);
+/*!40000 ALTER TABLE `unidad_apa` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `codigo` int(100) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(20) NOT NULL,
+  `apellido` varchar(20) NOT NULL,
+  `fecha_nacimiento` varchar(50) NOT NULL DEFAULT '',
+  `sexo` varchar(1) NOT NULL,
+  `telefono` int(11),
+  `correo` varchar(50) DEFAULT NULL,
+  `direccion` varchar(100) DEFAULT NULL,
+  `unidad` varchar(50) NOT NULL,
+  `rol` varchar(20) NOT NULL,
+  `usuario` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.usuarios: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+REPLACE INTO `usuarios` (`codigo`, `nombre`, `apellido`, `fecha_nacimiento`, `sexo`, `telefono`, `correo`, `direccion`, `unidad`, `rol`, `usuario`, `password`) VALUES
+	(1, 'Enmanuel', 'Admin', '01/06/2020', 'M', 504123255, '', '', 'Ambulancia', 'Administrador', 'admin', 'admin'),
+	(3, 'Obelsy', 'Rodriguez', '09/01/1998', 'F', 98968694, 'obelsy@gmail.com', 'El culebrero', 'Ambulancia', 'Administrador', 'Administrador', 'Administrador');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+
+-- Volcando estructura para tabla hondumedic.vehiculos
+CREATE TABLE IF NOT EXISTS `vehiculos` (
+  `idvehiculo` int(11) NOT NULL AUTO_INCREMENT,
+  `vehmarca` varchar(50) NOT NULL DEFAULT '',
+  `vehmodelo` varchar(50) NOT NULL DEFAULT '',
+  `vehanio` int(4) NOT NULL,
+  `vehdescripcion` varchar(100) DEFAULT '',
+  `vehvalorini` float NOT NULL,
+  `vehdepreciacion` float DEFAULT NULL,
+  `vehvaloractual` float NOT NULL,
+  `vehfechacompra` date NOT NULL,
+  `vehfechaingreso` date NOT NULL,
+  `vehtotal` float NOT NULL,
+  PRIMARY KEY (`idvehiculo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Volcando datos para la tabla hondumedic.vehiculos: ~0 rows (aproximadamente)
+/*!40000 ALTER TABLE `vehiculos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vehiculos` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

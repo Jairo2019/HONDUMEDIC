@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package Inventarios;
-import static Inventarios.inventario_laboratorio.cn;
-import paneles.JasperCompilerManager;
 import paneles.*;
-import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
 import java.sql.Connection;
@@ -17,9 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 import principal.GenerarCodigos;
@@ -71,7 +66,6 @@ PreparedStatement pst=null;
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        btnsave = new rsbuttom.RSButtonMetro();
         btnUpdate = new rsbuttom.RSButtonMetro();
         btncancel = new rsbuttom.RSButtonMetro();
         btnDelete = new rsbuttom.RSButtonMetro();
@@ -264,27 +258,6 @@ PreparedStatement pst=null;
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(607, 40));
 
-        btnsave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Save_32.png"))); // NOI18N
-        btnsave.setText("Guardar");
-        btnsave.setToolTipText("");
-        btnsave.setColorHover(new java.awt.Color(12, 140, 143));
-        btnsave.setColorPressed(new java.awt.Color(12, 140, 143));
-        btnsave.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        btnsave.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnsave.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnsave.setIconTextGap(10);
-        btnsave.setPreferredSize(new java.awt.Dimension(150, 32));
-        btnsave.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnsaveMouseClicked(evt);
-            }
-        });
-        btnsave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnsaveActionPerformed(evt);
-            }
-        });
-
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update_32.png"))); // NOI18N
         btnUpdate.setText("Editar");
         btnUpdate.setToolTipText("");
@@ -343,9 +316,7 @@ PreparedStatement pst=null;
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,7 +329,6 @@ PreparedStatement pst=null;
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 7, Short.MAX_VALUE))
@@ -575,7 +545,12 @@ PreparedStatement pst=null;
     }// </editor-fold>//GEN-END:initComponents
 private void Get_Data(){
         Reset();
-        String sql="select codigo_ambulancia as 'Codigo', nombre as 'Nombre', descripcion as 'Descripción', precio as 'Precio', cantidad as 'Cantidad Disponible' from inventario_ambulancia";
+        String sql="select codigo_ambulancia as 'Codigo',"
+                + " nombre as 'Nombre',"
+                + " descripcion as 'Descripción', "
+                + "precio as 'Precio',"
+                + " cantidad as 'Cantidad Disponible' "
+                + "from inventario_ambulancia";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -632,7 +607,6 @@ public void extraerID() {
     txtPrecio.setText("");
     txtCodigo.setText("");
     txtcantidad.setText("");
-    btnsave.setEnabled(true);
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
@@ -684,7 +658,6 @@ public void extraerID() {
             txtPrecio.setText(tableUsers.getModel().getValueAt(row,3).toString());
             txtcantidad.setText(tableUsers.getModel().getValueAt(row,4).toString());
 
-            this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
             this.btncancel.setEnabled(false);
@@ -693,41 +666,6 @@ public void extraerID() {
             JOptionPane.showMessageDialog(this,ex);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_tableUsersMouseClicked
-
-    private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnsaveMouseClicked
-
-    private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
-        try{
-            con=Conexion.ConnectDB();
-            if (txtName.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtPrecio.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Precio","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtcantidad.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into inventario_ambulancia(codigo_ambulancia,nombre,precio,descripcion,cantidad) values ('"+txtCodigo.getText()+"','"+txtName.getText()+"','" + txtPrecio.getText() +"','" +txtDescripcion.getText()+ "','" +txtcantidad.getText()+ "')";
-
-            pst=con.prepareStatement(sql);
-            pst.execute();
-
-            JOptionPane.showMessageDialog(this,"Registrado con éxito","Inventario Ambulancia",JOptionPane.INFORMATION_MESSAGE);
-            btnsave.setEnabled(false);
-            this.jTabbedPane2.setSelectedIndex(0);
-            Get_Data();
-            Reset();
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
-        } // TODO add your handling code here:
-    }//GEN-LAST:event_btnsaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
@@ -801,7 +739,6 @@ public void extraerID() {
     private rsbuttom.RSButtonMetro btnDelete;
     private rsbuttom.RSButtonMetro btnUpdate;
     private rsbuttom.RSButtonMetro btncancel;
-    private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     private javax.swing.JLabel jLabel10;
