@@ -249,7 +249,12 @@ PreparedStatement pst=null;
     }// </editor-fold>//GEN-END:initComponents
 private void Get_Data(){
 
-        String sql="select codigo_cirugia as 'Codigo', nombre as 'Nombre', descripcion as 'Descripción', precio as 'Precio', cantidad as 'Cantidad Disponible' from inventario_cirugia";
+        String sql="select codigo_cirugia as 'Codigo', "
+                + "nombre as 'Nombre', "
+                + "descripcion as 'Descripción', "
+                + "precio as 'Precio', "
+                + "cantidad as 'Cantidad Disponible' "
+                + "from inventario_cirugia";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
