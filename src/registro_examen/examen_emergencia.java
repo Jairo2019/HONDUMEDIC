@@ -923,14 +923,20 @@ static Conexion cc = new Conexion();
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "importe) values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
                 +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
-                +importe+ "')";
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Emergencia"+"','" 
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -1152,7 +1158,8 @@ private void edit_detalle(){
                     + "num_habitacion,"
                     + "observaciones,"
                     + "fecha,"
-                    + "total) values ('"
+                    + "total,"
+                    + "estado) values ('"
                     +numFac.getText()
                     +"','" +lblidpaciente.getText()
                     +"','" +txtmedicoadmin.getText()
@@ -1161,7 +1168,8 @@ private void edit_detalle(){
                     +"','"+txtnumhabitacion.getText()
                     +"','" +txtdescripcion.getText()
                     +"','" + txtFecha.getText()
-                    +"','" +lblTotal.getText() + "')";
+                    +"','" + lblTotal.getText()
+                    +"','" +"1" + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 

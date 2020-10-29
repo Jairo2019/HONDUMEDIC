@@ -852,7 +852,8 @@ static Conexion cc = new Conexion();
                 + "total as 'Total (L)' "
                 + "from test_cirugia"
                 + " inner join paciente on "
-                + " paciente = codigo_paciente";
+                + " paciente = codigo_paciente "
+                + "where estado =1";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -982,7 +983,11 @@ private void edit_detalle(){
     private void show_detalle(){
         String sql="select codigo as 'Codigo',"
                 + "p_s as 'Producto/Servicio"
-                + "precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_cirugia where idventa='" + numFac.getText() + "' ";
+                + "precio as 'Precio',"
+                + "cantidad as 'Cantidad',"
+                + "importe as 'Importe' "
+                + "from detalle_test_cirugia "
+                + "where idventa='" + numFac.getText() + "' and estado=1 ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1019,7 +1024,7 @@ private void edit_detalle(){
                 + "total as 'Total (L)' "
                 + "from test_cirugia"
                 + " inner join paciente on "
-                + " paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
+                + " paciente = codigo_paciente where estado=1 and CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
