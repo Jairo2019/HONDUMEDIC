@@ -172,11 +172,11 @@ static Conexion cc = new Conexion();
             }
         });
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/test_48.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/caja.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Registro");
+        jLabel4.setText("Caja");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -334,7 +334,7 @@ static Conexion cc = new Conexion();
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(456, Short.MAX_VALUE))
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
@@ -614,7 +614,7 @@ static Conexion cc = new Conexion();
         txttotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txttotal.setForeground(new java.awt.Color(255, 255, 255));
         txttotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txttotal.setText("SUBTOTAL: L");
+        txttotal.setText("TOTAL: L");
         txttotal.setToolTipText("");
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -639,8 +639,8 @@ static Conexion cc = new Conexion();
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -721,7 +721,7 @@ static Conexion cc = new Conexion();
                 .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -793,7 +793,7 @@ static Conexion cc = new Conexion();
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE))
         );
 
         jTabbedPane2.getAccessibleContext().setAccessibleName("Registro de Ventas");
@@ -886,7 +886,8 @@ static Conexion cc = new Conexion();
                 + " total as 'Total (L)'"
                 + " from test_endoscopia"
                 + " inner join paciente on"
-                + " paciente = codigo_paciente";
+                + " paciente = codigo_paciente"
+                + " where estado=1";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -948,14 +949,20 @@ private void edit_detalle(){
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "importe) values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
                 +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
-                +importe+ "')";
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Emergencia"+"','" 
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -981,15 +988,20 @@ private void edit_detalle(){
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "mporte) "
-                + "values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
                 +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
-                +importe+ "')";
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Emergencia"+"','" 
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -1002,7 +1014,12 @@ private void edit_detalle(){
     }
          }
     private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_endoscopia where idventa='" + numFac.getText() + "' ";
+        String sql="select codigo as 'Codigo',"
+                + "p_s as 'Prodcuto/Servicio',"
+                + "precio as 'Precio',"
+                + "cantidad as 'Cantidad',"
+                + "importe as 'Importe' "
+                + "from detalle_test_endoscopia where idventa='" + numFac.getText() + "' and estado=1";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1041,7 +1058,7 @@ private void edit_detalle(){
                 + " total as 'Total (L)'"
                 + " from test_endoscopia"
                 + " inner join paciente on"
-                + " paciente = codigo_paciente WHERE CONCAT(nombre,' ', apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
+                + " paciente = codigo_paciente WHERE estado=1 and CONCAT(nombre,' ', apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1150,7 +1167,8 @@ private void edit_detalle(){
                     + "num_habitacion,"
                     + "observaciones,"
                     + "fecha,"
-                    + "total) values ('"
+                    + "total,"
+                    + "estado) values ('"
                     +numFac.getText()+"','" 
                     +lblidpaciente.getText()+"','" 
                     +txtmedicoadmin.getText()
@@ -1159,7 +1177,8 @@ private void edit_detalle(){
                     +"','"+txtnumhabitacion.getText()
                     +"','" +txtdescripcion.getText()
                     +"','" + txtFecha.getText()
-                    +"','" +lblTotal.getText() + "')";
+                    +"','" + lblTotal.getText()
+                    +"','" +"1" + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 

@@ -62,7 +62,6 @@ static Conexion cc = new Conexion();
         initComponents();
         tablaCaja.getTableHeader().setDefaultRenderer(new principal.EstiloTablaHeader());
         tablaCaja.setDefaultRenderer(Object.class, new principal.EstiloTablaRenderer());
-        //this.setFrameIcon(new ImageIcon(getClass().getResource("/imagenes/caja/icono.png")));
         tablaCaja.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         con= Conexion.ConnectDB();
         Get_Data();
@@ -495,13 +494,17 @@ static Conexion cc = new Conexion();
         limpiaCampos();
         String sql="select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + " medico_1 as 'Ordeno Salida',"
-                + "fecha as 'Fecha y Hora de Salida' "
-                + " from test_hospitalizacion "
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
+                + "encargado as 'Encargado del paciente',"
+                + "medico_3 as 'Ordeno Salida',"
+                + "num_habitacion as 'Habitación',"
+                + "observaciones as'Motivo de Ingreso',"
+                + "fecha as 'Fecha y Hora',"
+                + " total as 'Total (L)'"
+                + " from test_hospitalizacion"
                 + " inner join paciente on"
                 + " paciente = codigo_paciente"
-                + " where estado=0 ";
+                + " where estado=0";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -516,7 +519,10 @@ static Conexion cc = new Conexion();
     void actualizarIngreso() {
         try{
             con=Conexion.ConnectDB();
-            String sql= " '"+ txtmedicosalida.getText()+ "',fecha='" + txtFecha.getText() + "',estado='" + 0+ "' where codigo='" + lblcodigo.getText()+ "'";
+            String sql= "update test_hospitalizacion set medico_3'"+ txtmedicosalida.getText()+ "'"
+                    + ",fecha='" + txtFecha.getText() + "'"
+                    + ",estado='" + 0+ "' "
+                    + " where codigo='" + lblcodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
             this.jTabbedPane2.setSelectedIndex(0);
@@ -543,11 +549,16 @@ static Conexion cc = new Conexion();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
                 ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
+                + "select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + " medico_1 as 'Ordeno Salida',"
-                + "fecha as 'Fecha y Hora de Salida' "
-                + "from test_hospitalizacion "
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
+                + "encargado as 'Encargado del paciente',"
+                + "medico_3 as 'Ordeno Ingreso',"
+                + "num_habitacion as 'Habitación',"
+                + "observaciones as'Motivo de Ingreso',"
+                + "fecha as 'Fecha y Hora',"
+                + " total as 'Total (L)'"
+                + " from test_hospitalizacion"
                 + " inner join paciente on"
                 + " paciente = codigo_paciente "
                 + "WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' and estado=0 ");
@@ -559,6 +570,10 @@ static Conexion cc = new Conexion();
                         v.add(rs.getString(3));
                         v.add(rs.getString(4));
                         v.add(rs.getString(5));
+                        v.add(rs.getString(6));
+                        v.add(rs.getString(7));
+                        v.add(rs.getString(8));
+                        v.add(rs.getString(9));
 
                         dt.addRow(v);
                     }

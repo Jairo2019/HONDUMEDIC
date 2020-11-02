@@ -872,20 +872,27 @@ private void edit_detalle(){
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_hospitalizacion(idventa,"
+        String sql= "insert into detalle_test_hospitalizacion("
+                + "idventa,"
                 + "codigo,"
                 + "id_paciente,"
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "importe) values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
                 +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
-                +importe+ "')";
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Emergencia"+"','" 
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -924,15 +931,20 @@ private void edit_detalle(){
                 + "p_s,"
                 + "precio,"
                 + "cantidad,"
-                + "importe) "
-                + "values ('"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
                 +numFac.getText()+"','" 
                 +codigo+"','" 
                 +lblidpaciente.getText()+"','" 
                 + p_s +"','" 
                 +precio+"','" 
                 +cantidad+"','" 
-                +importe+ "')";
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Emergencia"+"','" 
+                +"1"+ "')";
 
         try{
             con=Conexion.ConnectDB();
@@ -945,7 +957,13 @@ private void edit_detalle(){
     }
          }
     private void show_detalle(){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_hospitalizacion where idventa='" + numFac.getText() + "' ";
+        String sql="select codigo as 'Codigo',"
+                + "p_s as 'Prodcuto/Servicio',"
+                + "precio as 'Precio',"
+                + "cantidad as 'Cantidad',"
+                + "importe as 'Importe' "
+                + "from detalle_test_hospitalizacion where idventa='" + numFac.getText() + "'"
+                + " and estado=1 ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1101,7 +1119,8 @@ private void edit_detalle(){
                     +txtnumhabitacion.getText()+"','" 
                     +txtdescripcion.getText()+"','" 
                     + txtFecha.getText()+"','" 
-                    +lblTotal.getText()+"','" +1+ "')"; // 1 = el paciente esta activo
+                    +"','" + lblTotal.getText()
+                    +"','" +"1" + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 

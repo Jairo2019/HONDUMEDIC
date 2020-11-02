@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package registro_examen;
+package cajaservicios;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
@@ -17,7 +17,6 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -34,7 +33,7 @@ import principal.GenerarCodigos;
  *
  * @author Rojeru San
  */
-public class examen_emergencia extends javax.swing.JInternalFrame {
+public class caja_endoscopia extends javax.swing.JInternalFrame {
 SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
 Connection con=null;
 Date dato = null;
@@ -65,7 +64,7 @@ static Conexion cc = new Conexion();
     }
  int filas;
     DefaultTableModel m;
-    public examen_emergencia() {
+    public caja_endoscopia() {
         initComponents();
         tablaCaja.getTableHeader().setDefaultRenderer(new principal.EstiloTablaHeader());
         tablaCaja.setDefaultRenderer(Object.class, new principal.EstiloTablaRenderer());
@@ -97,6 +96,7 @@ static Conexion cc = new Conexion();
         jLabel4 = new javax.swing.JLabel();
         thishide = new javax.swing.JLabel();
         lbledittotal = new javax.swing.JLabel();
+        lblidpaciente = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -111,11 +111,11 @@ static Conexion cc = new Conexion();
         jLabel14 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        numFac = new javax.swing.JLabel();
-        txtnumhabitacion = new app.bolivia.swing.JCTextField();
+        txtImporte = new app.bolivia.swing.JCTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtdescripcion = new app.bolivia.swing.JCTextField();
+        btnCalcular = new rsbuttom.RSButtonMetro();
+        txtCambio = new app.bolivia.swing.JCTextField();
+        jLabel12 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         txtpaciente = new app.bolivia.swing.JCTextField();
         txtFecha = new app.bolivia.swing.JCTextField();
@@ -126,17 +126,10 @@ static Conexion cc = new Conexion();
         jLabel9 = new javax.swing.JLabel();
         btns_paciente = new principal.MaterialButton();
         btnservicios = new principal.MaterialButton();
-        txtmedicoadmin = new app.bolivia.swing.JCTextField();
-        jLabel5 = new javax.swing.JLabel();
-        btns_admin = new principal.MaterialButton();
         txtmedicoindica = new app.bolivia.swing.JCTextField();
-        btns_medico1 = new principal.MaterialButton();
         jLabel6 = new javax.swing.JLabel();
-        txtmedicoingreso = new app.bolivia.swing.JCTextField();
-        btns_medico2 = new principal.MaterialButton();
         jLabel8 = new javax.swing.JLabel();
         btnnewinsumo = new principal.MaterialButton();
-        lblidpaciente = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaCaja = new javax.swing.JTable();
@@ -147,6 +140,9 @@ static Conexion cc = new Conexion();
         btnVender = new principal.MaterialButton();
         quitar = new principal.MaterialButton();
         btnedit = new principal.MaterialButton();
+        jPanel23 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        numFac = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -172,11 +168,13 @@ static Conexion cc = new Conexion();
             }
         });
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/test_48.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/caja.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Registro");
+        jLabel4.setText("Caja");
+
+        lblidpaciente.setText("jLabel11");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -187,9 +185,11 @@ static Conexion cc = new Conexion();
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172)
+                .addGap(139, 139, 139)
+                .addComponent(lblidpaciente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(140, 140, 140)
                 .addComponent(lbledittotal, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,19 +200,21 @@ static Conexion cc = new Conexion();
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel4)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblidpaciente)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbledittotal, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbledittotal, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
         );
 
         jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -228,8 +230,8 @@ static Conexion cc = new Conexion();
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hospital_64.png"))); // NOI18N
-        jLabel7.setText("Emergencia");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Endoscope_64.png"))); // NOI18N
+        jLabel7.setText("Endoscopia");
 
         pnlChange.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -304,6 +306,9 @@ static Conexion cc = new Conexion();
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableCajaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tableCajaMouseEntered(evt);
+            }
         });
         jScrollPane1.setViewportView(tableCaja);
 
@@ -333,7 +338,7 @@ static Conexion cc = new Conexion();
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(456, Short.MAX_VALUE))
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
@@ -346,7 +351,7 @@ static Conexion cc = new Conexion();
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 1298, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,8 +371,8 @@ static Conexion cc = new Conexion();
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(128, 128, 131));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hospital_64.png"))); // NOI18N
-        jLabel14.setText("Emergencia");
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Endoscope_64.png"))); // NOI18N
+        jLabel14.setText("Endoscopia");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -375,33 +380,57 @@ static Conexion cc = new Conexion();
         jPanel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
         jPanel22.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 111, 177));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CODIGO DE EXAMEN");
-        jPanel22.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 306, -1));
+        txtImporte.setBackground(new java.awt.Color(255, 255, 255));
+        txtImporte.setBorder(null);
+        txtImporte.setForeground(new java.awt.Color(58, 159, 171));
+        txtImporte.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtImporte.setPlaceholder("IMPORTE");
+        txtImporte.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtImporteKeyTyped(evt);
+            }
+        });
+        jPanel22.add(txtImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 110, 30));
 
-        numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        numFac.setForeground(new java.awt.Color(0, 111, 177));
-        numFac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        numFac.setText("NO. VENTA");
-        jPanel22.add(numFac, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 32, 306, -1));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/campo-importe.png"))); // NOI18N
+        jPanel22.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 180, -1));
 
-        txtnumhabitacion.setBorder(null);
-        txtnumhabitacion.setForeground(new java.awt.Color(0, 0, 0));
-        txtnumhabitacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtnumhabitacion.setPlaceholder("NUM. HABITACIÓN");
-        jPanel22.add(txtnumhabitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 77, 240, 30));
+        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/calculator.png"))); // NOI18N
+        btnCalcular.setText("Calcular");
+        btnCalcular.setToolTipText("");
+        btnCalcular.setColorHover(new java.awt.Color(12, 140, 143));
+        btnCalcular.setColorPressed(new java.awt.Color(12, 140, 143));
+        btnCalcular.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCalcular.setIconTextGap(10);
+        btnCalcular.setPreferredSize(new java.awt.Dimension(150, 32));
+        btnCalcular.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCalcularMousePressed(evt);
+            }
+        });
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
+        jPanel22.add(btnCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 60, 70));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/num_room.png"))); // NOI18N
-        jPanel22.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 67, -1, -1));
+        txtCambio.setEditable(false);
+        txtCambio.setBackground(new java.awt.Color(255, 255, 255));
+        txtCambio.setBorder(null);
+        txtCambio.setForeground(new java.awt.Color(58, 159, 171));
+        txtCambio.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtCambio.setPlaceholder("CAMBIO");
+        txtCambio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCambioKeyTyped(evt);
+            }
+        });
+        jPanel22.add(txtCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 110, 30));
 
-        txtdescripcion.setBackground(new java.awt.Color(204, 204, 204));
-        txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
-        txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtdescripcion.setPlaceholder("OBSERVACIONES");
-        jPanel22.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 129, 300, 82));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/campo-cambio.png"))); // NOI18N
+        jPanel22.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, -1));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -479,35 +508,6 @@ static Conexion cc = new Conexion();
         });
         jPanel4.add(btnservicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 190, 48));
 
-        txtmedicoadmin.setEditable(false);
-        txtmedicoadmin.setBackground(new java.awt.Color(255, 255, 255));
-        txtmedicoadmin.setBorder(null);
-        txtmedicoadmin.setForeground(new java.awt.Color(58, 159, 171));
-        txtmedicoadmin.setToolTipText("");
-        txtmedicoadmin.setEnabled(false);
-        txtmedicoadmin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtmedicoadmin.setPlaceholder("PERSONA QUE REALIZA EXAMEN");
-        jPanel4.add(txtmedicoadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 240, 30));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/atiende.png"))); // NOI18N
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 310, -1));
-
-        btns_admin.setBackground(new java.awt.Color(0, 111, 177));
-        btns_admin.setBorder(null);
-        btns_admin.setForeground(new java.awt.Color(255, 255, 255));
-        btns_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_admin.setText("buscar");
-        btns_admin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_admin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_admin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_admin.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_admin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_adminActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btns_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 80, 50));
-
         txtmedicoindica.setEditable(false);
         txtmedicoindica.setBackground(new java.awt.Color(255, 255, 255));
         txtmedicoindica.setBorder(null);
@@ -516,55 +516,13 @@ static Conexion cc = new Conexion();
         txtmedicoindica.setEnabled(false);
         txtmedicoindica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtmedicoindica.setPlaceholder("MEDICO QUE INDICA");
-        jPanel4.add(txtmedicoindica, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 240, 30));
-
-        btns_medico1.setBackground(new java.awt.Color(0, 111, 177));
-        btns_medico1.setBorder(null);
-        btns_medico1.setForeground(new java.awt.Color(255, 255, 255));
-        btns_medico1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_medico1.setText("buscar");
-        btns_medico1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_medico1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_medico1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_medico1.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_medico1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_medico1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btns_medico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 80, 50));
+        jPanel4.add(txtmedicoindica, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 240, 30));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/indication.png"))); // NOI18N
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 310, -1));
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 310, -1));
 
-        txtmedicoingreso.setEditable(false);
-        txtmedicoingreso.setBackground(new java.awt.Color(255, 255, 255));
-        txtmedicoingreso.setBorder(null);
-        txtmedicoingreso.setForeground(new java.awt.Color(58, 159, 171));
-        txtmedicoingreso.setToolTipText("");
-        txtmedicoingreso.setEnabled(false);
-        txtmedicoingreso.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtmedicoingreso.setPlaceholder("MEDICO QUE ORDENA INGRESO");
-        jPanel4.add(txtmedicoingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 240, 30));
-
-        btns_medico2.setBackground(new java.awt.Color(0, 111, 177));
-        btns_medico2.setBorder(null);
-        btns_medico2.setForeground(new java.awt.Color(255, 255, 255));
-        btns_medico2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_medico2.setText("buscar");
-        btns_medico2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_medico2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_medico2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_medico2.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_medico2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_medico2ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btns_medico2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 80, 50));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/insert.png"))); // NOI18N
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 310, -1));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/num_room.png"))); // NOI18N
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 310, -1));
 
         btnnewinsumo.setBackground(new java.awt.Color(0, 111, 177));
         btnnewinsumo.setForeground(new java.awt.Color(255, 255, 255));
@@ -577,9 +535,6 @@ static Conexion cc = new Conexion();
             }
         });
         jPanel4.add(btnnewinsumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 110, 190, 50));
-
-        lblidpaciente.setText("jLabel11");
-        jPanel4.add(lblidpaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 180, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
         jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
@@ -613,7 +568,7 @@ static Conexion cc = new Conexion();
         txttotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txttotal.setForeground(new java.awt.Color(255, 255, 255));
         txttotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txttotal.setText("SUBTOTAL: L");
+        txttotal.setText("TOTAL: L");
         txttotal.setToolTipText("");
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -627,7 +582,7 @@ static Conexion cc = new Conexion();
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1057, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(txttotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -638,8 +593,8 @@ static Conexion cc = new Conexion();
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -666,7 +621,7 @@ static Conexion cc = new Conexion();
 
         btnVender.setBackground(new java.awt.Color(0, 111, 177));
         btnVender.setForeground(new java.awt.Color(255, 255, 255));
-        btnVender.setText("       REGISTRAR      ");
+        btnVender.setText("      REGISTRAR       ");
         btnVender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -688,7 +643,7 @@ static Conexion cc = new Conexion();
 
         btnedit.setBackground(new java.awt.Color(0, 111, 177));
         btnedit.setForeground(new java.awt.Color(255, 255, 255));
-        btnedit.setText("actualizar");
+        btnedit.setText("Actualizar");
         btnedit.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
         btnedit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnedit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -708,7 +663,7 @@ static Conexion cc = new Conexion();
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -720,9 +675,43 @@ static Conexion cc = new Conexion();
                 .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+        );
+
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 3));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 111, 177));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("CODIGO DE EXAMEN");
+
+        numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        numFac.setForeground(new java.awt.Color(0, 111, 177));
+        numFac.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        numFac.setText("NO. VENTA");
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numFac, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(numFac)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -730,14 +719,15 @@ static Conexion cc = new Conexion();
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -747,9 +737,12 @@ static Conexion cc = new Conexion();
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -763,9 +756,8 @@ static Conexion cc = new Conexion();
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -791,9 +783,8 @@ static Conexion cc = new Conexion();
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE))
         );
 
         jTabbedPane2.getAccessibleContext().setAccessibleName("Registro de Ventas");
@@ -808,7 +799,7 @@ static Conexion cc = new Conexion();
         int cont = 1;
         String num = "";
         String c = "";
-        String SQL = "SELECT MAX(codigo) FROM test_emergencia";
+        String SQL = "SELECT MAX(codigo) FROM test_endoscopia";
 
         try {
             Statement st = cn.createStatement();
@@ -818,7 +809,7 @@ static Conexion cc = new Conexion();
             }
 
             if (c == null) {
-                numFac.setText("EE0001");
+                numFac.setText("RE0001");
             } else {
                 char r1 = c.charAt(2);
                 char r2 = c.charAt(3);
@@ -829,7 +820,7 @@ static Conexion cc = new Conexion();
                 j = Integer.parseInt(r);
                 GenerarCodigos gen = new GenerarCodigos();
                 gen.generar(j);
-                numFac.setText("EE" + gen.serie());
+                numFac.setText("RE" + gen.serie());
 
             }
 
@@ -864,29 +855,30 @@ static Conexion cc = new Conexion();
         txtnumhabitacion.setText("");
         lblTotal.setText("0.0");
         txtFecha.setText(fechaactual());
-        thishide.setVisible(false);
         txtdescripcion.setEnabled(true);
         txtnumhabitacion.setEnabled(true);
+        thishide.setVisible(false);
         numeros();
         btnnewinsumo.hide();
         btnedit.hide();
+        btnservicios.setEnabled(true);
     }
-    //obtener datos del registro de emergencia
   private void Get_Data(){
         limpiaCampos();
         String sql="select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + "medico_1 as 'Realizo Examen',"
-                + "medico_2 as 'Indico Examen',"
-                + "medico_3 as 'Ordeno Ingreso',"
-                + "num_habitacion as 'Habitación',"
-                + "observaciones as'Observaciones',"
-                + "fecha as 'Fecha y Hora', "
-                + "total as 'Total (L)' from test_emergencia "
-                + "inner join paciente on " //unir la tabla registro de emergencia con paciente
-                + "paciente = codigo_paciente "
-                + "where estado=1";
+                + " medico_1 as 'Realizo Examen',"
+                + " medico_2 as 'Indico Examen',"
+                + " medico_3 as 'Ordeno Ingreso',"
+                + " num_habitacion as 'Habitación',"
+                + " observaciones as 'Observaciones',"
+                + " fecha as 'Fecha y Hora',"
+                + " total as 'Total (L)'"
+                + " from test_endoscopia"
+                + " inner join paciente on"
+                + " paciente = codigo_paciente"
+                + " where estado=1";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -903,53 +895,15 @@ static Conexion cc = new Conexion();
             Producto pr = new Producto();
             idp = tablaCaja.getValueAt(i, 0).toString();
             cant = Integer.parseInt(tablaCaja.getValueAt(i, 3).toString());
-            pr = pdao.listarID_emergencia(idp);
+            pr = pdao.listarID_endoscopia(idp);
             int sa = pr.getStock() - cant;
-            pdao.actualizarStock_emergencia(sa, idp);
+            pdao.actualizarStock_endoscopia(sa, idp);
 
         }
     }
-     private void ingresar_detalle(){
-    for (int i = 0; i <tablaCaja.getRowCount(); i++) {
-        String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
-        String p_s= tablaCaja.getModel().getValueAt(i, 1).toString();
-        String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
-        String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
-        String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_emergencia(idventa,"
-                + "codigo,"
-                + "id_paciente,"
-                + "p_s,"
-                + "precio,"
-                + "cantidad,"
-                + "importe,"
-                + "fecha,"
-                + "unidad,"
-                + "estado) values ('"
-                +numFac.getText()+"','" 
-                +codigo+"','" 
-                +lblidpaciente.getText()+"','" 
-                + p_s +"','" 
-                +precio+"','" 
-                +cantidad+"','" 
-                +importe+"','" 
-                +txtFecha.getText()+"','" 
-                +"Emergencia"+"','" 
-                +"1"+ "')";
-
-        try{
-            con=Conexion.ConnectDB();
-            pst=con.prepareStatement(sql);
-            pst.execute();
-            }catch(HeadlessException | SQLException ex){
-                JOptionPane.showMessageDialog(this,ex);
-        }
-        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
-    }
-         }
      void sum_ingreso(){
          try{
-         String sql= "select sum(importe) FROM detalle_test_emergencia WHERE idventa='"+numFac.getText()+"'";
+         String sql= "select sum(importe) FROM detalle_test_endoscopia WHERE idventa='"+numFac.getText()+"'";
          Statement st = con.createStatement();
          ResultSet rs = st.executeQuery(sql);
          while (rs.next()) {
@@ -964,7 +918,7 @@ static Conexion cc = new Conexion();
      }
      void edit_ingreso(){
          double total= Double.parseDouble(lbledittotal.getText())+Double.parseDouble(lblTotal.getText());
-         String sql= "UPDATE test_emergencia set total ='"+total+"' where codigo='"+numFac.getText()+"'";
+         String sql= "UPDATE test_endoscopia set total ='"+total+"' where codigo='"+numFac.getText()+"'";
          try{
             con=Conexion.ConnectDB();
             pst=con.prepareStatement(sql);
@@ -980,7 +934,7 @@ private void edit_detalle(){
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_emergencia(idventa,"
+        String sql= "insert into detalle_test_endoscopia(idventa,"
                 + "codigo,"
                 + "id_paciente,"
                 + "p_s,"
@@ -1012,14 +966,51 @@ private void edit_detalle(){
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
+     private void ingresar_detalle(){
+    for (int i = 0; i <tablaCaja.getRowCount(); i++) {
+        String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
+        String p_s= tablaCaja.getModel().getValueAt(i, 1).toString();
+        String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
+        String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
+        String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into detalle_test_endoscopia(idventa,"
+                + "codigo,"
+                + "id_paciente,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
+                +numFac.getText()+"','" 
+                +codigo+"','" 
+                +lblidpaciente.getText()+"','" 
+                + p_s +"','" 
+                +precio+"','" 
+                +cantidad+"','" 
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Emergencia"+"','" 
+                +"1"+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
     private void show_detalle(){
         String sql="select codigo as 'Codigo',"
                 + "p_s as 'Prodcuto/Servicio',"
                 + "precio as 'Precio',"
                 + "cantidad as 'Cantidad',"
                 + "importe as 'Importe' "
-                + "from detalle_test_emergencia where idventa='" + numFac.getText() + "' "
-                + "and estado=1";
+                + "from detalle_test_endoscopia where idventa='" + numFac.getText() + "' and estado=1";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1048,16 +1039,17 @@ private void edit_detalle(){
             Statement s = Conexion.ConnectDB().createStatement();
                 ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + "medico_1 as 'Realizo Examen',"
-                + "medico_2 as 'Indico Examen',"
-                + "medico_3 as 'Ordeno Ingreso',"
+                + "CONCAT(nombre,' ', apellido) as 'Paciente',"
+                + " medico_1 as 'Realizo Examen',"
+                + " medico_2 as 'Indico Examen',"
+                + " medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
-                + "observaciones as'Observaciones',"
-                + "fecha as 'Fecha y Hora', "
-                + "total as 'Total (L)' from test_emergencia "
-                + "inner join paciente on " //unir la tabla registro de emergencia con paciente
-                + "paciente = codigo_paciente WHERE estado=1 and CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
+                + "observaciones as 'Observaciones',"
+                + "fecha as 'Fecha y Hora',"
+                + " total as 'Total (L)'"
+                + " from test_endoscopia"
+                + " inner join paciente on"
+                + " paciente = codigo_paciente WHERE estado=1 and CONCAT(nombre,' ', apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1109,7 +1101,7 @@ private void edit_detalle(){
     }//GEN-LAST:event_tableCajaMouseClicked
 
     private void btnVender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVender1ActionPerformed
-        new lista_productos_servicios.productos_emergencia(new JFrame(), true).setVisible(true);
+        new lista_productos_servicios.productos_endoscopia(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnVender1ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -1128,7 +1120,7 @@ private void edit_detalle(){
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
             er.titulo.setText("OOPS...");
             er.msj.setText("IMPOSIBLE INGRESAR");
-            er.msj1.setText("REGISTRO");
+            er.msj1.setText("EXAMEN");
             er.setVisible(true);
         } else {
         try{
@@ -1149,30 +1141,24 @@ private void edit_detalle(){
                 JOptionPane.showMessageDialog( this, "Ingrese el Medico que Ordeno el Ingreso del Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (txtnumhabitacion.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Número de Habitación","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
             if (txtFecha.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Fecha","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_emergencia(codigo,"
-                    + "paciente,medico_1,"
-                    + "medico_2,medico_3,"
-                    + "num_habitacion,"
-                    + "observaciones,"
+            String sql= "insert into test_endoscopia(codigo,"
+                    + "paciente,"
+                    + "persona_realiza_examen,"
+                    + "medico_indica,"
+                    + "medico_ingreso,"
                     + "fecha,"
                     + "total,"
                     + "estado) values ('"
-                    +numFac.getText()
-                    +"','" +lblidpaciente.getText()
-                    +"','" +txtmedicoadmin.getText()
+                    +numFac.getText()+"','" 
+                    +lblidpaciente.getText()+"','" 
+                    +txtmedicoadmin.getText()
                     +"','" +txtmedicoindica.getText()
                     +"','" +txtmedicoingreso.getText()
-                    +"','"+txtnumhabitacion.getText()
-                    +"','" +txtdescripcion.getText()
                     +"','" + txtFecha.getText()
                     +"','" + lblTotal.getText()
                     +"','" +"1" + "')";
@@ -1182,7 +1168,7 @@ private void edit_detalle(){
             ingresar_detalle();
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
             sa.titulo.setText("¡HECHO!");
-            sa.msj.setText("REGISTRADO");
+            sa.msj.setText("EXAMEN REGISTRADO");
             sa.msj1.setText("CON ÉXITO");
             sa.setVisible(true);
             this.jTabbedPane2.setSelectedIndex(0);
@@ -1231,42 +1217,14 @@ private void edit_detalle(){
     }//GEN-LAST:event_quitarActionPerformed
 
     private void btnserviciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnserviciosActionPerformed
-        new lista_servicios.lista_emergencia(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
+        new lista_servicios.lista_endoscopia(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnserviciosActionPerformed
 
     private void btns_pacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_pacienteActionPerformed
-        pacientes.lista_pacientes_laboratorio.cual="1";
+        pacientes.lista_pacientes_laboratorio.cual="4";
         new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);  
         // TODO add your handling code here:
     }//GEN-LAST:event_btns_pacienteActionPerformed
-
-    private void btns_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_adminActionPerformed
-        empleados.lista_empleados_admin.cual="1";
-        new empleados.lista_empleados_admin(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
-    }//GEN-LAST:event_btns_adminActionPerformed
-
-    private void btns_medico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico1ActionPerformed
-        empleados.lista_empleados_mindica.cual="1";
-        new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
-    }//GEN-LAST:event_btns_medico1ActionPerformed
-
-    private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
-        empleados.lista_empleados_mingreso.cual="1";
-        new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
-    }//GEN-LAST:event_btns_medico2ActionPerformed
-
-    private void btnnewinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewinsumoActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
-
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-        btns_admin.setEnabled(false);
-        btns_medico1.setEnabled(false);
-        btns_medico2.setEnabled(false);
-        btns_paciente.setEnabled(false);
-        btnedit.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_btnnewinsumoActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         if (this.tablaCaja.getRowCount() < 1) {
@@ -1286,20 +1244,113 @@ private void edit_detalle(){
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
             limpiaCampos();
-        }
-   // TODO add your handling code here:
+        }         // TODO add your handling code here:
     }//GEN-LAST:event_btneditActionPerformed
+
+    private void btnnewinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewinsumoActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        btns_admin.setEnabled(false);
+        btns_medico1.setEnabled(false);
+        btns_medico2.setEnabled(false);
+        btns_paciente.setEnabled(false);
+        btnedit.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_btnnewinsumoActionPerformed
+
+    private void tableCajaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCajaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableCajaMouseEntered
+
+    private void txtImporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImporteKeyTyped
+        char num = evt.getKeyChar();
+        if ((num < '0' || num > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtImporteKeyTyped
+
+    private void btnCalcularMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMousePressed
+
+    }//GEN-LAST:event_btnCalcularMousePressed
+
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        if (btnedit.isVisible()){
+            if (this.txtImporte.getText().equals("") || this.txtImporte.getText().equals("0") ) {
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("OOPS...");
+                er.msj.setText("DEBES INGRESAR UNA");
+                er.msj1.setText("CANTIDAD");
+                er.setVisible(true);
+            } else {
+                float recibe = Float.parseFloat(txtImporte.getText());
+                float total = Float.parseFloat(lblTotal.getText());
+
+                if (total > 0.0) {
+                    if (recibe > total) {
+                        float cambio = recibe-total;
+                        txtCambio.setText(String.valueOf(cambio));
+                    } else {
+                        ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                        er.titulo.setText("OOPS...");
+                        er.msj.setText("INGRESA UNA CANTIDAD");
+                        er.msj1.setText("VALIDA");
+                        er.setVisible(true);
+                    }
+                } else {
+                    ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                    er.titulo.setText("OOPS...");
+                    er.msj.setText("IMPOSIBLE REALIZAR");
+                    er.msj1.setText("LA OPERACIÓN");
+                    er.setVisible(true);
+                }
+            }
+        }else{
+            if (this.txtImporte.getText().equals("") || this.txtImporte.getText().equals("0") ) {
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("OOPS...");
+                er.msj.setText("DEBES INGRESAR UNA");
+                er.msj1.setText("CANTIDAD");
+                er.setVisible(true);
+            } else {
+                float recibe = Float.parseFloat(txtImporte.getText());
+                float total = Float.parseFloat(lblTotal.getText());
+
+                if (total > 0.0) {
+                    if (recibe > total) {
+                        float cambio = recibe-total;
+                        txtCambio.setText(String.valueOf(cambio));
+                    } else {
+                        ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                        er.titulo.setText("OOPS...");
+                        er.msj.setText("INGRESA UNA CANTIDAD");
+                        er.msj1.setText("VALIDA");
+                        er.setVisible(true);
+                    }
+                } else {
+                    ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                    er.titulo.setText("OOPS...");
+                    er.msj.setText("IMPOSIBLE REALIZAR");
+                    er.msj1.setText("LA OPERACIÓN");
+                    er.setVisible(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void txtCambioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCambioKeyTyped
+
+    }//GEN-LAST:event_txtCambioKeyTyped
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static rsbuttom.RSButtonMetro btnCalcular;
     private principal.MaterialButton btnCancelar;
     private principal.MaterialButton btnVender;
     private principal.MaterialButton btnVender1;
     private principal.MaterialButton btnedit;
     private principal.MaterialButton btnnewinsumo;
-    private principal.MaterialButton btns_admin;
-    private principal.MaterialButton btns_medico1;
-    private principal.MaterialButton btns_medico2;
     private principal.MaterialButton btns_paciente;
     private principal.MaterialButton btnservicios;
     private app.bolivia.swing.JCTextField c_search_tbl;
@@ -1307,11 +1358,11 @@ private void edit_detalle(){
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1322,6 +1373,7 @@ private void edit_detalle(){
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1341,12 +1393,10 @@ private void edit_detalle(){
     public static javax.swing.JTable tablaCaja;
     private javax.swing.JTable tableCaja;
     private javax.swing.JLabel thishide;
+    public static app.bolivia.swing.JCTextField txtCambio;
     private app.bolivia.swing.JCTextField txtFecha;
-    private app.bolivia.swing.JCTextField txtdescripcion;
-    public static app.bolivia.swing.JCTextField txtmedicoadmin;
+    public static app.bolivia.swing.JCTextField txtImporte;
     public static app.bolivia.swing.JCTextField txtmedicoindica;
-    public static app.bolivia.swing.JCTextField txtmedicoingreso;
-    private app.bolivia.swing.JCTextField txtnumhabitacion;
     public static app.bolivia.swing.JCTextField txtpaciente;
     private javax.swing.JLabel txttotal;
     // End of variables declaration//GEN-END:variables

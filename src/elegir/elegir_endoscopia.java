@@ -53,8 +53,9 @@ public class elegir_endoscopia extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         btnListaVentas = new principal.MaterialButtomRectangle();
         btnCancelar = new principal.MaterialButtomRectangle();
-        btnListaVentas1 = new principal.MaterialButtomRectangle();
+        btnpagar = new principal.MaterialButtomRectangle();
         btnListaVentas2 = new principal.MaterialButtomRectangle();
+        btnregistrar = new principal.MaterialButtomRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -98,14 +99,14 @@ public class elegir_endoscopia extends javax.swing.JDialog {
             }
         });
 
-        btnListaVentas1.setBackground(new java.awt.Color(0, 111, 177));
-        btnListaVentas1.setForeground(new java.awt.Color(255, 255, 255));
-        btnListaVentas1.setText("Registrar endoscopia");
-        btnListaVentas1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnListaVentas1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnListaVentas1.addActionListener(new java.awt.event.ActionListener() {
+        btnpagar.setBackground(new java.awt.Color(0, 111, 177));
+        btnpagar.setForeground(new java.awt.Color(255, 255, 255));
+        btnpagar.setText("Pagar Examen");
+        btnpagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnpagar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnpagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListaVentas1ActionPerformed(evt);
+                btnpagarActionPerformed(evt);
             }
         });
 
@@ -117,6 +118,17 @@ public class elegir_endoscopia extends javax.swing.JDialog {
         btnListaVentas2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaVentas2ActionPerformed(evt);
+            }
+        });
+
+        btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
+        btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnregistrar.setText("Registrar Examen");
+        btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnregistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistrarActionPerformed(evt);
             }
         });
 
@@ -134,8 +146,9 @@ public class elegir_endoscopia extends javax.swing.JDialog {
                         .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
                             .addComponent(btnListaVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btnListaVentas1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btnListaVentas2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                            .addComponent(btnpagar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                            .addComponent(btnListaVentas2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                            .addComponent(btnregistrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                         .addGap(24, 24, 24)))
                 .addContainerGap())
         );
@@ -146,15 +159,17 @@ public class elegir_endoscopia extends javax.swing.JDialog {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addGap(67, 67, 67)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnListaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnListaVentas2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnListaVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnpagar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,7 +238,7 @@ public class elegir_endoscopia extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_formWindowClosing
 
-    private void btnListaVentas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaVentas1ActionPerformed
+    private void btnpagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagarActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
         if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.examen_endoscopia)) {
@@ -234,7 +249,7 @@ public class elegir_endoscopia extends javax.swing.JDialog {
             PrincipalAdministrador.escritorio.add(PrincipalAdministrador.examen_endoscopia);
             PrincipalAdministrador.examen_endoscopia.show();
         }            // TODO add your handling code here:
-    }//GEN-LAST:event_btnListaVentas1ActionPerformed
+    }//GEN-LAST:event_btnpagarActionPerformed
 
     private void btnListaVentas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaVentas2ActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
@@ -248,6 +263,10 @@ public class elegir_endoscopia extends javax.swing.JDialog {
             PrincipalAdministrador.inventario_endoscopia.show();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnListaVentas2ActionPerformed
+
+    private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnregistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,8 +328,9 @@ public class elegir_endoscopia extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnCancelar;
     private principal.MaterialButtomRectangle btnListaVentas;
-    private principal.MaterialButtomRectangle btnListaVentas1;
     private principal.MaterialButtomRectangle btnListaVentas2;
+    private principal.MaterialButtomRectangle btnpagar;
+    private principal.MaterialButtomRectangle btnregistrar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private org.edisoncor.gui.panel.Panel panel3;

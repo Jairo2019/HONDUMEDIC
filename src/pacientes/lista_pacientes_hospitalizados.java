@@ -245,7 +245,7 @@ PreparedStatement pst=null;
         String sql="select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
                 + " CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + "medico_1 as 'Medico que lo Atendio', "
+                + "medico_3 as 'Medico que Ordeno Ingreso', "
                 + "fecha as 'Fecha y Hora de Ingreso' "
                 + "from test_hospitalizacion inner join paciente on  paciente = codigo_paciente "
                 + "where estado=1";

@@ -1623,10 +1623,36 @@ private void condicionIsv( ){
             }
                // insertar datos en caja_laboratorio
             if (rbcredito.isSelected()){
-            String sql= "insert into caja_laboratorio(idventa,codigo_examen,paciente,fecha,estado_pago,abonado,pendiente,total) values ('"+numFac.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" +condiciones(Estado_actual)+"','" + Double.parseDouble(txtcredito.getText())+"','" +credito(Num)+"','" +lblTotal.getText()+ "')";
+            String sql= "insert into caja_laboratorio(idventa,"
+                    + "codigo_examen,"
+                    + "paciente,"
+                    + "fecha,"
+                    + "estado_pago,"
+                    + "abonado,"
+                    + "pendiente,"
+                    + "total) values ('"
+                    +numFac.getText()+"','" 
+                    +codetest.getText()+"','" 
+                    +txtpaciente.getText()+"','" 
+                    +txtFecha.getText()+"','" 
+                    +condiciones(Estado_actual)+"','" 
+                    + Double.parseDouble(txtcredito.getText())+"','" 
+                    +credito(Num)+"','" 
+                    +lblTotal.getText()+ "')";
             pst=con.prepareStatement(sql);
             pst.execute();}else{
-            String sql= "insert into caja_laboratorio(idventa,codigo_examen,paciente,fecha,estado_pago,total) values ('"+numFac.getText()+"','" +codetest.getText()+"','" +txtpaciente.getText()+"','" +txtFecha.getText()+"','" +condiciones(Estado_actual)+"','" + lblTotal.getText() + "')";
+            String sql= "insert into caja_laboratorio(idventa,"
+                    + "codigo_examen,"
+                    + "paciente,"
+                    + "fecha,"
+                    + "estado_pago,"
+                    + "total) values ('"
+                    +numFac.getText()+"','" 
+                    +codetest.getText()+"','" 
+                    +txtpaciente.getText()+"','" 
+                    +txtFecha.getText()+"','" 
+                    +condiciones(Estado_actual)+"','" 
+                    +lblTotal.getText() + "')";
                 pst=con.prepareStatement(sql);
                 pst.execute();
             }
