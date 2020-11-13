@@ -519,7 +519,7 @@ static Conexion cc = new Conexion();
     void actualizarIngreso() {
         try{
             con=Conexion.ConnectDB();
-            String sql= "update test_hospitalizacion set medico_3'"+ txtmedicosalida.getText()+ "'"
+            String sql= "update test_hospitalizacion set medico_3='"+ txtmedicosalida.getText()+ "'"
                     + ",fecha='" + txtFecha.getText() + "'"
                     + ",estado='" + 0+ "' "
                     + " where codigo='" + lblcodigo.getText()+ "'";
@@ -549,11 +549,10 @@ static Conexion cc = new Conexion();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
                 ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
-                + "select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
                 + "encargado as 'Encargado del paciente',"
-                + "medico_3 as 'Ordeno Ingreso',"
+                + "medico_3 as 'Ordeno Salida',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Motivo de Ingreso',"
                 + "fecha as 'Fecha y Hora',"

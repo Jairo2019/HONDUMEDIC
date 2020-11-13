@@ -806,9 +806,9 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="choiceacces" min="-2" pref="164" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
@@ -818,7 +818,7 @@
                                   <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="txtPassword" min="-2" pref="142" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace pref="14" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -848,7 +848,7 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="33" green="33" red="33" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Rol:"/>
+                            <Property name="text" type="java.lang.String" value="Acceso:"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel21">
@@ -919,9 +919,21 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="2">
-                                <StringItem index="0" value="Administrador"/>
-                                <StringItem index="1" value="Usuario"/>
+                              <StringArray count="14">
+                                <StringItem index="0" value="Administraci&#xf3;n"/>
+                                <StringItem index="1" value="Almac&#xe9;n"/>
+                                <StringItem index="2" value="Ambulancia"/>
+                                <StringItem index="3" value="Caja"/>
+                                <StringItem index="4" value="Cafeter&#xed;a"/>
+                                <StringItem index="5" value="Cirug&#xed;a"/>
+                                <StringItem index="6" value="Endoscopia"/>
+                                <StringItem index="7" value="Enfermeria"/>
+                                <StringItem index="8" value="Farmacia"/>
+                                <StringItem index="9" value="Gerencia"/>
+                                <StringItem index="10" value="Laboratorio"/>
+                                <StringItem index="11" value="M&#xe9;dicos"/>
+                                <StringItem index="12" value="RayosX"/>
+                                <StringItem index="13" value=" "/>
                               </StringArray>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>

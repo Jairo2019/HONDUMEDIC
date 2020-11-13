@@ -1118,9 +1118,9 @@ private void edit_detalle(){
                     +txtmedicoingreso.getText()+"','"
                     +txtnumhabitacion.getText()+"','" 
                     +txtdescripcion.getText()+"','" 
-                    + txtFecha.getText()+"','" 
+                    + txtFecha.getText()
                     +"','" + lblTotal.getText()
-                    +"','" +"1" + "')";
+                    +"','" + 1 + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 
