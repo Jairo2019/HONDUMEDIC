@@ -313,12 +313,10 @@ public static Double value ;
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            double value = Double.valueOf(cajaservicios.caja_laboratorio.isv.getText());
-            isv=((value/100) * total);
             cajaservicios.caja_laboratorio.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
 
         }
-        cajaservicios.caja_laboratorio.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
+//        cajaservicios.caja_laboratorio.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
         cajaservicios.caja_laboratorio.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
@@ -399,22 +397,22 @@ public static Double value ;
                 } else {
                     String cod = tabla.getValueAt(fila, 0).toString();
                     String paciente = tabla.getValueAt(fila, 1).toString();
-                            String com = cajaservicios.caja_laboratorio.codetest.getText();
-                            if (cod.equals(com)) {
-                                ErrorAlert er = new ErrorAlert(new JFrame(), true);
-                                er.titulo.setText("OOPS...");
-                                er.msj.setText("EL EXAMEN");
-                                er.msj1.setText("YA SE INGRESO");
-                                er.setVisible(true);
-                                this.dispose();
-                            }else{
-                            cajaservicios.caja_laboratorio.codetest.setText(cod); 
-                            cajaservicios.caja_laboratorio.txtpaciente.setText(paciente); 
-                            cajaservicios.caja_laboratorio.txtcredito.setEnabled(true);
-                            show_detalle();
-                            calcular();
-                            this.dispose();
-                            }          
+//                            String com = cajaservicios.caja_laboratorio.codetest.getText();
+//                            if (cod.equals(com)) {
+//                                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+//                                er.titulo.setText("OOPS...");
+//                                er.msj.setText("EL EXAMEN");
+//                                er.msj1.setText("YA SE INGRESO");
+//                                er.setVisible(true);
+//                                this.dispose();
+//                            }else{
+////                            cajaservicios.caja_laboratorio.codetest.setText(cod); 
+//                            cajaservicios.caja_laboratorio.txtpaciente.setText(paciente); 
+//
+//                            show_detalle();
+//                            calcular();
+//                            this.dispose();
+//                            }          
                 }
             } catch (Exception e) {
             }

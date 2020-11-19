@@ -301,12 +301,10 @@ PreparedStatement pst=null;
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            double value = Double.valueOf(cajaservicios.caja_laboratorio.isv.getText());
-            isv=((value/100) * total);
             cajaservicios.caja_laboratorio.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
 
         }
-        cajaservicios.caja_laboratorio.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
+//        cajaservicios.caja_laboratorio.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
         cajaservicios.caja_laboratorio.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
