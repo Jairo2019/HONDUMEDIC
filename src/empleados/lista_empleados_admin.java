@@ -347,10 +347,10 @@ PreparedStatement pst=null;
                         }else if (("9").equals(cual)){
                             unidad_apa.examen_emergencia_apa.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";
+                        }else if (("10").equals(cual)){
+                            registro_examen.examen_laboratorio.txtmedico.setText(nom + " "+  apellido);
+                            cual="";
                         }
-                        else{
-                            registro_examen.examen_laboratorio.txtmedicoadmin.setText(nom + " "+  apellido);
-                            cual="";}
                         this.dispose();
                 }
             } catch (Exception e) {

@@ -969,7 +969,7 @@ private void edit_detalle(){
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into caja_laboratorio(idventa,"
+        String sql= "insert into detalle_test_laboratorio(idventa,"
                 + "codigo,"
                 + "id_paciente,"
                 + "p_s,"
@@ -1006,7 +1006,7 @@ private void edit_detalle(){
                 + "precio as 'Precio',"
                 + "cantidad as 'Cantidad',"
                 + "importe as 'Importe' "
-                + "from caja_laboratorio where idventa='" + numFac.getText() + "' and estado=1";
+                + "from detalle_test_laboratorio where idventa='" + numFac.getText() + "' and estado=1";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1019,10 +1019,10 @@ private void edit_detalle(){
 //validar si el paciente ya se ingreso
 private void condicionPaciente( ){
     if (nopaciente.isSelected()){
-            pacientes.modal_paciente.cual="Endoscopia";
+            pacientes.modal_paciente.cual="Laboratorio";
             new pacientes.modal_paciente(new JFrame(), true).setVisible(true);
         }else if(ispaciente.isSelected()){
-            pacientes.lista_pacientes_laboratorio.cual="13";
+            pacientes.lista_pacientes_laboratorio.cual="14";
             new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);  
      }else{
         JOptionPane.showMessageDialog( this, "Seleccione si es Subsiguiente o Primera Vez","Error", JOptionPane.ERROR_MESSAGE);
@@ -1092,7 +1092,7 @@ private void condicionPaciente( ){
     }//GEN-LAST:event_tableCajaMouseClicked
 
     private void btnVender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVender1ActionPerformed
-        new lista_productos_servicios.productos_endoscopia(new JFrame(), true).setVisible(true);
+        new lista_productos_servicios.productos_laboratorio(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnVender1ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -1190,7 +1190,7 @@ private void condicionPaciente( ){
     }//GEN-LAST:event_quitarActionPerformed
 
     private void btnserviciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnserviciosActionPerformed
-        new lista_servicios.lista_endoscopia(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
+        new lista_servicios.lista_laboratorio(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnserviciosActionPerformed
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed

@@ -379,6 +379,10 @@ PreparedStatement pst=null;
                             cajaservicios.caja_endoscopia.lblidpaciente.setText(cod);
                             cajaservicios.caja_endoscopia.txtpaciente.setText(nom);
                             cual="";
+                        }else if (("14").equals(cual)){
+                            cajaservicios.caja_laboratorio.lblidpaciente.setText(cod);
+                            cajaservicios.caja_laboratorio.txtpaciente.setText(nom);
+                            cual="";
                         }else{
                              registro_examen.examen_laboratorio.txtpaciente.setText(nom);
                              registro_examen.examen_laboratorio.lblidpaciente.setText(cod);

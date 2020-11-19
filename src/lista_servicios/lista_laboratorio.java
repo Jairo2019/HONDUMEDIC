@@ -273,17 +273,17 @@ PreparedStatement pst=null;
         double imp = 0.0;
         double isv= 0.0;
 
-        for (int i = 0; i < registro_examen.examen_laboratorio.tablaCaja.getRowCount(); i++) {
-            pre = registro_examen.examen_laboratorio.tablaCaja.getValueAt(i, 2).toString();
-            can = registro_examen.examen_laboratorio.tablaCaja.getValueAt(i, 3).toString();
+        for (int i = 0; i < cajaservicios.caja_laboratorio.tablaCaja.getRowCount(); i++) {
+            pre = cajaservicios.caja_laboratorio.tablaCaja.getValueAt(i, 2).toString();
+            can = cajaservicios.caja_laboratorio.tablaCaja.getValueAt(i, 3).toString();
             precio = Double.parseDouble(pre);
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            registro_examen.examen_laboratorio.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
+            cajaservicios.caja_laboratorio.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
 
         }
-        registro_examen.examen_laboratorio.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
+        cajaservicios.caja_laboratorio.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
@@ -332,7 +332,7 @@ PreparedStatement pst=null;
         if (tabla.getRowCount() > 0) {
             try {
                 String cant = null;
-                DefaultTableModel tabladet = (DefaultTableModel) registro_examen.examen_laboratorio.tablaCaja.getModel();
+                DefaultTableModel tabladet = (DefaultTableModel) cajaservicios.caja_laboratorio.tablaCaja.getModel();
 
                 String[] dato = new String[6];
 
@@ -358,8 +358,8 @@ PreparedStatement pst=null;
                         er.setVisible(true);
                     } else {
                         cant= txtCantidad.getText();
-                        for (int i = 0; i < registro_examen.examen_laboratorio.tablaCaja.getRowCount(); i++) {
-                            Object com = registro_examen.examen_laboratorio.tablaCaja.getValueAt(i, 0);
+                        for (int i = 0; i < cajaservicios.caja_laboratorio.tablaCaja.getRowCount(); i++) {
+                            Object com = cajaservicios.caja_laboratorio.tablaCaja.getValueAt(i, 0);
                             if (cod.equals(com)) {
                                 j = i;
                                 ErrorAlert er = new ErrorAlert(new JFrame(), true);
@@ -381,7 +381,7 @@ PreparedStatement pst=null;
 
                             tabladet.addRow(dato);
 
-                            registro_examen.examen_laboratorio.tablaCaja.setModel(tabladet);
+                            cajaservicios.caja_laboratorio.tablaCaja.setModel(tabladet);
                             calcular();
                         }
                     }

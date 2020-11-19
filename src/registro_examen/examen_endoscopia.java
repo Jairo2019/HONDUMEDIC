@@ -886,6 +886,7 @@ static Conexion cc = new Conexion();
             lblidpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,3).toString());
             txtmedico.setText(tableCaja.getModel().getValueAt(row,4).toString());
+            txtencargado.setText(tableCaja.getModel().getValueAt(row,5).toString());
             lblTotal.setText(tableCaja.getModel().getValueAt(row,9).toString());
             txtnumtelefono.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
             txtdescripcion.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;

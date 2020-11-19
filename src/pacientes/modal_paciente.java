@@ -579,6 +579,10 @@ PreparedStatement pst=null;
             }else if (("Endoscopia").equals(cual)){
                 cajaservicios.caja_endoscopia.lblidpaciente.setText(txtCodigo.getText());
                 cajaservicios.caja_endoscopia.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
+            }
+            else if (("Laboratorio").equals(cual)){
+                cajaservicios.caja_laboratorio.lblidpaciente.setText(txtCodigo.getText());
+                cajaservicios.caja_laboratorio.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
             }else{
                 ambulancia.ambulancia.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
             }
