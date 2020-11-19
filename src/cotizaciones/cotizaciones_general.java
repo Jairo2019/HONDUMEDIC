@@ -923,7 +923,7 @@ private void condicionPaciente( ){
             pacientes.lista_pacientes_laboratorio.cual="11";
             new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);  
      }else{
-        JOptionPane.showMessageDialog( this, "Seleccione si Es Paciente o No","Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog( this, "Seleccione si es Subsiguiente o Primera Vez","Error", JOptionPane.ERROR_MESSAGE);
         
         }
 }

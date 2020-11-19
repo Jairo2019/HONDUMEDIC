@@ -375,6 +375,10 @@ PreparedStatement pst=null;
                             deposito.depositos.txtpaciente.setText(nom);
                             deposito.depositos.txtidpaciente.setText(cod );
                             cual="";
+                        }else if (("13").equals(cual)){
+                            cajaservicios.caja_endoscopia.lblidpaciente.setText(cod);
+                            cajaservicios.caja_endoscopia.txtpaciente.setText(nom);
+                            cual="";
                         }else{
                              registro_examen.examen_laboratorio.txtpaciente.setText(nom);
                              registro_examen.examen_laboratorio.lblidpaciente.setText(cod);

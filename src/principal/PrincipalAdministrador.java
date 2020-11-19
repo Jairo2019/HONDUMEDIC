@@ -76,6 +76,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static salida_hospitalizacion salida_hospitalizacion=null;
     public static examen_rayosx examen_rayosx=null;
     public static examen_endoscopia examen_endoscopia=null;
+    public static caja_endoscopia caja_endoscopia=null;
     public static examen_ultrasonido examen_ultrasonido = null;
     public static ambulancia registro_ambulancia = null;
     public static registrar_ambulancias registrar_ambulancia = null;

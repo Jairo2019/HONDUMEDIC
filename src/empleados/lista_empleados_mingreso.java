@@ -320,9 +320,6 @@ PreparedStatement pst=null;
                     }else if (("2.1").equals(cual)){
                     Registro_Salida.salida_hospitalizacion.txtmedicosalida.setText(nom + " "+  apellido);
                     cual="";
-                    }else if (("4").equals(cual)){
-                    registro_examen.examen_endoscopia.txtmedicoingreso.setText(nom + " "+  apellido);
-                    cual="";
                     }else if (("7").equals(cual)){
                     registro_examen.examen_ultrasonido.txtmedicoingreso.setText(nom + " "+  apellido);
                     cual="";

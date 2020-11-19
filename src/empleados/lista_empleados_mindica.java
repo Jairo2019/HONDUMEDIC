@@ -328,9 +328,6 @@ PreparedStatement pst=null;
                     }else if (("3").equals(cual)){
                     registro_examen.examen_rayosx.txtmedicoindica.setText(nom + " "+  apellido);
                     cual="";
-                    }else if (("4").equals(cual)){
-                    registro_examen.examen_endoscopia.txtmedicoindica.setText(nom + " "+  apellido);
-                    cual="";
                     }else if (("5").equals(cual)){
                     ambulancia.ambulancia.txtconductor.setText(nom + " "+  apellido);
                     cual="";

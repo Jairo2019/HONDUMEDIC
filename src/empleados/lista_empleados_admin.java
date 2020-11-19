@@ -330,7 +330,7 @@ PreparedStatement pst=null;
                             registro_examen.examen_rayosx.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";
                         }else if (("4").equals(cual)){
-                            registro_examen.examen_endoscopia.txtmedicoadmin.setText(nom + " "+  apellido);
+                            registro_examen.examen_endoscopia.txtmedico.setText(nom + " "+  apellido);
                             cual="";
                         }else if (("5").equals(cual)){
                             ambulancia.ambulancia.txtmedicoadmin.setText(nom + " "+  apellido);

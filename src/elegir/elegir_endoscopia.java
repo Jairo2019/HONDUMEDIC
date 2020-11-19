@@ -8,6 +8,7 @@ package elegir;
 import Inventarios.inventario_endoscopia;
 import ventas.*;
 import alertas.principal.AWTUtilities;
+import cajaservicios.caja_endoscopia;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
@@ -101,7 +102,7 @@ public class elegir_endoscopia extends javax.swing.JDialog {
 
         btnpagar.setBackground(new java.awt.Color(0, 111, 177));
         btnpagar.setForeground(new java.awt.Color(255, 255, 255));
-        btnpagar.setText("Pagar Examen");
+        btnpagar.setText("Caja");
         btnpagar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnpagar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnpagar.addActionListener(new java.awt.event.ActionListener() {
@@ -241,13 +242,13 @@ public class elegir_endoscopia extends javax.swing.JDialog {
     private void btnpagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpagarActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.examen_endoscopia)) {
-            PrincipalAdministrador.examen_endoscopia = new examen_endoscopia();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.caja_endoscopia)) {
+            PrincipalAdministrador.caja_endoscopia = new caja_endoscopia();
             int width = PrincipalAdministrador.escritorio.getWidth();
             int Height = PrincipalAdministrador.escritorio.getHeight();
-            PrincipalAdministrador.examen_endoscopia.setSize(width, Height);
-            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.examen_endoscopia);
-            PrincipalAdministrador.examen_endoscopia.show();
+            PrincipalAdministrador.caja_endoscopia.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.caja_endoscopia);
+            PrincipalAdministrador.caja_endoscopia.show();
         }            // TODO add your handling code here:
     }//GEN-LAST:event_btnpagarActionPerformed
 
@@ -265,7 +266,16 @@ public class elegir_endoscopia extends javax.swing.JDialog {
     }//GEN-LAST:event_btnListaVentas2ActionPerformed
 
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-        // TODO add your handling code here:
+        PrincipalAdministrador.escritorio.removeAll();
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.examen_endoscopia)) {
+            PrincipalAdministrador.examen_endoscopia = new examen_endoscopia();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.examen_endoscopia.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.examen_endoscopia);
+            PrincipalAdministrador.examen_endoscopia.show();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btnregistrarActionPerformed
 
     /**
