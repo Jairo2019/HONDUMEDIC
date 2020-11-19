@@ -394,7 +394,7 @@ static Conexion cc = new Conexion();
         numFac.setText("NO. VENTA");
         jPanel22.add(numFac, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 32, 306, -1));
 
-        txtdescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        txtdescripcion.setBackground(new java.awt.Color(204, 204, 204));
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -765,6 +765,7 @@ static Conexion cc = new Conexion();
         txtnumtelefono.setEnabled(true);
         thishide.setVisible(false);
         btnservicios.setEnabled(true);
+        numeros();
     }
   private void Get_Data(){
         limpiaCampos();
@@ -929,10 +930,6 @@ static Conexion cc = new Conexion();
             }
             if (txtmedico.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese la Persona que Realiza el Examen","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtnumtelefono.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Número de Habitación","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtFecha.getText().equals("")) {

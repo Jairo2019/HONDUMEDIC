@@ -318,7 +318,7 @@ public static Double value ;
                 + "precio as 'Precio',"
                 + "cantidad as 'Cantidad',"
                 + "importe as 'Importe' "
-                + "from detalle_test_edoscopia where idventa='" + cod + "' ";
+                + "from detalle_test_endoscopia where idventa='" + cod + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -396,7 +396,8 @@ public static Double value ;
                     er.setVisible(true);
                 } else {
                     String cod = tabla.getValueAt(fila, 0).toString();
-                    String paciente = tabla.getValueAt(fila, 1).toString();
+                    String idpaciente = tabla.getValueAt(fila, 1).toString();
+                    String paciente = tabla.getValueAt(fila, 2).toString();
                             String com = examen_endoscopia.codetest.getText();
                             if (cod.equals(com)) {
                                 ErrorAlert er = new ErrorAlert(new JFrame(), true);
@@ -406,7 +407,8 @@ public static Double value ;
                                 er.setVisible(true);
                                 this.dispose();
                             }else{
-                            examen_endoscopia.codetest.setText(cod); 
+                            examen_endoscopia.codetest.setText(cod);
+                            examen_endoscopia.lblidpaciente.setText(idpaciente);
                             examen_endoscopia.txtpaciente.setText(paciente); 
                             show_detalle();
                             calcular();

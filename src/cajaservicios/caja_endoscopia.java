@@ -1135,10 +1135,10 @@ private void condicionPaciente( ){
                     + "total,"
                     + "estado) values ('"
                     +numFac.getText()+"','" 
-                    +lblidpaciente.getText()+"','" 
+                    +lblidpaciente.getText()
                     +"','" + txtFecha.getText()
                     +"','" + lblTotal.getText()
-                    +"','" + 1 + "')";
+                    +"','" + "1" + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 
