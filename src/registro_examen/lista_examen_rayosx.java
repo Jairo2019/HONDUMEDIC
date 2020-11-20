@@ -312,19 +312,22 @@ public static Double value ;
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            double value = Double.valueOf(cajaservicios.caja_rayosx.isv.getText());
             isv=((value/100) * total);
             cajaservicios.caja_rayosx.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
 
         }
-        cajaservicios.caja_rayosx.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
         cajaservicios.caja_rayosx.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
     private void show_detalle(){
         int fila = tabla.getSelectedRow();
         String cod = tabla.getValueAt(fila, 0).toString();
-        String sql="select codigo as 'Codigo',p_s as 'Producto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_rayosx where idventa='" + cod + "' ";
+        String sql="select codigo as 'Codigo',"
+                + "p_s as 'Producto/Servicio',"
+                + "precio as 'Precio',"
+                + "cantidad as 'Cantidad',"
+                + "importe as 'Importe' "
+                + "from detalle_test_rayosx where idventa='" + cod + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -348,7 +351,14 @@ public static Double value ;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_rayosx WHERE paciente LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
+                    + "paciente as 'Paciente',"
+                    + "medico_1 as 'Realizo Examen',"
+                    + " num_habitacion as 'Habitación',"
+                    + "observaciones as 'Observaciones',"
+                    + "fecha as 'Fecha y Hora',"
+                    + " total as 'Total (L)' "
+                    + "from test_rayosx WHERE paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -398,7 +408,7 @@ public static Double value ;
                 } else {
                     String cod = tabla.getValueAt(fila, 0).toString();
                     String paciente = tabla.getValueAt(fila, 1).toString();
-                            String com = cajaservicios.caja_rayosx.codetest.getText();
+                            String com = cajaservicios.caja_rayosx.lblidpaciente.getText();
                             if (cod.equals(com)) {
                                 ErrorAlert er = new ErrorAlert(new JFrame(), true);
                                 er.titulo.setText("OOPS...");
@@ -407,9 +417,8 @@ public static Double value ;
                                 er.setVisible(true);
                                 this.dispose();
                             }else{
-                            cajaservicios.caja_rayosx.codetest.setText(cod); 
+                            cajaservicios.caja_rayosx.lblidpaciente.setText(cod); 
                             cajaservicios.caja_rayosx.txtpaciente.setText(paciente); 
-                            cajaservicios.caja_rayosx.txtcredito.setEnabled(true);
                             show_detalle();
                             calcular();
                             this.dispose();
