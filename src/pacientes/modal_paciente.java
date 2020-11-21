@@ -585,6 +585,9 @@ PreparedStatement pst=null;
             }else if (("RayosX").equals(cual)){
                 cajaservicios.caja_rayosx.lblidpaciente.setText(txtCodigo.getText());
                 cajaservicios.caja_rayosx.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
+            }else if (("Ultrasonido").equals(cual)){
+                cajaservicios.caja_ultrasonido.lblidpaciente.setText(txtCodigo.getText());
+                cajaservicios.caja_ultrasonido.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
             }else{
                 ambulancia.ambulancia.txtpaciente.setText(txtName.getText() +" "+ txtapellido.getText());
             }

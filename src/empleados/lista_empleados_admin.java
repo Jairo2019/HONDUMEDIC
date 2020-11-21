@@ -333,7 +333,7 @@ PreparedStatement pst=null;
                             cirugia.registrar_cirugia.txtmedicoadmin.setText(nom + " "+  apellido);
                             cual="";
                         }else if (("7").equals(cual)){
-                            registro_examen.examen_ultrasonido.txtmedicoadmin.setText(nom + " "+  apellido);
+                            registro_examen.examen_ultrasonido.txtmedico.setText(nom + " "+  apellido);
                             cual="";
                         }else if (("8").equals(cual)){
                             unidad_apa.examen_hospitalizacion_apa.txtmedicoadmin.setText(nom + " "+  apellido);

@@ -8,6 +8,7 @@ package elegir;
 import Inventarios.inventario_ultrasonido;
 import ventas.*;
 import alertas.principal.AWTUtilities;
+import cajaservicios.caja_ultrasonido;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
@@ -56,6 +57,7 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
         btnCancelar = new principal.MaterialButtomRectangle();
         btninventario = new principal.MaterialButtomRectangle();
         btnregistrar = new principal.MaterialButtomRectangle();
+        btnbill = new principal.MaterialButtomRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -112,7 +114,7 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
 
         btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
         btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnregistrar.setText("Registrar Endoscopia");
+        btnregistrar.setText("Registrar Ultrasonido");
         btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnregistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,22 +123,35 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
             }
         });
 
+        btnbill.setBackground(new java.awt.Color(0, 111, 177));
+        btnbill.setForeground(new java.awt.Color(255, 255, 255));
+        btnbill.setText("caja");
+        btnbill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnbill.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnbill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbillActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
         panel3.setLayout(panel3Layout);
         panel3Layout.setHorizontalGroup(
             panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
+            .addGroup(panel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                    .addGroup(panel3Layout.createSequentialGroup()
+                .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btnservice, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btninventario, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                            .addComponent(btnregistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
+                        .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btninventario, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                                .addComponent(btnservice, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                                .addComponent(btnregistrar, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                                .addComponent(btnbill, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(24, 24, 24)))
                 .addContainerGap())
         );
@@ -149,13 +164,15 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnservice, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btninventario, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnbill, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,7 +183,9 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -250,6 +269,18 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
             PrincipalAdministrador.examen_ultrasonido.show();
         }  // TODO add your handling code here:
     }//GEN-LAST:event_btnregistrarActionPerformed
+
+    private void btnbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbillActionPerformed
+        this.dispose();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.caja_ultrasonido)) {
+            PrincipalAdministrador.caja_ultrasonido = new caja_ultrasonido();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.caja_ultrasonido.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.caja_ultrasonido);
+            PrincipalAdministrador.caja_ultrasonido.show();
+        }
+    }//GEN-LAST:event_btnbillActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,6 +389,7 @@ public class elegir_ultrasonido extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnCancelar;
+    private principal.MaterialButtomRectangle btnbill;
     private principal.MaterialButtomRectangle btninventario;
     private principal.MaterialButtomRectangle btnregistrar;
     private principal.MaterialButtomRectangle btnservice;

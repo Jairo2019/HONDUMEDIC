@@ -267,9 +267,9 @@
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/Laboratory_64.png"/>
+                          <Image iconType="3" name="/img/XRay_64.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Laboratorio"/>
+                        <Property name="text" type="java.lang.String" value="RayosX"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JPanel" name="pnlChange">
@@ -476,9 +476,9 @@
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/img/Laboratory_64.png"/>
+                      <Image iconType="3" name="/img/XRay_64.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Laboratorio"/>
+                    <Property name="text" type="java.lang.String" value="RayosX"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel9">

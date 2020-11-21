@@ -383,11 +383,15 @@ PreparedStatement pst=null;
                             cajaservicios.caja_laboratorio.lblidpaciente.setText(cod);
                             cajaservicios.caja_laboratorio.txtpaciente.setText(nom);
                             cual="";
-                        }else{
-                             registro_examen.examen_laboratorio.txtpaciente.setText(nom);
-                             registro_examen.examen_laboratorio.lblidpaciente.setText(cod);
-                             cual="";}
-                        this.dispose();
+                        }else if (("15").equals(cual)){
+                            cajaservicios.caja_rayosx.lblidpaciente.setText(cod);
+                            cajaservicios.caja_rayosx.txtpaciente.setText(nom);
+                            cual="";
+                        }else if (("16").equals(cual)){
+                            cajaservicios.caja_ultrasonido.lblidpaciente.setText(cod);
+                            cajaservicios.caja_ultrasonido.txtpaciente.setText(nom);
+                            cual="";
+                        }this.dispose();
                 }
             } catch (Exception e) {
             }

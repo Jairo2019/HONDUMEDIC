@@ -1021,7 +1021,7 @@ private void condicionPaciente( ){
             pacientes.modal_paciente.cual="RayosX";
             new pacientes.modal_paciente(new JFrame(), true).setVisible(true);
         }else if(ispaciente.isSelected()){
-            pacientes.lista_pacientes_laboratorio.cual="14";
+            pacientes.lista_pacientes_laboratorio.cual="15";
             new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);  
      }else{
         JOptionPane.showMessageDialog( this, "Seleccione si es Subsiguiente o Primera Vez","Error", JOptionPane.ERROR_MESSAGE);

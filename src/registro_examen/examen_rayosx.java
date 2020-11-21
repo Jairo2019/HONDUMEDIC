@@ -230,8 +230,8 @@ static Conexion cc = new Conexion();
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Laboratory_64.png"))); // NOI18N
-        jLabel7.setText("Laboratorio");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/XRay_64.png"))); // NOI18N
+        jLabel7.setText("RayosX");
 
         pnlChange.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -371,8 +371,8 @@ static Conexion cc = new Conexion();
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(128, 128, 131));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Laboratory_64.png"))); // NOI18N
-        jLabel14.setText("Laboratorio");
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/XRay_64.png"))); // NOI18N
+        jLabel14.setText("RayosX");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
