@@ -318,7 +318,7 @@ public static Double value ;
                 + "precio as 'Precio',"
                 + "cantidad as 'Cantidad',"
                 + "importe as 'Importe' "
-                + "from detalle_test_endoscopia where idventa='" + cod + "' ";
+                + "from detalle_test_laboratorio where idventa='" + cod + "' ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();

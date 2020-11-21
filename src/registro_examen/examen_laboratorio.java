@@ -719,7 +719,7 @@ static Conexion cc = new Conexion();
             }
 
             if (c == null) {
-                numFac.setText("RE0001");
+                numFac.setText("RL0001");
             } else {
                 char r1 = c.charAt(2);
                 char r2 = c.charAt(3);
@@ -730,7 +730,7 @@ static Conexion cc = new Conexion();
                 j = Integer.parseInt(r);
                 GenerarCodigos gen = new GenerarCodigos();
                 gen.generar(j);
-                numFac.setText("RE" + gen.serie());
+                numFac.setText("RL" + gen.serie());
 
             }
 

@@ -303,12 +303,10 @@ public static Double value ;
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            double value = Double.valueOf(cajaservicios.caja_rayosx.isv.getText());
             isv=((value/100) * total);
             cajaservicios.caja_rayosx.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
 
         }
-        cajaservicios.caja_rayosx.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
         cajaservicios.caja_rayosx.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }

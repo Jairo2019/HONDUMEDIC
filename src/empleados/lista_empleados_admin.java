@@ -5,11 +5,9 @@
  */
 package empleados;
 
-import pacientes.*;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
-import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 import paneles.Conexion;
 import tabla.MyScrollbarUI;
-import pacientes.*;
 
 /**
  *
@@ -326,9 +323,6 @@ PreparedStatement pst=null;
                         }else if (("2").equals(cual)){
                            // registro_examen.examen_hospitalizacion.txtencargado.setText(nom + " "+  apellido);
                             cual="";
-                        }else if (("3").equals(cual)){
-                            registro_examen.examen_rayosx.txtmedicoadmin.setText(nom + " "+  apellido);
-                            cual="";
                         }else if (("4").equals(cual)){
                             registro_examen.examen_endoscopia.txtmedico.setText(nom + " "+  apellido);
                             cual="";
@@ -349,6 +343,9 @@ PreparedStatement pst=null;
                             cual="";
                         }else if (("10").equals(cual)){
                             registro_examen.examen_laboratorio.txtmedico.setText(nom + " "+  apellido);
+                            cual="";
+                        }else if (("11").equals(cual)){
+                            registro_examen.examen_rayosx.txtmedico.setText(nom + " "+  apellido);
                             cual="";
                         }
                         this.dispose();

@@ -294,17 +294,17 @@ PreparedStatement pst=null;
         double imp = 0.0;
         double isv= 0.0;
 
-        for (int i = 0; i < registro_examen.examen_rayosx.tablaCaja.getRowCount(); i++) {
-            pre = registro_examen.examen_rayosx.tablaCaja.getValueAt(i, 2).toString();
-            can = registro_examen.examen_rayosx.tablaCaja.getValueAt(i, 3).toString();
+        for (int i = 0; i < cajaservicios.caja_rayosx.tablaCaja.getRowCount(); i++) {
+            pre = cajaservicios.caja_rayosx.tablaCaja.getValueAt(i, 2).toString();
+            can = cajaservicios.caja_rayosx.tablaCaja.getValueAt(i, 3).toString();
             precio = Double.parseDouble(pre);
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            registro_examen.examen_rayosx.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
+            cajaservicios.caja_rayosx.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
 
         }
-        registro_examen.examen_rayosx.lblTotal.setText("" + Math.rint((total) * 100) / 100);
+        cajaservicios.caja_rayosx.lblTotal.setText("" + Math.rint((total) * 100) / 100);
 
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
@@ -354,7 +354,7 @@ PreparedStatement pst=null;
         if (tabla.getRowCount() > 0) {
             try {
                 String cant = null;
-                DefaultTableModel tabladet = (DefaultTableModel) registro_examen.examen_rayosx.tablaCaja.getModel();
+                DefaultTableModel tabladet = (DefaultTableModel) cajaservicios.caja_rayosx.tablaCaja.getModel();
 
                 String[] dato = new String[6];
 
@@ -389,9 +389,9 @@ PreparedStatement pst=null;
                             er.setVisible(true);
                         } else {
                         cant= txtCantidad.getText();
-                        for (int i = 0; i < registro_examen.examen_rayosx.tablaCaja.getRowCount(); i++) {
-                            Object com = registro_examen.examen_rayosx.tablaCaja.getValueAt(i, 0);
-                            Object cant1 = registro_examen.examen_rayosx.tablaCaja.getValueAt(i, 3);
+                        for (int i = 0; i < cajaservicios.caja_rayosx.tablaCaja.getRowCount(); i++) {
+                            Object com = cajaservicios.caja_rayosx.tablaCaja.getValueAt(i, 0);
+                            Object cant1 = cajaservicios.caja_rayosx.tablaCaja.getValueAt(i, 3);
                             if (cod.equals(com)) {
                                 j = i;
                                 int cantT = Integer.parseInt(cant) + Integer.parseInt((String) cant1);
@@ -404,7 +404,7 @@ PreparedStatement pst=null;
                                     er.setVisible(true);
                                     c=1;
                                 }else{
-                                    registro_examen.examen_rayosx.tablaCaja.setValueAt(String.valueOf(cantT), i, 3);
+                                    cajaservicios.caja_rayosx.tablaCaja.setValueAt(String.valueOf(cantT), i, 3);
                                     c=1;
                                     calcular();
 
@@ -422,7 +422,7 @@ PreparedStatement pst=null;
 
                             tabladet.addRow(dato);
 
-                            registro_examen.examen_rayosx.tablaCaja.setModel(tabladet);
+                            cajaservicios.caja_rayosx.tablaCaja.setModel(tabladet);
                             calcular();
 
                             

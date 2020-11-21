@@ -1091,7 +1091,7 @@ private void condicionPaciente( ){
     }//GEN-LAST:event_tableCajaMouseClicked
 
     private void btnVender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVender1ActionPerformed
-        new lista_productos_servicios.productos_laboratorio(new JFrame(), true).setVisible(true);
+        new lista_productos_servicios.productos_rayosx(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btnVender1ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
