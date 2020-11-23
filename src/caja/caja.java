@@ -1421,62 +1421,18 @@ private void condicionIsv( ){
 // traer los detalles de la factura con el codigo del examen
     
     private void show_detalle(){
-
-        if (("A").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_ambulancia where idventa='" + codetest.getText() + "' ";
+      String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 ";
+       
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
+         caja.tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("C").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_cirugia where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("E").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_emergencia where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("EN").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_endoscopia where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("H").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_hospitalizacion where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("U").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_ultrasonido where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }
+            }
     }
     void subtotal(){
         String pre;
@@ -1548,36 +1504,8 @@ private void condicionIsv( ){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-            if (thishide.isVisible()){
-                ResultSet rs = s.executeQuery("SELECT * FROM caja_servicios WHERE paciente LIKE '%"+name+"%' and estado_pago='Crédito'");
-
-                    while (rs.next()) {
-                        Vector v = new Vector();
-                        v.add(rs.getString(1));
-                        v.add(rs.getString(2));
-                        v.add(rs.getString(3));
-                        v.add(rs.getString(4));
-                        v.add(rs.getString(5));
-                        v.add(rs.getString(6));
-                        v.add(rs.getString(7));
-                        v.add(rs.getString(8));
-                        dt.addRow(v);
-                String can;
-                double total = 0;
-                float cantidad;
-
-                for (int i = 0; i < tableCaja.getRowCount(); i++) {
-                    can = tableCaja.getValueAt(i, 4).toString();
-                    cantidad = Float.parseFloat(can);
-                    total = total + cantidad;
-                }
-                caja.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
-                    }
-              }else {
                 //query para buscar por identidad el paciente en la tabla caja_servicios
                     ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
-                            + "codigo_examen as 'Codig Examen',"
-                            + "cod_servicio as 'Codigo Servicio',"
                             + "codigo_paciente as 'Identidad',"
                             + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
                             + "fecha as 'Fecha',"
@@ -1598,8 +1526,6 @@ private void condicionIsv( ){
                         v.add(rs.getString(4));
                         v.add(rs.getString(5));
                         v.add(rs.getString(6));
-                        v.add(rs.getString(7));
-                        v.add(rs.getString(8));
                         dt.addRow(v);
                 String can;
                 double total = 0;
@@ -1612,7 +1538,6 @@ private void condicionIsv( ){
                 }
                 caja.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100);
                     }
-        }
 
 
         } catch (Exception e) {
