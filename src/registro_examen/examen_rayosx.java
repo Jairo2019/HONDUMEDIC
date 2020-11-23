@@ -743,7 +743,20 @@ static Conexion cc = new Conexion();
         return formatofecha.format(fecha);
 
     }
-
+    //Actualizar el estado de la factura
+    private void update_state(){
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar el estado del registro
+            String sql= "update caja_rayosx set estado='"+ 0
+                    + "' where idventa='" + codetest.getText()+ "'";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
+    //funcion para agregar un nuevo registro 
     void limpiaCampos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
 
@@ -965,6 +978,7 @@ static Conexion cc = new Conexion();
             sa.setVisible(true);
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
+            update_state();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
         } 

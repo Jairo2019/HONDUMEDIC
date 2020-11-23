@@ -943,7 +943,7 @@ private void edit_detalle(){
                 +cantidad+"','" 
                 +importe+"','" 
                 +txtFecha.getText()+"','" 
-                +"Emergencia"+"','" 
+                +"Hospitalización"+"','" 
                 +"1"+ "')";
 
         try{

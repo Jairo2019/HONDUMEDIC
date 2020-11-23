@@ -8,6 +8,7 @@ package pacientes;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
+import caja.caja;
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
@@ -257,8 +258,49 @@ PreparedStatement pst=null;
             
 }
   }
+// metodo para obtener los detalles de cada servicio e insumo brindado a un determinado paciente
+    private void show_detalle(){
 
+        String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 ";
+       
+        try{
+         pst=con.prepareStatement(sql);
+         rs= pst.executeQuery();
+         caja.tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
+         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);    
+            }    
+    
+    }
+    //calcular el total sumando la columna importe
+    public void calcular() {
+        String pre;
+        String can;
+        double total = 0;
+        double precio;
+        int cantidad;
+        double imp = 0.0;
+        double isv= 0.0;
 
+        for (int i = 0; i < caja.tablaCaja.getRowCount(); i++) {
+            pre = caja.tablaCaja.getValueAt(i, 3).toString();
+            can = caja.tablaCaja.getValueAt(i, 4).toString();
+            precio = Double.parseDouble(pre);
+            cantidad = Integer.parseInt(can);
+            imp = precio * cantidad;
+            total = total + imp;
+            double value = Double.valueOf(caja.isv.getText());
+            isv=((value/100) * total);
+            caja.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 5);
+
+        }
+        caja.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
+        caja.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
+
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
@@ -390,6 +432,12 @@ PreparedStatement pst=null;
                         }else if (("16").equals(cual)){
                             cajaservicios.caja_ultrasonido.lblidpaciente.setText(cod);
                             cajaservicios.caja_ultrasonido.txtpaciente.setText(nom);
+                            cual="";
+                        }else if (("17").equals(cual)){
+                            caja.lblidpaciente.setText(cod);
+                            caja.txtpaciente.setText(nom);
+                            show_detalle();
+                            calcular();
                             cual="";
                         }this.dispose();
                 }

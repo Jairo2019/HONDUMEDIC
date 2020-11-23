@@ -824,6 +824,19 @@ static Conexion cc = new Conexion();
           
 }    
     }
+        //Actualizar el estado de la factura
+    private void update_state(){
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar el estado del registro
+            String sql= "update caja_laboratorio set estado='"+ 0
+                    + "' where idventa='" + codetest.getText()+ "'";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
@@ -967,6 +980,7 @@ static Conexion cc = new Conexion();
             sa.setVisible(true);
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
+            update_state();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
         } 

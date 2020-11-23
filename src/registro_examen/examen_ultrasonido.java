@@ -791,6 +791,19 @@ static Conexion cc = new Conexion();
             JOptionPane.showMessageDialog(null, e);
           } 
   }
+      //Actualizar el estado de la factura
+    private void update_state(){
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar el estado del registro
+            String sql= "update caja_ultrasonido set estado='"+ 0
+                    + "' where idventa='" + codetest.getText()+ "'";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
      void sum_ingreso(){
          try{
          String sql= "select sum(importe) FROM detalle_test_ultrasonido WHERE idventa='"+numFac.getText()+"'";
@@ -965,6 +978,7 @@ static Conexion cc = new Conexion();
             sa.setVisible(true);
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
+            update_state();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
         } 
