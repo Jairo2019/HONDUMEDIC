@@ -125,8 +125,6 @@ static Conexion cc = new Conexion();
         tableCaja = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         btnsalestoday = new rsbuttom.RSButtonMetro();
-        btnallsales = new rsbuttom.RSButtonMetro();
-        btnrecievable = new rsbuttom.RSButtonMetro();
         txttotalcaja = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -388,7 +386,7 @@ static Conexion cc = new Conexion();
         jPanel12.setLayout(new java.awt.GridBagLayout());
 
         btnsalestoday.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sales_today_32.png"))); // NOI18N
-        btnsalestoday.setText("Ventas de Hoy");
+        btnsalestoday.setText("Mostrar Ventas");
         btnsalestoday.setToolTipText("");
         btnsalestoday.setColorBorde(null);
         btnsalestoday.setColorHover(new java.awt.Color(12, 140, 143));
@@ -411,68 +409,7 @@ static Conexion cc = new Conexion();
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 51;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 239, 0, 0);
         jPanel12.add(btnsalestoday, gridBagConstraints);
-
-        btnallsales.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/list_all_32.png"))); // NOI18N
-        btnallsales.setText("Todas las Ventas");
-        btnallsales.setToolTipText("");
-        btnallsales.setColorBorde(null);
-        btnallsales.setColorHover(new java.awt.Color(12, 140, 143));
-        btnallsales.setColorPressed(new java.awt.Color(12, 140, 143));
-        btnallsales.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnallsales.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnallsales.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnallsales.setIconTextGap(19);
-        btnallsales.setPreferredSize(new java.awt.Dimension(231, 32));
-        btnallsales.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnallsalesMouseClicked(evt);
-            }
-        });
-        btnallsales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnallsalesActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 0);
-        jPanel12.add(btnallsales, gridBagConstraints);
-
-        btnrecievable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/receivable_32.png"))); // NOI18N
-        btnrecievable.setText("Cuentas por Cobrar");
-        btnrecievable.setToolTipText("");
-        btnrecievable.setColorBorde(null);
-        btnrecievable.setColorHover(new java.awt.Color(12, 140, 143));
-        btnrecievable.setColorPressed(new java.awt.Color(12, 140, 143));
-        btnrecievable.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnrecievable.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnrecievable.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnrecievable.setIconTextGap(19);
-        btnrecievable.setPreferredSize(new java.awt.Dimension(210, 32));
-        btnrecievable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnrecievableMouseClicked(evt);
-            }
-        });
-        btnrecievable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnrecievableActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 226);
-        jPanel12.add(btnrecievable, gridBagConstraints);
 
         javax.swing.GroupLayout pnlChangeLayout = new javax.swing.GroupLayout(pnlChange);
         pnlChange.setLayout(pnlChangeLayout);
@@ -1145,7 +1082,6 @@ static Conexion cc = new Conexion();
         txtcuotas.hide();
         txtvalorcuotas.hide();
         codetest.hide();
-        btnallsales.hide();
         lblidpaciente.hide();
         numeros();
     }
@@ -1351,23 +1287,18 @@ private void condicionIsv( ){
         String fecH = formato.format(sistemaFech);
         thishide.setVisible(false);
         String sql="select idventa as 'Codigo',"
-                + "codigo_examen as 'Codig Examen',"
-                + "cod_servicio as 'Codigo Servicio',"
-                + "codigo_paciente as 'Identidad',"
-                + " CONCAT(nombre, ' ' , apellido) as 'Paciente', "
-                + "fecha as 'Fecha',"
-                + "estado_pago as 'Estado de Pago',"
-                + "total as 'Total (L)'"
-                + " from caja_servicios "
-                + " inner join paciente on "
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " fecha as 'Fecha',"
+                + "total as 'Total (L)' "
+                + "from caja_servicios "
+                + "inner join paciente on "
                 + " paciente = codigo_paciente "
                 + "where estado_pago='Contado' and fecha='"+fecH+"'";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
-         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
          tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
@@ -1378,7 +1309,7 @@ private void condicionIsv( ){
         float cantidad;
 
         for (int i = 0; i < tableCaja.getRowCount(); i++) {
-            can = tableCaja.getValueAt(i, 4).toString();
+            can = tableCaja.getValueAt(i, 3).toString();
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
@@ -1398,16 +1329,14 @@ private void condicionIsv( ){
             Statement s = Conexion.ConnectDB().createStatement();
 
             ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
-                    + "codigo_examen as 'Codigo Examen',"
-                    + "cod_servicio as 'Codigo Servicio',"
-                    + "codigo_paciente as 'Identidad',"
-                    + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
-                    + "fecha as 'Fecha',estado_pago as 'Estado de Pago',"
-                    + "total as 'Total (L)' "
-                    + "from caja_servicios"
-                    + " inner join paciente on "
-                    + " paciente = codigo_paciente "
-                    + "WHERE fecha ='" + fecH + "' and estado_pago='Contado'");
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " fecha as 'Fecha',"
+                + "total as 'Total (L)' "
+                + "from caja_servicios "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente "
+                + "WHERE fecha ='" + fecH + "' and estado_pago='Contado'");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -1416,15 +1345,13 @@ private void condicionIsv( ){
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
-                v.add(rs.getString(6));
-                v.add(rs.getString(7));
                 dt.addRow(v);
         String can;
         double total = 0;
         float cantidad;
 
         for (int i = 0; i < tableCaja.getRowCount(); i++) {
-            can = tableCaja.getValueAt(i, 4).toString();
+            can = tableCaja.getValueAt(i, 3).toString();
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
@@ -1600,7 +1527,7 @@ private void condicionIsv( ){
     //función factura al credito o al contado
     private void Fact (){
       if(rbcredito.isSelected()){
-            print_bill_credit();
+//            print_bill_credit();
         }else if(rbcontado.isSelected()){
             print_bill();
         }
@@ -1941,37 +1868,8 @@ private void condicionIsv( ){
        }         // TODO add your handling code here:
     }//GEN-LAST:event_btneditActionPerformed
 
-    private void btnsalestodayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsalestodayMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnsalestodayMouseClicked
-
-    private void btnsalestodayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalestodayActionPerformed
-        Get_Data_today();       // TODO add your handling code here:
-    }//GEN-LAST:event_btnsalestodayActionPerformed
-
-    private void btnallsalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnallsalesMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnallsalesMouseClicked
-
-    private void btnallsalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnallsalesActionPerformed
-        Get_Data();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnallsalesActionPerformed
-
-    private void btnrecievableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnrecievableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnrecievableMouseClicked
-
-    private void btnrecievableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrecievableActionPerformed
-        cuentas_cobrar();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnrecievableActionPerformed
-
     private void buscFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscFActionPerformed
-            if (thishide.isVisible()){
-                receivable_date();
-                }else {
             sales_date();
-        }
-       
     }//GEN-LAST:event_buscFActionPerformed
 
     private void rbnoisvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnoisvActionPerformed
@@ -2060,15 +1958,21 @@ private void condicionIsv( ){
     private void txtcuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuotasKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcuotasKeyTyped
+
+    private void btnsalestodayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalestodayActionPerformed
+        Get_Data_today();       // TODO add your handling code here:
+    }//GEN-LAST:event_btnsalestodayActionPerformed
+
+    private void btnsalestodayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsalestodayMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsalestodayMouseClicked
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static rsbuttom.RSButtonMetro btnCalcular;
     private principal.MaterialButton btnCancelar;
     private principal.MaterialButton btnVender;
-    private rsbuttom.RSButtonMetro btnallsales;
     private principal.MaterialButton btnedit;
-    private rsbuttom.RSButtonMetro btnrecievable;
     private rsbuttom.RSButtonMetro btnsalestoday;
     private principal.MaterialButton btnservicios;
     private javax.swing.JButton buscF;
