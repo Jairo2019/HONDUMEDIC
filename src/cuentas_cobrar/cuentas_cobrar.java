@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package cuentas_cobrar;
-import caja.*;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
+import caja.cuotas_estados_cuenta;
 import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
@@ -37,7 +37,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import clases_cajas_servicios.laboratorio;
 import clases_cajas_servicios.laboratorio_Credito;
 import principal.PrincipalAdministrador;
 /**
@@ -74,9 +73,13 @@ static Conexion cc = new Conexion();
         }
         return cerrado;
     }
- int filas;
+    int filas;
     DefaultTableModel m;
-    public cuentas_cobrar() {
+    String adeudado="";
+    String cuotas="";
+    String valorcuotas="";
+    public static String estado="";
+    public cuentas_cobrar(){
         initComponents();
         tablaCaja.getTableHeader().setDefaultRenderer(new principal.EstiloTablaHeader());
         tablaCaja.setDefaultRenderer(Object.class, new principal.EstiloTablaRenderer());
@@ -86,11 +89,10 @@ static Conexion cc = new Conexion();
         tablaCaja.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         con= Conexion.ConnectDB();
         limpiaCampos();
-        thishide.setVisible(false);
-        txtcredito.hide();
+        lbldebecuotas.setVisible(false);
         codetest.hide();
+        lblidpaciente.hide();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,8 +108,8 @@ static Conexion cc = new Conexion();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         cerrar = new principal.MaterialButton();
-        thishide = new javax.swing.JLabel();
-        lblknowdetail = new javax.swing.JLabel();
+        lbldebecuotas = new javax.swing.JLabel();
+        lblidpaciente = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -138,7 +140,6 @@ static Conexion cc = new Conexion();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
-        btnservicios = new principal.MaterialButton();
         isv = new app.bolivia.swing.JCTextField();
         lblback = new javax.swing.JLabel();
         txtpaciente = new app.bolivia.swing.JCTextField();
@@ -162,6 +163,7 @@ static Conexion cc = new Conexion();
         txtcuotas = new app.bolivia.swing.JCTextField();
         lbladeuda = new javax.swing.JLabel();
         lblcuotas = new javax.swing.JLabel();
+        btncuota = new principal.MaterialButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -193,25 +195,26 @@ static Conexion cc = new Conexion();
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(468, 468, 468)
-                .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(148, 148, 148)
-                .addComponent(lblknowdetail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 510, Short.MAX_VALUE)
+                .addComponent(lbldebecuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addComponent(lblidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblknowdetail))
-                .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbldebecuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jTabbedPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -358,17 +361,13 @@ static Conexion cc = new Conexion();
         pnlChange.setLayout(pnlChangeLayout);
         pnlChangeLayout.setHorizontalGroup(
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
+            .addGroup(pnlChangeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
-            .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlChangeLayout.createSequentialGroup()
-                    .addGap(5, 5, 5)
-                    .addComponent(jScrollPane1)
-                    .addGap(5, 5, 5)))
         );
         pnlChangeLayout.setVerticalGroup(
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,12 +376,9 @@ static Conexion cc = new Conexion();
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
-            .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
-                    .addGap(128, 128, 128)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                    .addGap(20, 20, 20)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         txttotalcaja.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -438,7 +434,7 @@ static Conexion cc = new Conexion();
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 111, 177));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("NO. VENTA");
+        jLabel3.setText("NO. FACTURA");
 
         numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numFac.setForeground(new java.awt.Color(0, 111, 177));
@@ -529,10 +525,10 @@ static Conexion cc = new Conexion();
         txtFecha.setEnabled(false);
         txtFecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtFecha.setPlaceholder("FECHA");
-        jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 240, 30));
+        jPanel4.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 240, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/campo-calendario.png"))); // NOI18N
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(58, 159, 171));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -541,19 +537,7 @@ static Conexion cc = new Conexion();
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/HODUMEDIC_1.png"))); // NOI18N
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 160));
-
-        btnservicios.setBackground(new java.awt.Color(0, 111, 177));
-        btnservicios.setForeground(new java.awt.Color(255, 255, 255));
-        btnservicios.setText("BUSCAR Paciente");
-        btnservicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnservicios.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnservicios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnserviciosActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnservicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 190, 48));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 310, 160));
 
         isv.setBorder(null);
         isv.setForeground(new java.awt.Color(0, 0, 0));
@@ -564,10 +548,10 @@ static Conexion cc = new Conexion();
                 isvKeyTyped(evt);
             }
         });
-        jPanel4.add(isv, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 240, -1));
+        jPanel4.add(isv, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 240, -1));
 
         lblback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/campo-isv.png"))); // NOI18N
-        jPanel4.add(lblback, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 320, -1));
+        jPanel4.add(lblback, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 320, -1));
 
         txtpaciente.setEditable(false);
         txtpaciente.setBorder(null);
@@ -576,10 +560,10 @@ static Conexion cc = new Conexion();
         txtpaciente.setEnabled(false);
         txtpaciente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtpaciente.setPlaceholder("PACIENTE ATENDIDO");
-        jPanel4.add(txtpaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 240, 30));
+        jPanel4.add(txtpaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 240, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/campo-cliente.png"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 310, -1));
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 310, -1));
         jPanel4.add(codetest, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 10, 12));
 
         jPanel7.setBackground(new java.awt.Color(0, 111, 177));
@@ -629,7 +613,7 @@ static Conexion cc = new Conexion();
         txtsubtotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtsubtotal.setForeground(new java.awt.Color(255, 255, 255));
         txtsubtotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtsubtotal.setText("SUBTOTAL: L");
+        txtsubtotal.setText("SALDO PENDIENTE: L");
 
         lblsubtotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblsubtotal.setForeground(new java.awt.Color(255, 255, 255));
@@ -795,6 +779,17 @@ static Conexion cc = new Conexion();
         lblcuotas.setText("CUOTAS:");
         jPanel23.add(lblcuotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 70, -1));
 
+        btncuota.setBackground(new java.awt.Color(0, 111, 177));
+        btncuota.setForeground(new java.awt.Color(255, 255, 255));
+        btncuota.setText("Pagar Cuota");
+        btncuota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btncuota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncuotaActionPerformed(evt);
+            }
+        });
+        jPanel23.add(btncuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 190, 48));
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -904,24 +899,19 @@ static Conexion cc = new Conexion();
                 GenerarNumero gen = new GenerarNumero();
                 gen.generar(j);
                 numFac.setText(gen.serie());
-
             }
-
         } catch (SQLException ex) {
 //           Logger.getLogger(opciones_serviciosVen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
    public static String fechaactual() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
         return formatofecha.format(fecha);
 
     }
-
     void limpiaCampos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
-
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
@@ -933,30 +923,37 @@ static Conexion cc = new Conexion();
         lblsubtotal.setText("0.0");
         selectestado.clearSelection();
         btnedit.setVisible(false);
-        isv.setVisible(false);
-        lblback.setVisible(false); 
         selectisv.clearSelection();
         codetest.setText("");
         isv.setText("");
         txtpaciente.setText("");
         txtcredito.setText("");
-        txtcredito.setVisible(false);
-        txtsubtotal.setText("SUBTOTAL: L");
         btnVender.setEnabled(true);
-        
         numeros();
     }
   //obtiene las factura que se a hecho al credito
   void cuentas_cobrar(){
-        thishide.setVisible(true);
-        String sql="select idventa as 'Codigo',codigo_examen as 'Codig Examen',cod_servicio as 'Codigo Servicio', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',abonado as 'Valor Pagado', pendiente as 'Saldo Pendiennte', total as 'Total (L)' from caja_servicios where estado_pago='Crédito'";
+        lbldebecuotas.setVisible(true);
+        String sql="select idventa as 'Codigo',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + "fecha as 'Fecha',"
+                + "abonado as 'Valor Pagado', "
+                + "cuotas as 'Num Cuotas', "
+                + "valor_cuotas as 'Valor de la Cuota', "
+                + "saldo_pendiente as 'Saldo Pendiente', "
+                + "total as 'Total (L', "
+                + "isv as 'ISV' "
+                + "from caja_servicios "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente "
+                + "where estado_pago='Crédito'";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableCaja.setModel(DbUtils.resultSetToTableModel(rs));
          tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
-         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
-         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
+         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(8));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);        
 }       
@@ -965,32 +962,12 @@ static Conexion cc = new Conexion();
         float cantidad;
 
         for (int i = 0; i < tableCaja.getRowCount(); i++) {
-            can = tableCaja.getValueAt(i, 4).toString();
+            can = tableCaja.getValueAt(i, 6).toString();
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
         cuentas_cobrar.txttotalcaja.setText("TOTAL SALDO PENDIENTE: L " + Math.rint((total) * 100) / 100);
 }
-//marcar si el jradiobutton es al  contado
-private void condicion(){
-            String estado= tableCaja.getModel().getValueAt(tableCaja.getSelectedRow(), 5).toString();
-            if ("Contado".equals(estado)){
-               btnCancelar.setText("LIMPIAR");
-               subtotal();
-                }else {
-                String adeuda= tableCaja.getModel().getValueAt(tableCaja.getSelectedRow(), 6).toString();
-                String pendiente= tableCaja.getModel().getValueAt(tableCaja.getSelectedRow(), 7).toString();
-                String total= tableCaja.getModel().getValueAt(tableCaja.getSelectedRow(), 8).toString();
-                txtcredito.setVisible(true);
-                txtcredito.setEnabled(false);
-                txtcredito.setText(adeuda);
-                btnedit.setVisible(true);
-                lblsubtotal.setText(pendiente);
-                txtsubtotal.setText("SALDO PENDIENTE: L");
-                lblTotal.setText(total);
-             } 
-}
-
 
     void print_bill_credit(){
         laboratorio_Credito em;// Instaciamos la clase empleado
@@ -1020,7 +997,6 @@ private void condicion(){
         double precio;
         int cantidad;
         double imp = 0.0;
-
         for (int i = 0; i < tablaCaja.getRowCount(); i++) {
             pre = tablaCaja.getValueAt(i, 2).toString();
             can = tablaCaja.getValueAt(i, 3).toString();
@@ -1054,23 +1030,29 @@ private void condicion(){
            
         } 
 }
-
-
     //seleccionar las facturas que hiciste al credito, seleccionando la fecha
     void receivable_date(){
             String formato = fecha.getDateFormatString();
             Date date = fecha.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat(formato); 
             String fecH = (String.valueOf(sdf.format(date)));
-
        try {
-
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM caja_servicios WHERE fecha ='" + fecH + "' and estado_pago='Crédito'");
-
+            ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + "fecha as 'Fecha',"
+                + "abonado as 'Valor Pagado',"
+                + "cuotas as 'Num Cuotas',"
+                + "valor_cuotas as 'Valor de la Cuota',"
+                + "saldo_pendiente as 'Saldo Pendiennte',"
+                + "total as 'Total (L)' "
+                + "from caja_servicios "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente WHERE fecha ='" + fecH + "' and estado_pago='Crédito'");
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
@@ -1088,7 +1070,7 @@ private void condicion(){
         float cantidad;
 
         for (int i = 0; i < tableCaja.getRowCount(); i++) {
-            can = tableCaja.getValueAt(i, 4).toString();
+            can = tableCaja.getValueAt(i, 5).toString();
             cantidad = Float.parseFloat(can);
             total = total + cantidad;
         }
@@ -1099,64 +1081,19 @@ private void condicion(){
         }          
     }
 // traer los detalles de la factura con el codigo del examen
-    
     private void show_detalle(){
-
-        if (("A").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_ambulancia where idventa='" + codetest.getText() + "' ";
+        String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 ";
+       
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
          tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("C").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_cirugia where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("E").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_emergencia where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("EN").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_endoscopia where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("H").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_hospitalizacion where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }else if (("U").equals(lblknowdetail.getText())){
-        String sql="select codigo as 'Codigo',p_s as 'Prodcuto/Servicio',precio as 'Precio',cantidad as 'Cantidad',importe as 'Importe' from detalle_test_ultrasonido where idventa='" + codetest.getText() + "' ";
-        try{
-         pst=con.prepareStatement(sql);
-         rs= pst.executeQuery();
-         tablaCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);    
-            }    
-        }
+            } 
     }
     void subtotal(){
         String pre;
@@ -1222,19 +1159,31 @@ private void condicion(){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT * FROM caja_servicios WHERE paciente LIKE '%"+name+"%' and estado_pago='Crédito'");
-
-                    while (rs.next()) {
-                        Vector v = new Vector();
-                        v.add(rs.getString(1));
-                        v.add(rs.getString(2));
-                        v.add(rs.getString(3));
-                        v.add(rs.getString(4));
-                        v.add(rs.getString(5));
-                        v.add(rs.getString(6));
-                        v.add(rs.getString(7));
-                        v.add(rs.getString(8));
-                        dt.addRow(v);
+                ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + "fecha as 'Fecha',"
+                + "abonado as 'Valor Pagado',"
+                + "cuotas as 'Num Cuotas',"
+                + "valor_cuotas as 'Valor de la Cuota',"
+                + "saldo_pendiente as 'Saldo Pendiennte',"
+                + "total as 'Total (L)' "
+                + "from caja_servicios "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente "
+                + " WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or paciente LIKE '%"+name+"%' and estado_pago='Crédito'");
+                while (rs.next()) {
+                    Vector v = new Vector();
+                    v.add(rs.getString(1));
+                    v.add(rs.getString(2));
+                    v.add(rs.getString(3));
+                    v.add(rs.getString(4));
+                    v.add(rs.getString(5));
+                    v.add(rs.getString(6));
+                    v.add(rs.getString(7));
+                    v.add(rs.getString(8));
+                    v.add(rs.getString(9));
+                    dt.addRow(v);
                 String can;
                 double total = 0;
                 float cantidad;
@@ -1257,49 +1206,41 @@ private void condicion(){
         try {
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
-            lblknowdetail.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            codetest.setText(tableCaja.getModel().getValueAt(row,1).toString());
-            txtpaciente.setText(tableCaja.getModel().getValueAt(row,3).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,6).toString());
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
+            txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,3).toString());
+            txtcredito.setText(tableCaja.getModel().getValueAt(row,4).toString());
+            adeudado=tableCaja.getModel().getValueAt(row,4).toString();
+            txtcuotas.setText(tableCaja.getModel().getValueAt(row,5).toString());
+            cuotas=tableCaja.getModel().getValueAt(row,5).toString();
+            txtvalorcuotas.setText(tableCaja.getModel().getValueAt(row,6).toString());
+            valorcuotas=tableCaja.getModel().getValueAt(row,6).toString();
+            lblsubtotal.setText(tableCaja.getModel().getValueAt(row,7).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());
+            isv.setText(tableCaja.getModel().getValueAt(row,9).toString());
             show_detalle();
-            condicion();
-            isv.setEnabled(false);
-            this.btnservicios.setEnabled(false);
             this.btnVender.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
-        }        // TODO add your handling code here:
+        }
     }//GEN-LAST:event_tableCajaMouseClicked
 
     private void buscFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscFActionPerformed
                 receivable_date();     
     }//GEN-LAST:event_buscFActionPerformed
 
-    private void btnserviciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnserviciosActionPerformed
-
-    }//GEN-LAST:event_btnserviciosActionPerformed
-
-    private void isvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_isvKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();           // TODO add your handling code here:
-    }//GEN-LAST:event_isvKeyTyped
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
             limpiaCampos();
             this.jTabbedPane2.setSelectedIndex(0);
-            btnservicios.setEnabled(true);
             txtcredito.setEnabled(true);
-            producto.Opciones.cancelarTransaccion();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
     private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
         if (this.tablaCaja.getRowCount() < 1) {
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
             er.titulo.setText("OOPS...");
-            er.msj.setText("IMPOSIBLE REALIZAR");
-            er.msj1.setText("LA VENTA");
+            er.msj.setText("IMPOSIBLE");
+            er.msj1.setText("GUARDAR");
             er.setVisible(true);
         } else {
             try{
@@ -1314,31 +1255,21 @@ private void condicion(){
                     return;
                 }
                 // insertar datos en caja_servicios
-                    String sql= "insert into caja_servicios(idventa,"
-                    + "paciente,"
-                    + "fecha,"
-                    + "estado_pago,"
-                    + "abonado,"
-                    + "cuotas,"
-                    + "valor_cuotas,"
-                    + "saldo_pendiente,"
-                    + "total) values ('"
-                    +numFac.getText()                    
-                    +"','" +txtFecha.getText()
-                    +"','" + Double.parseDouble(txtcredito.getText())
-                    +"','" +txtcuotas.getText()
-                    +"','" +txtvalorcuotas.getText()
-                    +"','" +credito(Num)+"','"
-                    +lblTotal.getText()+ "')";
+                    String sql= "update caja_servicios "
+                    + " set estado_pago='"+ estado
+                        + "',abonado='" + txtcredito.getText() 
+                     + "',cuotas='" + lbldebecuotas.getText() 
+                     + "',saldo_pendiente='" + lblsubtotal.getText()
+                    + "' where idventa='" + numFac.getText()+ "'";
                     pst=con.prepareStatement(sql);
                     pst.execute();
                 SuccessAlert sa = new SuccessAlert(new JFrame(), true);
-                sa.titulo.setText("¡HECHO!");
+                sa.titulo.setText("¡HECHO!"); 
                 sa.msj.setText("REGISTRADO CON");
                 sa.msj1.setText("ÉXITO");
                 sa.setVisible(true);
                 //funcion de factura
-                Fact();
+                //Fact();
                 this.jTabbedPane2.setSelectedIndex(0);
                 limpiaCampos();
             }catch(HeadlessException | SQLException ex){
@@ -1346,7 +1277,6 @@ private void condicion(){
             }
         }
     }//GEN-LAST:event_btnVenderActionPerformed
-
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         int P = JOptionPane.showConfirmDialog(null,"Desea Liquidar esta Factura?","Confirmación",JOptionPane.YES_NO_OPTION);
         if (P==0){
@@ -1381,21 +1311,21 @@ private void condicion(){
     }//GEN-LAST:event_txtcuotasKeyTyped
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-            if (this.txtImporte.getText().equals("") || this.txtImporte.getText().equals("0") ) {
+            if(this.txtImporte.getText().equals("") || this.txtImporte.getText().equals("0") ) {
                 ErrorAlert er = new ErrorAlert(new JFrame(), true);
                 er.titulo.setText("OOPS...");
                 er.msj.setText("DEBES INGRESAR UNA");
                 er.msj1.setText("CANTIDAD");
                 er.setVisible(true);
-            } else {
+            }else {
                 float recibe = Float.parseFloat(txtImporte.getText());
                 float total = Float.parseFloat(txtcredito.getText());
 
                 if (total > 0.0) {
-                    if (recibe > total) {
+                    if(recibe > total) {
                         float cambio = recibe-total;
                         txtCambio.setText(String.valueOf(cambio));
-                    } else {
+                    }else {
                         ErrorAlert er = new ErrorAlert(new JFrame(), true);
                         er.titulo.setText("OOPS...");
                         er.msj.setText("INGRESA UNA CANTIDAD");
@@ -1411,35 +1341,44 @@ private void condicion(){
                 }
             }
     }//GEN-LAST:event_btnCalcularActionPerformed
-
     private void btnCalcularMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMousePressed
 
     }//GEN-LAST:event_btnCalcularMousePressed
-
     private void txtCambioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCambioKeyTyped
 
     }//GEN-LAST:event_txtCambioKeyTyped
-
     private void txtImporteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtImporteKeyTyped
         char num = evt.getKeyChar();
         if ((num < '0' || num > '9')) {
             evt.consume();
         }
     }//GEN-LAST:event_txtImporteKeyTyped
+    private void btncuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncuotaActionPerformed
+        cuotas_estados_cuenta.cual= lblTotal.getText();
+        cuotas_estados_cuenta.adeuda= adeudado;
+        cuotas_estados_cuenta.cuotas = cuotas;
+        cuotas_estados_cuenta.valorcuota = valorcuotas;
+        new cuotas_estados_cuenta(new JFrame(), true).setVisible(true);
+    }//GEN-LAST:event_btncuotaActionPerformed
+
+    private void isvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_isvKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();           // TODO add your handling code here:
+    }//GEN-LAST:event_isvKeyTyped
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private rsbuttom.RSButtonMetro btnCalcular;
+    public static rsbuttom.RSButtonMetro btnCalcular;
     private principal.MaterialButton btnCancelar;
-    private principal.MaterialButton btnVender;
+    public static principal.MaterialButton btnVender;
+    private principal.MaterialButton btncuota;
     private principal.MaterialButton btnedit;
-    private principal.MaterialButton btnservicios;
     private javax.swing.JButton buscF;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     public static javax.swing.JLabel codetest;
     public com.toedter.calendar.JDateChooser fecha;
-    public static app.bolivia.swing.JCTextField isv;
+    private app.bolivia.swing.JCTextField isv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -1470,7 +1409,8 @@ private void condicion(){
     public static javax.swing.JLabel lbladeuda;
     private javax.swing.JLabel lblback;
     public static javax.swing.JLabel lblcuotas;
-    public static javax.swing.JLabel lblknowdetail;
+    public static javax.swing.JLabel lbldebecuotas;
+    public static javax.swing.JLabel lblidpaciente;
     public static javax.swing.JLabel lblsubtotal;
     public static javax.swing.JLabel lblvalor;
     public static javax.swing.JLabel numFac;
@@ -1479,10 +1419,9 @@ private void condicion(){
     private javax.swing.ButtonGroup selectisv;
     public static javax.swing.JTable tablaCaja;
     private javax.swing.JTable tableCaja;
-    private javax.swing.JLabel thishide;
-    private app.bolivia.swing.JCTextField txtCambio;
+    public static app.bolivia.swing.JCTextField txtCambio;
     private app.bolivia.swing.JCTextField txtFecha;
-    private app.bolivia.swing.JCTextField txtImporte;
+    public static app.bolivia.swing.JCTextField txtImporte;
     public static app.bolivia.swing.JCTextField txtcredito;
     public static app.bolivia.swing.JCTextField txtcuotas;
     public static app.bolivia.swing.JCTextField txtpaciente;

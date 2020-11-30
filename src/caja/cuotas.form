@@ -216,30 +216,30 @@
                                       <Component id="jLabel23" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Group type="102" alignment="3" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                                           <Component id="jLabel25" max="32767" attributes="0"/>
                                       </Group>
-                                      <Component id="txtdebe" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="txtdebe" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Group type="102" alignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                                   <Component id="jLabel18" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="txtcuotas" alignment="3" max="32767" attributes="0"/>
+                              <Component id="txtcuotas" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtvalorcuotas" alignment="3" max="32767" attributes="0"/>
-                              <Group type="102" alignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
                                   <Component id="jLabel20" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="txtvalorcuotas" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>

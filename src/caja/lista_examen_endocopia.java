@@ -393,7 +393,6 @@ public static Double value ;
                             caja.codetest.setText(cod); 
                             caja.txtpaciente.setText(paciente); 
                             caja.txtcredito.setEnabled(true);
-                            caja.lblknowdetail.setText("EN");
                             show_detalle();
                             calcular();
                             this.dispose();

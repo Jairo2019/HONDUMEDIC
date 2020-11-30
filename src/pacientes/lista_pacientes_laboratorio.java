@@ -295,8 +295,8 @@ PreparedStatement pst=null;
             caja.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 5);
 
         }
-        caja.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
-        caja.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
+        caja.lblsubtotal.setText("" + (Math.rint((total) * 100) / 100));
+        caja.lblTotal.setText("" + (Math.rint((total+isv) * 100) / 100));
 
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed

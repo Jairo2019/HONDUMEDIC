@@ -110,7 +110,6 @@ static Conexion cc = new Conexion();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         thishide = new javax.swing.JLabel();
-        lblknowdetail = new javax.swing.JLabel();
         lblidpaciente = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
@@ -215,14 +214,9 @@ static Conexion cc = new Conexion();
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(237, 237, 237)
                 .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(lblknowdetail))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(lblidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(76, 76, 76)
+                .addComponent(lblidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 487, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -234,9 +228,7 @@ static Conexion cc = new Conexion();
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblknowdetail))
+                .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
@@ -495,7 +487,7 @@ static Conexion cc = new Conexion();
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 111, 177));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("NO. VENTA");
+        jLabel3.setText("NO. FACTURA");
 
         numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         numFac.setForeground(new java.awt.Color(0, 111, 177));
@@ -1153,30 +1145,6 @@ private String condiciones(String estado_actual){
         }
         return estado_actual;
 }
-//marcar si el jradiobutton es al  contado
-private void condicion(){
-            String estado= tableCaja.getModel().getValueAt(tableCaja.getSelectedRow(), 5).toString();
-            if ("Contado".equals(estado)){
-               rbcontado.setSelected(true);
-               rbcredito.setEnabled(false);
-               btnCancelar.setText("LIMPIAR");
-               subtotal();
-                }else {
-                String adeuda= tableCaja.getModel().getValueAt(tableCaja.getSelectedRow(), 6).toString();
-                String pendiente= tableCaja.getModel().getValueAt(tableCaja.getSelectedRow(), 7).toString();
-                String total= tableCaja.getModel().getValueAt(tableCaja.getSelectedRow(), 8).toString();
-                txtcredito.setVisible(true);
-                txtcredito.setEnabled(false);
-                txtcredito.setText(adeuda);
-                rbcontado.setEnabled(false);
-                rbcredito.setSelected(true);
-                btnedit.setVisible(true);
-                lblsubtotal.setText(pendiente);
-                txtsubtotal.setText("SALDO PENDIENTE: L");
-                lblTotal.setText(total);
-                lbladeuda.setVisible(true);
-             } 
-}
 //validar si el paciente se le aplica impuesto
 private void condicionIsv( ){
     if (rbisv.isSelected()){
@@ -1327,7 +1295,6 @@ private void condicionIsv( ){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-
             ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
                 + " codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
@@ -1443,8 +1410,8 @@ private void condicionIsv( ){
         double imp = 0.0;
 
         for (int i = 0; i < tablaCaja.getRowCount(); i++) {
-            pre = tablaCaja.getValueAt(i, 2).toString();
-            can = tablaCaja.getValueAt(i, 3).toString();
+            pre = tablaCaja.getValueAt(i, 3).toString();
+            can = tablaCaja.getValueAt(i, 4).toString();
             precio = Double.parseDouble(pre);
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
@@ -1462,13 +1429,13 @@ private void condicionIsv( ){
         double imp = 0.0;
 
         for (int i = 0; i < tablaCaja.getRowCount(); i++) {
-            pre = tablaCaja.getValueAt(i, 2).toString();
-            can = tablaCaja.getValueAt(i, 3).toString();
+            pre = tablaCaja.getValueAt(i, 3).toString();
+            can = tablaCaja.getValueAt(i, 4).toString();
             precio = Double.parseDouble(pre);
             cantidad = Integer.parseInt(can);
             imp = precio * cantidad;
             total = total + imp;
-            tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 4);
+            tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 5);
 
         }
         lblTotal.setText("" + Math.rint(total * 100) / 100);
@@ -1509,7 +1476,6 @@ private void condicionIsv( ){
                             + "codigo_paciente as 'Identidad',"
                             + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
                             + "fecha as 'Fecha',"
-                            + "estado_pago as 'Estado de Pago',"
                             + "total as 'Total (L)' "
                             + "from caja_servicios "
                             + "inner join paciente on "
@@ -1550,13 +1516,11 @@ private void condicionIsv( ){
         try {
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
-            lblknowdetail.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            codetest.setText(tableCaja.getModel().getValueAt(row,1).toString());
-            txtpaciente.setText(tableCaja.getModel().getValueAt(row,3).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,6).toString());
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
+            lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,4).toString());
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,3).toString()) ;
             show_detalle();
-            condicion();
             isv.setEnabled(false);
             this.btnservicios.setEnabled(false);
             this.btnVender.setEnabled(false);
@@ -1628,7 +1592,9 @@ private void condicionIsv( ){
                     + "cuotas,"
                     + "valor_cuotas,"
                     + "saldo_pendiente,"
-                    + "total) values ('"
+                    + "total,"
+                    + "isv) "
+                    + "values ('"
                     +numFac.getText()
                     +"','" +lblidpaciente.getText()
                     +"','" +txtFecha.getText()
@@ -1636,21 +1602,24 @@ private void condicionIsv( ){
                     +"','" + Double.parseDouble(txtcredito.getText())
                     +"','" +txtcuotas.getText()
                     +"','" +txtvalorcuotas.getText()
-                    +"','" +credito(Num)+"','" 
-                    +lblTotal.getText()+ "')";
+                    +"','" +credito(Num)
+                    +"','" +lblTotal.getText()
+                    +"','" +isv.getText()+ "')";
             pst=con.prepareStatement(sql);
             pst.execute();}else{
             String sql= "insert into caja_servicios(idventa,"
                     + "paciente,"
                     + "fecha,"
                     + "estado_pago,"
-                    + "total) "
+                    + "total,"
+                    + "isv) "
                     + "values ('"
                     +numFac.getText()
                     +"','" +lblidpaciente.getText()
                     +"','" +txtFecha.getText()
                     +"','" +condiciones(Estado_actual)
-                    +"','" + lblTotal.getText() + "')";
+                    +"','" +lblTotal.getText()
+                    +"','" +isv.getText()+ "')";
                 pst=con.prepareStatement(sql);
                 pst.execute();
             }
@@ -1939,7 +1908,6 @@ private void condicionIsv( ){
     private javax.swing.JLabel lblback;
     public static javax.swing.JLabel lblcuotas;
     public static javax.swing.JLabel lblidpaciente;
-    public static javax.swing.JLabel lblknowdetail;
     public static javax.swing.JLabel lblsubtotal;
     public static javax.swing.JLabel lblvalor;
     public static javax.swing.JLabel numFac;

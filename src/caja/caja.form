@@ -90,17 +90,9 @@
                       <Component id="jLabel4" min="-2" pref="165" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
                       <Component id="thishide" min="-2" pref="49" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                              <Component id="lblknowdetail" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                              <Component id="lblidpaciente" min="-2" pref="89" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                      <Component id="lblidpaciente" min="-2" pref="89" max="-2" attributes="0"/>
+                      <EmptySpace pref="487" max="32767" attributes="0"/>
                       <Component id="cerrar" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -115,10 +107,7 @@
                   <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cerrar" alignment="3" max="32767" attributes="0"/>
-                          <Component id="lblknowdetail" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="cerrar" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -173,11 +162,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="thishide">
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblknowdetail">
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="lblidpaciente">
               <Properties>
@@ -719,7 +703,7 @@
                               <Color blue="b1" green="6f" red="0" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="NO. VENTA"/>
+                            <Property name="text" type="java.lang.String" value="NO. FACTURA"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="numFac">
