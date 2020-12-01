@@ -21,6 +21,7 @@ import net.proteanit.sql.DbUtils;
 import static principal.PrincipalAdministrador.escritorio;
 import lista_productos_servicios.ProductoDAO;
 import principal.PrincipalAdministrador;
+import static principal.PrincipalAdministrador.menu;
 /**
  *
  * @author Rojeru San
@@ -84,6 +85,7 @@ static Conexion cc = new Conexion();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         cerrar = new principal.MaterialButton();
+        jLabel10 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -140,20 +142,32 @@ static Conexion cc = new Conexion();
             }
         });
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/previous_48.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(1157, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -618,14 +632,22 @@ static Conexion cc = new Conexion();
   private void Get_Data(){
 
         String sql="SELECT p.codigo_paciente AS 'Identidad', " +
-        " CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', " +
-        " p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
-        " SUM(IFNULL(a.importe,0) + IFNULL(c.importe,0) + IFNULL(e.importe,0)  + IFNULL(h.importe,0))  AS 'Total'" +
-        " FROM paciente p " +
-        " LEFT JOIN detalle_test_ambulancia a ON p.codigo_paciente=a.id_paciente AND a.estado=1 " +
-        " LEFT JOIN detalle_test_cirugia c ON p.codigo_paciente=c.id_paciente AND c.estado=1 " +
-        " LEFT JOIN detalle_test_emergencia e ON p.codigo_paciente=e.id_paciente AND e.estado=1 " +
-        " LEFT JOIN detalle_test_hospitalizacion h ON p.codigo_paciente=h.id_paciente AND h.estado=1 " ;
+                    " CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', " +
+                    " p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
+                    " SUM(IFNULL((SELECT SUM(a.importe) " +
+                    " FROM detalle_test_ambulancia a " +
+                    " where p.codigo_paciente=a.id_paciente AND a.estado=1),0)+ " +
+                    " IFNULL( (SELECT SUM(c.importe)" +
+                    " FROM detalle_test_cirugia c " +
+                    " where p.codigo_paciente=c.id_paciente and c.estado=1),0)+ " +
+                    " IFNULL((SELECT SUM(e.importe)" +
+                    " FROM detalle_test_emergencia e " +
+                    " where p.codigo_paciente=e.id_paciente AND e.estado=1),0)+ " +
+                    " IFNULL((SELECT SUM(h.importe) " +
+                    " FROM detalle_test_hospitalizacion h" +
+                    " where p.codigo_paciente=h.id_paciente AND h.estado=1),0))AS Total " +
+                    "FROM paciente p " +
+                    " ORDER BY p.codigo_paciente " ;
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -776,6 +798,19 @@ static Conexion cc = new Conexion();
 
         }               // TODO add your handling code here:
     }//GEN-LAST:event_c_search_tblKeyReleased
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        PrincipalAdministrador.escritorio.removeAll();
+        if (estacerrado(menu)) {
+            menu = new pnl_menu();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            menu.setSize(width, Height);
+            escritorio.add(menu);
+            menu.show();
+            new elegir.elegir_administracion(a, true).setVisible(true);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -786,6 +821,7 @@ static Conexion cc = new Conexion();
     public static javax.swing.JLabel codetest;
     public com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;

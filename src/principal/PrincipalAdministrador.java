@@ -426,7 +426,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         escritorio.setBackground(new java.awt.Color(255, 255, 255));
         escritorio.setMinimumSize(new java.awt.Dimension(10, 10));
-        escritorio.setPreferredSize(new java.awt.Dimension(1245, 794));
+        escritorio.setPreferredSize(new java.awt.Dimension(1121, 606));
         jScrollPane1.setViewportView(escritorio);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
