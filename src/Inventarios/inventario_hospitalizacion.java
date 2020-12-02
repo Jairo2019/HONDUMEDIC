@@ -318,7 +318,7 @@ private void Get_Data(){
             menu.setSize(width, Height);
             escritorio.add(menu);
             menu.show();
-            new elegir.elegir_ambulancia(a, true).setVisible(true);
+            new elegir.elegir_hospitalizacion(a, true).setVisible(true);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
 

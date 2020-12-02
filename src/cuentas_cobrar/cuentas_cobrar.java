@@ -39,6 +39,9 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import clases_cajas_servicios.laboratorio_Credito;
 import principal.PrincipalAdministrador;
+import static principal.PrincipalAdministrador.escritorio;
+import static principal.PrincipalAdministrador.estacerrado;
+import static principal.PrincipalAdministrador.menu;
 /**
  *
  * @author Rojeru San
@@ -110,6 +113,7 @@ static Conexion cc = new Conexion();
         cerrar = new principal.MaterialButton();
         lbldebecuotas = new javax.swing.JLabel();
         lblidpaciente = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -189,14 +193,24 @@ static Conexion cc = new Conexion();
             }
         });
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/previous_48.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(468, 468, 468)
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(408, 408, 408)
                 .addComponent(lbldebecuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
+                .addGap(108, 108, 108)
                 .addComponent(lblidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,7 +227,8 @@ static Conexion cc = new Conexion();
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbldebecuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1365,6 +1380,19 @@ static Conexion cc = new Conexion();
         char car = evt.getKeyChar();
         if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();           // TODO add your handling code here:
     }//GEN-LAST:event_isvKeyTyped
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        PrincipalAdministrador.escritorio.removeAll();
+        if (estacerrado(menu)) {
+            menu = new pnl_menu();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            menu.setSize(width, Height);
+            escritorio.add(menu);
+            menu.show();
+            new elegir.elegir_administracion(a, true).setVisible(true);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel10MouseClicked
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1378,8 +1406,9 @@ static Conexion cc = new Conexion();
     private principal.MaterialButton cerrar;
     public static javax.swing.JLabel codetest;
     public com.toedter.calendar.JDateChooser fecha;
-    private app.bolivia.swing.JCTextField isv;
+    public static app.bolivia.swing.JCTextField isv;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

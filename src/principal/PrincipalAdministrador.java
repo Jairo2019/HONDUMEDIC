@@ -546,7 +546,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             minimiza = true;
         }
     }//GEN-LAST:event_minimizarActionPerformed
-
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         WarningAlertCerrar wa = new WarningAlertCerrar(this, true);
         wa.titulo.setText("¿ESTAS SEGURO?");

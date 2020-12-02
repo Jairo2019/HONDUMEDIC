@@ -775,7 +775,7 @@ public PrincipalAdministrador a ;
             menu.setSize(width, Height);
             escritorio.add(menu);
             menu.show();
-            new elegir.elegir_ambulancia(a, true).setVisible(true);
+            new elegir.elegir_emergencia(a, true).setVisible(true);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel11MouseClicked
 

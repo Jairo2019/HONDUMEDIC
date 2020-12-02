@@ -17,15 +17,25 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
 import static principal.PrincipalAdministrador.estacerrado;
 import static principal.PrincipalAdministrador.menu;
+import reportes_servicios.*;
 /**
  *
  * @author Rojeru San
@@ -612,6 +622,26 @@ public void extraerID() {
     extraerID();
    
 }
+    private void reporte(){
+        class_servicios em;// Instaciamos la clase
+        List <class_servicios >lista = new ArrayList<>(); //Creamos una lista de servicios con ArrayList para obtener cada empleado
+        for(int i=0; i<tableUsers.getRowCount(); i++){ // Iterena cada fila de la tabla
+            em = new class_servicios (tableUsers.getValueAt(i, 0).toString(),tableUsers.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
+            tableUsers.getValueAt(i, 2).toString());
+            lista.add(em); //Agregamos el objeto empleado a la lista
+        }
+        JasperReport reporte; // Instaciamos el objeto reporte
+        String path = "src\\reportes_servicios\\servicios_ambulancia.jasper"; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+           JOptionPane.showMessageDialog(null, ex);
+        }
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -648,12 +678,11 @@ public void extraerID() {
     }//GEN-LAST:event_c_search_tblKeyReleased
 
     private void btnprintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnprintMouseClicked
-        JasperReport reporte; //Creo el objeto reporte
-        reporte = JasperCompilerManager.compileReport("src/Reportes/rptCaja.jrml");      // TODO add your handling code here:
+     // TODO add your handling code here:
     }//GEN-LAST:event_btnprintMouseClicked
 
     private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
-        jTabbedPane2.setSelectedIndex(0);        // TODO add your handling code here:
+        reporte();       // TODO add your handling code here:
     }//GEN-LAST:event_btnprintActionPerformed
 
     private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked

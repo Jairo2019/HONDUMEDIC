@@ -295,7 +295,7 @@ private void Get_Data(){
         } catch (Exception e) {
             Get_Data();
 
-        }          // TODO add your handling code here:
+        }          // TODO add your handling code her e:
     }//GEN-LAST:event_c_search_tblKeyReleased
 
     private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
@@ -311,7 +311,7 @@ private void Get_Data(){
             menu.setSize(width, Height);
             escritorio.add(menu);
             menu.show();
-            new elegir.elegir_ambulancia(a, true).setVisible(true);
+            new elegir.elegir_ultrasonido(a, true).setVisible(true);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
 
