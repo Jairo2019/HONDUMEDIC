@@ -1,7 +1,5 @@
 package reportes_servicios;
 
-import reportes_registros.*;
-import clases_cajas_servicios.*;
 
 public class class_servicios {
     String servicio,descripcion, precio;

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="print" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b78a9b5c-970a-4cd4-98c5-17bac53640c9">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="inv_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     caja.`codigo` AS caja_codigo,
+     caja.`paciente` AS caja_paciente,
+     caja.`n_recibo` AS caja_n_recibo,
+     caja.`fecha` AS caja_fecha,
+     caja.`servicio` AS caja_servicio,
+     caja.`comentario` AS caja_comentario,
+     caja.`precio` AS caja_precio,
+     caja.`isv` AS caja_isv,
+     caja.`total` AS caja_total,
+     caja.`estado_pago` AS caja_estado_pago,
+     caja.`estado` AS caja_estado
+FROM
+     `caja` caja]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellido" class="java.lang.String"/>
+	<field name="rol" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="telefono" class="java.lang.String"/>
+	<field name="tipoempleado" class="java.lang.String"/>
+	<group name="my"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="106" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="86" forecolor="#FFFFFF" backcolor="#006FB1" uuid="8624b321-f559-4c70-baa0-81332ea9acae"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="413" y="22" width="132" height="20" forecolor="#FFFFFF" uuid="ca2d4750-3e59-43cc-82b5-4a73fd0e760a"/>
+					<textElement>
+						<font fontName="Tahoma" size="14" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement style="Title" x="0" y="-8" width="251" height="22" forecolor="#FFFFFF" uuid="6f2f70e1-4ef8-4a14-a59f-eaaa3da13f52"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="18"/>
+				</textElement>
+				<text><![CDATA[HONDUMEDIC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="0" y="14" width="251" height="22" forecolor="#FFFFFF" uuid="86176972-ed39-429d-aa43-776ea5b57fdc"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="14"/>
+				</textElement>
+				<text><![CDATA[Juticalpa, Olancho]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="100" width="555" height="1" uuid="afe4688c-9c14-4ece-9d5d-d4648a734da5"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dashed" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" mode="Transparent" x="197" y="76" width="178" height="23" forecolor="#000000" uuid="17d89706-7eae-405e-b4f6-1d45a3627a48"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Tahoma" size="16" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Lista de Empleados]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="18" width="555" height="1" uuid="587dbadb-9d4e-4b93-a55c-caf8c82feae1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" mode="Opaque" x="0" y="3" width="115" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="ed89438c-e209-41c8-b274-1f24d2fc378c"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Opaque" x="115" y="3" width="82" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="36864c76-cfde-45ee-8907-398798939713"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[Rol]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Opaque" x="197" y="3" width="162" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="c65e64df-360d-4d31-9a2a-c83294fe7b91"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[Dirección]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Opaque" x="439" y="3" width="116" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="8dff683b-3598-45bc-82a6-9b02360a027b"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[Tipo de Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Opaque" x="359" y="3" width="80" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="e8b1904b-beb7-4dce-875b-8c87cc58511e"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[Teléfono]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="17" width="555" height="1" uuid="00022483-2416-4332-ada7-322677aa058e"/>
+				<graphicElement>
+					<pen lineWidth="0.25" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="0" width="57" height="18" uuid="863f8288-6507-4418-afcd-903097bf1285">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="185edcc6-3f23-44f9-86c9-0fd8e1bbd2c2"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="0" width="58" height="17" uuid="a8a15ebb-2463-4c19-997d-289ff37c1186">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="364dee1d-4c8f-41c9-b15f-6e37de1cc082"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="0" width="82" height="18" uuid="e6ef3a3a-3517-43fb-a8fc-915baa9771f8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8188c95-ffde-48ae-8a45-0b052c2970b9"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{rol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="0" width="162" height="17" uuid="53c870af-360b-4a24-9b23-294a175bfce9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cce7e6f8-8a99-49b5-bc34-e764ef869d1e"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="359" y="0" width="80" height="17" uuid="a3a5157e-c91b-4e95-8266-c782f9747753">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="825b5973-69b3-48e5-a9e0-baf45cdbf306"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="0" width="114" height="17" uuid="47c2a21b-34e3-4cbf-a5ce-0a2681b7209d"/>
+				<textFieldExpression><![CDATA[$F{tipoempleado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="63" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="39c94946-c86e-4d81-8524-0d9832597585"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="9863d985-0d82-46a9-b9c9-91a955c10b6d"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="060e94c5-1900-47e5-8216-f99b019148cc"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="121" y="33" width="262" height="12" forecolor="#666666" uuid="20af7358-5911-4283-b083-5ca705a1215c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Juticalpa,Olancho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="10" width="255" height="16" uuid="d80bf204-da6d-4bb6-b0b3-8b67360b627e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HONDUMEDIC]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

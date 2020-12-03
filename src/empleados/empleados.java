@@ -19,9 +19,19 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.proteanit.sql.DbUtils;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import empleados.class_empleados;
 /**
  *
  * @author Rojeru San
@@ -124,7 +134,7 @@ PreparedStatement pst=null;
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/service_48.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/employee_48.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -719,6 +729,28 @@ String Estado_actual;
                 rbtemporal.setSelected(true);
              } 
 }
+       //metodo para mostrar reporte
+    private void reporte(){
+        class_empleados em;// Instaciamos la clase
+        List <class_empleados >lista = new ArrayList<>(); //Creamos una lista de servicios con ArrayList para obtener cada empleado
+        for(int i=0; i<tableUsers.getRowCount(); i++){ // Iterena cada fila de la tabla
+            em = new class_empleados (tableUsers.getValueAt(i, 0).toString(),tableUsers.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
+            tableUsers.getValueAt(i, 2).toString(),tableUsers.getValueAt(i, 3).toString(),
+            tableUsers.getValueAt(i, 4).toString(),tableUsers.getValueAt(i, 5).toString());
+            lista.add(em); //Agregamos el objeto empleado a la lista
+        }
+        JasperReport reporte; // Instaciamos el objeto reporte
+        String path = "src\\empleados\\reporte_empleados.jasper"; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+           JOptionPane.showMessageDialog(null, ex);
+        }
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -764,7 +796,7 @@ String Estado_actual;
     }//GEN-LAST:event_btnprintMouseClicked
 
     private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
-        jTabbedPane2.setSelectedIndex(0);        // TODO add your handling code here:
+        reporte();       // TODO add your handling code here:
     }//GEN-LAST:event_btnprintActionPerformed
 
     private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
@@ -782,7 +814,6 @@ String Estado_actual;
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
@@ -874,7 +905,9 @@ String Estado_actual;
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed
-        Reset();   // TODO add your handling code here:
+        Reset();
+        txtCodigo.setEnabled(true);
+        txtCodigo.requestFocus();// TODO add your handling code here:
     }//GEN-LAST:event_btncancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

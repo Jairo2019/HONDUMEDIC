@@ -622,6 +622,7 @@ public void extraerID() {
     extraerID();
    
 }
+    //metodo para mostrar reporte
     private void reporte(){
         class_servicios em;// Instaciamos la clase
         List <class_servicios >lista = new ArrayList<>(); //Creamos una lista de servicios con ArrayList para obtener cada empleado
