@@ -3,10 +3,9 @@ package reportes_registros;
 import clases_cajas_servicios.*;
 
 public class class_registro_ambulancia {
-    String codigo,paciente, medico, conductor,origen,destino, fecha, total;
+    String paciente, medico, conductor,origen,destino, fecha, total;
 
-    public class_registro_ambulancia(String codigo, String paciente, String medico, String conductor, String origen,String destino, String fecha, String total) {
-        this.codigo = codigo;
+    public class_registro_ambulancia(String paciente, String medico, String conductor, String origen, String destino, String fecha, String total) {
         this.paciente = paciente;
         this.medico = medico;
         this.conductor = conductor;
@@ -15,11 +14,6 @@ public class class_registro_ambulancia {
         this.fecha = fecha;
         this.total = total;
     }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
     public String getPaciente() {
         return paciente;
     }
@@ -46,10 +40,6 @@ public class class_registro_ambulancia {
 
     public String getTotal() {
         return total;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public void setPaciente(String paciente) {
@@ -79,7 +69,5 @@ public class class_registro_ambulancia {
     public void setTotal(String total) {
         this.total = total;
     }
-
-
-    
+   
 }

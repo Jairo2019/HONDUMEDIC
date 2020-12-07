@@ -92,8 +92,6 @@ static Conexion cc = new Conexion();
         jLabel7 = new javax.swing.JLabel();
         pnlChange = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        fecha = new com.toedter.calendar.JDateChooser();
-        buscF = new javax.swing.JButton();
         c_search_tbl = new app.bolivia.swing.JCTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCaja = new javax.swing.JTable();
@@ -193,46 +191,6 @@ static Conexion cc = new Conexion();
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        fecha.setBackground(new java.awt.Color(255, 255, 255));
-        fecha.setForeground(new java.awt.Color(0, 0, 0));
-        fecha.setToolTipText("");
-        fecha.setDateFormatString("dd/MM/yyyy");
-        fecha.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        fecha.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        fecha.setPreferredSize(new java.awt.Dimension(170, 35));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 120;
-        gridBagConstraints.ipady = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 6, 0, 0);
-        jPanel5.add(fecha, gridBagConstraints);
-
-        buscF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        buscF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/buscaF1.png"))); // NOI18N
-        buscF.setToolTipText("Buscar");
-        buscF.setBorder(null);
-        buscF.setBorderPainted(false);
-        buscF.setContentAreaFilled(false);
-        buscF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buscF.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        buscF.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/buscaF2.png"))); // NOI18N
-        buscF.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        buscF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscFActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 332);
-        jPanel5.add(buscF, gridBagConstraints);
-
         c_search_tbl.setBackground(new java.awt.Color(204, 204, 204));
         c_search_tbl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         c_search_tbl.setForeground(new java.awt.Color(0, 0, 0));
@@ -241,7 +199,7 @@ static Conexion cc = new Conexion();
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Nombre");
+        c_search_tbl.setPlaceholder("Buscar Paciente por Nombre / Identidad\n ");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(300, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,10 +214,10 @@ static Conexion cc = new Conexion();
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 296;
+        gridBagConstraints.ipadx = 352;
         gridBagConstraints.ipady = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 312, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 441, 0, 385);
         jPanel5.add(c_search_tbl, gridBagConstraints);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
@@ -339,7 +297,7 @@ static Conexion cc = new Conexion();
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
@@ -630,24 +588,22 @@ static Conexion cc = new Conexion();
     }
     //metodo obtener los datos de la tabla caja_servicios
   private void Get_Data(){
-
-        String sql="SELECT p.codigo_paciente AS 'Identidad', " +
-                    " CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', " +
-                    " p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
-                    " SUM(IFNULL((SELECT SUM(a.importe) " +
-                    " FROM detalle_test_ambulancia a " +
-                    " where p.codigo_paciente=a.id_paciente AND a.estado=1),0)+ " +
-                    " IFNULL( (SELECT SUM(c.importe)" +
-                    " FROM detalle_test_cirugia c " +
-                    " where p.codigo_paciente=c.id_paciente and c.estado=1),0)+ " +
-                    " IFNULL((SELECT SUM(e.importe)" +
-                    " FROM detalle_test_emergencia e " +
-                    " where p.codigo_paciente=e.id_paciente AND e.estado=1),0)+ " +
-                    " IFNULL((SELECT SUM(h.importe) " +
-                    " FROM detalle_test_hospitalizacion h" +
-                    " where p.codigo_paciente=h.id_paciente AND h.estado=1),0))AS Total " +
-                    "FROM paciente p " +
-                    " ORDER BY p.codigo_paciente " ;
+        String sql="SELECT p.codigo_paciente AS 'Identidad'," +
+        "         CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', " +
+        "         p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
+        "    IFNULL((IFNULL((SELECT SUM(a.total) " +
+        "    FROM test_ambulancia a\n" +
+        "    where p.codigo_paciente=a.paciente AND a.estado=1),0)+" +
+        "    IFNULL( (SELECT SUM(c.total)\n" +
+        "    FROM test_cirugia c\n" +
+        "    where p.codigo_paciente=c.paciente and c.estado=1),0)+" +
+        "    IFNULL((SELECT SUM(e.total)\n" +
+        "    FROM test_emergencia e\n" +
+        "    where p.codigo_paciente=e.paciente AND e.estado=1),0)+" +
+        "    IFNULL((SELECT SUM(h.total)\n" +
+        "    FROM test_hospitalizacion h\n" +
+        "    where p.codigo_paciente=h.paciente AND h.estado=1),0)),0)AS Total" +
+        " FROM paciente p " ;
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -752,10 +708,6 @@ static Conexion cc = new Conexion();
 
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void buscFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscFActionPerformed
-       
-    }//GEN-LAST:event_buscFActionPerformed
-
     private void c_search_tblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_search_tblActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_c_search_tblActionPerformed
@@ -771,15 +723,22 @@ static Conexion cc = new Conexion();
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                ResultSet rs = s.executeQuery("SELECT p.codigo_paciente AS 'Identidad', " +
-        " CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', " +
-        " p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
-        " SUM(IFNULL(a.importe,0) + IFNULL(c.importe,0) + IFNULL(e.importe,0)  + IFNULL(h.importe,0))  AS 'Total'" +
-        " FROM paciente p " +
-        " LEFT JOIN detalle_test_ambulancia a ON p.codigo_paciente=a.id_paciente AND a.estado=1 " +
-        " LEFT JOIN detalle_test_cirugia c ON p.codigo_paciente=c.id_paciente AND c.estado=1 " +
-        " LEFT JOIN detalle_test_emergencia e ON p.codigo_paciente=e.id_paciente AND e.estado=1 " +
-        " LEFT JOIN detalle_test_hospitalizacion h ON p.codigo_paciente=h.id_paciente AND h.estado=1  "
+                ResultSet rs = s.executeQuery("SELECT p.codigo_paciente AS 'Identidad'," +
+        "         CONCAT(p.nombre,' ',p.apellido) AS 'Paciente', " +
+        "         p.edad AS 'Edad', p.telefono AS 'Teléfono', " +
+        "    IFNULL((IFNULL((SELECT SUM(a.total) " +
+        "    FROM test_ambulancia a\n" +
+        "    where p.codigo_paciente=a.paciente AND a.estado=1),0)+" +
+        "    IFNULL( (SELECT SUM(c.total)\n" +
+        "    FROM test_cirugia c\n" +
+        "    where p.codigo_paciente=c.paciente and c.estado=1),0)+" +
+        "    IFNULL((SELECT SUM(e.total)\n" +
+        "    FROM test_emergencia e\n" +
+        "    where p.codigo_paciente=e.paciente AND e.estado=1),0)+" +
+        "    IFNULL((SELECT SUM(h.total)\n" +
+        "    FROM test_hospitalizacion h\n" +
+        "    where p.codigo_paciente=h.paciente AND h.estado=1),0)),0)AS Total" +
+        " FROM paciente p  "
                 + " WHERE CONCAT(p.nombre,' ',p.apellido) LIKE '%"+name+"%' or p.codigo_paciente LIKE '%"+name+"%' ");
 
                     while (rs.next()) {
@@ -815,11 +774,9 @@ static Conexion cc = new Conexion();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCancelar;
-    private javax.swing.JButton buscF;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     public static javax.swing.JLabel codetest;
-    public com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;

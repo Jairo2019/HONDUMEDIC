@@ -1106,11 +1106,11 @@ private void edit_detalle(){
                 return;
             }
             if (txtmedicoadmin.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Persona que Realiza el Examen","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog( this, "Ingrese Médico","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtayudante.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Medico que Indica el Examen","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog( this, "Ingrese Ayudante","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }  
             if (txtnumhabitacion.getText().equals("")) {
