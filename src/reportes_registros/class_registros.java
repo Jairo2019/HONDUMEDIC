@@ -3,14 +3,12 @@ package reportes_registros;
 import clases_cajas_servicios.*;
 
 public class class_registros {
-    String codigo,paciente, medico, habitacion,observaciones, fecha, total;
+    String codigo,identidad, paciente,fecha, total;
 
-    public class_registros(String codigo, String paciente, String medico, String habitacion, String observaciones, String fecha, String total) {
+    public class_registros(String codigo, String identidad, String paciente, String fecha, String total) {
         this.codigo = codigo;
+        this.identidad = identidad;
         this.paciente = paciente;
-        this.medico = medico;
-        this.habitacion = habitacion;
-        this.observaciones = observaciones;
         this.fecha = fecha;
         this.total = total;
     }
@@ -19,20 +17,12 @@ public class class_registros {
         return codigo;
     }
 
+    public String getIdentidad() {
+        return identidad;
+    }
+
     public String getPaciente() {
         return paciente;
-    }
-
-    public String getMedico() {
-        return medico;
-    }
-
-    public String getHabitacion() {
-        return habitacion;
-    }
-
-    public String getObservaciones() {
-        return observaciones;
     }
 
     public String getFecha() {
@@ -47,20 +37,12 @@ public class class_registros {
         this.codigo = codigo;
     }
 
+    public void setIdentidad(String identidad) {
+        this.identidad = identidad;
+    }
+
     public void setPaciente(String paciente) {
         this.paciente = paciente;
-    }
-
-    public void setMedico(String medico) {
-        this.medico = medico;
-    }
-
-    public void setHabitacion(String habitacion) {
-        this.habitacion = habitacion;
-    }
-
-    public void setObservaciones(String observaciones) {
-        this.observaciones = observaciones;
     }
 
     public void setFecha(String fecha) {
@@ -70,7 +52,5 @@ public class class_registros {
     public void setTotal(String total) {
         this.total = total;
     }
-
-
     
 }

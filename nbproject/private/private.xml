@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/paneles/pnl_ambulancia.java</file>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/empleados/empleados.java</file>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/empleados/class_empleados.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/reportes_registros/lista_examen_laboratorio.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/reportes_registros/lista_examen_endocopia.java</file>
             <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/principal/PrincipalAdministrador.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/registro_examen/examen_endoscopia.java</file>
         </group>
     </open-files>
 </project-private>

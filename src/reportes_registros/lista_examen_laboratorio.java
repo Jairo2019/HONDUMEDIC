@@ -257,13 +257,14 @@ public static Double value ;
         pack();
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
-        String sql="select codigo as 'Codigo',"
-                + "paciente as 'Paciente',"
-                + "medico_1 as 'Realizo Examen',"
-                + " num_habitacion as 'Habitación',"
-                + "observaciones as'Observaciones',"
-                + "fecha as 'Fecha y Hora',"
-                + " total as 'Total (L)' from test_laboratorio";
+        String sql="select idventa as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " fecha as 'Fecha y Hora',"
+                + " total as 'Total (L)'"
+                + " from caja_laboratorio"
+                + " inner join paciente on"
+                + " paciente = codigo_paciente";
 
         try{
          pst=con.prepareStatement(sql);
@@ -282,7 +283,7 @@ public static Double value ;
         List <class_registros>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_registros(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
-            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString(),tabla.getValueAt(i, 5).toString(),tabla.getValueAt(i, 6).toString());
+            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte

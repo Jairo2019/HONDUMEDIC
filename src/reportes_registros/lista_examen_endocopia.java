@@ -250,20 +250,22 @@ public static Double value ;
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
         String sql="select codigo as 'Codigo',"
-                + "paciente as 'Paciente',"
-                + "medico_1 as 'Realizo Examen', "
-                + "num_habitacion as 'Habitación',"
-                + "observaciones as'Observaciones',"
-                + "fecha as 'Fecha y Hora', "
-                + "total as 'Total (L)'"
-                + " from test_endoscopia";
+                + "numfact as 'Num Factura',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " medico as 'Realizo Examen',"
+                + " encargado as 'Encargado',"
+                + " num_telefono as 'Teléfono',"
+                + " observaciones as 'Observaciones',"
+                + " fecha as 'Fecha y Hora',"
+                + " total as 'Total (L)'"
+                + " from test_endoscopia"
+                + " inner join paciente on"
+                + " paciente = codigo_paciente";
 
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tabla.setModel(DbUtils.resultSetToTableModel(rs));
-         lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(3);
-         tabla.setDefaultRenderer (Object.class, colorear);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);          
 }
@@ -275,7 +277,7 @@ public static Double value ;
         List <class_registros>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_registros(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
-            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString(),tabla.getValueAt(i, 5).toString(),tabla.getValueAt(i, 6).toString());
+            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -330,14 +332,14 @@ public static Double value ;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
-                    + "paciente as 'Paciente',"
-                    + "medico_1 as 'Realizo Examen', "
-                    + "num_habitacion as 'Habitación',"
-                    + "observaciones as'Observaciones',"
-                    + "fecha as 'Fecha y Hora', "
-                    + "total as 'Total (L)' "
-                    + "from test_endoscopia WHERE paciente LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
+                + "codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " fecha as 'Fecha y Hora',"
+                + " total as 'Total (L)'"
+                + " from caja_endoscopia"
+                + " inner join paciente on"
+                + " paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -346,8 +348,6 @@ public static Double value ;
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
-                v.add(rs.getString(6));
-                v.add(rs.getString(7));
                 dt.addRow(v);
 
             }
