@@ -1,28 +1,26 @@
 package reportes_registros;
 
-import clases_cajas_servicios.*;
-
 public class class_registros {
-    String codigo,identidad, paciente,fecha, total;
+    String paciente,encargado,telefono,fecha, total;
 
-    public class_registros(String codigo, String identidad, String paciente, String fecha, String total) {
-        this.codigo = codigo;
-        this.identidad = identidad;
+    public class_registros(String paciente, String encargado, String telefono, String fecha, String total) {
         this.paciente = paciente;
+        this.encargado = encargado;
+        this.telefono = telefono;
         this.fecha = fecha;
         this.total = total;
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public String getIdentidad() {
-        return identidad;
-    }
-
     public String getPaciente() {
         return paciente;
+    }
+
+    public String getEncargado() {
+        return encargado;
+    }
+
+    public String getTelefono() {
+        return telefono;
     }
 
     public String getFecha() {
@@ -33,16 +31,16 @@ public class class_registros {
         return total;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public void setIdentidad(String identidad) {
-        this.identidad = identidad;
-    }
-
     public void setPaciente(String paciente) {
         this.paciente = paciente;
+    }
+
+    public void setEncargado(String encargado) {
+        this.encargado = encargado;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public void setFecha(String fecha) {
@@ -52,5 +50,5 @@ public class class_registros {
     public void setTotal(String total) {
         this.total = total;
     }
-    
+
 }

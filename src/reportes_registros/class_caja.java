@@ -3,12 +3,12 @@ package reportes_registros;
 import clases_cajas_servicios.*;
 
 public class class_caja {
-    String codigo,paciente,estado, fecha, total;
+    String codigo,identidad,paciente, fecha, total;
 
-    public class_caja(String codigo, String paciente, String estado, String fecha, String total) {
+    public class_caja(String codigo, String identidad, String paciente, String fecha, String total) {
         this.codigo = codigo;
+        this.identidad = identidad;
         this.paciente = paciente;
-        this.estado = estado;
         this.fecha = fecha;
         this.total = total;
     }
@@ -17,12 +17,12 @@ public class class_caja {
         return codigo;
     }
 
-    public String getPaciente() {
-        return paciente;
+    public String getIdentidad() {
+        return identidad;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getPaciente() {
+        return paciente;
     }
 
     public String getFecha() {
@@ -37,12 +37,12 @@ public class class_caja {
         this.codigo = codigo;
     }
 
-    public void setPaciente(String paciente) {
-        this.paciente = paciente;
+    public void setIdentidad(String identidad) {
+        this.identidad = identidad;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setPaciente(String paciente) {
+        this.paciente = paciente;
     }
 
     public void setFecha(String fecha) {
@@ -52,5 +52,6 @@ public class class_caja {
     public void setTotal(String total) {
         this.total = total;
     }
+    
     
 }

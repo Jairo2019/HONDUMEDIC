@@ -7,9 +7,7 @@ package Inventarios;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import paneles.JasperCompilerManager;
 import paneles.*;
-import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
 import java.sql.Connection;
@@ -19,8 +17,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -37,6 +36,7 @@ Connection con=null;
 Date dato = null;
 ResultSet rs=null;
 PreparedStatement pst=null;
+SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
     static Conexion cc = new Conexion();
     static Connection cn = cc.ConnectDB();
     static PreparedStatement ps;
@@ -107,6 +107,10 @@ PreparedStatement pst=null;
         jLabel19 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         txtPrecioventa = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        txtcantidadminima = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        dtfechavec = new com.toedter.calendar.JDateChooser();
         jPanel4 = new javax.swing.JPanel();
         pnlChange1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -475,7 +479,7 @@ PreparedStatement pst=null;
         jLabel18.setText("Cantidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(36, 108, 0, 0);
         jPanel9.add(jLabel18, gridBagConstraints);
@@ -495,8 +499,8 @@ PreparedStatement pst=null;
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -508,12 +512,12 @@ PreparedStatement pst=null;
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridheight = 4;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 39;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 41, 71, 0);
+        gridBagConstraints.insets = new java.awt.Insets(29, 41, 13, 0);
         jPanel9.add(txtDescripcion, gridBagConstraints);
 
         txtimpuesto.setBackground(new java.awt.Color(255, 255, 255));
@@ -531,7 +535,7 @@ PreparedStatement pst=null;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(44, 41, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(29, 41, 0, 0);
         jPanel9.add(txtimpuesto, gridBagConstraints);
 
         txtproducto.setBackground(new java.awt.Color(255, 255, 255));
@@ -597,7 +601,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(45, 129, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(38, 129, 0, 0);
         jPanel9.add(jLabel26, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -605,10 +609,10 @@ PreparedStatement pst=null;
         jLabel19.setText("Descripción:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 113, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(52, 113, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -623,7 +627,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 35;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(53, 42, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(44, 42, 0, 0);
         jPanel9.add(jLabel27, gridBagConstraints);
 
         txtPrecioventa.setBackground(new java.awt.Color(255, 255, 255));
@@ -637,12 +641,72 @@ PreparedStatement pst=null;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 4;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(35, 41, 0, 61);
         jPanel9.add(txtPrecioventa, gridBagConstraints);
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("Cantidad Mínima:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(37, 44, 0, 0);
+        jPanel9.add(jLabel21, gridBagConstraints);
+
+        txtcantidadminima.setBackground(new java.awt.Color(255, 255, 255));
+        txtcantidadminima.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtcantidadminima.setForeground(new java.awt.Color(0, 0, 0));
+        txtcantidadminima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcantidadminimaActionPerformed(evt);
+            }
+        });
+        txtcantidadminima.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcantidadminimaKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 246;
+        gridBagConstraints.ipady = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(29, 41, 0, 61);
+        jPanel9.add(txtcantidadminima, gridBagConstraints);
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setText("Fecha Vencimiento:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(37, 53, 0, 0);
+        jPanel9.add(jLabel22, gridBagConstraints);
+
+        dtfechavec.setBackground(new java.awt.Color(255, 255, 255));
+        dtfechavec.setForeground(new java.awt.Color(0, 0, 0));
+        dtfechavec.setToolTipText("");
+        dtfechavec.setDateFormatString("dd/MM/yyyy");
+        dtfechavec.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtfechavec.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 210;
+        gridBagConstraints.ipady = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(28, 41, 0, 0);
+        jPanel9.add(dtfechavec, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1496,6 +1560,8 @@ PreparedStatement pst=null;
                 + "impuesto as 'Impuesto', "
                 + "precio_venta as 'Precio de Venta', "
                 + "cantidad as 'Cantidad Disponible', "
+                + "fechavencimiento as 'Fecha Vec', "
+                + "cantidadminima as 'Cantidad Mínima', "
                 + "descripcion as 'Descripción' "
                 + "from almacen";
         try{
@@ -1527,6 +1593,9 @@ PreparedStatement pst=null;
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
+    dtfechavec.setDate(null);
+    txtPrecioventa.setText("");
+    txtcantidadminima.setText("");
     precio=0;
     extraerID();
 }
@@ -1601,6 +1670,8 @@ PreparedStatement pst=null;
                     + "',impuesto='" + txtimpuesto.getText() 
                     + "',precio_venta='" + precio
                     +"',cantidad='" + txtcantidad.getText() 
+                    +"',fechavencimiento='" + formatofecha.format(dtfechavec.getDate())
+                    +"',cantidadminima='" + txtcantidadminima.getText() 
                     + "',descripcion='" + txtDescripcion.getText()
                     + "' where codigo_almacen='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
@@ -1630,6 +1701,8 @@ PreparedStatement pst=null;
             + "impuesto,"
             + "precio_venta,"
             + "cantidad,"
+            + "fechavencimiento,"
+            + "cantidadminima,"
             + "descripcion"
             + ") values ('"
             +txtCodigo.getText()+"','" 
@@ -1639,6 +1712,8 @@ PreparedStatement pst=null;
             + txtimpuesto.getText() +"','" 
             + precio +"','" 
             + txtcantidad.getText() +"','" 
+            +formatofecha.format(dtfechavec.getDate())+"','"
+            + txtcantidadminima.getText() +"','" 
             +txtDescripcion.getText()+ "')";
 
             pst=con.prepareStatement(sql);
@@ -1670,7 +1745,17 @@ PreparedStatement pst=null;
             precio=((Double.parseDouble(tableUsers.getModel().getValueAt(row,5).toString())) / (1+((Double.parseDouble(tableUsers.getModel().getValueAt(row,4).toString()))/100)));
             txtPrecioventa.setText(String.valueOf(Math.round(precio)));
             txtcantidad.setText(tableUsers.getModel().getValueAt(row,6).toString());
-            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,7).toString());
+            String fecha = tableUsers.getModel().getValueAt(tableUsers.getSelectedRow(),7).toString().trim() ;
+            try {
+
+                dato = formatofecha.parse(fecha);
+
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+            dtfechavec.setDate(dato);
+            txtcantidadminima.setText(tableUsers.getModel().getValueAt(row,8).toString());
+            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,9).toString());
 
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
@@ -1690,7 +1775,7 @@ PreparedStatement pst=null;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM almacen WHERE producto LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("SELECT * FROM almacen WHERE producto LIKE '%"+name+"%' or codigo_almacen LIKE '%"+name+"%' ");
             
             while (rs.next()) {
                 Vector v = new Vector();
@@ -1702,6 +1787,8 @@ PreparedStatement pst=null;
                 v.add(rs.getString(6));
                 v.add(rs.getString(7));
                 v.add(rs.getString(8));
+                v.add(rs.getString(9));
+                v.add(rs.getString(10));
                 dt.addRow(v);
             }
         } catch (Exception e) {
@@ -1883,6 +1970,14 @@ PreparedStatement pst=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_btnimprimirActionPerformed
 
+    private void txtcantidadminimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadminimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcantidadminimaActionPerformed
+
+    private void txtcantidadminimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadminimaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcantidadminimaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCancelar;
@@ -1897,12 +1992,15 @@ PreparedStatement pst=null;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     private javax.swing.JComboBox cmbunidad;
+    public com.toedter.calendar.JDateChooser dtfechavec;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1936,6 +2034,7 @@ PreparedStatement pst=null;
     public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtPrecioventa;
     public javax.swing.JTextField txtcantidad;
+    public javax.swing.JTextField txtcantidadminima;
     public javax.swing.JTextField txtimpuesto;
     public javax.swing.JTextField txtproducto;
     public javax.swing.JTextField txtproveedor;

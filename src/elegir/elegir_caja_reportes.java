@@ -55,7 +55,6 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
 
         panel3 = new org.edisoncor.gui.panel.Panel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         btncajageneral = new principal.MaterialButtomRectangle();
         btnCancelar = new principal.MaterialButtomRectangle();
         btncajalaboratorio = new principal.MaterialButtomRectangle();
@@ -63,6 +62,7 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
         btncajaapa = new principal.MaterialButtomRectangle();
         btncajacafeteria = new principal.MaterialButtomRectangle();
         btncajafarmacia = new principal.MaterialButtomRectangle();
+        btncajaendoscopia = new principal.MaterialButtomRectangle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -80,10 +80,6 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/elegir.png"))); // NOI18N
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("ELEGIR VENTANA ");
 
         btncajageneral.setBackground(new java.awt.Color(0, 111, 177));
         btncajageneral.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,7 +128,7 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
 
         btncajaapa.setBackground(new java.awt.Color(0, 111, 177));
         btncajaapa.setForeground(new java.awt.Color(255, 255, 255));
-        btncajaapa.setText("CAJA UNIDAD APA");
+        btncajaapa.setText("CAJA ULTRASONIDO");
         btncajaapa.setActionCommand("registrar emrgencia");
         btncajaapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncajaapa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -166,6 +162,18 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
             }
         });
 
+        btncajaendoscopia.setBackground(new java.awt.Color(0, 111, 177));
+        btncajaendoscopia.setForeground(new java.awt.Color(255, 255, 255));
+        btncajaendoscopia.setText("CAJA ENDOSCOPIA");
+        btncajaendoscopia.setActionCommand("registrar emrgencia");
+        btncajaendoscopia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncajaendoscopia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btncajaendoscopia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncajaendoscopiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel3Layout = new javax.swing.GroupLayout(panel3);
         panel3.setLayout(panel3Layout);
         panel3Layout.setHorizontalGroup(
@@ -174,12 +182,10 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel3Layout.createSequentialGroup()
-                        .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 28, Short.MAX_VALUE)
                         .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btncajalaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btncajageneral, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +193,8 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
                             .addComponent(btncajaapa, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btncajarayosx, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btncajacafeteria, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btncajafarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btncajafarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btncajaendoscopia, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))))
         );
         panel3Layout.setVerticalGroup(
@@ -196,9 +203,9 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btncajacafeteria, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btncajaendoscopia, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btncajafarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,7 +218,7 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
                 .addComponent(btncajaapa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,7 +229,7 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -296,6 +303,10 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
         this.dispose();
         new lista_caja_farmacia(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btncajafarmaciaActionPerformed
+
+    private void btncajaendoscopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaendoscopiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btncajaendoscopiaActionPerformed
     
     /**
      * @param args the command line arguments
@@ -374,12 +385,12 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
     private principal.MaterialButtomRectangle btnCancelar;
     private principal.MaterialButtomRectangle btncajaapa;
     private principal.MaterialButtomRectangle btncajacafeteria;
+    private principal.MaterialButtomRectangle btncajaendoscopia;
     private principal.MaterialButtomRectangle btncajafarmacia;
     private principal.MaterialButtomRectangle btncajageneral;
     private principal.MaterialButtomRectangle btncajalaboratorio;
     private principal.MaterialButtomRectangle btncajarayosx;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private org.edisoncor.gui.panel.Panel panel3;
     // End of variables declaration//GEN-END:variables
 

@@ -7,7 +7,6 @@ package reportes_registros;
 
 import caja.*;
 import alertas.principal.AWTUtilities;
-import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,8 +21,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
 import net.sf.jasperreports.engine.JRException;
@@ -34,7 +31,6 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import paneles.Conexion;
-import static reportes_registros.lista_examen_emergencia_apa.tabla;
 import tabla.MyScrollbarUI;
 
 /**
@@ -250,12 +246,9 @@ public static Double value ;
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
         String sql="select codigo as 'Codigo',"
-                + "numfact as 'Num Factura',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + " medico as 'Realizo Examen',"
                 + " encargado as 'Encargado',"
                 + " num_telefono as 'Teléfono',"
-                + " observaciones as 'Observaciones',"
                 + " fecha as 'Fecha y Hora',"
                 + " total as 'Total (L)'"
                 + " from test_endoscopia"
@@ -276,8 +269,8 @@ public static Double value ;
         class_registros em;// Instaciamos la clase empleado
         List <class_registros>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
-            em = new class_registros(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
-            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString());
+            em = new class_registros(tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
+            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString(),tabla.getValueAt(i, 5).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -332,14 +325,15 @@ public static Double value ;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
-                + "codigo_paciente as 'Identidad',"
+            ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " encargado as 'Encargado',"
+                + " num_telefono as 'Teléfono',"
                 + " fecha as 'Fecha y Hora',"
                 + " total as 'Total (L)'"
-                + " from caja_endoscopia"
+                + " from test_endoscopia"
                 + " inner join paciente on"
-                + " paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' ");
+                + " paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' or codigo LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();

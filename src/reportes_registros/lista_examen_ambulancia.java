@@ -252,7 +252,7 @@ public static Double value ;
 "                	ambulancia as 'Ambulancia',\n" +
 "                	origen as'Origen',\n" +
 "                	destino as 'Destino',\n" +
-"                	km as 'Kilometros',\n" +
+"                	km as 'Km',\n" +
 "                	fecha as 'Fecha y Hora',\n" +
 "                	total as 'Total (L)' \n" +
 "                	from test_ambulancia \n" +
@@ -277,7 +277,7 @@ public static Double value ;
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_registro_ambulancia(tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
             tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),
-            tabla.getValueAt(i, 5).toString(),tabla.getValueAt(i, 6).toString(),
+            tabla.getValueAt(i, 5).toString(),tabla.getValueAt(i, 6).toString(),tabla.getValueAt(i, 7).toString(),
             tabla.getValueAt(i, 8).toString(),tabla.getValueAt(i, 9).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }

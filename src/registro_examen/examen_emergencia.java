@@ -17,13 +17,11 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
-import static principal.PrincipalAdministrador.escritorio;
 import lista_productos_servicios.Producto;
 import java.awt.HeadlessException;
 import lista_productos_servicios.ProductoDAO;
@@ -32,7 +30,6 @@ import java.util.logging.Logger;
 import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
-import static principal.PrincipalAdministrador.estacerrado;
 import static principal.PrincipalAdministrador.menu;
 /**
  *
@@ -130,12 +127,8 @@ static Conexion cc = new Conexion();
         jLabel9 = new javax.swing.JLabel();
         btns_paciente = new principal.MaterialButton();
         btnservicios = new principal.MaterialButton();
-        txtmedicoadmin = new app.bolivia.swing.JCTextField();
+        txtencargado = new app.bolivia.swing.JCTextField();
         jLabel5 = new javax.swing.JLabel();
-        btns_admin = new principal.MaterialButton();
-        txtmedicoindica = new app.bolivia.swing.JCTextField();
-        btns_medico1 = new principal.MaterialButton();
-        jLabel6 = new javax.swing.JLabel();
         txtmedicoingreso = new app.bolivia.swing.JCTextField();
         btns_medico2 = new principal.MaterialButton();
         jLabel8 = new javax.swing.JLabel();
@@ -193,9 +186,9 @@ static Conexion cc = new Conexion();
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(408, 408, 408)
                 .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(89, 89, 89)
                 .addComponent(lbledittotal, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 648, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 606, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -203,12 +196,10 @@ static Conexion cc = new Conexion();
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbledittotal, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(thishide, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbledittotal, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,7 +326,7 @@ static Conexion cc = new Conexion();
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(441, Short.MAX_VALUE))
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
                     .addGap(128, 128, 128)
@@ -380,7 +371,7 @@ static Conexion cc = new Conexion();
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 111, 177));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CODIGO DE EXAMEN");
+        jLabel3.setText("CODIGO DE REGISTRO");
         jPanel22.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 9, 306, -1));
 
         numFac.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -389,6 +380,7 @@ static Conexion cc = new Conexion();
         numFac.setText("NO. VENTA");
         jPanel22.add(numFac, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 32, 306, -1));
 
+        txtnumhabitacion.setBackground(new java.awt.Color(255, 255, 255));
         txtnumhabitacion.setBorder(null);
         txtnumhabitacion.setForeground(new java.awt.Color(0, 0, 0));
         txtnumhabitacion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -398,11 +390,11 @@ static Conexion cc = new Conexion();
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/num_room.png"))); // NOI18N
         jPanel22.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 67, -1, -1));
 
-        txtdescripcion.setBackground(new java.awt.Color(204, 204, 204));
+        txtdescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtdescripcion.setPlaceholder("OBSERVACIONES");
+        txtdescripcion.setPlaceholder("DIAGNÓSTICO");
         jPanel22.add(txtdescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 129, 300, 82));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -481,63 +473,15 @@ static Conexion cc = new Conexion();
         });
         jPanel4.add(btnservicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 190, 48));
 
-        txtmedicoadmin.setEditable(false);
-        txtmedicoadmin.setBackground(new java.awt.Color(255, 255, 255));
-        txtmedicoadmin.setBorder(null);
-        txtmedicoadmin.setForeground(new java.awt.Color(58, 159, 171));
-        txtmedicoadmin.setToolTipText("");
-        txtmedicoadmin.setEnabled(false);
-        txtmedicoadmin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtmedicoadmin.setPlaceholder("PERSONA QUE REALIZA EXAMEN");
-        jPanel4.add(txtmedicoadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 240, 30));
+        txtencargado.setBackground(new java.awt.Color(255, 255, 255));
+        txtencargado.setBorder(null);
+        txtencargado.setForeground(new java.awt.Color(0, 0, 0));
+        txtencargado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtencargado.setPlaceholder("RESPONSABLE DEL PACIENTE");
+        jPanel4.add(txtencargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 240, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/atiende.png"))); // NOI18N
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 60, 310, -1));
-
-        btns_admin.setBackground(new java.awt.Color(0, 111, 177));
-        btns_admin.setBorder(null);
-        btns_admin.setForeground(new java.awt.Color(255, 255, 255));
-        btns_admin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_admin.setText("buscar");
-        btns_admin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_admin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_admin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_admin.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_admin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_adminActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btns_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 80, 50));
-
-        txtmedicoindica.setEditable(false);
-        txtmedicoindica.setBackground(new java.awt.Color(255, 255, 255));
-        txtmedicoindica.setBorder(null);
-        txtmedicoindica.setForeground(new java.awt.Color(58, 159, 171));
-        txtmedicoindica.setToolTipText("");
-        txtmedicoindica.setEnabled(false);
-        txtmedicoindica.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        txtmedicoindica.setPlaceholder("MEDICO QUE INDICA");
-        jPanel4.add(txtmedicoindica, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 240, 30));
-
-        btns_medico1.setBackground(new java.awt.Color(0, 111, 177));
-        btns_medico1.setBorder(null);
-        btns_medico1.setForeground(new java.awt.Color(255, 255, 255));
-        btns_medico1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
-        btns_medico1.setText("buscar");
-        btns_medico1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btns_medico1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btns_medico1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btns_medico1.setRippleColor(new java.awt.Color(60, 63, 65));
-        btns_medico1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btns_medico1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btns_medico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 110, 80, 50));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/indication.png"))); // NOI18N
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 310, -1));
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 310, -1));
 
         txtmedicoingreso.setEditable(false);
         txtmedicoingreso.setBackground(new java.awt.Color(255, 255, 255));
@@ -640,7 +584,7 @@ static Conexion cc = new Conexion();
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addGap(26, 26, 26)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -668,7 +612,7 @@ static Conexion cc = new Conexion();
 
         btnVender.setBackground(new java.awt.Color(0, 111, 177));
         btnVender.setForeground(new java.awt.Color(255, 255, 255));
-        btnVender.setText("       REGISTRAR      ");
+        btnVender.setText("        REGISTRAR     ");
         btnVender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnVender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -690,7 +634,7 @@ static Conexion cc = new Conexion();
 
         btnedit.setBackground(new java.awt.Color(0, 111, 177));
         btnedit.setForeground(new java.awt.Color(255, 255, 255));
-        btnedit.setText("actualizar");
+        btnedit.setText("Actualizar");
         btnedit.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
         btnedit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnedit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -710,7 +654,7 @@ static Conexion cc = new Conexion();
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -750,7 +694,7 @@ static Conexion cc = new Conexion();
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -793,9 +737,8 @@ static Conexion cc = new Conexion();
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE))
         );
 
         jTabbedPane2.getAccessibleContext().setAccessibleName("Registro de Ventas");
@@ -820,7 +763,7 @@ static Conexion cc = new Conexion();
             }
 
             if (c == null) {
-                numFac.setText("EE0001");
+                numFac.setText("RE0001");
             } else {
                 char r1 = c.charAt(2);
                 char r2 = c.charAt(3);
@@ -831,7 +774,7 @@ static Conexion cc = new Conexion();
                 j = Integer.parseInt(r);
                 GenerarCodigos gen = new GenerarCodigos();
                 gen.generar(j);
-                numFac.setText("EE" + gen.serie());
+                numFac.setText("RE" + gen.serie());
 
             }
 
@@ -846,26 +789,24 @@ static Conexion cc = new Conexion();
         return formatofecha.format(fecha);
 
     }
-
+//limpiar todas las cajas de texto
     void limpiaCampos() {
         DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        btns_admin.setEnabled(true);
-        btns_medico1.setEnabled(true);
         btns_medico2.setEnabled(true);;
         btns_paciente.setEnabled(true);
         btnVender.setEnabled(true);
         txtpaciente.setText("");
         txtdescripcion.setText("");
-        txtmedicoadmin.setText("");
-        txtmedicoindica.setText("");
+        txtencargado.setText("");
         txtmedicoingreso.setText("");
         txtnumhabitacion.setText("");
         lblTotal.setText("0.0");
         txtFecha.setText(fechaactual());
+        btnedit.setVisible(false);
         thishide.setVisible(false);
         txtdescripcion.setEnabled(true);
         txtnumhabitacion.setEnabled(true);
@@ -873,22 +814,23 @@ static Conexion cc = new Conexion();
         btnnewinsumo.hide();
         btnedit.hide();
     }
-    //obtener datos del registro de emergencia
+    //Metodo obtener datos de la tabla test_hospitalización
   private void Get_Data(){
         limpiaCampos();
         String sql="select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + "medico_1 as 'Realizo Examen',"
-                + "medico_2 as 'Indico Examen',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
+                + "encargado as 'Encargado del paciente',"
                 + "medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
-                + "observaciones as'Observaciones',"
-                + "fecha as 'Fecha y Hora', "
-                + "total as 'Total (L)' from test_emergencia "
-                + "inner join paciente on " //unir la tabla registro de emergencia con paciente
-                + "paciente = codigo_paciente "
-                + "where estado=1";
+                + "observaciones as'Motivo de Ingreso',"
+                + "fecha as 'Fecha y Hora',"
+                + "unidad as 'Unidad',"
+                + " total as 'Total (L)'"
+                + " from test_emergencia"
+                + " inner join paciente on"
+                + " paciente = codigo_paciente"
+                + " where estado=1";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -898,58 +840,7 @@ static Conexion cc = new Conexion();
             JOptionPane.showMessageDialog(null, e);
           } 
   }
-
-
-    void actualizarStock() {
-        for (int i = 0; i < tablaCaja.getRowCount(); i++) {
-            Producto pr = new Producto();
-            idp = tablaCaja.getValueAt(i, 0).toString();
-            cant = Integer.parseInt(tablaCaja.getValueAt(i, 3).toString());
-            pr = pdao.listarID_emergencia(idp);
-            int sa = pr.getStock() - cant;
-            pdao.actualizarStock_emergencia(sa, idp);
-
-        }
-    }
-     private void ingresar_detalle(){
-    for (int i = 0; i <tablaCaja.getRowCount(); i++) {
-        String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
-        String p_s= tablaCaja.getModel().getValueAt(i, 1).toString();
-        String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
-        String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
-        String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_emergencia(idventa,"
-                + "codigo,"
-                + "id_paciente,"
-                + "p_s,"
-                + "precio,"
-                + "cantidad,"
-                + "importe,"
-                + "fecha,"
-                + "unidad,"
-                + "estado) values ('"
-                +numFac.getText()+"','" 
-                +codigo+"','" 
-                +lblidpaciente.getText()+"','" 
-                + p_s +"','" 
-                +precio+"','" 
-                +cantidad+"','" 
-                +importe+"','" 
-                +txtFecha.getText()+"','" 
-                +"Emergencia"+"','" 
-                +"1"+ "')";
-
-        try{
-            con=Conexion.ConnectDB();
-            pst=con.prepareStatement(sql);
-            pst.execute();
-            }catch(HeadlessException | SQLException ex){
-                JOptionPane.showMessageDialog(this,ex);
-        }
-        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
-    }
-         }
-     void sum_ingreso(){
+void sum_ingreso(){
          try{
          String sql= "select sum(importe) FROM detalle_test_emergencia WHERE idventa='"+numFac.getText()+"'";
          Statement st = con.createStatement();
@@ -982,7 +873,8 @@ private void edit_detalle(){
         String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
         String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
         String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
-        String sql= "insert into detalle_test_emergencia(idventa,"
+        String sql= "insert into detalle_test_emergencia("
+                + "idventa,"
                 + "codigo,"
                 + "id_paciente,"
                 + "p_s,"
@@ -1014,14 +906,65 @@ private void edit_detalle(){
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
+
+    void actualizarStock() {
+        for (int i = 0; i < tablaCaja.getRowCount(); i++) {
+            Producto pr = new Producto();
+            idp = tablaCaja.getValueAt(i, 0).toString();
+            cant = Integer.parseInt(tablaCaja.getValueAt(i, 3).toString());
+            pr = pdao.listarID_emergencia(idp);
+            int sa = pr.getStock() - cant;
+            pdao.actualizarStock_emergencia(sa, idp);
+
+        }
+    }
+     private void ingresar_detalle(){
+    for (int i = 0; i <tablaCaja.getRowCount(); i++) {
+        String codigo= tablaCaja.getModel().getValueAt(i, 0).toString();
+        String p_s= tablaCaja.getModel().getValueAt(i, 1).toString();
+        String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
+        String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
+        String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into detalle_test_emergencia("
+                + "idventa,"
+                + "codigo,"
+                + "id_paciente,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe,"
+                + "fecha,"
+                + "unidad,"
+                + "estado) values ('"
+                +numFac.getText()+"','" 
+                +codigo+"','" 
+                +lblidpaciente.getText()+"','" 
+                + p_s +"','" 
+                +precio+"','" 
+                +cantidad+"','" 
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +"Emergencia"+"','" 
+                +"1"+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
     private void show_detalle(){
         String sql="select codigo as 'Codigo',"
                 + "p_s as 'Prodcuto/Servicio',"
                 + "precio as 'Precio',"
                 + "cantidad as 'Cantidad',"
                 + "importe as 'Importe' "
-                + "from detalle_test_emergencia where idventa='" + numFac.getText() + "' "
-                + "and estado=1";
+                + "from detalle_test_emergencia where idventa='" + numFac.getText() + "'"
+                + " and estado=1 ";
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -1048,18 +991,21 @@ private void edit_detalle(){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
+            //query para buscar pacientes por nombre o identidad resgistrados en hospitalización
                 ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + "medico_1 as 'Realizo Examen',"
-                + "medico_2 as 'Indico Examen',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
+                + "encargado as 'Responsable del Paciente',"
                 + "medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
-                + "observaciones as'Observaciones',"
-                + "fecha as 'Fecha y Hora', "
-                + "total as 'Total (L)' from test_emergencia "
-                + "inner join paciente on " //unir la tabla registro de emergencia con paciente
-                + "paciente = codigo_paciente WHERE estado=1 and CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
+                + "observaciones as'Motivo de Ingreso',"
+                + "fecha as 'Fecha y Hora',"
+                  + "unidad as 'Unidad',"
+                + " total as 'Total (L)'"
+                + " from test_emergencia"
+                + " inner join paciente on"
+                + " paciente = codigo_paciente"
+                + " where  CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' and estado=1 ");
 
                     while (rs.next()) {
                         Vector v = new Vector();
@@ -1072,30 +1018,28 @@ private void edit_detalle(){
                         v.add(rs.getString(7));
                         v.add(rs.getString(8));
                         v.add(rs.getString(9));
-                        v.add(rs.getString(10));
+
                         dt.addRow(v);
                     }
 
         } catch (Exception e) {
-            Get_Data();
+            Get_Data(); //si no funcionan el try, mostrara todos los registros
 
         }          // TODO add your handling code here:
     }//GEN-LAST:event_c_search_tblKeyReleased
     //select idventa as 'Codigo',isv as 'ISV', paciente as 'Paciente', fecha as 'Fecha',estado_pago as 'Estado de Pago',total as 'Total (L)'
     private void tableCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCajaMouseClicked
         try {
-            limpiaCampos();
             int row= tableCaja.getSelectedRow();
             numFac.setText(tableCaja.getModel().getValueAt(row,0).toString());
             lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
-            txtmedicoadmin.setText(tableCaja.getModel().getValueAt(row,3).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,9).toString());
-            txtmedicoindica.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
-            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
-            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
-            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
-            txtFecha.setText(tableCaja.getModel().getValueAt(row,8).toString()) ;
+            txtencargado.setText(tableCaja.getModel().getValueAt(row,3).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());
+            txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
+            txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
+            txtdescripcion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;
+            txtFecha.setText(tableCaja.getModel().getValueAt(row,7).toString()) ;
             thishide.setVisible(true);
             btnVender.setEnabled(false);
             quitar.setEnabled(false);
@@ -1130,7 +1074,7 @@ private void edit_detalle(){
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
             er.titulo.setText("OOPS...");
             er.msj.setText("IMPOSIBLE INGRESAR");
-            er.msj1.setText("REGISTRO");
+            er.msj1.setText("EXAMEN");
             er.setVisible(true);
         } else {
         try{
@@ -1139,14 +1083,11 @@ private void edit_detalle(){
                 JOptionPane.showMessageDialog( this, "Ingrese Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (txtmedicoadmin.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Persona que Realiza el Examen","Error", JOptionPane.ERROR_MESSAGE);
+            if (txtencargado.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Persona que Responsable del Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            if (txtmedicoindica.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Medico que Indica el Examen","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }  
+
             if (txtmedicoingreso.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese el Medico que Ordeno el Ingreso del Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -1159,25 +1100,29 @@ private void edit_detalle(){
                 JOptionPane.showMessageDialog( this, "Ingrese Fecha","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-               // insertar datos en test_laboratorio
+            if (txtdescripcion.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Motivo por el que se Ingreso el Paciente","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+               // query insertar datos en test_laboratorio
             String sql= "insert into test_emergencia(codigo,"
-                    + "paciente,medico_1,"
-                    + "medico_2,medico_3,"
+                    + "paciente,"
+                    + "encargado,"
+                    + "medico_3,"
                     + "num_habitacion,"
                     + "observaciones,"
                     + "fecha,"
                     + "total,"
                     + "estado) values ('"
-                    +numFac.getText()
-                    +"','" +lblidpaciente.getText()
-                    +"','" +txtmedicoadmin.getText()
-                    +"','" +txtmedicoindica.getText()
-                    +"','" +txtmedicoingreso.getText()
-                    +"','"+txtnumhabitacion.getText()
-                    +"','" +txtdescripcion.getText()
-                    +"','" + txtFecha.getText()
+                    +numFac.getText()+"','" 
+                    +lblidpaciente.getText()+"','" 
+                    +txtencargado.getText()+"','" 
+                    +txtmedicoingreso.getText()+"','"
+                    +txtnumhabitacion.getText()+"','" 
+                    +txtdescripcion.getText()+"','" 
+                    + txtFecha.getText()
                     +"','" + lblTotal.getText()
-                    +"','" +"1" + "')";
+                    +"','" + 1 + "')";
             pst=con.prepareStatement(sql);
             pst.execute();
             actualizarStock(); 
@@ -1242,34 +1187,6 @@ private void edit_detalle(){
         // TODO add your handling code here:
     }//GEN-LAST:event_btns_pacienteActionPerformed
 
-    private void btns_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_adminActionPerformed
-        empleados.lista_empleados_admin.cual="1";
-        new empleados.lista_empleados_admin(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
-    }//GEN-LAST:event_btns_adminActionPerformed
-
-    private void btns_medico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico1ActionPerformed
-        empleados.lista_empleados_mindica.cual="1";
-        new empleados.lista_empleados_mindica(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
-    }//GEN-LAST:event_btns_medico1ActionPerformed
-
-    private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
-        empleados.lista_empleados_mingreso.cual="1";
-        new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
-    }//GEN-LAST:event_btns_medico2ActionPerformed
-
-    private void btnnewinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewinsumoActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
-
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-        btns_admin.setEnabled(false);
-        btns_medico1.setEnabled(false);
-        btns_medico2.setEnabled(false);
-        btns_paciente.setEnabled(false);
-        btnedit.setVisible(true);// TODO add your handling code here:
-    }//GEN-LAST:event_btnnewinsumoActionPerformed
-
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         if (this.tablaCaja.getRowCount() < 1) {
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
@@ -1288,9 +1205,25 @@ private void edit_detalle(){
             this.jTabbedPane2.setSelectedIndex(0);
             Get_Data();
             limpiaCampos();
-        }
-   // TODO add your handling code here:
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btneditActionPerformed
+
+    private void btns_medico2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btns_medico2ActionPerformed
+        empleados.lista_empleados_mingreso.cual="1";
+        new empleados.lista_empleados_mingreso(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
+    }//GEN-LAST:event_btns_medico2ActionPerformed
+
+    private void btnnewinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnewinsumoActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tablaCaja.getModel();
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        btns_medico2.setEnabled(false);
+        btns_paciente.setEnabled(false);
+        
+        btnedit.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_btnnewinsumoActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         PrincipalAdministrador.escritorio.removeAll();
@@ -1312,8 +1245,6 @@ private void edit_detalle(){
     private principal.MaterialButton btnVender1;
     private principal.MaterialButton btnedit;
     private principal.MaterialButton btnnewinsumo;
-    private principal.MaterialButton btns_admin;
-    private principal.MaterialButton btns_medico1;
     private principal.MaterialButton btns_medico2;
     private principal.MaterialButton btns_paciente;
     private principal.MaterialButton btnservicios;
@@ -1326,7 +1257,6 @@ private void edit_detalle(){
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1357,8 +1287,7 @@ private void edit_detalle(){
     private javax.swing.JLabel thishide;
     private app.bolivia.swing.JCTextField txtFecha;
     private app.bolivia.swing.JCTextField txtdescripcion;
-    public static app.bolivia.swing.JCTextField txtmedicoadmin;
-    public static app.bolivia.swing.JCTextField txtmedicoindica;
+    private app.bolivia.swing.JCTextField txtencargado;
     public static app.bolivia.swing.JCTextField txtmedicoingreso;
     private app.bolivia.swing.JCTextField txtnumhabitacion;
     public static app.bolivia.swing.JCTextField txtpaciente;

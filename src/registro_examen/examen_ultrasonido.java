@@ -22,7 +22,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
-import static principal.PrincipalAdministrador.escritorio;
 import java.awt.HeadlessException;
 import lista_productos_servicios.ProductoDAO;
 import java.util.logging.Level;
@@ -30,7 +29,6 @@ import java.util.logging.Logger;
 import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
-import static principal.PrincipalAdministrador.estacerrado;
 import static principal.PrincipalAdministrador.menu;
 /**
  *
@@ -719,7 +717,7 @@ static Conexion cc = new Conexion();
             }
 
             if (c == null) {
-                numFac.setText("RR0001");
+                numFac.setText("RU0001");
             } else {
                 char r1 = c.charAt(2);
                 char r2 = c.charAt(3);
@@ -730,7 +728,7 @@ static Conexion cc = new Conexion();
                 j = Integer.parseInt(r);
                 GenerarCodigos gen = new GenerarCodigos();
                 gen.generar(j);
-                numFac.setText("RR" + gen.serie());
+                numFac.setText("RU" + gen.serie());
 
             }
 

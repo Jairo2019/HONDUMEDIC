@@ -679,7 +679,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnambulanciaActionPerformed
 
     private void btnadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadminActionPerformed
-        new lista_examen_hospitalizacion_apa (new JFrame(), true).setVisible(true);        // TODO add your handling code here:
+          // TODO add your handling code here:
     }//GEN-LAST:event_btnadminActionPerformed
 
     private void btncajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaActionPerformed
@@ -691,7 +691,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btncirugiaActionPerformed
 
     private void btnemergenciaapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaapaActionPerformed
-        new lista_examen_emergencia_apa(new JFrame(), true).setVisible(true);              // TODO add your handling code here:
+              // TODO add your handling code here:
     }//GEN-LAST:event_btnemergenciaapaActionPerformed
 
     private void btnemergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaActionPerformed

@@ -1,19 +1,20 @@
 package reportes_registros;
 
-import clases_cajas_servicios.*;
 
 public class class_registro_ambulancia {
-    String paciente, medico, conductor,origen,destino, fecha, total;
+    String paciente, medico, conductor,origen,destino,km, fecha, total;
 
-    public class_registro_ambulancia(String paciente, String medico, String conductor, String origen, String destino, String fecha, String total) {
+    public class_registro_ambulancia(String paciente, String medico, String conductor, String origen, String destino, String km, String fecha, String total) {
         this.paciente = paciente;
         this.medico = medico;
         this.conductor = conductor;
         this.origen = origen;
         this.destino = destino;
+        this.km = km;
         this.fecha = fecha;
         this.total = total;
     }
+
     public String getPaciente() {
         return paciente;
     }
@@ -32,6 +33,10 @@ public class class_registro_ambulancia {
 
     public String getDestino() {
         return destino;
+    }
+
+    public String getKm() {
+        return km;
     }
 
     public String getFecha() {
@@ -62,6 +67,10 @@ public class class_registro_ambulancia {
         this.destino = destino;
     }
 
+    public void setKm(String km) {
+        this.km = km;
+    }
+
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
@@ -69,5 +78,5 @@ public class class_registro_ambulancia {
     public void setTotal(String total) {
         this.total = total;
     }
-   
+    
 }

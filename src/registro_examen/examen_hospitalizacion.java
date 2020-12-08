@@ -827,6 +827,7 @@ static Conexion cc = new Conexion();
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Motivo de Ingreso',"
                 + "fecha as 'Fecha y Hora',"
+                + "unidad as 'Unidad',"
                 + " total as 'Total (L)'"
                 + " from test_hospitalizacion"
                 + " inner join paciente on"
@@ -996,11 +997,12 @@ private void edit_detalle(){
                 ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
-                + "encargado as 'Responsable del Paciente',"
+                + "encargado as 'Encargado del paciente',"
                 + "medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Motivo de Ingreso',"
                 + "fecha as 'Fecha y Hora',"
+                + "unidad as 'Unidad',"
                 + " total as 'Total (L)'"
                 + " from test_hospitalizacion"
                 + " inner join paciente on"
@@ -1018,7 +1020,7 @@ private void edit_detalle(){
                         v.add(rs.getString(7));
                         v.add(rs.getString(8));
                         v.add(rs.getString(9));
-
+                        v.add(rs.getString(10));
                         dt.addRow(v);
                     }
 

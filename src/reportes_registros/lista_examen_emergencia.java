@@ -247,13 +247,17 @@ public static Double value ;
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
         String sql="select codigo as 'Codigo',"
-                + "paciente as 'Paciente',"
-                + "medico_1 as 'Realizo Examen',"
-                + " num_habitacion as 'Habitación',"
-                + "observaciones as'Observaciones',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
+                + "medico_3 as 'Ordenó Ingreso',"
+                + "encargado as 'Encargado', "
+                + "direccion as 'Dirección', "
+                + "telefono as 'Teléfono', "
+                + "unidad as 'Unidad', "
                 + "fecha as 'Fecha y Hora', "
                 + "total as 'Total (L)' "
-                + "from test_emergencia";
+                + "from test_emergencia"
+                + " inner join paciente on "
+                + " paciente = codigo_paciente";
 
         try{
          pst=con.prepareStatement(sql);
@@ -268,11 +272,13 @@ public static Double value ;
  }
  //codigo,paciente, medico, habitacion,observaciones, fecha, total
      void print_bill(){
-        class_registros em;// Instaciamos la clase empleado
-        List <class_registros>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        class_registro_emergencia em;// Instaciamos la clase empleado
+        List <class_registro_emergencia>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
-            em = new class_registros(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
-            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString(),tabla.getValueAt(i, 5).toString(),tabla.getValueAt(i, 6).toString());
+            em = new class_registro_emergencia(tabla.getValueAt(i, 1).toString(),tabla.getValueAt(i,2).toString(),
+            tabla.getValueAt(i,3).toString(),tabla.getValueAt(i,4).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
+            tabla.getValueAt(i, 5).toString(),tabla.getValueAt(i,6).toString(),
+            tabla.getValueAt(i, 7).toString(),tabla.getValueAt(i, 8).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -302,13 +308,17 @@ public static Double value ;
             Statement s = Conexion.ConnectDB().createStatement();
 
             ResultSet rs = s.executeQuery("select codigo as 'Codigo',"
-                    + "paciente as 'Paciente',"
-                    + "medico_1 as 'Realizo Examen',"
-                    + " num_habitacion as 'Habitación',"
-                    + "observaciones as'Observaciones',"
-                    + "fecha as 'Fecha y Hora', "
-                    + "total as 'Total (L)' "
-                    + "from test_emergencia WHERE paciente LIKE '%"+name+"%' ");
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
+                + "medico_3 as 'Ordenó Ingreso',"
+                + "encargado as 'Encargado', "
+                + "direccion as 'Dirección', "
+                + "telefono as 'Teléfono', "
+                + "unidad as 'Unidad', "
+                + "fecha as 'Fecha y Hora', "
+                + "total as 'Total (L)' "
+                + "from test_emergencia"
+                + " inner join paciente on "
+                + " paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' or codigo LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -319,6 +329,8 @@ public static Double value ;
                 v.add(rs.getString(5));
                 v.add(rs.getString(6));
                 v.add(rs.getString(7));
+                 v.add(rs.getString(8));
+                  v.add(rs.getString(9));
                 dt.addRow(v);
 
             }

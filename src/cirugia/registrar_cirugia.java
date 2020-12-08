@@ -22,7 +22,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
-import static principal.PrincipalAdministrador.escritorio;
 import lista_productos_servicios.Producto;
 import java.awt.HeadlessException;
 import lista_productos_servicios.ProductoDAO;
@@ -31,7 +30,6 @@ import java.util.logging.Logger;
 import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
-import static principal.PrincipalAdministrador.estacerrado;
 import static principal.PrincipalAdministrador.menu;
 /**
  *
@@ -846,8 +844,8 @@ static Conexion cc = new Conexion();
         String sql="select codigo as 'Codigo',"
                 + "codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
-                + "medico_1 as 'Realizo Examen', "
-                + "medico_2 as 'Indico Examen',"
+                + "medico_1 as 'Realizo Cirugía', "
+                + "medico_2 as 'Indico Cirugía',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Observaciones',"
                 + "fecha as 'Fecha y Hora', "
