@@ -62,7 +62,7 @@ void between_date(){
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM registro_venta WHERE fecha BETWEEN '" + fecH1 + "' and '" + fecH2 + "' ");
+            ResultSet rs = s.executeQuery("SELECT * FROM registro_venta WHERE fecha BETWEEN '"+ fecH1 +"' and '"+ fecH2 +"' ");
 
             while (rs.next()) {
                 Vector v = new Vector();

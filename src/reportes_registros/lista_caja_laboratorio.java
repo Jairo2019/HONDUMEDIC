@@ -245,12 +245,15 @@ public static Double value ;
         pack();
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
-        String sql="select idventa as 'Codigo',"
-                + " paciente as 'Paciente', "
-                + "fecha as 'Fecha',"
-                + "estado_pago as 'Estado de Pago',"
+         String sql="select idventa as 'Codigo',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " fecha as 'Fecha',"
                 + "total as 'Total (L)' "
-                + "from caja_laboratorio where estado_pago='Contado'";
+                + "from caja_laboratorio "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente"
+                + " where estado='1'";
 
         try{
          pst=con.prepareStatement(sql);
@@ -267,7 +270,7 @@ public static Double value ;
         List <class_caja>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_caja(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
-            tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 4).toString());
+            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -280,8 +283,8 @@ public static Double value ;
             viewer.setVisible(true); //Se vizualiza el reporte
         } catch (JRException ex) {
            
-        } 
-}
+        }
+ }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
@@ -297,11 +300,16 @@ public static Double value ;
             Statement s = Conexion.ConnectDB().createStatement();
 
             ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
-                + " paciente as 'Paciente', "
-                + "fecha as 'Fecha',"
-                + "estado_pago as 'Estado de Pago',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " fecha as 'Fecha',"
                 + "total as 'Total (L)' "
-                + "from caja_laboratorio WHERE paciente LIKE '%"+name+"%' and estado_pago='Contado' ");
+                + "from caja_laboratorio "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente"
+                + " where estado='1' and CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' "
+                + "or estado='1' and idventa LIKE '%"+name+"%' "
+                + "or estado='1' and codigo_paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();

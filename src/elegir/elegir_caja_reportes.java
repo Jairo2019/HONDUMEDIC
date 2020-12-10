@@ -16,10 +16,12 @@ import javax.swing.JFrame;
 import paneles.pnl_cirugia;
 import reportes_registros.lista_caja_apa;
 import reportes_registros.lista_caja_cafeteria;
+import reportes_registros.lista_caja_endoscopia;
 import reportes_registros.lista_caja_farmacia;
 import reportes_registros.lista_caja_general;
 import reportes_registros.lista_caja_laboratorio;
 import reportes_registros.lista_caja_rayosx;
+import reportes_registros.lista_caja_ultrasonido;
 /**
  *
  * @author Rojeru San
@@ -291,7 +293,7 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
 
     private void btncajaapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaapaActionPerformed
         this.dispose();
-        new lista_caja_apa(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
+        new lista_caja_ultrasonido(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
     }//GEN-LAST:event_btncajaapaActionPerformed
 
     private void btncajacafeteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajacafeteriaActionPerformed
@@ -305,7 +307,8 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
     }//GEN-LAST:event_btncajafarmaciaActionPerformed
 
     private void btncajaendoscopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaendoscopiaActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new lista_caja_endoscopia(new JFrame(), true).setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_btncajaendoscopiaActionPerformed
     
     /**

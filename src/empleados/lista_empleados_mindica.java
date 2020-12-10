@@ -320,8 +320,7 @@ PreparedStatement pst=null;
                     int c = 0;
                     int j = 0;
                     if (("1").equals(cual)){
-                    registro_examen.examen_emergencia.txtmedicoindica.setText(nom + " "+  apellido);
-                    cual="";
+                    
                     }else if (("2").equals(cual)){
                     //registro_examen.examen_hospitalizacion.txtmedicoindica.setText(nom + " "+  apellido);
                     cual="";

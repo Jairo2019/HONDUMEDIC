@@ -30,7 +30,6 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import paneles.Conexion;
-import static reportes_registros.lista_caja_laboratorio.tabla;
 import tabla.MyScrollbarUI;
 
 /**
@@ -246,11 +245,14 @@ public static Double value ;
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
         String sql="select idventa as 'Codigo',"
-                + "paciente as 'Paciente',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
                 + " fecha as 'Fecha',"
-                + "estado_pago as 'Estado de Pago',"
                 + "total as 'Total (L)' "
-                + "from caja_rayosx where estado_pago='Contado'";
+                + "from caja_rayosx "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente"
+                + " where estado='1'";
 
         try{
          pst=con.prepareStatement(sql);
@@ -267,7 +269,7 @@ public static Double value ;
         List <class_caja>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_caja(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
-            tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 4).toString());
+            tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -297,11 +299,16 @@ public static Double value ;
             Statement s = Conexion.ConnectDB().createStatement();
 
             ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
-                + "paciente as 'Paciente',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
                 + " fecha as 'Fecha',"
-                + "estado_pago as 'Estado de Pago',"
                 + "total as 'Total (L)' "
-                + "from caja_rayosx where paciente LIKE '%"+name+"%' and estado_pago='Contado' ");
+                + "from caja_rayosx "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente"
+                + " where estado='1' and CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' "
+                + "or estado='1' and idventa LIKE '%"+name+"%' "
+                + "or estado='1' and codigo_paciente LIKE '%"+name+"%'");
 
             while (rs.next()) {
                 Vector v = new Vector();
