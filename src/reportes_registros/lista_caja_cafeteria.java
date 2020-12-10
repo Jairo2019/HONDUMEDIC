@@ -255,7 +255,7 @@ public static Double value ;
         dtfecha2.setBackground(new java.awt.Color(255, 255, 255));
         dtfecha2.setForeground(new java.awt.Color(0, 0, 0));
         dtfecha2.setToolTipText("");
-        dtfecha2.setDateFormatString("dd/MM/yyyy");
+        dtfecha2.setDateFormatString("yyyy-MM-dd");
         dtfecha2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         dtfecha2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel1.add(dtfecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 170, 40));
@@ -263,7 +263,7 @@ public static Double value ;
         dtfecha1.setBackground(new java.awt.Color(255, 255, 255));
         dtfecha1.setForeground(new java.awt.Color(0, 0, 0));
         dtfecha1.setToolTipText("");
-        dtfecha1.setDateFormatString("dd/MM/yyyy");
+        dtfecha1.setDateFormatString("yyyy-MM-dd");
         dtfecha1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         dtfecha1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel1.add(dtfecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 170, 40));

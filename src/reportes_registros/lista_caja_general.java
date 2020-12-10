@@ -41,7 +41,7 @@ public class lista_caja_general extends javax.swing.JDialog {
     /**
      * Creates new form Principal
      */
-SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
 Connection con=null;
 Date dato = null;
 ResultSet rs=null;
@@ -264,17 +264,17 @@ public static Double value ;
         dtfecha1.setBackground(new java.awt.Color(255, 255, 255));
         dtfecha1.setForeground(new java.awt.Color(0, 0, 0));
         dtfecha1.setToolTipText("");
-        dtfecha1.setDateFormatString("dd/MM/YYYY HH:mm:ss");
+        dtfecha1.setDateFormatString("yyyy-MM-dd");
         dtfecha1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        dtfecha1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        dtfecha1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel1.add(dtfecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 150, 40));
 
         dtfecha2.setBackground(new java.awt.Color(255, 255, 255));
         dtfecha2.setForeground(new java.awt.Color(0, 0, 0));
         dtfecha2.setToolTipText("");
-        dtfecha2.setDateFormatString("dd/MM/YYYY HH:mm:ss");
+        dtfecha2.setDateFormatString("yyyy-MM-dd");
         dtfecha2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        dtfecha2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        dtfecha2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel1.add(dtfecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 140, 40));
 
         panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 8, 960, 590));
@@ -340,7 +340,7 @@ public static Double value ;
                 + "from caja_servicios "
                 + "inner join paciente on "
                 + " paciente = codigo_paciente"
-                + " where fecha between '"+ fecH1+"' and '"+fecH2+"' ");
+                + " where estado_pago='Contado' and fecha between '"+ fecH1+"' and '"+fecH2+"' ");
 
             while (rs.next()) {
                 Vector v = new Vector();

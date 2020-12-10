@@ -57,7 +57,7 @@ public class CajaAd extends javax.swing.JInternalFrame {
 
     public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatofecha.format(fecha);
 
     }

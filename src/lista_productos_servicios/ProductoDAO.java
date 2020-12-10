@@ -197,7 +197,7 @@ public class ProductoDAO {
     }
     public Producto listarID_inventarioFarmacia(String id){
         Producto p=new Producto();
-        String sql="select * from inventario_farmacia where codigo_farmacia=?";
+        String sql="select codigo_farmacia,nombre,precio_venta,fechavencimiento,cantidad from inventario_farmacia where codigo_farmacia=?";
         try {
             con=acceso.ConnectDB();
             ps=con.prepareStatement(sql);
@@ -208,7 +208,7 @@ public class ProductoDAO {
                 p.setNom(rs.getString(2));
                 p.setPre(rs.getFloat(3));
                 p.setEstado(rs.getString(4));
-                p.setStock(rs.getInt(6));
+                p.setStock(rs.getInt(5));
             }
         } catch (Exception e) {
         }

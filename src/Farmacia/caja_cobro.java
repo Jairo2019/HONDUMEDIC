@@ -38,13 +38,13 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import principal.GenerarCodigos;
-import unidad_apa.class_cotizacion_apa;
+
 /**
  *
  * @author Rojeru San
  */
 public class caja_cobro extends javax.swing.JInternalFrame {
-SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
+SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
 Connection con=null;
 Date dato = null;
 ResultSet rs=null;
@@ -88,6 +88,7 @@ static Conexion cc = new Conexion();
         btnmedico.setVisible(false);
         txtmedicoindica.setVisible(false);
         lblmedico.setVisible(false);
+        numeros();
     }
 
     /**
@@ -143,8 +144,9 @@ static Conexion cc = new Conexion();
         lblTotal = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         btnCancelar = new principal.MaterialButton();
-        btnVender = new principal.MaterialButton();
+        btnguardar = new principal.MaterialButton();
         quitar = new principal.MaterialButton();
+        btnprint = new principal.MaterialButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -590,13 +592,13 @@ static Conexion cc = new Conexion();
             }
         });
 
-        btnVender.setBackground(new java.awt.Color(0, 111, 177));
-        btnVender.setForeground(new java.awt.Color(255, 255, 255));
-        btnVender.setText("        GUARDAR          ");
-        btnVender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnVender.addActionListener(new java.awt.event.ActionListener() {
+        btnguardar.setBackground(new java.awt.Color(0, 111, 177));
+        btnguardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnguardar.setText("        GUARDAR          ");
+        btnguardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnguardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVenderActionPerformed(evt);
+                btnguardarActionPerformed(evt);
             }
         });
 
@@ -612,6 +614,18 @@ static Conexion cc = new Conexion();
             }
         });
 
+        btnprint.setBackground(new java.awt.Color(0, 111, 177));
+        btnprint.setForeground(new java.awt.Color(255, 255, 255));
+        btnprint.setText("IMPRIMIR");
+        btnprint.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
+        btnprint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnprint.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnprint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnprintActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -620,17 +634,20 @@ static Conexion cc = new Conexion();
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnguardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnprint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnprint, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -714,8 +731,6 @@ static Conexion cc = new Conexion();
     }// </editor-fold>//GEN-END:initComponents
     private void numeros() {
         int j;
-        int cont = 1;
-        String num = "";
         String c = "";
         String SQL = "SELECT MAX(idventa) FROM caja_farmacia";
 
@@ -749,7 +764,7 @@ static Conexion cc = new Conexion();
 
    public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatofecha.format(fecha);
 
     }
@@ -782,12 +797,13 @@ static Conexion cc = new Conexion();
         quitar.setEnabled(true);
         rbnexterno.setEnabled(true);
         rbninterno.setEnabled(true);
-        btnVender.setEnabled(true);
-        
+        btnguardar.setEnabled(true);
+        btnprint.setEnabled(false);
+        btnProducto.setEnabled(true);
         numeros();
     }
   private void Get_Data(){
-        limpiaCampos();
+       txtFecha.setText(fechaactual());
         String sql="select idventa as 'codigo'," +
 "                medico as 'Medico que Indica'," +
 "               cliente as 'Cliente'," +
@@ -819,15 +835,11 @@ static Conexion cc = new Conexion();
     }
 //    paciente,num_fac,estado,fecha,isv,codigo,nombre_p, precio, cantidad,importe, subtotal, total
     void print_bill(){
-        Double subtotal= (Double.parseDouble(lblTotal.getText()))-(Double.parseDouble(lblTotal.getText())* ((Double.parseDouble(thishide.getText()))/100));
-        class_cotizacion_apa em;// Instaciamos la clase empleado
-        List <class_cotizacion_apa>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        class_factura_farmacia em;// Instaciamos la clase empleado
+        List <class_factura_farmacia>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-            Double canti=0.0,sub=0.0;
-            canti = canti + Double.valueOf(tablaCaja.getValueAt(i, 3).toString());
-            sub =  canti+subtotal;
-            em = new class_cotizacion_apa(txtpaciente.getText(),numFac.getText(), txtFecha.getText(),thishide.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
-            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),String.valueOf(Math.ceil(sub)),lblTotal.getText());
+            em = new class_factura_farmacia(txtpaciente.getText(),numFac.getText(), txtFecha.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),lblTotal.getText());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -934,7 +946,7 @@ private void show_detalle(){
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
             lblTotal.setText(tableCaja.getModel().getValueAt(row,4).toString());
             txtFecha.setText(tableCaja.getModel().getValueAt(row,3).toString()) ;
-            this.btnVender.setEnabled(false);
+            this.btnguardar.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
             botones();
             show_detalle();
@@ -952,7 +964,7 @@ private void show_detalle(){
         jTabbedPane2.setSelectedIndex(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+    private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
         if (this.tablaCaja.getRowCount() < 1) {
             ErrorAlert er = new ErrorAlert(new JFrame(), true);
             er.titulo.setText("OOPS...");
@@ -994,14 +1006,15 @@ private void show_detalle(){
             sa.msj.setText("VENTA REGISTRADA");
             sa.msj1.setText("CON ÉXITO");
             sa.setVisible(true);
-            print_bill();
-            this.jTabbedPane2.setSelectedIndex(0);
+            btnprint.setEnabled(true);
+            btnguardar.setEnabled(false);
+            btnProducto.setEnabled(false);
             Get_Data();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
         } 
         }
-    }//GEN-LAST:event_btnVenderActionPerformed
+    }//GEN-LAST:event_btnguardarActionPerformed
     public static void calcular() {
         String pre;
         String can;
@@ -1091,13 +1104,20 @@ private void show_detalle(){
     private void rbnexternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rbnexternoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_rbnexternoKeyTyped
+
+    private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
+      print_bill();
+      this.jTabbedPane2.setSelectedIndex(0);
+        limpiaCampos();// TODO add your handling code here:
+    }//GEN-LAST:event_btnprintActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCancelar;
     private principal.MaterialButton btnProducto;
-    private principal.MaterialButton btnVender;
+    private principal.MaterialButton btnguardar;
     private principal.MaterialButton btnmedico;
+    private principal.MaterialButton btnprint;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     private javax.swing.JLabel jLabel1;

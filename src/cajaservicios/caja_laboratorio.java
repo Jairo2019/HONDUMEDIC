@@ -35,7 +35,7 @@ import static principal.PrincipalAdministrador.menu;
  * @author Rojeru San
  */
 public class caja_laboratorio extends javax.swing.JInternalFrame {
-SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
+SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
 Connection con=null;
 Date dato = null;
 ResultSet rs=null;
@@ -844,7 +844,7 @@ static Conexion cc = new Conexion();
 
    public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatofecha.format(fecha);
 
     }

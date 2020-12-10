@@ -33,7 +33,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panel3" min="-2" pref="706" max="-2" attributes="0"/>
+          <Component id="panel3" min="-2" pref="733" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -55,31 +55,34 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel4" alignment="1" pref="387" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel3" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btncajalaboratorio" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
-                              <Component id="btncajageneral" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
-                              <Component id="btncajaapa" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
-                              <Component id="btncajarayosx" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
-                              <Component id="btncajacafeteria" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
-                              <Component id="btncajafarmacia" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
-                              <Component id="btncajaapa1" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="3" pref="28" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="btncajalaboratorio" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="btncajageneral" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="btncajaapa" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="btncajarayosx" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="btncajaapa1" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="btncajafarmacia" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="btnCancelar" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="btncajacafeteria" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="btncajacafeteria1" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="btnCancelar" min="-2" pref="340" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -89,9 +92,9 @@
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="155" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="btncajacafeteria" min="-2" pref="55" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btncajacafeteria1" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btncajafarmacia" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -106,7 +109,7 @@
                   <Component id="btncajaapa1" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnCancelar" min="-2" pref="55" max="-2" attributes="0"/>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -118,15 +121,6 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img1/elegir.png"/>
             </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="1"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="ELEGIR VENTANA "/>
           </Properties>
         </Component>
         <Component class="principal.MaterialButtomRectangle" name="btncajageneral">
@@ -218,7 +212,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="contabilidad UNIDAD APA"/>
+            <Property name="text" type="java.lang.String" value="contabilidad Ultrasonido"/>
             <Property name="actionCommand" type="java.lang.String" value="registrar emrgencia"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
@@ -292,6 +286,27 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncajaapa1ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="principal.MaterialButtomRectangle" name="btncajacafeteria1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b1" green="6f" red="0" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="contabilidad endoscopia"/>
+            <Property name="actionCommand" type="java.lang.String" value="registrar emrgencia"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="1"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncajacafeteria1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

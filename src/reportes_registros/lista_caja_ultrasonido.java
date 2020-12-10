@@ -30,7 +30,6 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import paneles.Conexion;
-import static reportes_registros.lista_caja_apa.tabla;
 import tabla.MyScrollbarUI;
 
 /**
@@ -42,7 +41,7 @@ public class lista_caja_ultrasonido extends javax.swing.JDialog {
     /**
      * Creates new form Principal
      */
-SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
+SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
 Connection con=null;
 Date dato = null;
 ResultSet rs=null;
@@ -255,17 +254,17 @@ public static Double value ;
         dtfecha2.setBackground(new java.awt.Color(255, 255, 255));
         dtfecha2.setForeground(new java.awt.Color(0, 0, 0));
         dtfecha2.setToolTipText("");
-        dtfecha2.setDateFormatString("dd/MM/YYYY HH:mm:ss");
+        dtfecha2.setDateFormatString("yyyy-MM-dd");
         dtfecha2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        dtfecha2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        dtfecha2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel1.add(dtfecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 140, 40));
 
         dtfecha1.setBackground(new java.awt.Color(255, 255, 255));
         dtfecha1.setForeground(new java.awt.Color(0, 0, 0));
         dtfecha1.setToolTipText("");
-        dtfecha1.setDateFormatString("dd/MM/YYYY HH:mm:ss");
+        dtfecha1.setDateFormatString("yyyy-MM-dd");
         dtfecha1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        dtfecha1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        dtfecha1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jPanel1.add(dtfecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 150, 40));
 
         btnshow.setBackground(new java.awt.Color(0, 111, 177));
@@ -292,8 +291,7 @@ public static Double value ;
                 + "total as 'Total (L)' "
                 + "from caja_ultrasonido "
                 + "inner join paciente on "
-                + " paciente = codigo_paciente"
-                + " where estado='1'";
+                + " paciente = codigo_paciente";
 
         try{
          pst=con.prepareStatement(sql);
@@ -380,9 +378,9 @@ public static Double value ;
                 + "from caja_ultrasonido "
                 + "inner join paciente on "
                 + " paciente = codigo_paciente"
-                + " where estado='1' and CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' "
-                + "or estado='1' and idventa LIKE '%"+name+"%' "
-                + "or estado='1' and codigo_paciente LIKE '%"+name+"%' ");
+                + " where CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' "
+                + "or idventa LIKE '%"+name+"%' "
+                + "or and codigo_paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();

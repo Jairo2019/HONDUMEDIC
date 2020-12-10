@@ -128,7 +128,7 @@ void between_date(){
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "OPCIONES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        dtfecha1.setDateFormatString("dd/MM/yyyy");
+        dtfecha1.setDateFormatString("yyyy-MM-dd");
         dtfecha1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -283,7 +283,7 @@ void between_date(){
         gridBagConstraints.insets = new java.awt.Insets(70, 88, 0, 0);
         jPanel4.add(jLabel2, gridBagConstraints);
 
-        dtfecha2.setDateFormatString("dd/MM/yyyy");
+        dtfecha2.setDateFormatString("yyyy-MM-dd");
         dtfecha2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
