@@ -1106,8 +1106,8 @@ private void show_detalle(){
     }//GEN-LAST:event_rbnexternoKeyTyped
 
     private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
-      print_bill();
-      this.jTabbedPane2.setSelectedIndex(0);
+       this.jTabbedPane2.setSelectedIndex(0);
+        print_bill();
         limpiaCampos();// TODO add your handling code here:
     }//GEN-LAST:event_btnprintActionPerformed
   

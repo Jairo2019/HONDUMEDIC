@@ -51,7 +51,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        btnemergenciaapa = new javax.swing.JButton();
+        btningresos = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         btnemergencia = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
@@ -312,19 +312,19 @@ public class menu_reportes extends javax.swing.JInternalFrame {
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnemergenciaapa.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        btnemergenciaapa.setForeground(new java.awt.Color(0, 111, 177));
-        btnemergenciaapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnincome.png"))); // NOI18N
-        btnemergenciaapa.setText("INGRESOS");
-        btnemergenciaapa.setToolTipText("");
-        btnemergenciaapa.setBorder(null);
-        btnemergenciaapa.setContentAreaFilled(false);
-        btnemergenciaapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnemergenciaapa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnemergenciaapa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnemergenciaapa.addActionListener(new java.awt.event.ActionListener() {
+        btningresos.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        btningresos.setForeground(new java.awt.Color(0, 111, 177));
+        btningresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnincome.png"))); // NOI18N
+        btningresos.setText("INGRESOS");
+        btningresos.setToolTipText("");
+        btningresos.setBorder(null);
+        btningresos.setContentAreaFilled(false);
+        btningresos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btningresos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btningresos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btningresos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnemergenciaapaActionPerformed(evt);
+                btningresosActionPerformed(evt);
             }
         });
 
@@ -333,14 +333,14 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addComponent(btnemergenciaapa, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addComponent(btningresos, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnemergenciaapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btningresos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -690,9 +690,9 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         new lista_examen_cirugia(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
     }//GEN-LAST:event_btncirugiaActionPerformed
 
-    private void btnemergenciaapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaapaActionPerformed
-              // TODO add your handling code here:
-    }//GEN-LAST:event_btnemergenciaapaActionPerformed
+    private void btningresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresosActionPerformed
+        new lista_caja_ingresos(new JFrame(), true).setVisible(true);                       // TODO add your handling code here:
+    }//GEN-LAST:event_btningresosActionPerformed
 
     private void btnemergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaActionPerformed
         new lista_examen_emergencia(new JFrame(), true).setVisible(true);     // TODO add your handling code here:
@@ -729,10 +729,10 @@ public class menu_reportes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btncaja;
     private javax.swing.JButton btncirugia;
     private javax.swing.JButton btnemergencia;
-    private javax.swing.JButton btnemergenciaapa;
     private javax.swing.JButton btnendoscopia;
     private javax.swing.JButton btnfarmacia;
     private javax.swing.JButton btnhopitalizacion;
+    private javax.swing.JButton btningresos;
     private javax.swing.JButton btnlaboratorio;
     private javax.swing.JButton btnrayosx;
     private javax.swing.JButton btnultrasonido;
