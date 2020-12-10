@@ -22,7 +22,7 @@ import paneles.Conexion;
  * @author Rojeru San CL
  */
 public class RegistroVentas extends javax.swing.JInternalFrame {
-
+SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
     /**
      * Creates new form Usuarios
      */
@@ -46,15 +46,9 @@ public class RegistroVentas extends javax.swing.JInternalFrame {
     }
     //metodo obtener ventas por rango de fechas
 void between_date(){
-            String formato = dtfecha1.getDateFormatString();
-            Date date = dtfecha1.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato); 
-            String fecH1 = (String.valueOf(sdf.format(date)));
+            String fecH1 = formatofecha.format( dtfecha1.getDate());
             /////////////////////
-            String formato2 = dtfecha2.getDateFormatString();
-            Date date2 = dtfecha2.getDate();
-            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2); 
-            String fecH2 = (String.valueOf(sdf2.format(date2)));
+            String fecH2 = formatofecha.format( dtfecha2.getDate());
 
        try {
 

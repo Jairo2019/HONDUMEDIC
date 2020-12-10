@@ -30,7 +30,6 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import paneles.Conexion;
-import static reportes_registros.lista_caja_apa.tabla;
 import tabla.MyScrollbarUI;
 
 /**
@@ -87,9 +86,10 @@ public static Double value ;
         tabla = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         btnambulancia = new principal.MaterialButtomRectangle();
-        fecha = new com.toedter.calendar.JDateChooser();
         buscF = new javax.swing.JButton();
         btnall = new principal.MaterialButtomRectangle();
+        dtfecha2 = new com.toedter.calendar.JDateChooser();
+        dtfecha1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -222,10 +222,6 @@ public static Double value ;
         });
         jPanel1.add(btnambulancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 70, 170, 55));
 
-        fecha.setDateFormatString("dd/MM/yyyy");
-        fecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jPanel1.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 69, 150, 40));
-
         buscF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buscF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/buscaF1.png"))); // NOI18N
         buscF.setToolTipText("Buscar");
@@ -241,7 +237,7 @@ public static Double value ;
                 buscFActionPerformed(evt);
             }
         });
-        jPanel1.add(buscF, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 70, 60));
+        jPanel1.add(buscF, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 70, 60));
 
         btnall.setBackground(new java.awt.Color(0, 111, 177));
         btnall.setBorder(null);
@@ -254,7 +250,23 @@ public static Double value ;
                 btnallActionPerformed(evt);
             }
         });
-        jPanel1.add(btnall, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 170, 55));
+        jPanel1.add(btnall, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 170, 55));
+
+        dtfecha2.setBackground(new java.awt.Color(255, 255, 255));
+        dtfecha2.setForeground(new java.awt.Color(0, 0, 0));
+        dtfecha2.setToolTipText("");
+        dtfecha2.setDateFormatString("dd/MM/yyyy");
+        dtfecha2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtfecha2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel1.add(dtfecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, 170, 40));
+
+        dtfecha1.setBackground(new java.awt.Color(255, 255, 255));
+        dtfecha1.setForeground(new java.awt.Color(0, 0, 0));
+        dtfecha1.setToolTipText("");
+        dtfecha1.setDateFormatString("dd/MM/yyyy");
+        dtfecha1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtfecha1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jPanel1.add(dtfecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 170, 40));
 
         panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 8, 960, 590));
 
@@ -295,19 +307,17 @@ public static Double value ;
            
         } 
 }
- void buscar_fecha(){
-     
-           String formato = fecha.getDateFormatString();
-            Date date = fecha.getDate();
-            SimpleDateFormat sdf = new SimpleDateFormat(formato); 
-            String fecH = (String.valueOf(sdf.format(date)));
-        try {
+void between_date(){
+            String fecH1 = formatofecha.format(dtfecha1.getDate());
+            /////////////////////
+            String fecH2 = formatofecha.format(dtfecha2.getDate());
+       try {
+
             DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM registro_venta where fecha ='" + fecH + "'" 
-                    + " ORDER BY fecha");
+            ResultSet rs = s.executeQuery("SELECT * FROM registro_venta WHERE fecha BETWEEN '"+ fecH1+"' and '"+fecH2+"' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -315,14 +325,11 @@ public static Double value ;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 dt.addRow(v);
-
             }
-
         } catch (Exception e) {
-            Get_Data();
-
-        }  
- }
+            JOptionPane.showMessageDialog(null, e);
+        }          
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
@@ -338,9 +345,12 @@ public static Double value ;
     }//GEN-LAST:event_btnambulanciaActionPerformed
 
     private void buscFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscFActionPerformed
-            buscar_fecha();
+            if (dtfecha1.getDate() == null || dtfecha2.getDate() == null) {
+            JOptionPane.showMessageDialog( this, "Seleccione el Rango de Fechas","Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            between_date();
     }//GEN-LAST:event_buscFActionPerformed
-
+    }
     private void btnallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnallActionPerformed
         Get_Data();        // TODO add your handling code here:
     }//GEN-LAST:event_btnallActionPerformed
@@ -8583,7 +8593,8 @@ public static Double value ;
     private principal.MaterialButtomRectangle btnambulancia;
     private javax.swing.JButton buscF;
     private principal.MaterialButton cerrar;
-    private com.toedter.calendar.JDateChooser fecha;
+    public com.toedter.calendar.JDateChooser dtfecha1;
+    public com.toedter.calendar.JDateChooser dtfecha2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

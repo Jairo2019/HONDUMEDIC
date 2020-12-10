@@ -199,8 +199,8 @@ public class menu_reportes extends javax.swing.JInternalFrame {
 
         btnadmin.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnadmin.setForeground(new java.awt.Color(0, 111, 177));
-        btnadmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnhospitalizacion.png"))); // NOI18N
-        btnadmin.setText("HOSPITALIZACIÓN APA");
+        btnadmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnexpenses.png"))); // NOI18N
+        btnadmin.setText("EGRESOS");
         btnadmin.setToolTipText("");
         btnadmin.setBorder(null);
         btnadmin.setContentAreaFilled(false);
@@ -314,8 +314,8 @@ public class menu_reportes extends javax.swing.JInternalFrame {
 
         btnemergenciaapa.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnemergenciaapa.setForeground(new java.awt.Color(0, 111, 177));
-        btnemergenciaapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnemergencia.png"))); // NOI18N
-        btnemergenciaapa.setText("EMERGENCIA APA");
+        btnemergenciaapa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnincome.png"))); // NOI18N
+        btnemergenciaapa.setText("INGRESOS");
         btnemergenciaapa.setToolTipText("");
         btnemergenciaapa.setBorder(null);
         btnemergenciaapa.setContentAreaFilled(false);

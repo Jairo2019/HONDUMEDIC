@@ -349,9 +349,9 @@
                           <Color blue="b1" green="6f" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/btnhospitalizacion.png"/>
+                          <Image iconType="3" name="/img1/btnexpenses.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="HOSPITALIZACI&#xd3;N APA"/>
+                        <Property name="text" type="java.lang.String" value="EGRESOS"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -524,9 +524,9 @@
                           <Color blue="b1" green="6f" red="0" type="rgb"/>
                         </Property>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img1/btnemergencia.png"/>
+                          <Image iconType="3" name="/img1/btnincome.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="EMERGENCIA APA"/>
+                        <Property name="text" type="java.lang.String" value="INGRESOS"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>

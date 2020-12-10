@@ -30,7 +30,6 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import paneles.Conexion;
-import static reportes_registros.lista_caja_apa.tabla;
 import tabla.MyScrollbarUI;
 
 /**
@@ -42,7 +41,7 @@ public class lista_caja_laboratorio extends javax.swing.JDialog {
     /**
      * Creates new form Principal
      */
-SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
+SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
 Connection con=null;
 Date dato = null;
 ResultSet rs=null;
@@ -89,6 +88,10 @@ public static Double value ;
         buscar = new app.bolivia.swing.JCTextField();
         jLabel3 = new javax.swing.JLabel();
         btnambulancia = new principal.MaterialButtomRectangle();
+        btnshow = new javax.swing.JButton();
+        dtfecha1 = new com.toedter.calendar.JDateChooser();
+        dtfecha2 = new com.toedter.calendar.JDateChooser();
+        btnbuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -238,6 +241,42 @@ public static Double value ;
         });
         jPanel1.add(btnambulancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 70, 170, 55));
 
+        btnshow.setBackground(new java.awt.Color(0, 111, 177));
+        btnshow.setText("MOSTRAR");
+        btnshow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnshow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnshowActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnshow, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, -1, 40));
+
+        dtfecha1.setBackground(new java.awt.Color(255, 255, 255));
+        dtfecha1.setForeground(new java.awt.Color(0, 0, 0));
+        dtfecha1.setToolTipText("");
+        dtfecha1.setDateFormatString("dd/MM/YYYY HH:mm:ss");
+        dtfecha1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtfecha1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.add(dtfecha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 150, 40));
+
+        dtfecha2.setBackground(new java.awt.Color(255, 255, 255));
+        dtfecha2.setForeground(new java.awt.Color(0, 0, 0));
+        dtfecha2.setToolTipText("");
+        dtfecha2.setDateFormatString("dd/MM/YYYY HH:mm:ss");
+        dtfecha2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtfecha2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel1.add(dtfecha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 140, 40));
+
+        btnbuscar.setBackground(new java.awt.Color(0, 111, 177));
+        btnbuscar.setText("BUSCAR");
+        btnbuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, -1, 40));
+
         panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 8, 960, 590));
 
         getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 610));
@@ -285,6 +324,39 @@ public static Double value ;
            
         }
  }
+   void between_date(){
+            String fecH1 = formatofecha.format(dtfecha1.getDate());
+            /////////////////////
+            String fecH2 = formatofecha.format(dtfecha2.getDate());
+       try {
+
+            DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
+            dt.setRowCount(0);
+            Statement s = Conexion.ConnectDB().createStatement();
+
+            ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
+                + " codigo_paciente as 'Identidad',"
+                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
+                + " fecha as 'Fecha',"
+                + "total as 'Total (L)' "
+                + "from caja_laboratorio "
+                + "inner join paciente on "
+                + " paciente = codigo_paciente"
+                + " where fecha between '"+ fecH1+"' and '"+fecH2+"' ");
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));
+                v.add(rs.getString(5));
+                dt.addRow(v);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }          
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
@@ -347,6 +419,18 @@ public static Double value ;
         this.dispose();
         print_bill();
     }//GEN-LAST:event_btnambulanciaActionPerformed
+
+    private void btnshowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowActionPerformed
+        Get_Data();// TODO add your handling code here:
+    }//GEN-LAST:event_btnshowActionPerformed
+
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        if (dtfecha1.getDate() == null || dtfecha2.getDate() == null) {
+            JOptionPane.showMessageDialog( this, "Seleccione el Rango de Fechas","Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            between_date();
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_btnbuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -16775,8 +16859,12 @@ public static Double value ;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnambulancia;
+    private javax.swing.JButton btnbuscar;
+    private javax.swing.JButton btnshow;
     public static app.bolivia.swing.JCTextField buscar;
     private principal.MaterialButton cerrar;
+    public com.toedter.calendar.JDateChooser dtfecha1;
+    public com.toedter.calendar.JDateChooser dtfecha2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
