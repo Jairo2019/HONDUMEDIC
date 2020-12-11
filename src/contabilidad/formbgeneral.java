@@ -177,6 +177,7 @@ PreparedStatement pst=null;
             }
         });
 
+        txtimpuestos.setEnabled(false);
         txtimpuestos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         txtsueysa.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -201,6 +202,7 @@ PreparedStatement pst=null;
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Activo circulante:");
 
+        txttotaloperacion.setEnabled(false);
         txttotaloperacion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         jLabel23.setBackground(new java.awt.Color(0, 0, 0));
@@ -385,10 +387,13 @@ PreparedStatement pst=null;
             }
         });
 
+        txtdepreequimedico.setEnabled(false);
         txtdepreequimedico.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
+        txtutilidad1.setEnabled(false);
         txtutilidad1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
+        txttotalegresos.setEnabled(false);
         txttotalegresos.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         txttotalegresos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -344,6 +344,7 @@
                 </Component>
                 <Component class="java.awt.TextField" name="txtimpuestos">
                   <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="14" style="0"/>
                     </Property>
@@ -414,6 +415,7 @@
                 </Component>
                 <Component class="java.awt.TextField" name="txttotaloperacion">
                   <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="14" style="0"/>
                     </Property>
@@ -734,6 +736,7 @@
                 </Component>
                 <Component class="java.awt.TextField" name="txtdepreequimedico">
                   <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="14" style="0"/>
                     </Property>
@@ -741,6 +744,7 @@
                 </Component>
                 <Component class="java.awt.TextField" name="txtutilidad1">
                   <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="14" style="0"/>
                     </Property>
@@ -748,6 +752,7 @@
                 </Component>
                 <Component class="java.awt.TextField" name="txttotalegresos">
                   <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Dialog" size="14" style="0"/>
                     </Property>
