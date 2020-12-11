@@ -85,7 +85,12 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static cotizaciones_general cotizacion = null;
     public static caja caja=null;
     public static estado_resultados_general eresultado=null;
+    public static estado_resultados_cafeteria eresultado_cafeteria=null;
+    public static estado_resultados_farmacia eresultado_farmacia=null;
     public static estado_resultados_endoscopia eresultado_endoscopia=null;
+    public static estado_resultados_ultrasonido eresultado_ultrasonido=null;
+    public static estado_resultados_laboratorio eresultado_laboratorio=null;
+    public static estado_resultados_rayosx eresultado_rayosx=null;
     public static formbgeneral bgeneral=null;
     public static cuentas_cobrar.cuentas_cobrar cuentas_por_cobrar = null;
     public static deposito.depositos depositos = null;

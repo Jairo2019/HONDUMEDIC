@@ -7,15 +7,14 @@ package elegir;
 
 import elegir.*;
 import alertas.principal.AWTUtilities;
-import contabilidad.estado_resultados_endoscopia;
-import contabilidad.formbgeneral;
+import contabilidad.*;
 import java.util.Timer;
 import java.util.TimerTask;
 import principal.PrincipalAdministrador;
 import contabilidad.estado_resultados_general;
 import javax.swing.JFrame;
 import reportes_registros.lista_caja_apa;
-import reportes_registros.lista_caja_cafeteria;
+
 import reportes_registros.lista_caja_farmacia;
 import reportes_registros.lista_caja_laboratorio;
 import reportes_registros.lista_caja_rayosx;
@@ -58,7 +57,7 @@ public class elegir_contabilidad extends javax.swing.JDialog {
         btnCancelar = new principal.MaterialButtomRectangle();
         btncajalaboratorio = new principal.MaterialButtomRectangle();
         btncajarayosx = new principal.MaterialButtomRectangle();
-        btncajaapa = new principal.MaterialButtomRectangle();
+        btnultrasonido = new principal.MaterialButtomRectangle();
         btncajacafeteria = new principal.MaterialButtomRectangle();
         btncajafarmacia = new principal.MaterialButtomRectangle();
         btncajaapa1 = new principal.MaterialButtomRectangle();
@@ -126,15 +125,15 @@ public class elegir_contabilidad extends javax.swing.JDialog {
             }
         });
 
-        btncajaapa.setBackground(new java.awt.Color(0, 111, 177));
-        btncajaapa.setForeground(new java.awt.Color(255, 255, 255));
-        btncajaapa.setText("contabilidad Ultrasonido");
-        btncajaapa.setActionCommand("registrar emrgencia");
-        btncajaapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btncajaapa.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btncajaapa.addActionListener(new java.awt.event.ActionListener() {
+        btnultrasonido.setBackground(new java.awt.Color(0, 111, 177));
+        btnultrasonido.setForeground(new java.awt.Color(255, 255, 255));
+        btnultrasonido.setText("contabilidad Ultrasonido");
+        btnultrasonido.setActionCommand("registrar emrgencia");
+        btnultrasonido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnultrasonido.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnultrasonido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncajaapaActionPerformed(evt);
+                btnultrasonidoActionPerformed(evt);
             }
         });
 
@@ -203,7 +202,7 @@ public class elegir_contabilidad extends javax.swing.JDialog {
                                 .addGroup(panel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(btncajalaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btncajageneral, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btncajaapa, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnultrasonido, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btncajarayosx, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btncajaapa1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btncajafarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,7 +232,7 @@ public class elegir_contabilidad extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btncajarayosx, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btncajaapa, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnultrasonido, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btncajaapa1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -309,27 +308,67 @@ public class elegir_contabilidad extends javax.swing.JDialog {
 
     private void btncajalaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajalaboratorioActionPerformed
         this.dispose();
-        new lista_caja_laboratorio(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
+        PrincipalAdministrador.escritorio.removeAll();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.eresultado_laboratorio)) {
+            PrincipalAdministrador.eresultado_laboratorio = new estado_resultados_laboratorio();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.eresultado_laboratorio.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.eresultado_laboratorio);
+            PrincipalAdministrador.eresultado_laboratorio.show();
+        }       // TODO add your handling code here:
     }//GEN-LAST:event_btncajalaboratorioActionPerformed
 
     private void btncajarayosxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajarayosxActionPerformed
         this.dispose();
-        new lista_caja_rayosx(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
+        PrincipalAdministrador.escritorio.removeAll();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.eresultado_rayosx)) {
+            PrincipalAdministrador.eresultado_rayosx = new estado_resultados_rayosx();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.eresultado_rayosx.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.eresultado_rayosx);
+            PrincipalAdministrador.eresultado_rayosx.show();
+        }      // TODO add your handling code here:
     }//GEN-LAST:event_btncajarayosxActionPerformed
 
-    private void btncajaapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaapaActionPerformed
+    private void btnultrasonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnultrasonidoActionPerformed
         this.dispose();
-        new lista_caja_apa(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
-    }//GEN-LAST:event_btncajaapaActionPerformed
+        PrincipalAdministrador.escritorio.removeAll();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.eresultado_ultrasonido)) {
+            PrincipalAdministrador.eresultado_ultrasonido = new estado_resultados_ultrasonido();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.eresultado_ultrasonido.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.eresultado_ultrasonido);
+            PrincipalAdministrador.eresultado_ultrasonido.show();
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_btnultrasonidoActionPerformed
 
     private void btncajacafeteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajacafeteriaActionPerformed
         this.dispose();
-        new lista_caja_cafeteria(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
+        PrincipalAdministrador.escritorio.removeAll();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.eresultado_cafeteria)) {
+            PrincipalAdministrador.eresultado_cafeteria = new estado_resultados_cafeteria();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.eresultado_cafeteria.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.eresultado_cafeteria);
+            PrincipalAdministrador.eresultado_cafeteria.show();
+        }           // TODO add your handling code here:
     }//GEN-LAST:event_btncajacafeteriaActionPerformed
 
     private void btncajafarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajafarmaciaActionPerformed
         this.dispose();
-        new lista_caja_farmacia(new JFrame(), true).setVisible(true);          // TODO add your handling code here:
+        PrincipalAdministrador.escritorio.removeAll();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.eresultado_farmacia)) {
+            PrincipalAdministrador.eresultado_farmacia = new estado_resultados_farmacia();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.eresultado_farmacia.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.eresultado_farmacia);
+            PrincipalAdministrador.eresultado_farmacia.show();
+        }         // TODO add your handling code here:
     }//GEN-LAST:event_btncajafarmaciaActionPerformed
 
     private void btncajaapa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajaapa1ActionPerformed
@@ -465,7 +504,6 @@ public class elegir_contabilidad extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtomRectangle btnCancelar;
-    private principal.MaterialButtomRectangle btncajaapa;
     private principal.MaterialButtomRectangle btncajaapa1;
     private principal.MaterialButtomRectangle btncajacafeteria;
     private principal.MaterialButtomRectangle btncajacafeteria1;
@@ -473,6 +511,7 @@ public class elegir_contabilidad extends javax.swing.JDialog {
     private principal.MaterialButtomRectangle btncajageneral;
     private principal.MaterialButtomRectangle btncajalaboratorio;
     private principal.MaterialButtomRectangle btncajarayosx;
+    private principal.MaterialButtomRectangle btnultrasonido;
     private javax.swing.JLabel jLabel3;
     private org.edisoncor.gui.panel.Panel panel3;
     // End of variables declaration//GEN-END:variables

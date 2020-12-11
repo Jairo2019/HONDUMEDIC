@@ -65,7 +65,7 @@
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="btncajalaboratorio" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                                       <Component id="btncajageneral" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
-                                      <Component id="btncajaapa" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
+                                      <Component id="btnultrasonido" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                                       <Component id="btncajarayosx" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                                       <Component id="btncajaapa1" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
                                       <Component id="btncajafarmacia" alignment="1" min="-2" pref="340" max="-2" attributes="0"/>
@@ -104,7 +104,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btncajarayosx" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btncajaapa" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnultrasonido" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btncajaapa1" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -204,7 +204,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncajarayosxActionPerformed"/>
           </Events>
         </Component>
-        <Component class="principal.MaterialButtomRectangle" name="btncajaapa">
+        <Component class="principal.MaterialButtomRectangle" name="btnultrasonido">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="b1" green="6f" red="0" type="rgb"/>
@@ -222,7 +222,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncajaapaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnultrasonidoActionPerformed"/>
           </Events>
         </Component>
         <Component class="principal.MaterialButtomRectangle" name="btncajacafeteria">
