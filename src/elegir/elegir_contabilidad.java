@@ -7,11 +7,12 @@ package elegir;
 
 import elegir.*;
 import alertas.principal.AWTUtilities;
+import contabilidad.estado_resultados_endoscopia;
 import contabilidad.formbgeneral;
 import java.util.Timer;
 import java.util.TimerTask;
 import principal.PrincipalAdministrador;
-import contabilidad.formeresultado;
+import contabilidad.estado_resultados_general;
 import javax.swing.JFrame;
 import reportes_registros.lista_caja_apa;
 import reportes_registros.lista_caja_cafeteria;
@@ -258,7 +259,7 @@ public class elegir_contabilidad extends javax.swing.JDialog {
         this.dispose();
         PrincipalAdministrador.escritorio.removeAll();
         if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.eresultado)) {
-            PrincipalAdministrador.eresultado = new formeresultado();
+            PrincipalAdministrador.eresultado = new estado_resultados_general();
             int width = PrincipalAdministrador.escritorio.getWidth();
             int Height = PrincipalAdministrador.escritorio.getHeight();
             PrincipalAdministrador.eresultado.setSize(width, Height);
@@ -345,7 +346,16 @@ public class elegir_contabilidad extends javax.swing.JDialog {
     }//GEN-LAST:event_btncajaapa1ActionPerformed
 
     private void btncajacafeteria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncajacafeteria1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        PrincipalAdministrador.escritorio.removeAll();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.eresultado_endoscopia)) {
+            PrincipalAdministrador.eresultado_endoscopia = new estado_resultados_endoscopia();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.eresultado_endoscopia.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.eresultado_endoscopia);
+            PrincipalAdministrador.eresultado_endoscopia.show();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btncajacafeteria1ActionPerformed
     
     /**

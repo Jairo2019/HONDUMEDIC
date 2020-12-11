@@ -84,7 +84,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static registrar_cirugia registrar_cirugia=null;
     public static cotizaciones_general cotizacion = null;
     public static caja caja=null;
-    public static formeresultado eresultado=null;
+    public static estado_resultados_general eresultado=null;
+    public static estado_resultados_endoscopia eresultado_endoscopia=null;
     public static formbgeneral bgeneral=null;
     public static cuentas_cobrar.cuentas_cobrar cuentas_por_cobrar = null;
     public static deposito.depositos depositos = null;
@@ -426,7 +427,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         escritorio.setBackground(new java.awt.Color(255, 255, 255));
         escritorio.setMinimumSize(new java.awt.Dimension(10, 10));
-        escritorio.setPreferredSize(new java.awt.Dimension(1121, 606));
+        escritorio.setPreferredSize(new java.awt.Dimension(1100, 690));
         jScrollPane1.setViewportView(escritorio);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
