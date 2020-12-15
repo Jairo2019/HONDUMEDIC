@@ -33,6 +33,7 @@ public class Opciones {
             ps.setString(1, uc.getDescripcion());
             ps.setDouble(2, uc.getGastado());
             ps.setString(3, uc.getFecha());
+            ps.setString(4, uc.getEstado());
             rsu = ps.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -110,7 +111,37 @@ public class Opciones {
             sql = "SELECT * FROM gastos WHERE (idgasto LIKE'" + busca + "%' OR "
                     + "descripcion LIKE'" + busca + "%' OR "
                     + "gastado LIKE'" + busca + "%' OR fecha_gasto LIKE'" + busca + "%') "
-                    + "ORDER BY fecha_gasto";
+                    + "ORDER BY fecha_gasto DESC";
+            Salidas.descripcion.setText("");
+        }
+        String datos[] = new String[4];
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString("idgasto");
+                datos[1] = rs.getString("gastado");
+                datos[2] = rs.getString("fecha_gasto");
+                modelo.addRow(datos);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Opciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public static void rango_fechas(String busca_1, String busca_2) {
+        DefaultTableModel modelo = (DefaultTableModel) Salidas.tabla.getModel();
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        String sql = "";
+        if (busca_1.equals("") || busca_2.equals("") ) {
+            sql = Sentencias.LISTAR;
+            Salidas.descripcion.setText("");
+        } else {
+            sql = "SELECT * FROM gastos WHERE fecha_gasto between '" + busca_1 + "%' AND "
+                    + " '" + busca_2+ "%' "
+                    + "ORDER BY fecha_gasto DESC";
             Salidas.descripcion.setText("");
         }
         String datos[] = new String[3];
@@ -127,7 +158,6 @@ public class Opciones {
             Logger.getLogger(Opciones.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     public static void extraerDescripcion(String id) {
         String c = null;
         String SQL = "SELECT * FROM gastos WHERE idgasto = "+id;

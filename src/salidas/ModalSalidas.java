@@ -41,7 +41,7 @@ public class ModalSalidas extends javax.swing.JDialog {
 
     public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("YYYY-MM-dd");
         return formatofecha.format(fecha);
     }
 
@@ -55,7 +55,6 @@ public class ModalSalidas extends javax.swing.JDialog {
         Opciones.listar("");
         Opciones.totalGastos();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -145,6 +144,7 @@ public class ModalSalidas extends javax.swing.JDialog {
 
         fecha.setBorder(null);
         fecha.setForeground(new java.awt.Color(58, 159, 171));
+        fecha.setEnabled(false);
         fecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         fecha.setPlaceholder("FECHA");
         fecha.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -310,6 +310,7 @@ public class ModalSalidas extends javax.swing.JDialog {
                 s.setDescripcion(this.descripcion.getText());
                 s.setGastado(Double.parseDouble(this.gastado.getText()));
                 s.setFecha(this.fecha.getText());
+                s.setEstado("1");
 
                 int opcion = Opciones.registrar(s);
                 if (opcion != 0) {

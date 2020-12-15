@@ -27,6 +27,8 @@ Connection con=null;
 Date dato = null;
 ResultSet rs=null;
 PreparedStatement pst=null;
+public static String usuario="";
+public static String Knowbutton="";
     static Conexion cc = new Conexion();
     static Connection cn = cc.ConnectDB();
     static PreparedStatement ps;
@@ -40,9 +42,6 @@ PreparedStatement pst=null;
         Get_Data();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         tableUsers.getTableHeader().setBackground(Color.decode("#006FB0"));
-        //txtidempleado.hide();
-
-
     }
 
     /**
@@ -741,16 +740,18 @@ PreparedStatement pst=null;
 //obtener datos de la tabla pacientes
     private void Get_Data(){
         Reset();
-        String sql="select codigo_paciente as 'Num. Identidad',"+
-                    "responsable as 'Responsable del Paciente',"+
-                    "nombre as 'Nombre del Paciente'," +
-                    "apellido as 'Apellido del Paciente'," +
-                    "direccion as 'Dirección'," +
-                    "edad as 'Edad'," +
-                    "telefono as 'Teléfono'," +
-                    "unidad as 'Unidad', " +
-                    "unidad_referente as 'Unidad Referente', " +
-                    "correo as 'Correo'  from paciente";
+        String sql="SELECT p.codigo_paciente as 'Num. Identidad',\n" +
+"                    p.nombre as 'Nombre del Paciente',\n" +
+"                    p.apellido as 'Apellido del Paciente',\n" +
+                     "p.responsable as 'Responsable del Paciente',\n" +
+"                    CONCAT(u.nombre,' ',u.apellido) AS 'Usuario Responsable',\n" +
+"                    p.direccion as 'Dirección',\n" +
+"                    p.edad as 'Edad',\n" +
+"                    p.telefono as 'Teléfono',\n" +
+"                    p.unidad as 'Unidad',\n" +
+"                    p.unidad_referente as 'Unidad Referente', \n" +
+"                    p.correo as 'Correo'  from paciente p\n" +
+"                    left JOIN usuarios u ON p.codigo_usuario=u.usuario";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -779,119 +780,10 @@ PreparedStatement pst=null;
     txtresponsable.setText("");
     txtunidadreferente.setText("");   
 }
-    private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_cerrarActionPerformed
-
-    private void c_search_tblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_search_tblActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c_search_tblActionPerformed
-
-    private void c_search_tblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c_search_tblKeyReleased
-        // search btn code
-        String name = c_search_tbl.getText();
-        try {
-
-            DefaultTableModel dt = (DefaultTableModel) tableUsers.getModel();
-            dt.setRowCount(0);
-            Statement s = Conexion.ConnectDB().createStatement();
-            //query buscar paciente por nombre, apllido e identidad 
-            ResultSet rs = s.executeQuery("select codigo_paciente as 'Num. Identidad',"+
-                    "responsable as 'Responsable del Paciente',"+
-                    "nombre as 'Nombre del Paciente'," +
-                    "apellido as 'Apellido del Paciente'," +
-                    "direccion as 'Dirección'," +
-                    "edad as 'Edad'," +
-                    "telefono as 'Teléfono'," +
-                    "unidad as 'Unidad', " +
-                    "unidad_referente as 'Unidad Referente', " +
-                    "correo as 'Correo'  from paciente "
-                    + "WHERE CONCAT(nombre, ' ' , apellido) "
-                    + "LIKE '%"+name+"%' "
-                    + "or codigo_paciente LIKE '%"+name+"%' ");
-
-            while (rs.next()) {
-                Vector v = new Vector();
-                v.add(rs.getString(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));
-                v.add(rs.getString(4));
-                v.add(rs.getString(5));
-                v.add(rs.getString(6));
-                v.add(rs.getString(7));
-                v.add(rs.getString(8));
-                v.add(rs.getString(9));
-                v.add(rs.getString(10));
-                dt.addRow(v);
-
-            }
-
-        } catch (Exception e) {
-            Get_Data();
-
-        }          // TODO add your handling code here:
-    }//GEN-LAST:event_c_search_tblKeyReleased
-
-    private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
-        try {
-            con=Conexion.ConnectDB();
-            int row= tableUsers.getSelectedRow();
-            txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
-            txtresponsable.setText(tableUsers.getModel().getValueAt(row,1).toString());
-            txtName.setText(tableUsers.getModel().getValueAt(row,2).toString());
-            txtapellido.setText(tableUsers.getModel().getValueAt(row,3).toString());
-            txtdireccion.setText(tableUsers.getModel().getValueAt(row,4).toString());
-            txtedad.setText(tableUsers.getModel().getValueAt(row,5).toString());
-            txttelefono.setText(tableUsers.getModel().getValueAt(row,6).toString());
-            choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,7).toString());
-            txtunidadreferente.setText(tableUsers.getModel().getValueAt(row,8).toString());
-            txtcorreo.setText(tableUsers.getModel().getValueAt(row,9).toString());
-            txtCodigo.setEnabled(false);
-            this.btnsave.setEnabled(false);
-            this.btnDelete.setEnabled(true);
-            this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
-            this.jTabbedPane2.setSelectedIndex(1);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,ex);
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_tableUsersMouseClicked
-
-    private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnsaveMouseClicked
-
-    private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
+    //guardar los datos ingresados
+    private void insert_paciente(){
         try{
-            con=Conexion.ConnectDB();
-            if (txtCodigo.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Numero de Identidad","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtName.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtapellido.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Apellido","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtedad.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Edad","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txttelefono.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese el Numero de Telefono","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtresponsable.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese La Persona Responsable del Paciente","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtunidadreferente.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese una unidad Referente","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
+            
             Statement stmt;
             stmt= con.createStatement();
             String sql1="Select codigo_paciente from paciente where codigo_paciente= '" + txtCodigo.getText() + "'";
@@ -909,6 +801,7 @@ PreparedStatement pst=null;
                 }
             // query ingresar Paciente
             String sql= "insert into paciente(codigo_paciente,"
+                    + "codigo_usuario,"
                     + "responsable,"
                     + "nombre,"
                     + "apellido,"
@@ -919,6 +812,7 @@ PreparedStatement pst=null;
                     + "unidad_referente,"
                     + "correo) values ('"
                     +txtCodigo.getText()+"','" 
+                    +usuario+"','" 
                     +txtresponsable.getText()+"','" 
                     +txtName.getText()+"','" 
                     + txtapellido.getText() +"','" 
@@ -939,10 +833,10 @@ PreparedStatement pst=null;
             Reset();
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
-        } // TODO add your handling code here:
-    }//GEN-LAST:event_btnsaveActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        }
+    }
+    //editar datos del paciente
+    private void edit_paciente(){
         try{
             con=Conexion.ConnectDB();
             //query actualizar paciente de la tabla paciente
@@ -967,7 +861,144 @@ PreparedStatement pst=null;
 
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
+        } 
+    }
+    //validar no dejar vacios, campos obligatorios
+    private void validation(){
+        con=Conexion.ConnectDB();
+            if (txtCodigo.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Numero de Identidad","Error", JOptionPane.ERROR_MESSAGE);
+                txtCodigo.requestFocus();
+                return;            
+            }
+            else if (txtName.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
+                txtName.requestFocus();
+                return;
+            }
+            else if (txtapellido.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Apellido","Error", JOptionPane.ERROR_MESSAGE);
+                txtapellido.requestFocus();
+                return;
+            }
+            else if (txtedad.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Edad","Error", JOptionPane.ERROR_MESSAGE);
+                txtedad.requestFocus();
+                return;
+            }
+            else if (txttelefono.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese el Numero de Telefono","Error", JOptionPane.ERROR_MESSAGE);
+                txttelefono.requestFocus();
+                return;
+            }
+            else if (txtresponsable.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese La Persona Responsable del Paciente","Error", JOptionPane.ERROR_MESSAGE);
+                txtresponsable.requestFocus();
+                return;
+            }
+            else if (txtunidadreferente.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese una unidad Referente","Error", JOptionPane.ERROR_MESSAGE);
+                txtunidadreferente.requestFocus();
+                return;
+            }else if("save".equals(Knowbutton)){
+                insert_paciente();
+            }else if("edit".equals(Knowbutton)){
+                edit_paciente();
+            }
+    }
+    private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cerrarActionPerformed
+
+    private void c_search_tblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_search_tblActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c_search_tblActionPerformed
+
+    private void c_search_tblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c_search_tblKeyReleased
+        // search btn code
+        String name = c_search_tbl.getText();
+        try {
+
+            DefaultTableModel dt = (DefaultTableModel) tableUsers.getModel();
+            dt.setRowCount(0);
+            Statement s = Conexion.ConnectDB().createStatement();
+            //query buscar paciente por nombre, apllido e identidad 
+            ResultSet rs = s.executeQuery("SELECT p.codigo_paciente as 'Num. Identidad',\n" +
+"                    p.nombre as 'Nombre del Paciente',\n" +
+"                    p.apellido as 'Apellido del Paciente',\n" +
+                    "p.responsable as 'Responsable del Paciente',\n" +
+"                    CONCAT(u.nombre,' ',u.apellido) AS 'Usuario Responsable',\n" +
+"                    p.direccion as 'Dirección',\n" +
+"                    p.edad as 'Edad',\n" +
+"                    p.telefono as 'Teléfono',\n" +
+"                    p.unidad as 'Unidad',\n" +
+"                    p.unidad_referente as 'Unidad Referente', \n" +
+"                    p.correo as 'Correo'  from paciente p\n" +
+"                    left JOIN usuarios u ON p.codigo_usuario=u.usuario "
+                    + "WHERE CONCAT(p.nombre, ' ' ,p.apellido) "
+                    + "LIKE '%"+name+"%' "
+                    + "or p.codigo_paciente LIKE '%"+name+"%' ");
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));
+                v.add(rs.getString(5));
+                v.add(rs.getString(6));
+                v.add(rs.getString(7));
+                v.add(rs.getString(8));
+                v.add(rs.getString(9));
+                v.add(rs.getString(10));
+                v.add(rs.getString(11));
+                dt.addRow(v);
+
+            }
+
+        } catch (Exception e) {
+            Get_Data();
+
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_c_search_tblKeyReleased
+
+    private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
+        try {
+            con=Conexion.ConnectDB();
+            int row= tableUsers.getSelectedRow();
+            txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
+            txtName.setText(tableUsers.getModel().getValueAt(row,1).toString());
+            txtapellido.setText(tableUsers.getModel().getValueAt(row,2).toString());
+            txtresponsable.setText(tableUsers.getModel().getValueAt(row,3).toString());
+            txtdireccion.setText(tableUsers.getModel().getValueAt(row,5).toString());
+            txtedad.setText(tableUsers.getModel().getValueAt(row,6).toString());
+            txttelefono.setText(tableUsers.getModel().getValueAt(row,7).toString());
+            choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,8).toString());
+            txtunidadreferente.setText(tableUsers.getModel().getValueAt(row,9).toString());
+            txtcorreo.setText(tableUsers.getModel().getValueAt(row,10).toString());
+            txtCodigo.setEnabled(false);
+            this.btnsave.setEnabled(false);
+            this.btnDelete.setEnabled(true);
+            this.btnUpdate.setEnabled(true);
+            this.btncancel.setEnabled(false);
+            this.jTabbedPane2.setSelectedIndex(1);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,ex);
         }        // TODO add your handling code here:
+    }//GEN-LAST:event_tableUsersMouseClicked
+
+    private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsaveMouseClicked
+
+    private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
+        Knowbutton="save";
+        validation();         // TODO add your handling code here:
+    }//GEN-LAST:event_btnsaveActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        Knowbutton="edit";   
+        validation();// TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed

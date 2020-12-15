@@ -7,12 +7,14 @@ package paneles;
 import caja.caja;
 import principal.*;
 import cotizaciones.*;
+import login.Opciones;
 /**
  *
  * @author Rojeru San
  */
 public class pnl_menu extends javax.swing.JInternalFrame {
     public PrincipalAdministrador a ;
+    public static String tipo_usuario="";
 //    JScrollPane scroll;
     /**
      * Creates new form NewJInternalFrame
@@ -20,6 +22,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     public pnl_menu() {
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        botones();
     }
 
     /**
@@ -307,7 +310,10 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.BASELINE;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = -1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 0);
         pnlnewMenu.add(jPanel3, gridBagConstraints);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -481,6 +487,10 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = -1006;
+        gridBagConstraints.ipady = -29;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 28, 0, 0);
         pnlnewMenu.add(jPanel4, gridBagConstraints);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -655,6 +665,11 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = -24;
+        gridBagConstraints.ipady = -19;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 6, 26);
         pnlnewMenu.add(jPanel6, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -664,7 +679,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(pnlnewMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlnewMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
@@ -672,7 +687,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlnewMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlnewMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -680,7 +695,11 @@ public class pnl_menu extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ private void botones(){
+        if("Enfermeria".equals(tipo_usuario)){
+            Opciones.botones_menu_enfermeria();
+        }
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -746,18 +765,18 @@ public class pnl_menu extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnadmin;
-    private javax.swing.JButton btnambulancia;
-    private javax.swing.JButton btncaja;
-    private javax.swing.JButton btncirugia;
-    private javax.swing.JButton btncontabilidad;
-    private javax.swing.JButton btnemergencia;
-    private javax.swing.JButton btnendoscopia;
-    private javax.swing.JButton btnfarmacia;
-    private javax.swing.JButton btnhopitalizacion;
-    private javax.swing.JButton btnlaboratorio;
-    private javax.swing.JButton btnrayosx;
-    private javax.swing.JButton btnultrasonido;
+    public static javax.swing.JButton btnadmin;
+    public static javax.swing.JButton btnambulancia;
+    public static javax.swing.JButton btncaja;
+    public static javax.swing.JButton btncirugia;
+    public static javax.swing.JButton btncontabilidad;
+    public static javax.swing.JButton btnemergencia;
+    public static javax.swing.JButton btnendoscopia;
+    public static javax.swing.JButton btnfarmacia;
+    public static javax.swing.JButton btnhopitalizacion;
+    public static javax.swing.JButton btnlaboratorio;
+    public static javax.swing.JButton btnrayosx;
+    public static javax.swing.JButton btnultrasonido;
     private principal.MaterialButton cerrar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel6;

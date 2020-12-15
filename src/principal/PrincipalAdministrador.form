@@ -251,11 +251,11 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="btnUsuarios" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                                          <Component id="btnProductos" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btnpacientes" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                                           <Component id="btnGastos" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                                          <Component id="btnfarmacia" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btnalmacen" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                                           <Component id="btnempleados" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                                          <Component id="btnVentas" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                          <Component id="btncafeteria" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                                           <Component id="btnmenu" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -274,15 +274,15 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="btnmenu" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="btnVentas" min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="btncafeteria" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="btnempleados" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnGastos" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="btnProductos" min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="btnpacientes" min="-2" pref="55" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnfarmacia" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="btnalmacen" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnUsuarios" min="-2" pref="53" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -301,7 +301,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="principal.MaterialButtomRectangle" name="btnProductos">
+            <Component class="principal.MaterialButtomRectangle" name="btnpacientes">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b1" green="6f" red="0" type="rgb"/>
@@ -318,8 +318,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnpacientesActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="btnGastos">
               <Properties>
@@ -340,8 +343,11 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGastosActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
-            <Component class="principal.MaterialButtomRectangle" name="btnVentas">
+            <Component class="principal.MaterialButtomRectangle" name="btncafeteria">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b1" green="6f" red="0" type="rgb"/>
@@ -358,8 +364,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVentasActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btncafeteriaActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="btnUsuarios">
               <Properties>
@@ -380,6 +389,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUsuariosActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="cerrarSesion">
               <Properties>
@@ -421,6 +433,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnmenuActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="btnempleados">
               <Properties>
@@ -441,6 +456,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnempleadosActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -478,7 +496,7 @@
                 <Property name="text" type="java.lang.String" value="ADMINISTRADOR"/>
               </Properties>
             </Component>
-            <Component class="principal.MaterialButtomRectangle" name="btnfarmacia">
+            <Component class="principal.MaterialButtomRectangle" name="btnalmacen">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b1" green="6f" red="0" type="rgb"/>
@@ -495,8 +513,11 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnfarmaciaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnalmacenActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
             <Component class="principal.MaterialButtomRectangle" name="btnreportes">
               <Properties>
@@ -517,6 +538,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnreportesActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

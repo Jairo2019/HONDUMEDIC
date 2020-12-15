@@ -31,6 +31,7 @@ import javax.swing.Timer;
 import cotizaciones.*;
 import reportes_registros.*;
 import contabilidad.*;
+import login.*;
 
 /**
  *
@@ -141,9 +142,9 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         hora = new javax.swing.JLabel();
         fecha = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        btnProductos = new principal.MaterialButtomRectangle();
+        btnpacientes = new principal.MaterialButtomRectangle();
         btnGastos = new principal.MaterialButtomRectangle();
-        btnVentas = new principal.MaterialButtomRectangle();
+        btncafeteria = new principal.MaterialButtomRectangle();
         btnUsuarios = new principal.MaterialButtomRectangle();
         cerrarSesion = new principal.MaterialButtomRectangle();
         btnmenu = new principal.MaterialButtomRectangle();
@@ -151,7 +152,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnfarmacia = new principal.MaterialButtomRectangle();
+        btnalmacen = new principal.MaterialButtomRectangle();
         btnreportes = new principal.MaterialButtomRectangle();
         jScrollPane1 = new javax.swing.JScrollPane();
         escritorio = new principal.Escritorio();
@@ -253,14 +254,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         dropShadowBorder1.setShowTopShadow(true);
         jPanel3.setBorder(dropShadowBorder1);
 
-        btnProductos.setBackground(new java.awt.Color(0, 111, 177));
-        btnProductos.setForeground(new java.awt.Color(255, 255, 255));
-        btnProductos.setText("PACIENTES");
-        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnProductos.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+        btnpacientes.setBackground(new java.awt.Color(0, 111, 177));
+        btnpacientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnpacientes.setText("PACIENTES");
+        btnpacientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnpacientes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnpacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProductosActionPerformed(evt);
+                btnpacientesActionPerformed(evt);
             }
         });
 
@@ -275,14 +276,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             }
         });
 
-        btnVentas.setBackground(new java.awt.Color(0, 111, 177));
-        btnVentas.setForeground(new java.awt.Color(255, 255, 255));
-        btnVentas.setText("Cafetería");
-        btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVentas.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnVentas.addActionListener(new java.awt.event.ActionListener() {
+        btncafeteria.setBackground(new java.awt.Color(0, 111, 177));
+        btncafeteria.setForeground(new java.awt.Color(255, 255, 255));
+        btncafeteria.setText("Cafetería");
+        btncafeteria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncafeteria.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btncafeteria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVentasActionPerformed(evt);
+                btncafeteriaActionPerformed(evt);
             }
         });
 
@@ -346,14 +347,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("ADMINISTRADOR");
 
-        btnfarmacia.setBackground(new java.awt.Color(0, 111, 177));
-        btnfarmacia.setForeground(new java.awt.Color(255, 255, 255));
-        btnfarmacia.setText("almacén");
-        btnfarmacia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnfarmacia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnfarmacia.addActionListener(new java.awt.event.ActionListener() {
+        btnalmacen.setBackground(new java.awt.Color(0, 111, 177));
+        btnalmacen.setForeground(new java.awt.Color(255, 255, 255));
+        btnalmacen.setText("almacén");
+        btnalmacen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnalmacen.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnalmacen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnfarmaciaActionPerformed(evt);
+                btnalmacenActionPerformed(evt);
             }
         });
 
@@ -388,11 +389,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnpacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnfarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnalmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnempleados, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btncafeteria, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(btnreportes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -404,15 +405,15 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(btnmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btncafeteria, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnempleados, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnpacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnfarmacia, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnalmacen, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -488,13 +489,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             producto.show();
             
     }
-    private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
+
+    private void btncafeteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncafeteriaActionPerformed
         cafeteriaPrincipalAd f = new cafeteriaPrincipalAd();
         f.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnVentasActionPerformed
+    }//GEN-LAST:event_btncafeteriaActionPerformed
 
-    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+    private void btnpacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnpacientesActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
         if (estacerrado(producto)) {
             producto = new pacientes();
@@ -504,7 +506,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             escritorio.add(producto);
             producto.show();
         }
-    }//GEN-LAST:event_btnProductosActionPerformed
+    }//GEN-LAST:event_btnpacientesActionPerformed
 
     private void btnGastosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGastosActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
@@ -569,7 +571,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             menu.setSize(width, Height);
             escritorio.add(menu);
             menu.show();
-        }        // TODO add your handling code here:
+        }       // TODO add your handling code here:
     }//GEN-LAST:event_btnmenuActionPerformed
 
     private void btnempleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnempleadosActionPerformed
@@ -584,7 +586,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnempleadosActionPerformed
 
-    private void btnfarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfarmaciaActionPerformed
+    private void btnalmacenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnalmacenActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
         if (estacerrado(almacen)) {
             almacen = new almacen();
@@ -594,7 +596,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             escritorio.add(almacen);
             almacen.show();
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_btnfarmaciaActionPerformed
+    }//GEN-LAST:event_btnalmacenActionPerformed
 
     private void btnreportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreportesActionPerformed
         PrincipalAdministrador.escritorio.removeAll();
@@ -654,14 +656,14 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private principal.MaterialButtomRectangle btnGastos;
-    private principal.MaterialButtomRectangle btnProductos;
-    private principal.MaterialButtomRectangle btnUsuarios;
-    private principal.MaterialButtomRectangle btnVentas;
-    private principal.MaterialButtomRectangle btnempleados;
-    private principal.MaterialButtomRectangle btnfarmacia;
-    private principal.MaterialButtomRectangle btnmenu;
-    private principal.MaterialButtomRectangle btnreportes;
+    public static principal.MaterialButtomRectangle btnGastos;
+    public static principal.MaterialButtomRectangle btnUsuarios;
+    public static principal.MaterialButtomRectangle btnalmacen;
+    public static principal.MaterialButtomRectangle btncafeteria;
+    public static principal.MaterialButtomRectangle btnempleados;
+    public static principal.MaterialButtomRectangle btnmenu;
+    public static principal.MaterialButtomRectangle btnpacientes;
+    public static principal.MaterialButtomRectangle btnreportes;
     private principal.MaterialButton cerrar;
     private principal.MaterialButtomRectangle cerrarSesion;
     public static principal.Escritorio escritorio;

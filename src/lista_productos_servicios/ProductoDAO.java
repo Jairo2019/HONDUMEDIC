@@ -15,6 +15,18 @@ public class ProductoDAO {
     Connection con;
     Conexion acceso = new Conexion();
     Producto pro = new Producto();
+    public int actualizarEstado_Gastos (int cant, String idp){
+       String sql="update gastos set estado=? where idgasto=?";
+       try {
+           con=acceso.ConnectDB();
+           ps=con.prepareStatement(sql);
+           ps.setInt(1, cant);
+           ps.setString(2, idp);
+           ps.executeUpdate();
+       } catch (Exception e) {
+       }
+       return r;
+   }
     //metodo actualizar la tabla almacen
      public int actualizarStock_almacen (int cant, String idp){
        String sql="update almacen set cantidad=? where codigo_almacen=?";

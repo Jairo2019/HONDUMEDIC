@@ -14,9 +14,12 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.table.DefaultTableModel;
 import login.Login;
-import paneles.pnl_usuarios;
+import paneles.pnl_menu;
+import principal.PrincipalAdministrador;
+import static principal.PrincipalAdministrador.escritorio;
+import static principal.PrincipalAdministrador.estacerrado;
+import static principal.PrincipalAdministrador.menu;
 
 /**
  *
@@ -97,29 +100,67 @@ public class Opciones {
         }
         return existe;
     }
-
+    private static void show_menu(){
+        if (estacerrado(menu)) {
+            menu = new pnl_menu();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            menu.setSize(width, Height);
+            escritorio.add(menu);
+            menu.show();
+        }
+    }
+     public static void botones_menu_enfermeria(){
+        pnl_menu.btnambulancia.setEnabled(false);
+        pnl_menu.btnadmin.setEnabled(false);
+        pnl_menu.btncaja.setEnabled(false);
+        pnl_menu.btncirugia.setEnabled(false);
+        pnl_menu.btncontabilidad.setEnabled(false);
+        pnl_menu.btnemergencia.setEnabled(true);
+        pnl_menu.btnendoscopia.setEnabled(false);
+        pnl_menu.btnfarmacia.setEnabled(false);
+        pnl_menu.btnhopitalizacion.setEnabled(true);
+        pnl_menu.btnlaboratorio.setEnabled(false);
+        pnl_menu.btnrayosx.setEnabled(false);
+        pnl_menu.btnultrasonido.setEnabled(false);
+    }
+    private static void botones_lateral_enfermeria(){
+        PrincipalAdministrador.btncafeteria.setEnabled(false);
+        PrincipalAdministrador.btnempleados.setEnabled(false);
+        PrincipalAdministrador.btnGastos.setEnabled(false);
+        PrincipalAdministrador.btnpacientes.setEnabled(true);
+        PrincipalAdministrador.btnalmacen.setEnabled(false);
+        PrincipalAdministrador.btnUsuarios.setEnabled(false);
+        PrincipalAdministrador.btnreportes.setEnabled(false);
+    }
     public static void verifica(String usuario, String pas, JFrame login) {
         String user = "", pass = "", tipo_us = "";
         try {
-            String sql = "SELECT * FROM usuarios WHERE usuario = '" + usuario + "'";
+            String sql = "SELECT rol, usuario, password FROM usuarios WHERE usuario = '" + usuario + "'";
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                user = rs.getString(11);
-                pass = rs.getString(12);
-                tipo_us = rs.getString(10);
+                tipo_us = rs.getString(1);
+                user = rs.getString(2);
+                pass = rs.getString(3);
             }
 
             if (user.equals(usuario) && pass.equals(pas)) {
                 if (tipo_us.equals("Administrador")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
+                    pnl_menu.tipo_usuario="Administrador";
+                    pacientes.pacientes.usuario=user;
                 }
 
-                if (tipo_us.equals("NORMAL")) {
+                if (tipo_us.equals("Enfermeria")) {
                     login.dispose();
-//                    new principal.Principal().setVisible(true);
+                    new principal.PrincipalAdministrador().setVisible(true);
+                    botones_lateral_enfermeria();
+                    pnl_menu.tipo_usuario="Enfermeria";
+                    pacientes.pacientes.usuario=user;
+                    
                 }
             } else {
                 Login.info.setText("¡ USUARIO O CONTRASEÑA INCORRECTOS !");

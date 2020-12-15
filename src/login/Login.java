@@ -197,6 +197,7 @@ PreparedStatement pst=null;
             this.txtUserName.requestFocus();
         }else{
             Opciones.verifica(this.txtUserName.getText(), this.txtPassword.getText(), this);
+            
         }
 }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed

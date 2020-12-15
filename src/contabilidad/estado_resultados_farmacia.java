@@ -495,7 +495,7 @@ PreparedStatement pst=null;
         jLabel35.setBackground(new java.awt.Color(0, 0, 0));
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel35.setText("Depreciación de equipo médico:");
+        jLabel35.setText("Depreciación de Equipo:");
 
         jLabel36.setBackground(new java.awt.Color(0, 0, 0));
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -626,16 +626,6 @@ PreparedStatement pst=null;
                         .addGap(13, 13, 13)
                         .addComponent(txtpapeleria, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlegresos1Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jLabel36)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtdeprevehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlegresos1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel35)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtdepreequimedico, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlegresos1Layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jLabel44)
                         .addGap(10, 10, 10)
@@ -658,7 +648,16 @@ PreparedStatement pst=null;
                         .addGap(102, 102, 102)
                         .addComponent(jLabel38)
                         .addGap(10, 10, 10)
-                        .addComponent(txtutilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtutilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlegresos1Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(pnlegresos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel35))
+                        .addGap(10, 10, 10)
+                        .addGroup(pnlegresos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtdepreequimedico, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdeprevehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         pnlegresos1Layout.setVerticalGroup(
             pnlegresos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

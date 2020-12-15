@@ -11,10 +11,10 @@ package salidas;
  */
 public class Sentencias {
 
-    public static String LISTAR = "SELECT * FROM gastos ORDER BY fecha_gasto";
+    public static String LISTAR = "SELECT * FROM gastos where estado=1 ORDER BY fecha_gasto DESC";
 
-    public static String REGISTRAR = "INSERT INTO gastos(descripcion, gastado, fecha_gasto) "
-            + "VALUES(?,?,?)";
+    public static String REGISTRAR = "INSERT INTO gastos(descripcion, gastado, fecha_gasto,estado) "
+            + "VALUES(?,?,?,?)";
 
     public static String ACTUALIZAR = "UPDATE gastos SET "
             + "descripcion=?, "
@@ -30,6 +30,7 @@ public class Sentencias {
     private String descripcion;
     private double gastado;
     private String fecha;
+    private String estado;
 
     public int getIdgasto() {
         return idgasto;
@@ -62,5 +63,11 @@ public class Sentencias {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-       
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }   
 }
