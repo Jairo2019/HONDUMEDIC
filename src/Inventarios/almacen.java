@@ -36,6 +36,7 @@ Connection con=null;
 Date dato = null;
 ResultSet rs=null;
 PreparedStatement pst=null;
+public static int cant_minima;
 SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
     static Conexion cc = new Conexion();
     static Connection cn = cc.ConnectDB();
@@ -54,8 +55,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         Get_Data();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         btnimprimir.setVisible(false);
-        ColorearFilas colorear=new ColorearFilas(5);
-        tableUsers.setDefaultRenderer (Object.class, colorear);
+               
     }
 
     /**
@@ -1497,7 +1497,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
             pdao.actualizarStock_almacen(sa, idp);
         }
     }
-        
+  
     //metodo obtener data de la tabla almacen
     private void Get_Data(){
         Reset();
@@ -1517,6 +1517,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
+        this.tableUsers.setDefaultRenderer(Object.class, new Colorear_CantMinima_Almacen());
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);}
   }
@@ -1976,7 +1977,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
     private javax.swing.JPanel pnlChange;
     private javax.swing.JPanel pnlChange1;
     public static javax.swing.JTable tabla_almacen;
-    private javax.swing.JTable tableUsers;
+    public static javax.swing.JTable tableUsers;
     public javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtPrecio;

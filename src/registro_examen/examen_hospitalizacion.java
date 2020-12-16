@@ -1037,7 +1037,7 @@ private void edit_detalle(){
             lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
             txtencargado.setText(tableCaja.getModel().getValueAt(row,3).toString());
-            lblTotal.setText(tableCaja.getModel().getValueAt(row,8).toString());
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,9).toString());
             txtmedicoingreso.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
             txtnumhabitacion.setText(tableCaja.getModel().getValueAt(row,5).toString()) ;
             txtdescripcion.setText(tableCaja.getModel().getValueAt(row,6).toString()) ;

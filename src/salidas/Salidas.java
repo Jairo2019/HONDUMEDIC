@@ -569,6 +569,7 @@ void editEstado_gastos() {
         } else {
             Opciones.rango_fechas(formatofecha.format(dtfecha1.getDate()), formatofecha.format(dtfecha2.getDate()));
             btnshow.setVisible(true);
+            Opciones.totalGastos();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_btnbuscarActionPerformed
 

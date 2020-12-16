@@ -1383,13 +1383,41 @@ private void condicionIsv( ){
             limpiaCampos();
             this.jTabbedPane2.setSelectedIndex(0);    
     }
-// traer los detalles de la factura con el codigo del examen
-    
+    private void ingresar_detalle(){
+    for (int i = 0; i <tablaCaja.getRowCount(); i++) {
+        String unidad= tablaCaja.getModel().getValueAt(i, 0).toString();
+        String p_s= tablaCaja.getModel().getValueAt(i, 1).toString();
+        String precio= tablaCaja.getModel().getValueAt(i, 2).toString();
+        String cantidad= tablaCaja.getModel().getValueAt(i, 3).toString();
+        String importe= tablaCaja.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into detalle_caja(idventa,"
+                + "p_s,"
+                + "precio,"
+                + "cantidad,"
+                + "importe,"
+                + "fecha,"
+                + "unidad) values ('"
+                +numFac.getText()+"','" 
+                + p_s +"','" 
+                +precio+"','" 
+                +cantidad+"','" 
+                +importe+"','" 
+                +txtFecha.getText()+"','" 
+                +unidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+// traer los detalles de la factura con el codigo del examen 
     private void show_detalle(){
-      String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + lblidpaciente.getText() + "' and estado=1 ";
+      String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_caja WHERE idventa ='" + numFac.getText() + "' ";
        
         try{
          pst=con.prepareStatement(sql);
@@ -1451,6 +1479,102 @@ private void condicionIsv( ){
 //            print_bill_credit();
         }else if(rbcontado.isSelected()){
             print_bill();
+        }
+    }
+    //actulizar el estado de los detalles registrados de cada paciente
+    void editEstado_detalleAmbulancia() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update detalle_test_ambulancia set estado=0 where id_paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
+    //actulizar el estado de los detalles registrados de cada paciente
+    void editEstado_detalleCirugia() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update detalle_test_cirugia set estado=0 where id_paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
+    //actulizar el estado de los detalles registrados de cada paciente
+    void editEstado_detalleEmergencia() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update detalle_test_emergencia set estado=0 where id_paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
+    //actulizar el estado de los detalles registrados de cada paciente
+    void editEstado_detalleHospitalizacion() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update detalle_test_hospitalizacion set estado=0 where id_paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
+    //actulizar el estado de los detalles registrados de cada paciente
+    void editEstado_Ambulancia() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update test_ambulancia set estado=0 where paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
+    //actulizar el estado de los detalles registrados de cada paciente
+    void editEstado_Cirugia() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update test_cirugia set estado=0 where paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
+    //actulizar el estado de los detalles registrados de cada paciente
+    void editEstado_Emergencia() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update test_emergencia set estado=0 where paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
+    //actulizar el estado de los detalles registrados de cada paciente
+    void editEstado_Hospitalizacion() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update test_hospitalizacion set estado=0 where paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
         }
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
@@ -1604,7 +1728,17 @@ private void condicionIsv( ){
                     +"','" +lblTotal.getText()
                     +"','" +isv.getText()+ "')";
             pst=con.prepareStatement(sql);
-            pst.execute();}else{
+            pst.execute();
+            ingresar_detalle();
+            editEstado_detalleAmbulancia();
+            editEstado_detalleCirugia();
+            editEstado_detalleEmergencia();
+            editEstado_detalleHospitalizacion();
+            editEstado_Ambulancia();
+            editEstado_Cirugia();
+            editEstado_Emergencia();
+            editEstado_Hospitalizacion();
+            }else{
             String sql= "insert into caja_servicios(idventa,"
                     + "paciente,"
                     + "fecha,"
@@ -1620,6 +1754,15 @@ private void condicionIsv( ){
                     +"','" +isv.getText()+ "')";
                 pst=con.prepareStatement(sql);
                 pst.execute();
+                ingresar_detalle();
+                editEstado_detalleAmbulancia();
+            editEstado_detalleCirugia();
+            editEstado_detalleEmergencia();
+            editEstado_detalleHospitalizacion();
+            editEstado_Ambulancia();
+            editEstado_Cirugia();
+            editEstado_Emergencia();
+            editEstado_Hospitalizacion();
             }
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
             sa.titulo.setText("¡HECHO!");
