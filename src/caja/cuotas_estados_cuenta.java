@@ -16,7 +16,6 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import paneles.Conexion;
-import cuentas_cobrar.*;
 
 /**
  *
@@ -473,18 +472,19 @@ PreparedStatement pst=null;
             float abonado = (Float.parseFloat(txtadeuda.getText())+ Float.parseFloat((txttotalcuotas.getText())));
             int cuotas = ( Integer.parseInt(txtcuotas.getText())-  Integer.parseInt(txtcuotaspagar.getText()));
             float saldo_pendiente=( Float.parseFloat(txtdebe.getText()))-(Float.parseFloat(txttotalcuotas.getText()));
-            cuentas_cobrar.txtcredito.setText(String.valueOf(abonado));
-            cuentas_cobrar.txtcuotas.setText(txtcuotaspagar.getText());
-            cuentas_cobrar.txtvalorcuotas.setText(String.valueOf(txttotalcuotas.getText()));
+            caja.txtcredito.setText(String.valueOf(abonado));
+            caja.txtcuotas.setText(txtcuotaspagar.getText());
+            caja.txtvalorcuotas.setText(String.valueOf(txttotalcuotas.getText()));
             if(txtcuotas.getText().equals(txtcuotaspagar.getText())){
-               cuentas_cobrar.estado="Contado";
-               cuentas_cobrar.lblsubtotal.setText("0");
+               caja.estado="Contado";
+               caja.lblsubtotal.setText("0");
             }else{
-            cuentas_cobrar.lblsubtotal.setText(String.valueOf(saldo_pendiente));
-            cuentas_cobrar.estado="Crédito";
+            caja.lblsubtotal.setText(String.valueOf(saldo_pendiente));
+            caja.estado="Crédito";
             }
-            cuentas_cobrar.btnVender.setEnabled(true);
-            cuentas_cobrar.lbldebecuotas.setText(String.valueOf(cuotas));
+            caja.btnVender.setEnabled(true);
+            caja.btnVender.setText("Actualizar");
+            caja.lbldebecuotas.setText(String.valueOf(cuotas));
             this.dispose();
         }
         catch(HeadlessException ex){

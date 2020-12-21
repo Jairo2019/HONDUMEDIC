@@ -893,32 +893,7 @@ static Conexion cc = new Conexion();
     }// </editor-fold>//GEN-END:initComponents
     String Estado_actual;
     Double Num;
-    //genera el numero que tendra la factura
-    private void numeros() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(idventa) FROM caja_servicios";
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            if (rs.next()) {
-                c = rs.getString(1);
-            }
 
-            if (c == null) {
-                numFac.setText("00000001");
-            } else {
-                j = Integer.parseInt(c);
-                GenerarNumero gen = new GenerarNumero();
-                gen.generar(j);
-                numFac.setText(gen.serie());
-            }
-        } catch (SQLException ex) {
-//           Logger.getLogger(opciones_serviciosVen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
    public static String fechaactual() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
@@ -944,7 +919,6 @@ static Conexion cc = new Conexion();
         txtpaciente.setText("");
         txtcredito.setText("");
         btnVender.setEnabled(true);
-        numeros();
     }
   //obtiene las factura que se a hecho al credito
   void cuentas_cobrar(){
@@ -959,10 +933,9 @@ static Conexion cc = new Conexion();
                 + "saldo_pendiente as 'Saldo Pendiente', "
                 + "total as 'Total (L', "
                 + "isv as 'ISV' "
-                + "from caja_servicios "
+                + "from cuentas_cobrar "
                 + "inner join paciente on "
-                + " paciente = codigo_paciente "
-                + "where estado_pago='Crédito'";
+                + " paciente = codigo_paciente ";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -1065,9 +1038,9 @@ static Conexion cc = new Conexion();
                 + "valor_cuotas as 'Valor de la Cuota',"
                 + "saldo_pendiente as 'Saldo Pendiennte',"
                 + "total as 'Total (L)' "
-                + "from caja_servicios "
+                + "from cuentas_cobrar "
                 + "inner join paciente on "
-                + " paciente = codigo_paciente WHERE fecha ='" + fecH + "' and estado_pago='Crédito'");
+                + " paciente = codigo_paciente WHERE fecha ='" + fecH + "'");
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
@@ -1097,7 +1070,7 @@ static Conexion cc = new Conexion();
     }
 // traer los detalles de la factura con el codigo del examen
     private void show_detalle(){
-        String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE idventa ='" + numFac.getText() + "' ";
+        String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_caja WHERE idventa ='" + numFac.getText() + "' ";
        
         try{
          pst=con.prepareStatement(sql);
@@ -1180,10 +1153,10 @@ static Conexion cc = new Conexion();
                 + "valor_cuotas as 'Valor de la Cuota',"
                 + "saldo_pendiente as 'Saldo Pendiennte',"
                 + "total as 'Total (L)' "
-                + "from caja_servicios "
+                + "from cuentas_cobrar "
                 + "inner join paciente on "
                 + " paciente = codigo_paciente "
-                + " WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or paciente LIKE '%"+name+"%' and estado_pago='Crédito'");
+                + " WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or paciente LIKE '%"+name+"%'");
                 while (rs.next()) {
                     Vector v = new Vector();
                     v.add(rs.getString(1));
@@ -1266,8 +1239,8 @@ static Conexion cc = new Conexion();
                     txtcredito.requestFocus();
                     return;
                 }
-                // insertar datos en caja_servicios
-                    String sql= "update caja_servicios "
+                // insertar datos en cuentas_cobrar
+                    String sql= "update cuentas_cobrar "
                     + " set estado_pago='"+ estado
                         + "',abonado='" + txtcredito.getText() 
                      + "',cuotas='" + lbldebecuotas.getText() 
@@ -1294,7 +1267,7 @@ static Conexion cc = new Conexion();
         if (P==0){
             try{
                 con=Conexion.ConnectDB();
-                String sql= "update caja_servicios set estado_pago='" + "Contado" + "' where idventa='" + numFac.getText()+ "'";
+                String sql= "update cuentas_cobrar set estado_pago='" + "Contado" + "' where idventa='" + numFac.getText()+ "'";
                 pst=con.prepareStatement(sql);
                 pst.execute();
                 SuccessAlert sa = new SuccessAlert(new JFrame(), true);
