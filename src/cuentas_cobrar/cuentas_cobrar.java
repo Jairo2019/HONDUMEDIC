@@ -167,7 +167,6 @@ static Conexion cc = new Conexion();
         txtcuotas = new app.bolivia.swing.JCTextField();
         lbladeuda = new javax.swing.JLabel();
         lblcuotas = new javax.swing.JLabel();
-        btncuota = new principal.MaterialButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -748,7 +747,7 @@ static Conexion cc = new Conexion();
                 txtcreditoKeyTyped(evt);
             }
         });
-        jPanel23.add(txtcredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 50, 30));
+        jPanel23.add(txtcredito, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, 50, 30));
 
         txtvalorcuotas.setBackground(new java.awt.Color(255, 255, 255));
         txtvalorcuotas.setBorder(null);
@@ -761,13 +760,13 @@ static Conexion cc = new Conexion();
                 txtvalorcuotasKeyTyped(evt);
             }
         });
-        jPanel23.add(txtvalorcuotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 50, 30));
+        jPanel23.add(txtvalorcuotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 50, 30));
 
         lblvalor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblvalor.setForeground(new java.awt.Color(0, 0, 0));
         lblvalor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblvalor.setText("VALOR CUOTAS:");
-        jPanel23.add(lblvalor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 120, -1));
+        jPanel23.add(lblvalor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 120, -1));
 
         txtcuotas.setBackground(new java.awt.Color(255, 255, 255));
         txtcuotas.setBorder(null);
@@ -780,30 +779,19 @@ static Conexion cc = new Conexion();
                 txtcuotasKeyTyped(evt);
             }
         });
-        jPanel23.add(txtcuotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 50, 30));
+        jPanel23.add(txtcuotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 50, 30));
 
         lbladeuda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbladeuda.setForeground(new java.awt.Color(0, 0, 0));
         lbladeuda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbladeuda.setText("VALOR ADEUDADO:");
-        jPanel23.add(lbladeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 140, -1));
+        jPanel23.add(lbladeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 140, -1));
 
         lblcuotas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblcuotas.setForeground(new java.awt.Color(0, 0, 0));
         lblcuotas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblcuotas.setText("CUOTAS:");
-        jPanel23.add(lblcuotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 70, -1));
-
-        btncuota.setBackground(new java.awt.Color(0, 111, 177));
-        btncuota.setForeground(new java.awt.Color(255, 255, 255));
-        btncuota.setText("Pagar Cuota");
-        btncuota.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btncuota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncuotaActionPerformed(evt);
-            }
-        });
-        jPanel23.add(btncuota, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 190, 48));
+        jPanel23.add(lblcuotas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 70, -1));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -935,7 +923,8 @@ static Conexion cc = new Conexion();
                 + "isv as 'ISV' "
                 + "from cuentas_cobrar "
                 + "inner join paciente on "
-                + " paciente = codigo_paciente ";
+                + " paciente = codigo_paciente "
+                + "where estado_pago='Crédito'";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -1282,19 +1271,6 @@ static Conexion cc = new Conexion();
         }         // TODO add your handling code here:
     }//GEN-LAST:event_btneditActionPerformed
 
-    private void txtcreditoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcreditoKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();           // TODO add your handling code here:
-    }//GEN-LAST:event_txtcreditoKeyTyped
-
-    private void txtvalorcuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtvalorcuotasKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtvalorcuotasKeyTyped
-
-    private void txtcuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuotasKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcuotasKeyTyped
-
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
             if(this.txtImporte.getText().equals("") || this.txtImporte.getText().equals("0") ) {
                 ErrorAlert er = new ErrorAlert(new JFrame(), true);
@@ -1338,13 +1314,6 @@ static Conexion cc = new Conexion();
             evt.consume();
         }
     }//GEN-LAST:event_txtImporteKeyTyped
-    private void btncuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncuotaActionPerformed
-        cuotas_estados_cuenta.cual= lblTotal.getText();
-        cuotas_estados_cuenta.adeuda= adeudado;
-        cuotas_estados_cuenta.cuotas = cuotas;
-        cuotas_estados_cuenta.valorcuota = valorcuotas;
-        new cuotas_estados_cuenta(new JFrame(), true).setVisible(true);
-    }//GEN-LAST:event_btncuotaActionPerformed
 
     private void isvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_isvKeyTyped
         char car = evt.getKeyChar();
@@ -1363,13 +1332,25 @@ static Conexion cc = new Conexion();
             new elegir.elegir_administracion(a, true).setVisible(true);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void txtcuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcuotasKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcuotasKeyTyped
+
+    private void txtvalorcuotasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtvalorcuotasKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtvalorcuotasKeyTyped
+
+    private void txtcreditoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcreditoKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();           // TODO add your handling code here:
+    }//GEN-LAST:event_txtcreditoKeyTyped
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static rsbuttom.RSButtonMetro btnCalcular;
     private principal.MaterialButton btnCancelar;
     public static principal.MaterialButton btnVender;
-    private principal.MaterialButton btncuota;
     private principal.MaterialButton btnedit;
     private javax.swing.JButton buscF;
     private app.bolivia.swing.JCTextField c_search_tbl;
@@ -1405,13 +1386,13 @@ static Conexion cc = new Conexion();
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane2;
     public static javax.swing.JLabel lblTotal;
-    public static javax.swing.JLabel lbladeuda;
+    private javax.swing.JLabel lbladeuda;
     private javax.swing.JLabel lblback;
-    public static javax.swing.JLabel lblcuotas;
+    private javax.swing.JLabel lblcuotas;
     public static javax.swing.JLabel lbldebecuotas;
     public static javax.swing.JLabel lblidpaciente;
     public static javax.swing.JLabel lblsubtotal;
-    public static javax.swing.JLabel lblvalor;
+    private javax.swing.JLabel lblvalor;
     public static javax.swing.JLabel numFac;
     private javax.swing.JPanel pnlChange;
     private javax.swing.ButtonGroup selectestado;
@@ -1421,12 +1402,12 @@ static Conexion cc = new Conexion();
     public static app.bolivia.swing.JCTextField txtCambio;
     private app.bolivia.swing.JCTextField txtFecha;
     public static app.bolivia.swing.JCTextField txtImporte;
-    public static app.bolivia.swing.JCTextField txtcredito;
-    public static app.bolivia.swing.JCTextField txtcuotas;
+    private app.bolivia.swing.JCTextField txtcredito;
+    private app.bolivia.swing.JCTextField txtcuotas;
     public static app.bolivia.swing.JCTextField txtpaciente;
     private javax.swing.JLabel txtsubtotal;
     private javax.swing.JLabel txttotal;
     private static javax.swing.JLabel txttotalcaja;
-    public static app.bolivia.swing.JCTextField txtvalorcuotas;
+    private app.bolivia.swing.JCTextField txtvalorcuotas;
     // End of variables declaration//GEN-END:variables
 }
