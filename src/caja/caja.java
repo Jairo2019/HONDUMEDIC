@@ -1123,7 +1123,7 @@ private void numeros_cobrar() {
         lblcuotas.hide();
         lblvalor.hide();
         btncuota.hide();
-        btnVender.setText("Cancelar");
+        btnVender.setText("           GUARDAR           ");
     }
     //metodo obtener los datos de la tabla caja_servicios
   private void Get_Data(){
@@ -1152,6 +1152,7 @@ private void numeros_cobrar() {
           rs= pst.executeQuery();
          tableCaja.setModel(DbUtils.resultSetToTableModel(rs));
          tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
+         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(4));
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
           } 
@@ -1309,18 +1310,30 @@ private void condicionIsv( ){
     //metodo obtener las ventas del dia, de la tabla caja_servicios
       private void Get_Data_today(){
         Date sistemaFech = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fecH = formato.format(sistemaFech);
         thishide.setVisible(false);
-        String sql="select idventa as 'Codigo',"
-                + " codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + " fecha as 'Fecha',"
-                + "total as 'Total (L)' "
-                + "from caja_servicios "
-                + "inner join paciente on "
-                + " paciente = codigo_paciente "
-                + "where estado_pago='Contado' and fecha='"+fecH+"'";
+        String sql="select idventa as 'Codigo', " +
+"                        codigo_paciente as 'Identidad', " +
+"                        CONCAT(nombre,' ', apellido) as 'Paciente', " +
+"                        fecha as 'Fecha',   " +
+"                        total as 'Total (L)',   " +
+"                        estado_pago AS 'Estado'  " +
+"                        from caja_servicios     " +
+"                        inner join paciente on    \\n\" +\n" +
+"                        paciente = codigo_paciente    \\n\" +\n" +
+"                      WHERE fecha = '\"+fecH+\"'  \" +\n" +
+"                      UNION ALL \\n\" +\n" +
+"                       select idventa as 'Codigo',   \\n\" +\n" +
+"                        codigo_paciente as 'Identidad',   \\n\" +\n" +
+"                        CONCAT(nombre, ' ' , apellido) as 'Paciente',   \\n\" +\n" +
+"                        fecha as 'Fecha',   \\n\" +\n" +
+"                        abonado as 'Total (L)',   \\n\" +\n" +
+"                        estado_pago AS 'Estado'   \\n\" +\n" +
+"                        from cuentas_cobrar    \\n\" +\n" +
+"                       inner join paciente on   \\n\" +\n" +
+"                       paciente = codigo_paciente    \\n\" +\n" +
+"                      WHERE fecha = '\"+fecH+\"'  \" ";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -1706,19 +1719,32 @@ private void condicionIsv( ){
             DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
-                //query para buscar por identidad el paciente en la tabla caja_servicios
-                    ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
-                            + "codigo_paciente as 'Identidad',"
-                            + "CONCAT(nombre, ' ' , apellido) as 'Paciente', "
-                            + "fecha as 'Fecha',"
-                            + "total as 'Total (L)' "
-                            + "from caja_servicios "
-                            + "inner join paciente on "
-                            + " paciente = codigo_paciente "
-                            + " WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' "
-                            + "or codigo_paciente LIKE '%"+name+"%' "
-                            + "and estado_pago='Contado'");
-
+                //query para buscar por diferentes datos al paciente 
+                    ResultSet rs = s.executeQuery("select idventa as 'Codigo', \n" +
+"                        codigo_paciente as 'Identidad',   \n" +
+"                        CONCAT(nombre,' ', apellido) as 'Paciente',   \n" +
+"                        fecha as 'Fecha',   \n" +
+"                        total as 'Total (L)',   \n" +
+"                        estado_pago AS 'Estado'   \n" +
+"                        from caja_servicios     \n" +
+"                        inner join paciente on    \n" +
+"                        paciente = codigo_paciente    \n" +
+"                      WHERE codigo_paciente LIKE '%"+name+"%'    \n" +
+"                      OR CONCAT(nombre,' ', apellido) LIKE '%"+name+"%'    \n" +
+"                      OR idventa LIKE '%"+name+"%'     \n" +
+"                      UNION ALL \n" +
+"                       select idventa as 'Codigo',   \n" +
+"                        codigo_paciente as 'Identidad',   \n" +
+"                        CONCAT(nombre, ' ' , apellido) as 'Paciente',   \n" +
+"                        fecha as 'Fecha',   \n" +
+"                        abonado as 'Total (L)',   \n" +
+"                        estado_pago AS 'Estado'   \n" +
+"                        from cuentas_cobrar    \n" +
+"                       inner join paciente on   \n" +
+"                       paciente = codigo_paciente    \n" +
+"                      WHERE codigo_paciente like '%"+name+"%'   \n" +
+"                      OR CONCAT(nombre,' ', apellido) LIKE '%"+name+"%'    \n" +
+"                      OR idventa LIKE '%"+name+"%'");
                     while (rs.next()) {
                         Vector v = new Vector();
                         v.add(rs.getString(1));
@@ -1733,7 +1759,7 @@ private void condicionIsv( ){
                 float cantidad;
 
                 for (int i = 0; i < tableCaja.getRowCount(); i++) {
-                    can = tableCaja.getValueAt(i, 4).toString();
+                    can = tableCaja.getValueAt(i, 3).toString();
                     cantidad = Float.parseFloat(can);
                     total = total + cantidad;
                 }
