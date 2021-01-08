@@ -373,7 +373,6 @@ PreparedStatement pst=null;
                         }
                         this.dispose();
                         if (c == 0) {
-
                             dato[0] = cod;
                             dato[1] = nom;
                             dato[2] = precio;

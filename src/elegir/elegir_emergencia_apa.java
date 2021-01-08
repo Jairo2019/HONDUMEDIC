@@ -5,13 +5,13 @@
  */
 package elegir;
 
-import Inventarios.inventario_emergencia;
 import elegir.*;
 import alertas.principal.AWTUtilities;
 import java.util.Timer;
 import java.util.TimerTask;
 import principal.PrincipalAPA;
 import unidad_apa.*;
+import principal.*;
 /**
  *
  * @author Rojeru San
@@ -76,7 +76,7 @@ public class elegir_emergencia_apa extends javax.swing.JDialog {
 
         btnservicios.setBackground(new java.awt.Color(0, 111, 177));
         btnservicios.setForeground(new java.awt.Color(255, 255, 255));
-        btnservicios.setText("Servicios");
+        btnservicios.setText("Servicios APA");
         btnservicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnservicios.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnservicios.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +98,7 @@ public class elegir_emergencia_apa extends javax.swing.JDialog {
 
         btninventario.setBackground(new java.awt.Color(0, 111, 177));
         btninventario.setForeground(new java.awt.Color(255, 255, 255));
-        btninventario.setText("inventario");
+        btninventario.setText("inventario apa");
         btninventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btninventario.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btninventario.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +109,7 @@ public class elegir_emergencia_apa extends javax.swing.JDialog {
 
         btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
         btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnregistrar.setText("Registrar Emergencia");
+        btnregistrar.setText("Registrar Emergencia apa");
         btnregistrar.setActionCommand("registrar emrgencia");
         btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -163,28 +163,32 @@ public class elegir_emergencia_apa extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panel3, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnserviciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnserviciosActionPerformed
-        PrincipalAPA.escritorio.removeAll();
+        PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAPA.estacerrado(PrincipalAPA.servicio_emergencia)) {
-            PrincipalAPA.servicio_emergencia = new pnl_emergencia_apa();
-            int width = PrincipalAPA.escritorio.getWidth();
-            int Height = PrincipalAPA.escritorio.getHeight();
-            PrincipalAPA.servicio_emergencia.setSize(width, Height);
-            PrincipalAPA.escritorio.add(PrincipalAPA.servicio_emergencia);
-            PrincipalAPA.servicio_emergencia.show();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.servicio_emergencia_apa)) {
+            PrincipalAdministrador.servicio_emergencia_apa = new pnl_emergencia_apa();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.servicio_emergencia_apa.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.servicio_emergencia_apa);
+            PrincipalAdministrador.servicio_emergencia_apa.show();
         }
     }//GEN-LAST:event_btnserviciosActionPerformed
 
@@ -228,27 +232,27 @@ public class elegir_emergencia_apa extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void btninventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninventarioActionPerformed
-        PrincipalAPA.escritorio.removeAll();
+        PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAPA.estacerrado(PrincipalAPA.inventario_emergencia)) {
-            PrincipalAPA.inventario_emergencia = new inventario_emergencia_apa();
-            int width = PrincipalAPA.escritorio.getWidth();
-            int Height = PrincipalAPA.escritorio.getHeight();
-            PrincipalAPA.inventario_emergencia.setSize(width, Height);
-            PrincipalAPA.escritorio.add(PrincipalAPA.inventario_emergencia);
-            PrincipalAPA.inventario_emergencia.show();   }     // TODO add your handling code here:
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.inventario_emergencia_apa)) {
+            PrincipalAdministrador.inventario_emergencia_apa = new inventario_emergencia_apa();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.inventario_emergencia_apa.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.inventario_emergencia_apa);
+            PrincipalAdministrador.inventario_emergencia_apa.show();   }     // TODO add your handling code here:
     }//GEN-LAST:event_btninventarioActionPerformed
 
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-        PrincipalAPA.escritorio.removeAll();
+        PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAPA.estacerrado(PrincipalAPA.examen_emergencia)) {
-            PrincipalAPA.examen_emergencia = new examen_emergencia_apa();
-            int width = PrincipalAPA.escritorio.getWidth();
-            int Height = PrincipalAPA.escritorio.getHeight();
-            PrincipalAPA.examen_emergencia.setSize(width, Height);
-            PrincipalAPA.escritorio.add(PrincipalAPA.examen_emergencia);
-            PrincipalAPA.examen_emergencia.show();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.examen_emergencia_apa)) {
+            PrincipalAdministrador.examen_emergencia_apa = new examen_emergencia_apa();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.examen_emergencia_apa.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.examen_emergencia_apa);
+            PrincipalAdministrador.examen_emergencia_apa.show();
         }          // TODO add your handling code here:
     }//GEN-LAST:event_btnregistrarActionPerformed
     

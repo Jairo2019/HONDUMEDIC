@@ -734,7 +734,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btncontabilidadActionPerformed
 
     private void btnemergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaActionPerformed
-        new elegir.elegir_emergencia(a, true).setVisible(true);        // TODO add your handling code here:
+        new elegir.elegir_unidad_emergencia(a, true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnemergenciaActionPerformed
 
     private void btnendoscopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnendoscopiaActionPerformed
@@ -748,7 +748,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnfarmaciaActionPerformed
 
     private void btnhopitalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhopitalizacionActionPerformed
-          new elegir.elegir_hospitalizacion(a, true).setVisible(true);      // TODO add your handling code here:
+          new elegir.elegir_unidad_hospitalizacion(a, true).setVisible(true);     // TODO add your handling code here:
     }//GEN-LAST:event_btnhopitalizacionActionPerformed
 
     private void btnlaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlaboratorioActionPerformed

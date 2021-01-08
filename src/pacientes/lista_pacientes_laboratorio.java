@@ -402,6 +402,7 @@ PreparedStatement pst=null;
                             cual="";
                         }else if (("9").equals(cual)){
                             unidad_apa.examen_hospitalizacion_apa.txtpaciente.setText(nom);
+                            unidad_apa.examen_hospitalizacion_apa.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("10").equals(cual)){
                             unidad_apa.examen_emergencia_apa.txtpaciente.setText(nom);

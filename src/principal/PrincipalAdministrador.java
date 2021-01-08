@@ -32,6 +32,7 @@ import cotizaciones.*;
 import reportes_registros.*;
 import contabilidad.*;
 import login.*;
+import unidad_apa.*;
 
 /**
  *
@@ -96,6 +97,13 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static cuentas_cobrar.cuentas_cobrar cuentas_por_cobrar = null;
     public static deposito.depositos depositos = null;
     public static estadosde_cuenta.estadosde_cuenta estadosde_cuenta = null;
+    public static pnl_emergencia_apa servicio_emergencia_apa = null;
+    public static inventario_emergencia_apa inventario_emergencia_apa = null;
+    public static examen_emergencia_apa examen_emergencia_apa = null;
+    public  static pnl_hospitalizacion_apa servicio_hospitalizacion_apa = null;
+    public static inventario_hospitalizacion_apa inventario_hospitalizacion_apa =null;
+    public static examen_hospitalizacion_apa examen_hospitalizacion_apa = null;
+    public static salida_hospitalizacion_apa salida_hospitalizacion_apa = null;
     public static boolean estacerrado(Object obj) {
         JInternalFrame[] activos = escritorio.getAllFrames();
         boolean cerrado = true;

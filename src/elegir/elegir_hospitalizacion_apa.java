@@ -10,7 +10,7 @@ import alertas.principal.AWTUtilities;
 import java.util.Timer;
 import java.util.TimerTask;
 import unidad_apa.pnl_hospitalizacion_apa;
-import principal.PrincipalAPA;
+import principal.*;
 import unidad_apa.*;
 
 /**
@@ -77,7 +77,7 @@ public class elegir_hospitalizacion_apa extends javax.swing.JDialog {
 
         btnservice.setBackground(new java.awt.Color(0, 111, 177));
         btnservice.setForeground(new java.awt.Color(255, 255, 255));
-        btnservice.setText("Servicios");
+        btnservice.setText("Servicios APA");
         btnservice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnservice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnservice.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +99,7 @@ public class elegir_hospitalizacion_apa extends javax.swing.JDialog {
 
         btninventary.setBackground(new java.awt.Color(0, 111, 177));
         btninventary.setForeground(new java.awt.Color(255, 255, 255));
-        btninventary.setText("inventario");
+        btninventary.setText("inventario apa");
         btninventary.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btninventary.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btninventary.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +110,7 @@ public class elegir_hospitalizacion_apa extends javax.swing.JDialog {
 
         btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
         btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnregistrar.setText("Registrar Entrada");
+        btnregistrar.setText("Registrar Entrada apa");
         btnregistrar.setToolTipText("");
         btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -122,7 +122,7 @@ public class elegir_hospitalizacion_apa extends javax.swing.JDialog {
 
         btnregistrarsalida.setBackground(new java.awt.Color(0, 111, 177));
         btnregistrarsalida.setForeground(new java.awt.Color(255, 255, 255));
-        btnregistrarsalida.setText("Registrar Salida");
+        btnregistrarsalida.setText("Registrar Salida apa");
         btnregistrarsalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistrarsalida.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnregistrarsalida.addActionListener(new java.awt.event.ActionListener() {
@@ -192,15 +192,15 @@ public class elegir_hospitalizacion_apa extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnserviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnserviceActionPerformed
-        PrincipalAPA.escritorio.removeAll();
+        PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAPA.estacerrado(PrincipalAPA.servicio_hospitalizacion)) {
-            PrincipalAPA.servicio_hospitalizacion = new pnl_hospitalizacion_apa();
-            int width = PrincipalAPA.escritorio.getWidth();
-            int Height = PrincipalAPA.escritorio.getHeight();
-            PrincipalAPA.servicio_hospitalizacion.setSize(width, Height);
-            PrincipalAPA.escritorio.add(PrincipalAPA.servicio_hospitalizacion);
-            PrincipalAPA.servicio_hospitalizacion.show();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.servicio_hospitalizacion_apa)) {
+            PrincipalAdministrador.servicio_hospitalizacion_apa = new pnl_hospitalizacion_apa();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.servicio_hospitalizacion_apa.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.servicio_hospitalizacion_apa);
+            PrincipalAdministrador.servicio_hospitalizacion_apa.show();
         }
     }//GEN-LAST:event_btnserviceActionPerformed
 
@@ -244,41 +244,41 @@ public class elegir_hospitalizacion_apa extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowClosing
 
     private void btninventaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninventaryActionPerformed
-        PrincipalAPA.escritorio.removeAll();
+        PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAPA.estacerrado(PrincipalAPA.inventario_hospitalizacion)) {
-            PrincipalAPA.inventario_hospitalizacion = new inventario_hospitalizacion_apa();
-            int width = PrincipalAPA.escritorio.getWidth();
-            int Height = PrincipalAPA.escritorio.getHeight();
-            PrincipalAPA.inventario_hospitalizacion.setSize(width, Height);
-            PrincipalAPA.escritorio.add(PrincipalAPA.inventario_hospitalizacion);
-            PrincipalAPA.inventario_hospitalizacion.show();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.inventario_hospitalizacion_apa)) {
+            PrincipalAdministrador.inventario_hospitalizacion_apa = new inventario_hospitalizacion_apa();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.inventario_hospitalizacion_apa.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.inventario_hospitalizacion_apa);
+            PrincipalAdministrador.inventario_hospitalizacion_apa.show();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btninventaryActionPerformed
 
     private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
-         PrincipalAPA.escritorio.removeAll();
+         PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAPA.estacerrado(PrincipalAPA.examen_hospitalizacion)) {
-            PrincipalAPA.examen_hospitalizacion = new examen_hospitalizacion_apa();
-            int width = PrincipalAPA.escritorio.getWidth();
-            int Height = PrincipalAPA.escritorio.getHeight();
-            PrincipalAPA.examen_hospitalizacion.setSize(width, Height);
-            PrincipalAPA.escritorio.add(PrincipalAPA.examen_hospitalizacion);
-            PrincipalAPA.examen_hospitalizacion.show();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.examen_hospitalizacion_apa)) {
+            PrincipalAdministrador.examen_hospitalizacion_apa = new examen_hospitalizacion_apa();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
+            PrincipalAdministrador.examen_hospitalizacion_apa.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.examen_hospitalizacion_apa);
+            PrincipalAdministrador.examen_hospitalizacion_apa.show();
         } // TODO add your handling code here:
     }//GEN-LAST:event_btnregistrarActionPerformed
 
     private void btnregistrarsalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarsalidaActionPerformed
-                PrincipalAPA.escritorio.removeAll();
+        PrincipalAdministrador.escritorio.removeAll();
         this.dispose();
-        if (PrincipalAPA.estacerrado(PrincipalAPA.salida_hospitalizacion)) {
-            PrincipalAPA.salida_hospitalizacion = new salida_hospitalizacion_apa();
+        if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.salida_hospitalizacion_apa)) {
+            PrincipalAdministrador.salida_hospitalizacion_apa = new salida_hospitalizacion_apa();
             int width = PrincipalAPA.escritorio.getWidth();
             int Height = PrincipalAPA.escritorio.getHeight();
-            PrincipalAPA.salida_hospitalizacion.setSize(width, Height);
-            PrincipalAPA.escritorio.add(PrincipalAPA.salida_hospitalizacion);
-            PrincipalAPA.salida_hospitalizacion.show();
+            PrincipalAdministrador.salida_hospitalizacion_apa.setSize(width, Height);
+            PrincipalAdministrador.escritorio.add(PrincipalAdministrador.salida_hospitalizacion_apa);
+            PrincipalAdministrador.salida_hospitalizacion_apa.show();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnregistrarsalidaActionPerformed
 
