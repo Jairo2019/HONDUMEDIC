@@ -146,6 +146,7 @@ static Conexion cc = new Conexion();
         btnVender = new principal.MaterialButton();
         quitar = new principal.MaterialButton();
         btnedit = new principal.MaterialButton();
+        btneliminar = new principal.MaterialButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -646,6 +647,18 @@ static Conexion cc = new Conexion();
             }
         });
 
+        btneliminar.setBackground(new java.awt.Color(0, 111, 177));
+        btneliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btneliminar.setText("Eliminar");
+        btneliminar.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Quitar</h4> </body> </html>");
+        btneliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btneliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btneliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -653,10 +666,11 @@ static Conexion cc = new Conexion();
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnedit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btneliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -667,8 +681,10 @@ static Conexion cc = new Conexion();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -976,7 +992,27 @@ private void edit_detalle(){
           
 }    
     }
+    //eliminar registro mal ingresado 
+    private String eliminar_registro(String codigo){
+        try
+        {
+            int P = JOptionPane.showConfirmDialog(null," Seguro que quiere borrarlo ?","Confirmación",JOptionPane.YES_NO_OPTION);
+        
+            if (P==0){
+                con=Conexion.ConnectDB();
 
+                String sql= "delete from detalle_test_hospitalizacion where codigo= '" + codigo + "' and idventa = '"+ numFac.getText() + "'";
+                pst=con.prepareStatement(sql);
+                pst.execute();
+                JOptionPane.showMessageDialog(this,"Borrado Exitosamente","Registro",JOptionPane.INFORMATION_MESSAGE);
+                this.jTabbedPane2.setSelectedIndex(0);
+                Get_Data();
+                }
+            }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+        return codigo;
+        }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -1239,6 +1275,27 @@ private void edit_detalle(){
             new elegir.elegir_hospitalizacion(a, true).setVisible(true);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) this.tablaCaja.getModel();
+        if (modelo.getRowCount() > 0) {
+
+            int fila = this.tablaCaja.getSelectedRow();
+            if (this.tablaCaja.getSelectedRowCount() < 1) {
+                ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                er.titulo.setText("OOPS...");
+                er.msj.setText("SELECCIONA UN");
+                er.msj1.setText("REGISTRO");
+                er.setVisible(true);
+            } else {
+                String codigo;
+                codigo=tablaCaja.getModel().getValueAt(fila,0).toString();
+                eliminar_registro(codigo);
+                modelo.removeRow(fila);
+                calcular();
+            }
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btneliminarActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1246,6 +1303,7 @@ private void edit_detalle(){
     private principal.MaterialButton btnVender;
     private principal.MaterialButton btnVender1;
     private principal.MaterialButton btnedit;
+    private principal.MaterialButton btneliminar;
     private principal.MaterialButton btnnewinsumo;
     private principal.MaterialButton btns_medico2;
     private principal.MaterialButton btns_paciente;
