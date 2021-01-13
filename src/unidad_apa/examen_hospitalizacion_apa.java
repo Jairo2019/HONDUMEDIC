@@ -23,7 +23,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
-import static principal.PrincipalAdministrador.escritorio;
 import lista_productos_servicios.Producto;
 import java.awt.HeadlessException;
 import lista_productos_servicios.ProductoDAO;
@@ -32,7 +31,6 @@ import java.util.logging.Logger;
 import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
-import static principal.PrincipalAdministrador.estacerrado;
 import static principal.PrincipalAdministrador.menu;
 /**
  *
@@ -46,6 +44,7 @@ ResultSet rs=null;
 PreparedStatement pst=null;
 public PrincipalAdministrador a ;
 static Conexion cc = new Conexion();
+public static String tipo_usuario="";
  static Connection cn = cc.ConnectDB();
      ProductoDAO pdao = new ProductoDAO();
      DefaultTableModel modelo = new DefaultTableModel();
@@ -766,7 +765,15 @@ static Conexion cc = new Conexion();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //genera el codigo registro de examen 
+    //dar la opcion al medico de elminar
+    private void botones(){
+        if("Médico".equals(tipo_usuario) || "Gerencia".equals(tipo_usuario)){
+           btneliminar.setVisible(true);
+        }else{
+            btneliminar.setVisible(false);
+        }
+    }
+//genera el codigo registro de examen 
     private void numeros() {
         int j;
         int cont = 1;
@@ -1067,6 +1074,7 @@ private void edit_detalle(){
             this.jTabbedPane2.setSelectedIndex(1);
             show_detalle();
             txtnumhabitacion.setEnabled(false);
+            botones();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
         }        // TODO add your handling code here:

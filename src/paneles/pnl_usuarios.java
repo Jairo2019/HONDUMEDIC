@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package paneles;
+import cafeteria.OpcionesAl;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -14,12 +15,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import principal.GenerarCodigos;
 /**
  *
  * @author Rojeru San
@@ -541,7 +544,7 @@ PreparedStatement pst=null;
         choiceacces.setBackground(new java.awt.Color(255, 255, 255));
         choiceacces.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         choiceacces.setForeground(new java.awt.Color(0, 0, 0));
-        choiceacces.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administración", "Almacén", "Ambulancia", "Caja", "Cafetería", "Cirugía", "Endoscopia", "Enfermeria", "Farmacia", "Gerencia", "Laboratorio", "Médicos", "RayosX", " " }));
+        choiceacces.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administración", "Almacén", "Ambulancia", "Caja", "Cafetería", "Cirugía", "Endoscopia", "Enfermeria", "Farmacia", "Gerencia", "Laboratorio", "Médico", "RayosX", " " }));
         choiceacces.setToolTipText("");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -627,7 +630,7 @@ PreparedStatement pst=null;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
         jPanel9.add(txtEmail, gridBagConstraints);
 
-        txtTelefono.setBackground(new java.awt.Color(204, 204, 204));
+        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
         txtTelefono.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         txtTelefono.setToolTipText("");
@@ -701,6 +704,11 @@ PreparedStatement pst=null;
         choiceunidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         choiceunidad.setForeground(new java.awt.Color(0, 0, 0));
         choiceunidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambulancia", "APA", "Cirugía", "Emergencia", "Endoscopia", "Hospitalización", "Laboratorio", "RayosX", "Ultrasonido", " " }));
+        choiceunidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choiceunidadActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 12;
         gridBagConstraints.gridy = 0;
@@ -757,6 +765,7 @@ PreparedStatement pst=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
   private void Get_Data(){
+      extraerID();
         String sql="select codigo as 'Codigo', nombre as 'Nombre', apellido as 'Apellido',fecha_nacimiento as 'Fecha Nacimiento',sexo as 'Sexo', telefono as 'Telefono',correo as 'Correo',direccion as 'Dirección',unidad as 'Unidad',rol as 'Rol' , usuario as 'Nombre de Usuario', password as 'Contraseña' from usuarios";
         try{
          pst=con.prepareStatement(sql);
@@ -768,6 +777,40 @@ PreparedStatement pst=null;
           
 }
   }
+  public void extraerID() {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo) FROM usuarios";
+
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                txtCodigo.setText("ID0001");
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                txtCodigo.setText("ID" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void Reset()
 {
     txtCodigo.setText("");
@@ -857,7 +900,6 @@ PreparedStatement pst=null;
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
@@ -907,7 +949,8 @@ PreparedStatement pst=null;
                 txtUserName.requestDefaultFocus();
                 return;
             }
-            String sql= "insert into usuarios(nombre,"
+            String sql= "insert into usuarios(codigo,"
+                    + "nombre,"
                     + "apellido,"
                     + "fecha_nacimiento,"
                     + "sexo,"
@@ -918,6 +961,7 @@ PreparedStatement pst=null;
                     + "rol,"
                     + "usuario,"
                     + "password) values ('"
+                    +txtCodigo.getText()+"','" 
                     +txtName.getText()+"','" 
                     + txtLastname.getText()+"','"
                     +formatofecha.format( dtFechaNac.getDate())+"','"
@@ -964,7 +1008,8 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed
-        Reset();   // TODO add your handling code here:
+        Reset();
+        extraerID();// TODO add your handling code here:
     }//GEN-LAST:event_btncancelActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -1003,6 +1048,10 @@ PreparedStatement pst=null;
           char car = evt.getKeyChar();
         if((car<'0' || car>'9') ) evt.consume();   
     }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void choiceunidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choiceunidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_choiceunidadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

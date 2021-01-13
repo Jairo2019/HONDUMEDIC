@@ -31,6 +31,7 @@ import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
 import static principal.PrincipalAdministrador.menu;
+import login.Opciones;
 /**
  *
  * @author Rojeru San
@@ -43,7 +44,8 @@ ResultSet rs=null;
 PreparedStatement pst=null;
 public PrincipalAdministrador a ;
 static Conexion cc = new Conexion();
- static Connection cn = cc.ConnectDB();
+static Connection cn = cc.ConnectDB();
+public static String tipo_usuario="";
      ProductoDAO pdao = new ProductoDAO();
      DefaultTableModel modelo = new DefaultTableModel();
     String idp;
@@ -73,13 +75,13 @@ static Conexion cc = new Conexion();
         tablaCaja.setDefaultRenderer(Object.class, new principal.EstiloTablaRenderer());
         tableCaja.getTableHeader().setDefaultRenderer(new principal.EstiloTablaHeader());
         tableCaja.setDefaultRenderer(Object.class, new principal.EstiloTablaRenderer());
-        //this.setFrameIcon(new ImageIcon(getClass().getResource("/imagenes/caja/icono.png")));
         tablaCaja.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         con= Conexion.ConnectDB();
         Get_Data();
         thishide.setVisible(false);
         lbledittotal.hide();
         lblidpaciente.hide();
+        btneliminar.setVisible(false);
     }
 
     /**
@@ -787,6 +789,13 @@ static Conexion cc = new Conexion();
         pack();
     }// </editor-fold>//GEN-END:initComponents
     //genera el codigo registro de examen 
+    private void botones(){
+        if("Médico".equals(tipo_usuario) || "Gerencia".equals(tipo_usuario)){
+           btneliminar.setVisible(true);
+        }else{
+            btneliminar.setVisible(false);
+        }
+    }
     private void numeros() {
         int j;
         int cont = 1;
@@ -997,7 +1006,7 @@ private void edit_detalle(){
          }
     private void show_detalle(){
         String sql="select codigo as 'Codigo',"
-                + "p_s as 'Producto/Servicio"
+                + "p_s as 'Producto/Servicio',"
                 + "precio as 'Precio',"
                 + "cantidad as 'Cantidad',"
                 + "importe as 'Importe' "
@@ -1104,6 +1113,7 @@ private void edit_detalle(){
             show_detalle();
             txtdescripcion.setEnabled(false);
             txtnumhabitacion.setEnabled(false);
+            botones();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
         }        // TODO add your handling code here:

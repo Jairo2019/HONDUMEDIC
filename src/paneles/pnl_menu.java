@@ -7,6 +7,7 @@ package paneles;
 import caja.caja;
 import principal.*;
 import cotizaciones.*;
+import javax.swing.SwingUtilities;
 import login.Opciones;
 /**
  *
@@ -15,6 +16,7 @@ import login.Opciones;
 public class pnl_menu extends javax.swing.JInternalFrame {
     public PrincipalAdministrador a ;
     public static String tipo_usuario="";
+    public static String name_usuario="";
 //    JScrollPane scroll;
     /**
      * Creates new form NewJInternalFrame
@@ -695,9 +697,30 @@ public class pnl_menu extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- private void botones(){
+    //Acceso a Para cada Usuario
+    private void botones(){
         if("Enfermeria".equals(tipo_usuario)){
             Opciones.botones_menu_enfermeria();
+        }else if("Médico".equals(tipo_usuario)){
+            Opciones.botones_menu_medico();
+        }else if("Administración".equals(tipo_usuario)){
+            Opciones.botones_menu_administracion();
+        }else if("Caja".equals(tipo_usuario)){
+            Opciones.botones_menu_caja();
+        }else if("Ambulancia".equals(tipo_usuario)){
+            Opciones.botones_menu_ambulancia();
+        }else if("Endoscopia".equals(tipo_usuario)){
+            Opciones.botones_menu_endoscopia();
+        }else if("RayosX".equals(tipo_usuario)){
+            Opciones.botones_menu_rayosx();
+        }else if("Laboratorio".equals(tipo_usuario)){
+            Opciones.botones_menu_laboratorio();
+        }else if("Ultrasonido".equals(tipo_usuario)){
+            Opciones.botones_menu_ultrasonido();
+        }else if("Farmacia".equals(tipo_usuario)){
+            Opciones.botones_menu_farmacia();
+        }else if("Cirugía".equals(tipo_usuario)){
+            Opciones.botones_menu_cirugia();
         }
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
@@ -744,7 +767,10 @@ public class pnl_menu extends javax.swing.JInternalFrame {
     private void btnfarmaciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfarmaciaActionPerformed
         Farmacia_Principal f = new Farmacia_Principal();
         f.setVisible(true);
-        this.dispose();   // TODO add your handling code here:
+        PrincipalAdministrador frame = (PrincipalAdministrador) SwingUtilities.getWindowAncestor(this);
+        frame.dispose();
+        Farmacia_Principal.lbluser.setText(name_usuario);
+        Farmacia_Principal.lblrol.setText(tipo_usuario);
     }//GEN-LAST:event_btnfarmaciaActionPerformed
 
     private void btnhopitalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhopitalizacionActionPerformed

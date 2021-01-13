@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
-import static principal.PrincipalAdministrador.estacerrado;
+import login.Opciones;
 import static principal.PrincipalAdministrador.menu;
 /**
  *
@@ -44,6 +44,7 @@ Date dato = null;
 ResultSet rs=null;
 PreparedStatement pst=null;
 public PrincipalAdministrador a ;
+public static String tipo_usuario="";
 static Conexion cc = new Conexion();
  static Connection cn = cc.ConnectDB();
      ProductoDAO pdao = new ProductoDAO();
@@ -765,7 +766,14 @@ static Conexion cc = new Conexion();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //genera el codigo registro de examen 
+    private void botones(){
+        if("Médico".equals(tipo_usuario) || "Gerencia".equals(tipo_usuario)){
+           btneliminar.setVisible(true);
+        }else{
+            btneliminar.setVisible(false);
+        }
+    } 
+//genera el codigo registro de examen 
     private void numeros() {
         int j;
         int cont = 1;
@@ -1087,6 +1095,7 @@ private void edit_detalle(){
             show_detalle();
             txtdescripcion.setEnabled(false);
             txtnumhabitacion.setEnabled(false);
+            botones();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
         }        // TODO add your handling code here:

@@ -53,12 +53,12 @@ PreparedStatement pst=null;
         cerrar = new principal.MaterialButton();
         jLabel1 = new javax.swing.JLabel();
         txtUserName = new app.bolivia.swing.JCTextField();
-        jLabel6 = new javax.swing.JLabel();
         txtPassword = new jpass.JRPasswordField();
         jLabel7 = new javax.swing.JLabel();
         info = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnenter = new principal.MaterialButtomRectangle();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -132,9 +132,6 @@ PreparedStatement pst=null;
         });
         panel1.add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 240, 30));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/login/campo-usuario.png"))); // NOI18N
-        panel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
-
         txtPassword.setBorder(null);
         txtPassword.setForeground(new java.awt.Color(0, 0, 0));
         txtPassword.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -186,6 +183,9 @@ PreparedStatement pst=null;
         );
 
         panel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 450, 70));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/login/campo-usuario.png"))); // NOI18N
+        panel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
         getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 540));
 
@@ -275,8 +275,8 @@ PreparedStatement pst=null;
     private principal.MaterialButton cerrar;
     public static javax.swing.JLabel info;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private org.edisoncor.gui.panel.Panel panel1;
