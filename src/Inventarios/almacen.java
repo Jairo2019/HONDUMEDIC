@@ -249,7 +249,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChangeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1056, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
@@ -582,7 +582,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
                         .addComponent(jLabel19)
                         .addGap(41, 41, 41)
                         .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -693,7 +693,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         cmbunidad.setBackground(new java.awt.Color(255, 255, 255));
         cmbunidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cmbunidad.setForeground(new java.awt.Color(0, 0, 0));
-        cmbunidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambulancia", "Cirugía", "Emergencia", "Endoscopia", "Hospitalización", "Laboratorio", "RayosX", "Ultrasonido" }));
+        cmbunidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ambulancia", "Cirugía", "Emergencia", "Emergencia APA", "Endoscopia", "Hospitalización", "Hospitalización APA", "Laboratorio", "RayosX", "Ultrasonido" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -865,7 +865,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         pnlChange1.setLayout(pnlChange1Layout);
         pnlChange1Layout.setHorizontalGroup(
             pnlChange1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1068, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1104, Short.MAX_VALUE)
             .addGroup(pnlChange1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1131,6 +1131,41 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
             Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
         }
             return id;
+    }//metodo para obtener el maximo id y asignar id a la tabla Emergencia APA
+    public String extraerID_Emergencia_apa(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_emergencia) FROM inventario_emergencia_apa";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "EA0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("EA" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
     }
         //metodo guardar productos en el inventario de Emergencia
     private void ingresar_inventario_Emergencia(){
@@ -1146,6 +1181,35 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
                 + "descripcion,"
                 + "cantidad) values ('"
                 +extraerID_Emergencia(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+     //metodo guardar productos en el inventario de Emergencia APA
+    private void ingresar_inventario_Emergencia_APA(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_emergencia_apa( "
+                + "codigo_emergencia,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_Emergencia_apa(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1262,6 +1326,42 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         }
             return id;
     }
+    //metodo para obtener el maximo id y asignar id a la tabla Hospitalización APA
+     public String extraerID_Hospitalización_apa(String id) {
+        int j;
+        int cont = 1;
+        String num = "";
+        String c = "";
+        String SQL = "SELECT MAX(codigo_hospitalizacion) FROM inventario_hospitalizacion_apa";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }
+
+            if (c == null) {
+                id = "HA0001";
+            } else {
+                char r1 = c.charAt(2);
+                char r2 = c.charAt(3);
+                char r3 = c.charAt(4);
+                char r4 = c.charAt(5);
+                String r = "";
+                r = "" + r1 + r2 + r3 + r4;
+                j = Integer.parseInt(r);
+                GenerarCodigos gen = new GenerarCodigos();
+                gen.generar(j);
+                id = ("HA" + gen.serie());
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return id;
+    }
         //metodo guardar productos en el inventario de Hospitalización
     private void ingresar_inventario_Hospitalización(){
     for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
@@ -1276,6 +1376,35 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
                 + "descripcion,"
                 + "cantidad) values ('"
                 +extraerID_Hospitalización(id)+"','" 
+                + producto +"','" 
+                +precio+"','" 
+                +descripcion+"','" 
+                +cantidad+ "')";
+
+        try{
+            con=Conexion.ConnectDB();
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+        }
+        catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
+    }
+         }
+           //metodo guardar productos en el inventario de Hospitalización
+    private void ingresar_inventario_Hospitalización_apa(){
+    for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
+        String producto= tabla_almacen.getModel().getValueAt(i, 1).toString();
+        String precio= tabla_almacen.getModel().getValueAt(i, 2).toString();
+        String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
+        String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
+        String sql= "insert into inventario_hospitalizacion_apa( "
+                + "codigo_hospitalizacion,"
+                + "nombre,"
+                + "precio,"
+                + "descripcion,"
+                + "cantidad) values ('"
+                +extraerID_Hospitalización_apa(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1841,6 +1970,16 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
                 bloquear_botones();
+            }else if ("Emergencia APA".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_Emergencia_APA();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+                bloquear_botones();
             }else if ("Endoscopia".equals(cmbunidad.getSelectedItem())){
                 editStock_almacen();
                 ingresar_inventario_Endoscopia();
@@ -1860,6 +1999,17 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
                 sa.msj.setText("GUARDADO");
                 sa.msj1.setText("CON ÉXITO");
                 sa.setVisible(true);
+                bloquear_botones();
+            }else if ("Hospitalización APA".equals(cmbunidad.getSelectedItem())){
+                editStock_almacen();
+                ingresar_inventario_Hospitalización_apa();
+                Get_Data();
+                SuccessAlert sa = new SuccessAlert(new JFrame(), true);
+                sa.titulo.setText("¡HECHO!");
+                sa.msj.setText("GUARDADO");
+                sa.msj1.setText("CON ÉXITO");
+                sa.setVisible(true);
+                bloquear_botones();
             }else if ("Laboratorio".equals(cmbunidad.getSelectedItem())){
                 editStock_almacen();
                 ingresar_inventario_Laboratorio();

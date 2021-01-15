@@ -556,7 +556,7 @@ public PrincipalAdministrador a ;
             }
 
             if (c == null) {
-                txtCodigo.setText("SE0001");
+                txtCodigo.setText("AE0001");
             } else {
                 char r1 = c.charAt(2);
                 char r2 = c.charAt(3);
@@ -567,7 +567,7 @@ public PrincipalAdministrador a ;
                 j = Integer.parseInt(r);
                 GenerarCodigos gen = new GenerarCodigos();
                 gen.generar(j);
-                txtCodigo.setText("SE" + gen.serie());
+                txtCodigo.setText("AE" + gen.serie());
 
             }
 

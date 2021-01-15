@@ -437,6 +437,6 @@ public class elegir_servicio_cotizar extends javax.swing.JDialog {
     }
 
     private void Ubicar(int y) {
-        this.setLocation(640, y - 120);
+        this.setLocation(640, y - 310);
     }
 }

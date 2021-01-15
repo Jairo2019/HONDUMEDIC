@@ -408,6 +408,6 @@ public class elegir_caja_reportes extends javax.swing.JDialog {
     }
 
     private void Ubicar(int y) {
-        this.setLocation(640, y - 120);
+        this.setLocation(640, y - 300);
     }
 }
