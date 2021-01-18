@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package deposito;
-import ambulancia.*;
-import static cuentas_cobrar.cuentas_cobrar.numFac;
 import paneles.*;
 import java.awt.Color;
 import java.awt.Font;
@@ -17,7 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
-import net.sf.jasperreports.engine.JasperReport;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
@@ -39,6 +36,8 @@ Date dato = null;
 ResultSet rs=null;
 PreparedStatement pst=null;
     public PrincipalAdministrador a ;
+    public String saldo_disponible="";
+    
     /**
      * Creates new form NewJInternalFrame
      */
@@ -276,7 +275,7 @@ PreparedStatement pst=null;
         btnsave.setColorPressed(new java.awt.Color(12, 140, 143));
         btnsave.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnsave.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnsave.setIconTextGap(19);
+        btnsave.setIconTextGap(10);
         btnsave.setPreferredSize(new java.awt.Dimension(150, 32));
         btnsave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -290,7 +289,7 @@ PreparedStatement pst=null;
         });
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update_32.png"))); // NOI18N
-        btnUpdate.setText("Editar");
+        btnUpdate.setText("Depositar");
         btnUpdate.setToolTipText("");
         btnUpdate.setColorHover(new java.awt.Color(12, 140, 143));
         btnUpdate.setColorPressed(new java.awt.Color(12, 140, 143));
@@ -298,7 +297,7 @@ PreparedStatement pst=null;
         btnUpdate.setHideActionText(true);
         btnUpdate.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUpdate.setIconTextGap(19);
+        btnUpdate.setIconTextGap(10);
         btnUpdate.setPreferredSize(new java.awt.Dimension(150, 32));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,7 +313,7 @@ PreparedStatement pst=null;
         btncancel.setHideActionText(true);
         btncancel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btncancel.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btncancel.setIconTextGap(19);
+        btncancel.setIconTextGap(10);
         btncancel.setPreferredSize(new java.awt.Dimension(150, 32));
         btncancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,7 +330,7 @@ PreparedStatement pst=null;
         btnDelete.setHideActionText(true);
         btnDelete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnDelete.setIconTextGap(19);
+        btnDelete.setIconTextGap(10);
         btnDelete.setPreferredSize(new java.awt.Dimension(150, 32));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -573,10 +572,12 @@ PreparedStatement pst=null;
                 + "codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
                 + "valor as 'Valor', "
-                + "fecha as 'Fecha' "
+                + "fecha as 'Fecha', "
+                + "saldo_disponible as 'Saldo Disponible' "
                 + "from depositos"
                 + " inner join paciente on "
-                + "paciente = codigo_paciente";
+                + "paciente = codigo_paciente "
+                + "where estado = 1";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -598,12 +599,13 @@ PreparedStatement pst=null;
 {
     numeros();
     txtpaciente.setText("");
-    txtfecha.setText("");
+    txtfecha.setText(fechaactual());
     txtvalor.setText("");
     btnsave.setEnabled(true);
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
+    txtvalor.setEnabled(true);
    
 }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
@@ -627,10 +629,11 @@ PreparedStatement pst=null;
                 + "codigo_paciente as 'Identidad',"
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
                 + "valor as 'Valor', "
-                + "fecha as 'Fecha' "
+                + "fecha as 'Fecha', "
+                + "saldo_disponible as 'Saldo Disponible' "
                 + "from depositos"
                 + " inner join paciente on "
-                + "paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' or codigo_paciente LIKE '%"+name+"%' ");
+                + "paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' and estado=1 or codigo_paciente LIKE '%"+name+"%' and estado=1 ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -639,6 +642,7 @@ PreparedStatement pst=null;
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
+                v.add(rs.getString(6));
                 dt.addRow(v);
 
             }
@@ -685,7 +689,8 @@ PreparedStatement pst=null;
             txtpaciente.setText(tableUsers.getModel().getValueAt(row,2).toString());
             txtfecha.setText(tableUsers.getModel().getValueAt(row,4).toString());
             txtvalor.setText(tableUsers.getModel().getValueAt(row,3).toString());
-
+            saldo_disponible = tableUsers.getModel().getValueAt(row,5).toString();
+            txtvalor.setEnabled(false);
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
@@ -715,11 +720,15 @@ PreparedStatement pst=null;
             String sql= "insert into depositos(id,"
                     + "paciente,"
                     + "valor,"
-                    + "fecha) values ('"
+                    + "fecha,"
+                    + "saldo_disponible,"
+                    + "estado) values ('"
                     +txtCodigo.getText()+"','" 
                     +txtidpaciente.getText()+"','" 
                     + txtvalor.getText() +"','" 
-                    +txtfecha.getText()+ "')";
+                    +txtfecha.getText()+"','" 
+                    + txtvalor.getText() +"','" 
+                    +1+ "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -735,21 +744,13 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_btnsaveActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        try{
-            con=Conexion.ConnectDB();
-            String sql= "update depositos set paciente='"+ txtidpaciente.getText()
-                    + "',valor='" + txtvalor.getText() 
-                    + "',fecha='" + txtfecha.getText() + "' where id='" + txtCodigo.getText()+ "'";
-            pst=con.prepareStatement(sql);
-            pst.execute();
-            JOptionPane.showMessageDialog(this,"Ambulancia Actualizado","Ambulancia de Ambulancia",JOptionPane.INFORMATION_MESSAGE);
-            btnUpdate.setEnabled(false);
-            this.jTabbedPane2.setSelectedIndex(0);
-            Reset();
-            Get_Data();
-        }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
-        }        // TODO add your handling code here:
+        modal_masDeposito.depositado = txtvalor.getText();
+        modal_masDeposito.id = txtCodigo.getText();
+        modal_masDeposito.saldo = saldo_disponible;
+        new modal_masDeposito(new JFrame(), true).setVisible(true);  
+        Reset();
+        this.jTabbedPane2.setSelectedIndex(0);
+// TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btncancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelActionPerformed

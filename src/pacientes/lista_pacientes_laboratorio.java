@@ -263,7 +263,9 @@ PreparedStatement pst=null;
         String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
         + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
         + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 ";  
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion_apa WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia_apa WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "; 
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -406,6 +408,7 @@ PreparedStatement pst=null;
                             cual="";
                         }else if (("10").equals(cual)){
                             unidad_apa.examen_emergencia_apa.txtpaciente.setText(nom);
+                            unidad_apa.examen_emergencia_apa.lblidpaciente.setText(cod);
                             cual="";
                         }else if (("11").equals(cual)){
                             cotizaciones.cotizaciones_general.lblidpaciente.setText(cod);

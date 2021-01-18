@@ -652,7 +652,9 @@ static Conexion cc = new Conexion();
         String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + numFac.getText() + "' and estado=1 "
         + " UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + numFac.getText() + "' and estado=1 "
         + " UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + numFac.getText() + "' and estado=1 "
-        + " UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + numFac.getText() + "' and estado=1 ";
+        + " UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + numFac.getText() + "' and estado=1 "
+        + " UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion_apa WHERE id_paciente ='" + numFac.getText() + "' and estado=1 "
+        + " UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia_apa WHERE id_paciente ='" + numFac.getText() + "' and estado=1 ";
        
         try{
          pst=con.prepareStatement(sql);
