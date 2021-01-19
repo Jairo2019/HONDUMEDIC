@@ -326,7 +326,7 @@ PreparedStatement pst=null;
             float total_deposito= Float.parseFloat(txtdepositado.getText())+ Float.parseFloat(txtnuevodeposito.getText());
             float saldo_actual= Float.parseFloat(saldo)+ Float.parseFloat(txtnuevodeposito.getText());
             String sql= "update depositos set valor='"+ total_deposito
-                    + "',saldo_disponible='" + saldo_actual + "' where id='" + id+ "'";
+                    + "',saldo_disponible='" + saldo_actual + "' where id='" + id+ "' and estado=1";
             pst=con.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this,"Deposito Actualizado","Depositos",JOptionPane.INFORMATION_MESSAGE);

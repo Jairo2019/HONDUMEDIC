@@ -5,7 +5,7 @@
  */
 package cirugia;
 import alertas.principal.ErrorAlert;
-import alertas.principal.SuccessAlert;
+import alertas.principal.*;
 import cafeteria.OpcionesAl;
 import paneles.*;
 import java.util.Date;
@@ -27,6 +27,7 @@ import java.awt.HeadlessException;
 import lista_productos_servicios.ProductoDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import login.Login;
 import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
@@ -861,6 +862,7 @@ public static String tipo_usuario="";
         numeros();
         btnnewinsumo.hide();
         btnedit.hide();
+        quitar.enable();
     }
     //opbter los datos de la tabla test_cirugia
   private void Get_Data(){
@@ -922,6 +924,7 @@ public static String tipo_usuario="";
             con=Conexion.ConnectDB();
             pst=con.prepareStatement(sql);
             pst.execute();
+            
             }catch(HeadlessException | SQLException ex){
                 JOptionPane.showMessageDialog(this,ex);
         }
@@ -960,6 +963,7 @@ private void edit_detalle(){
             pst=con.prepareStatement(sql);
             pst.execute();
             edit_ingreso();
+            saldo_deposito(Float.parseFloat(lblTotal.getText()));
             }catch(HeadlessException | SQLException ex){
                 JOptionPane.showMessageDialog(this,ex);
         }
@@ -1042,6 +1046,34 @@ private void edit_detalle(){
         }
         return codigo;
         }
+    //obtener el saldo disponible del deposito
+    private float saldo_deposito(float saldo_debitar ){
+        float saldo_disponible=0, calcular=0;
+        try {
+            String sql = "SELECT saldo_disponible FROM depositos WHERE paciente = '" + lblidpaciente.getText() + "' and estado=1";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                saldo_disponible = Float.parseFloat(rs.getString(1));
+            }
+            calcular= saldo_disponible-saldo_debitar;
+            String sql_2= "update depositos set saldo_disponible='"+ calcular
+                    + "' where paciente='" + lblidpaciente.getText()+ "' and estado=1";
+            pst=con.prepareStatement(sql_2);
+            pst.execute();
+            if(saldo_disponible<=0){
+            Info_Message sa = new Info_Message(new JFrame(), true);
+            sa.titulo.setText("¡ADVERTENCIA!");
+            sa.msj.setText("YA SE HA CONSUMIDO");
+            sa.msj1.setText("SU DEPOSITO");
+            sa.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return calcular;
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -1188,6 +1220,7 @@ private void edit_detalle(){
             pst.execute();
             actualizarStock(); 
             ingresar_detalle();
+            saldo_deposito(Float.parseFloat(lblTotal.getText()));
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
             sa.titulo.setText("¡HECHO!");
             sa.msj.setText("REGISTRADO");
