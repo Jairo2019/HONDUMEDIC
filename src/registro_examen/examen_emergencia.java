@@ -884,7 +884,8 @@ void sum_ingreso(){
      }
      void edit_ingreso(){
          double total= Double.parseDouble(lbledittotal.getText())+Double.parseDouble(lblTotal.getText());
-         String sql= "UPDATE test_emergencia set total ='"+total+"' where codigo='"+numFac.getText()+"'";
+         String sql= "UPDATE test_emergencia sset observaciones='"+txtdescripcion.getText()
+                 +"',total='"+total+"' where codigo='"+numFac.getText()+"'";
          try{
             con=Conexion.ConnectDB();
             pst=con.prepareStatement(sql);
@@ -926,7 +927,8 @@ private void edit_detalle(){
             con=Conexion.ConnectDB();
             pst=con.prepareStatement(sql);
             pst.execute();
-            edit_ingreso();saldo_deposito(Float.parseFloat(lblTotal.getText()));
+            edit_ingreso();
+            saldo_deposito(Float.parseFloat(lblTotal.getText()));
             }catch(HeadlessException | SQLException ex){
                 JOptionPane.showMessageDialog(this,ex);
         }
@@ -1122,7 +1124,6 @@ private void edit_detalle(){
             sum_ingreso();
             this.jTabbedPane2.setSelectedIndex(1);
             show_detalle();
-            txtdescripcion.setEnabled(false);
             txtnumhabitacion.setEnabled(false);
             botones();
         }catch(Exception ex){

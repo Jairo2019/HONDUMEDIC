@@ -893,9 +893,10 @@ PreparedStatement pst=null;
             txtTelefono.setText(tableUsers.getModel().getValueAt(row,5).toString());
             txtEmail.setText(tableUsers.getModel().getValueAt(row,6).toString());
             txtDireccion.setText(tableUsers.getModel().getValueAt(row,7).toString());
-            choiceacces.setSelectedItem(tableUsers.getModel().getValueAt(row,8).toString());
-            txtUserName.setText(tableUsers.getModel().getValueAt(row,9).toString());
-            txtPassword.setText(tableUsers.getModel().getValueAt(row,10).toString());
+            choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,8).toString());
+            choiceacces.setSelectedItem(tableUsers.getModel().getValueAt(row,9).toString());
+            txtUserName.setText(tableUsers.getModel().getValueAt(row,10).toString());
+            txtPassword.setText(tableUsers.getModel().getValueAt(row,11).toString());
 
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
@@ -993,7 +994,29 @@ PreparedStatement pst=null;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
-            String sql= "update usuarios set nombre='"+ txtName.getText()+ "',apellido='" + txtLastname.getText() + "',fecha_nacimiento='" + formatofecha.format( dtFechaNac.getDate()) +"',sexo='" +  choicesex.getSelectedItem() +"',telefono='" + txtTelefono.getText() +"',correo='" + txtEmail.getText() +"',direccion='" + txtDireccion.getText()+"',unidad='"+choiceunidad.getSelectedItem() + "',rol='" + choiceacces.getSelectedItem() +"',usuario='" + txtUserName.getText()+"',password='" + txtPassword.getText() + "' where codigo='" + txtCodigo.getText() + "'";
+            Statement stmt;
+            stmt= con.createStatement();
+            String sql1="Select usuario from usuarios where usuario= '" + txtUserName.getText() + "'";
+            rs=stmt.executeQuery(sql1);
+            if(rs.next()){
+                JOptionPane.showMessageDialog( this, "Nombre de Usuario ya existe","Error", JOptionPane.ERROR_MESSAGE);
+                txtUserName.setText("");
+                txtUserName.requestDefaultFocus();
+                return;
+            }
+            String sql= "update usuarios set nombre='"+
+                    txtName.getText()+ "',apellido='" + 
+                    txtLastname.getText() + "',fecha_nacimiento='" +
+                    formatofecha.format( dtFechaNac.getDate()) +"',sexo='" +  
+                    choicesex.getSelectedItem() +"',telefono='" + 
+                    txtTelefono.getText() +"',correo='" + 
+                    txtEmail.getText() +"',direccion='" + 
+                    txtDireccion.getText()+"',unidad='"+
+                    choiceunidad.getSelectedItem() + "',rol='" + 
+                    choiceacces.getSelectedItem() +"',usuario='" + 
+                    txtUserName.getText()+"',password='" + 
+                    txtPassword.getText() + "' where codigo='" + 
+                    txtCodigo.getText() + "'";
             pst=con.prepareStatement(sql);
             pst.execute();
             JOptionPane.showMessageDialog(this,"Usuario Actualizado","Registro de Usuarios",JOptionPane.INFORMATION_MESSAGE);

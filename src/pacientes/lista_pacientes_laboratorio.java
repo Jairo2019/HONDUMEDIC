@@ -14,6 +14,7 @@ import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -276,7 +277,7 @@ PreparedStatement pst=null;
     
     }
     //calcular el total sumando la columna importe
-    public void calcular() {
+    public void calcular() throws SQLException {
         String pre;
         String can;
         double total = 0;
@@ -284,8 +285,10 @@ PreparedStatement pst=null;
         int cantidad;
         double imp = 0.0;
         double isv= 0.0;
+        double deposito= 0.0;
 
         for (int i = 0; i < caja.tablaCaja.getRowCount(); i++) {
+            deposito();
             pre = caja.tablaCaja.getValueAt(i, 3).toString();
             can = caja.tablaCaja.getValueAt(i, 4).toString();
             precio = Double.parseDouble(pre);
@@ -295,11 +298,23 @@ PreparedStatement pst=null;
             double value = Double.valueOf(caja.isv.getText());
             isv=((value/100) * total);
             caja.tablaCaja.setValueAt(Math.rint(imp * 100) / 100, i, 5);
-
+            deposito=Double.parseDouble(caja.lbldeposito.getText());
         }
         caja.lblsubtotal.setText("" + (Math.rint((total) * 100) / 100));
-        caja.lblTotal.setText("" + (Math.rint((total+isv) * 100) / 100));
+        caja.lblTotal.setText("" + (Math.rint((total+isv-deposito) * 100) / 100));
 
+    }
+    //Traer el deposito del paciente seleccionado
+    private void deposito() throws SQLException{
+        int fila = tabla.getSelectedRow();
+        String cod = tabla.getValueAt(fila, 0).toString(); 
+        Statement stmt;
+            stmt= con.createStatement();
+            String sql1="Select valor from depositos where paciente= '" + cod+ "' and estado=1";
+            rs=stmt.executeQuery(sql1);
+            if(rs.next()){
+                caja.lbldeposito.setText(rs.getString(1)); 
+            }
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         FadeEffect.fadeOut(this, 50, 0.1f);

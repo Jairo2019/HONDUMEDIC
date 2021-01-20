@@ -716,6 +716,16 @@ PreparedStatement pst=null;
                 JOptionPane.showMessageDialog( this, "Ingrese Cantidad a Depositar","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            Statement stmt;
+            stmt= con.createStatement();
+            String sql1="Select paciente from depositos where paciente= '" + txtidpaciente.getText() + "' and estado=1";
+            rs=stmt.executeQuery(sql1);
+            if(rs.next()){
+                JOptionPane.showMessageDialog( this, "El Paciente ya esta Ingresado","Error", JOptionPane.ERROR_MESSAGE);
+                txtpaciente.setText("");
+                btns_paciente.requestDefaultFocus();
+                return;
+            }
             //QUEry insert datos a tabla depositos
             String sql= "insert into depositos(id,"
                     + "paciente,"

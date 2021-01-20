@@ -919,7 +919,8 @@ public static String tipo_usuario="";
      }
      void edit_ingreso(){
          double total= Double.parseDouble(lbledittotal.getText())+Double.parseDouble(lblTotal.getText());
-         String sql= "UPDATE test_cirugia set total ='"+total+"' where codigo='"+numFac.getText()+"'";
+         String sql= "UPDATE test_cirugia set observaciones='"+txtdescripcion.getText()
+                 +"',total='"+total+"' where codigo='"+numFac.getText()+"'";
          try{
             con=Conexion.ConnectDB();
             pst=con.prepareStatement(sql);
@@ -1143,7 +1144,6 @@ private void edit_detalle(){
             sum_ingreso();
             this.jTabbedPane2.setSelectedIndex(1);
             show_detalle();
-            txtdescripcion.setEnabled(false);
             txtnumhabitacion.setEnabled(false);
             botones();
         }catch(Exception ex){
