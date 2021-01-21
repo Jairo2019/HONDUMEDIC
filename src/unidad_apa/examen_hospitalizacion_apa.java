@@ -942,9 +942,9 @@ private void edit_detalle(){
             Producto pr = new Producto();
             idp = tablaCaja.getValueAt(i, 0).toString();
             cant = Integer.parseInt(tablaCaja.getValueAt(i, 3).toString());
-            pr = pdao.listarID_hospitalizacion(idp);
+            pr = pdao.listarID_hospitalizacion_apa(idp);
             int sa = pr.getStock() - cant;
-            pdao.actualizarStock_hospitalizacion(sa, idp);
+            pdao.actualizarStock_hospitalizacion_apa(sa, idp);
 
         }
     }
@@ -974,7 +974,7 @@ private void edit_detalle(){
                 +cantidad+"','" 
                 +importe+"','" 
                 +txtFecha.getText()+"','" 
-                +"Hospitalización"+"','" 
+                +"Hospitalización APA"+"','" 
                 +"1"+ "')";
 
         try{

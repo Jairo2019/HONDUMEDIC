@@ -1096,6 +1096,7 @@ private void condicionPaciente( ){
          //condicion para agregar descuento
          if(txtdescuento.getText().isEmpty()){
          JOptionPane.showMessageDialog( this, "Ingrese el porcentaje de Descuento","Info", JOptionPane.INFORMATION_MESSAGE);
+         txtdescuento.requestFocus();
     }else{
         //muestra la opción de elegir los servicios a cotizar
         new elegir.elegir_servicio_cotizar(a, true).setVisible(true);  }      // TODO add your handling code here:

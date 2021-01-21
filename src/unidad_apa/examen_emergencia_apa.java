@@ -395,7 +395,7 @@ static Conexion cc = new Conexion();
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/num_room.png"))); // NOI18N
         jPanel22.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 67, -1, -1));
 
-        txtdescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        txtdescripcion.setBackground(new java.awt.Color(204, 204, 204));
         txtdescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtdescripcion.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -942,9 +942,9 @@ private void edit_detalle(){
             Producto pr = new Producto();
             idp = tablaCaja.getValueAt(i, 0).toString();
             cant = Integer.parseInt(tablaCaja.getValueAt(i, 3).toString());
-            pr = pdao.listarID_emergencia(idp);
+            pr = pdao.listarID_emergencia_APA(idp);
             int sa = pr.getStock() - cant;
-            pdao.actualizarStock_emergencia(sa, idp);
+            pdao.actualizarStock_emergencia_apa(sa, idp);
 
         }
     }
@@ -974,7 +974,7 @@ private void edit_detalle(){
                 +cantidad+"','" 
                 +importe+"','" 
                 +txtFecha.getText()+"','" 
-                +"Emergencia"+"','" 
+                +"Emergencia APA"+"','" 
                 +"1"+ "')";
 
         try{
@@ -1176,10 +1176,6 @@ private void edit_detalle(){
             }
             if (txtFecha.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Fecha","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtdescripcion.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Motivo por el que se Ingreso el Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
                // query insertar datos en test_laboratorio

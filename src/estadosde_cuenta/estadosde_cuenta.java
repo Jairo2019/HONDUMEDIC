@@ -600,10 +600,16 @@ static Conexion cc = new Conexion();
         "    IFNULL((SELECT SUM(e.total)\n" +
         "    FROM test_emergencia e\n" +
         "    where p.codigo_paciente=e.paciente AND e.estado=1),0)+" +
+        "    IFNULL((SELECT SUM(ea.total)\n" +
+        "    FROM test_emergencia_apa ea\n" +
+        "    where p.codigo_paciente=ea.paciente AND ea.estado=1),0)+" +
+        "    IFNULL((SELECT SUM(ha.total)\n" +
+        "    FROM test_hospitalizacion_apa ha\n" +
+        "    where p.codigo_paciente=ha.paciente AND ha.estado=1),0)+" +
         "    IFNULL((SELECT SUM(h.total)\n" +
         "    FROM test_hospitalizacion h\n" +
         "    where p.codigo_paciente=h.paciente AND h.estado=1),0)),0)AS Total" +
-        " FROM paciente p " ;
+        " FROM paciente p  " ;
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -737,6 +743,12 @@ static Conexion cc = new Conexion();
         "    IFNULL((SELECT SUM(e.total)\n" +
         "    FROM test_emergencia e\n" +
         "    where p.codigo_paciente=e.paciente AND e.estado=1),0)+" +
+        "    IFNULL((SELECT SUM(ea.total)\n" +
+        "    FROM test_emergencia_apa ea\n" +
+        "    where p.codigo_paciente=ea.paciente AND ea.estado=1),0)+" +
+        "    IFNULL((SELECT SUM(ha.total)\n" +
+        "    FROM test_hospitalizacion_apa ha\n" +
+        "    where p.codigo_paciente=ha.paciente AND ha.estado=1),0)+" +
         "    IFNULL((SELECT SUM(h.total)\n" +
         "    FROM test_hospitalizacion h\n" +
         "    where p.codigo_paciente=h.paciente AND h.estado=1),0)),0)AS Total" +

@@ -287,13 +287,13 @@ public class elegir_servicio_cotizar extends javax.swing.JDialog {
     private void btnemergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);
        this.dispose();
-        new lista_emergencia(new JFrame(), true).setVisible(true);     // TODO add your handling code here:
+        new elegir_apa_emergencia_coti(new JFrame(), true).setVisible(true);     // TODO add your handling code here:
     }//GEN-LAST:event_btnemergenciaActionPerformed
 
     private void btnhopitalizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhopitalizacionActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);
        this.dispose();
-        new lista_hospitalizacion(new JFrame(), true).setVisible(true);       // TODO add your handling code here:
+        new elegir_apa_hospitalizacion_coti(new JFrame(), true).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnhopitalizacionActionPerformed
 
     private void btnultrasonidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnultrasonidoActionPerformed

@@ -313,6 +313,7 @@ PreparedStatement pst=null;
             String sql1="Select valor from depositos where paciente= '" + cod+ "' and estado=1";
             rs=stmt.executeQuery(sql1);
             if(rs.next()){
+                caja.lbldeposito.setText("0.0");
                 caja.lbldeposito.setText(rs.getString(1)); 
             }
     }
