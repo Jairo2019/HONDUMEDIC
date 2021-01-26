@@ -652,7 +652,7 @@ PreparedStatement pst=null;
 
         }          // TODO add your handling code here:
     }//GEN-LAST:event_c_search_tblKeyReleased
-    //genera el numero que tendra la factura
+    //genera el numero que tendra el deposito
     private void numeros() {
         int j;
         int cont = 1;

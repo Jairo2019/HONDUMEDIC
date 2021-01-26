@@ -53,6 +53,7 @@ public static String tipo_usuario="";
     int cant;
     double pre;
     double tpagar;
+    String saldoDisponible="";
     /**
      * Creates new form NewJInternalFrame
      */
@@ -834,7 +835,7 @@ public static String tipo_usuario="";
 
    public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
         return formatofecha.format(fecha);
 
     }
@@ -1047,6 +1048,19 @@ private void edit_detalle(){
         }
         return codigo;
         }
+//saber si el paciente ha hecho deposito
+    private void validaro_deposito_paciente( ){
+        try {
+            String sql = "SELECT saldo_disponible FROM depositos WHERE paciente = '" + lblidpaciente.getText() + "' and estado=1";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                saldoDisponible = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     //obtener el saldo disponible del deposito
     private float saldo_deposito(float saldo_debitar ){
         float saldo_disponible=0, calcular=0;
@@ -1054,7 +1068,6 @@ private void edit_detalle(){
             String sql = "SELECT saldo_disponible FROM depositos WHERE paciente = '" + lblidpaciente.getText() + "' and estado=1";
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-
             while (rs.next()) {
                 saldo_disponible = Float.parseFloat(rs.getString(1));
             }
@@ -1066,7 +1079,7 @@ private void edit_detalle(){
             if(saldo_disponible<=0){
             Info_Message sa = new Info_Message(new JFrame(), true);
             sa.titulo.setText("¡ADVERTENCIA!");
-            sa.msj.setText("YA SE HA CONSUMIDO");
+            sa.msj.setText("YA SE HA CONSUMIDO"+saldoDisponible);
             sa.msj1.setText("SU DEPOSITO");
             sa.setVisible(true);
             }
@@ -1196,6 +1209,17 @@ private void edit_detalle(){
                 JOptionPane.showMessageDialog( this, "Ingrese Fecha","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            validaro_deposito_paciente();
+            if("".equals(saldoDisponible)){
+                    Warning_Ingrese_Deposito f = new Warning_Ingrese_Deposito(new JFrame(), true);
+                    f.titulo.setText("¡ADVERTENCIA!");
+                    f.msj.setText("INGRESE");
+                    f.msj1.setText("DEPOSITO");
+                    f.id=lblidpaciente.getText();
+                    f.fecha=txtFecha.getText();
+                    f.setVisible(true);
+                    return;
+                }
                // insertar datos en test_laboratorio
             String sql= "insert into test_cirugia(codigo,"
                     + "paciente,"

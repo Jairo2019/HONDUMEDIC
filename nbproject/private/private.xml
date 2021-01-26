@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/pacientes/lista_pacientes_laboratorio.java</file>
             <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/principal/PrincipalAdministrador.java</file>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/caja/caja.java</file>
-            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/elegir/elegir_apa_hospitalizacion_coti.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/cirugia/registrar_cirugia.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/deposito/modal_masDeposito.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/deposito/modal_Deposito.java</file>
+            <file>file:/C:/Users/Jean%20Martell/Desktop/New%20folder/HONDUMEDIC/src/deposito/depositos.java</file>
         </group>
     </open-files>
 </project-private>

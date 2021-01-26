@@ -307,13 +307,12 @@ PreparedStatement pst=null;
     //Traer el deposito del paciente seleccionado
     private void deposito() throws SQLException{
         int fila = tabla.getSelectedRow();
-        String cod = tabla.getValueAt(fila, 0).toString(); 
+        String cod = tabla.getValueAt(fila , 0).toString(); 
         Statement stmt;
             stmt= con.createStatement();
             String sql1="Select valor from depositos where paciente= '" + cod+ "' and estado=1";
             rs=stmt.executeQuery(sql1);
             if(rs.next()){
-                caja.lbldeposito.setText("0.0");
                 caja.lbldeposito.setText(rs.getString(1)); 
             }
     }
@@ -365,7 +364,6 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_buscarKeyTyped
 
     private void btnMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenosActionPerformed
-         
         if (tabla.getRowCount() > 0) {
             try {
                 String cant = null;

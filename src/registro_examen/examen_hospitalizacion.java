@@ -23,7 +23,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
-import static principal.PrincipalAdministrador.escritorio;
+import alertas.principal.*;
 import lista_productos_servicios.Producto;
 import java.awt.HeadlessException;
 import lista_productos_servicios.ProductoDAO;
@@ -55,6 +55,7 @@ static Conexion cc = new Conexion();
     int cant;
     double pre;
     double tpagar;
+    String saldoDisponible="";
     /**
      * Creates new form NewJInternalFrame
      */
@@ -1053,6 +1054,19 @@ private void edit_detalle(){
         }
     return calcular;
     }
+        //saber si el paciente ha hecho deposito
+    private void validaro_deposito_paciente( ){
+        try {
+            String sql = "SELECT saldo_disponible FROM depositos WHERE paciente = '" + lblidpaciente.getText() + "' and estado=1";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                saldoDisponible = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -1182,6 +1196,17 @@ private void edit_detalle(){
                 JOptionPane.showMessageDialog( this, "Ingrese Motivo por el que se Ingreso el Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            validaro_deposito_paciente();
+            if("".equals(saldoDisponible)){
+                    Warning_Ingrese_Deposito f = new Warning_Ingrese_Deposito(new JFrame(), true);
+                    f.titulo.setText("¡ADVERTENCIA!");
+                    f.msj.setText("INGRESE");
+                    f.msj1.setText("DEPOSITO");
+                    f.id=lblidpaciente.getText();
+                    f.fecha=txtFecha.getText();
+                    f.setVisible(true);
+                    return;
+                }
                // query insertar datos en test_laboratorio
             String sql= "insert into test_hospitalizacion(codigo,"
                     + "paciente,"

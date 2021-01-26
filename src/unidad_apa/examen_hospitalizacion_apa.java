@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
+import alertas.principal.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -54,6 +55,7 @@ public static String tipo_usuario="";
     int cant;
     double pre;
     double tpagar;
+    String saldoDisponible="";
     /**
      * Creates new form NewJInternalFrame
      */
@@ -1004,6 +1006,19 @@ private void edit_detalle(){
           
 }    
     }
+    //saber si el paciente ha hecho deposito
+    private void validaro_deposito_paciente( ){
+        try {
+            String sql = "SELECT saldo_disponible FROM depositos WHERE paciente = '" + lblidpaciente.getText() + "' and estado=1";
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                saldoDisponible = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
  //obtener el saldo disponible del deposito
     private float saldo_deposito(float saldo_debitar ){
         float saldo_disponible=0, calcular=0;
@@ -1157,6 +1172,17 @@ private void edit_detalle(){
                 JOptionPane.showMessageDialog( this, "Ingrese Fecha","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            validaro_deposito_paciente();
+            if("".equals(saldoDisponible)){
+                    Warning_Ingrese_Deposito f = new Warning_Ingrese_Deposito(new JFrame(), true);
+                    f.titulo.setText("¡ADVERTENCIA!");
+                    f.msj.setText("INGRESE");
+                    f.msj1.setText("DEPOSITO");
+                    f.id=lblidpaciente.getText();
+                    f.fecha=txtFecha.getText();
+                    f.setVisible(true);
+                    return;
+                }
                // query insertar datos en test_laboratorio
             String sql= "insert into test_hospitalizacion_apa(codigo,"
                     + "paciente,"
