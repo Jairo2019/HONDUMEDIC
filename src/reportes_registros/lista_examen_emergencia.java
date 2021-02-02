@@ -252,8 +252,7 @@ public static Double value ;
                 + "encargado as 'Encargado', "
                 + "direccion as 'Dirección', "
                 + "telefono as 'Teléfono', "
-                + "unidad as 'Unidad', "
-                + "fecha as 'Fecha y Hora', "
+                + "fecha as 'Fecha', "
                 + "total as 'Total (L)' "
                 + "from test_emergencia"
                 + " inner join paciente on "
@@ -277,8 +276,8 @@ public static Double value ;
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_registro_emergencia(tabla.getValueAt(i, 1).toString(),tabla.getValueAt(i,2).toString(),
             tabla.getValueAt(i,3).toString(),tabla.getValueAt(i,4).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
-            tabla.getValueAt(i, 5).toString(),tabla.getValueAt(i,6).toString(),
-            tabla.getValueAt(i, 7).toString(),tabla.getValueAt(i, 8).toString());
+            tabla.getValueAt(i, 5).toString(),"Pediatría",
+            tabla.getValueAt(i, 6).toString(),tabla.getValueAt(i, 7).toString());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -313,8 +312,7 @@ public static Double value ;
                 + "encargado as 'Encargado', "
                 + "direccion as 'Dirección', "
                 + "telefono as 'Teléfono', "
-                + "unidad as 'Unidad', "
-                + "fecha as 'Fecha y Hora', "
+                + "fecha as 'Fecha', "
                 + "total as 'Total (L)' "
                 + "from test_emergencia"
                 + " inner join paciente on "
@@ -330,7 +328,6 @@ public static Double value ;
                 v.add(rs.getString(6));
                 v.add(rs.getString(7));
                  v.add(rs.getString(8));
-                  v.add(rs.getString(9));
                 dt.addRow(v);
 
             }

@@ -835,7 +835,7 @@ public static String tipo_usuario="";
 
    public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatofecha.format(fecha);
 
     }
@@ -875,7 +875,7 @@ public static String tipo_usuario="";
                 + "medico_2 as 'Indico Cirugía',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Observaciones',"
-                + "fecha as 'Fecha y Hora', "
+                + "fecha as 'Fecha', "
                 + "total as 'Total (L)' "
                 + "from test_cirugia"
                 + " inner join paciente on "
@@ -1110,7 +1110,7 @@ private void edit_detalle(){
                 + "medico_2 as 'Indico Examen',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Observaciones',"
-                + "fecha as 'Fecha y Hora', "
+                + "fecha as 'Fecha', "
                 + "total as 'Total (L)' "
                 + "from test_cirugia"
                 + " inner join paciente on "

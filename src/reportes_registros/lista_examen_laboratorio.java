@@ -251,7 +251,7 @@ public static Double value ;
 "                direccion as 'Dirección', \n" +
 "                 telefono as 'Teléfono', \n" +
 "                unidad as 'Unidad', \n" +
-"                fecha as 'Fecha y Hora', \n" +
+"                fecha as 'Fecha', \n" +
 "                total as 'Total (L)'\n" +
 "                from test_laboratorio\n" +
 "                 inner join paciente on \n" +
@@ -336,7 +336,7 @@ public static Double value ;
 "                direccion as 'Dirección', \n" +
 "                 telefono as 'Teléfono', \n" +
 "                unidad as 'Unidad', \n" +
-"                fecha as 'Fecha y Hora', \n" +
+"                fecha as 'Fecha', \n" +
 "                total as 'Total (L)'\n" +
 "                from test_laboratorio\n" +
 "                 inner join paciente on \n" +

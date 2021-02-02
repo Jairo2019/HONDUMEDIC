@@ -284,15 +284,25 @@ public static Double value ;
         pack();
     }// </editor-fold>//GEN-END:initComponents
  private void Get_Data(){
-        String sql="select idventa as 'Codigo',"
-                + " codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + " fecha as 'Fecha',"
-                + "total as 'Total (L)' "
-                + "from caja_servicios "
-                + "inner join paciente on "
-                + " paciente = codigo_paciente"
-                + " where estado_pago='Contado'";
+        String sql="(select idventa as 'Codigo',\n" +
+"                codigo_paciente as 'Identidad',\n" +
+"                CONCAT(nombre, ' ' , apellido) as 'Paciente',\n" +
+"                fecha as 'Fecha',\n" +
+"                total as 'Total (L)',\n" +
+"                estado_pago AS 'Estado'\n" +
+"                from caja_servicios \n" +
+"                inner join paciente on \n" +
+"                paciente = codigo_paciente) \n" +
+"					 UNION ALL\n" +
+"(select idventa as 'Codigo',\n" +
+"                codigo_paciente as 'Identidad',\n" +
+"                CONCAT(nombre, ' ' , apellido) as 'Paciente',\n" +
+"                fecha as 'Fecha',\n" +
+"                abonado as 'Total (L)',\n" +
+"                estado_pago AS 'Estado'\n" +
+"                from cuentas_cobrar \n" +
+"                inner join paciente on \n" +
+"                paciente = codigo_paciente)";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -332,15 +342,25 @@ public static Double value ;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
-                + " codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + " fecha as 'Fecha',"
-                + "total as 'Total (L)' "
-                + "from caja_servicios "
-                + "inner join paciente on "
-                + " paciente = codigo_paciente"
-                + " where estado_pago='Contado' and fecha between '"+ fecH1+"' and '"+fecH2+"' ");
+            ResultSet rs = s.executeQuery("(select idventa as 'Codigo'," +
+"                codigo_paciente as 'Identidad'," +
+"               CONCAT(nombre, ' ' , apellido) as 'Paciente'," +
+"                fecha as 'Fecha'," +
+"                total as 'Total (L)'," +
+"                estado_pago AS 'Estado'" +
+"                from caja_servicios " +
+"                inner join paciente on " +
+"                paciente = codigo_paciente where  fecha between '"+ fecH1+"' and '"+fecH2+"') " +
+"					 UNION ALL" +
+"(select idventa as 'Codigo'," +
+"                codigo_paciente as 'Identidad'," +
+"                CONCAT(nombre, ' ' , apellido) as 'Paciente'," +
+"                fecha as 'Fecha'," +
+"                abonado as 'Total (L)'," +
+"                estado_pago AS 'Estado'" +
+"                from cuentas_cobrar " +
+"                inner join paciente on " +
+"                paciente = codigo_paciente  where  fecha between '"+ fecH1+"' and '"+fecH2+"')");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -349,6 +369,7 @@ public static Double value ;
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
+                v.add(rs.getString(6));
                 dt.addRow(v);
             }
         } catch (Exception e) {
@@ -364,22 +385,35 @@ public static Double value ;
         // search btn code
         String name = buscar.getText();
         try {
-
             DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select idventa as 'Codigo',"
-                + " codigo_paciente as 'Identidad',"
-                + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
-                + " fecha as 'Fecha',"
-                + "total as 'Total (L)' "
-                + "from caja_servicios "
-                + "inner join paciente on "
-                + " paciente = codigo_paciente"
-                + " where estado_pago='Contado' and CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' "
-                + "or estado_pago='Contado' and idventa LIKE '%"+name+"%' "
-                + "or estado_pago='Contado' and codigo_paciente LIKE '%"+name+"%'  ");
+            ResultSet rs = s.executeQuery("(select idventa as 'Codigo'," +
+"                codigo_paciente as 'Identidad'," +
+"               CONCAT(nombre, ' ' , apellido) as 'Paciente'," +
+"                fecha as 'Fecha'," +
+"                total as 'Total (L)'," +
+"                estado_pago AS 'Estado'" +
+"                from caja_servicios " +
+"                inner join paciente on " +
+"                paciente = codigo_paciente "
+                    + "where CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%'" +
+"                or idventa LIKE '%"+name+"%' " +
+"                or codigo_paciente LIKE '%"+name+"%') " +
+"					 UNION ALL" +
+"(select idventa as 'Codigo'," +
+"                codigo_paciente as 'Identidad'," +
+"                CONCAT(nombre, ' ' , apellido) as 'Paciente'," +
+"                fecha as 'Fecha'," +
+"                abonado as 'Total (L)'," +
+"                estado_pago AS 'Estado'" +
+"                from cuentas_cobrar " +
+"                inner join paciente on " +
+"                paciente = codigo_paciente  "
+        + "where CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%'" +
+"                or idventa LIKE '%"+name+"%' " +
+"                or codigo_paciente LIKE '%"+name+"%')");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -388,6 +422,7 @@ public static Double value ;
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
+                v.add(rs.getString(6));
                 dt.addRow(v);
 
             }

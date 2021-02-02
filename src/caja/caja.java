@@ -100,6 +100,7 @@ static Conexion cc = new Conexion();
         lblcuotas.hide();
         lblvalor.hide();
         btncuota.hide();
+        lbldebecuotas.hide();
     }
 
     /**

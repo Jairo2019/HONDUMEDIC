@@ -739,7 +739,7 @@ static Conexion cc = new Conexion();
 
    public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatofecha.format(fecha);
 
     }
@@ -775,7 +775,7 @@ static Conexion cc = new Conexion();
                 + " encargado as 'Encargado',"
                 + " num_telefono as 'Teléfono',"
                 + " observaciones as 'Observaciones',"
-                + " fecha as 'Fecha y Hora',"
+                + " fecha as 'Fecha',"
                 + " total as 'Total (L)'"
                 + " from test_ultrasonido"
                 + " inner join paciente on"
@@ -860,7 +860,7 @@ static Conexion cc = new Conexion();
                 + " encargado as 'Encargado',"
                 + " num_telefono as 'Teléfono',"
                 + " observaciones as 'Observaciones',"
-                + " fecha as 'Fecha y Hora',"
+                + " fecha as 'Fecha',"
                 + " total as 'Total (L)'"
                 + " from test_ultrasonido"
                 + " inner join paciente on"

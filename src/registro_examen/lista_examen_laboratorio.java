@@ -279,7 +279,7 @@ public static Double value ;
 "                 medico_1 as 'Realizo Examen'," +
 "                 num_habitacion as 'Habitación'," +
 "                 observaciones as'Observaciones'," +
-"                 fecha as 'Fecha y Hora'," +
+"                 fecha as 'Fecha'," +
 "                  total as 'Total (L)' " +
 "                  from test_laboratorio " +
 "                  inner join paciente on " +
@@ -347,7 +347,7 @@ public static Double value ;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery(" select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha y Hora', total as 'Total (L)' from test_laboratorio WHERE paciente LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery(" select codigo as 'Codigo',paciente as 'Paciente',medico_1 as 'Realizo Examen', num_habitacion as 'Habitación',observaciones as'Observaciones',fecha as 'Fecha', total as 'Total (L)' from test_laboratorio WHERE paciente LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();

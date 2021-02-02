@@ -875,7 +875,7 @@ static Conexion cc = new Conexion();
 
    public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatofecha.format(fecha);
 
     }
@@ -919,7 +919,7 @@ static Conexion cc = new Conexion();
 "                	origen as'Origen',\n" +
 "                	destino as 'Destino',\n" +
 "                	km as 'Kilometros',\n" +
-"                	fecha as 'Fecha y Hora',\n" +
+"                	fecha as 'Fecha',\n" +
 "                	total as 'Total (L)' \n" +
 "                	from test_ambulancia \n" +
 "			inner join paciente on\n" +
@@ -1092,7 +1092,7 @@ private void edit_detalle(){
 "                	origen as'Origen',\n" +
 "                	destino as 'Destino',\n" +
 "                	km as 'Kilometros',\n" +
-"                	fecha as 'Fecha y Hora',\n" +
+"                	fecha as 'Fecha',\n" +
 "                	total as 'Total (L)' \n" +
 "                	from test_ambulancia \n" +
 "			inner join paciente on\n" +

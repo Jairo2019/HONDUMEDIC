@@ -814,7 +814,7 @@ static Conexion cc = new Conexion();
 
    public static String fechaactual() {
         Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         return formatofecha.format(fecha);
 
     }
@@ -853,7 +853,7 @@ static Conexion cc = new Conexion();
                 + "medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Motivo de Ingreso',"
-                + "fecha as 'Fecha y Hora',"
+                + "fecha as 'Fecha',"
                 + "unidad as 'Unidad',"
                 + " total as 'Total (L)'"
                 + " from test_hospitalizacion"
@@ -1091,7 +1091,7 @@ private void edit_detalle(){
                 + "medico_3 as 'Ordeno Ingreso',"
                 + "num_habitacion as 'Habitación',"
                 + "observaciones as'Motivo de Ingreso',"
-                + "fecha as 'Fecha y Hora',"
+                + "fecha as 'Fecha',"
                 + "unidad as 'Unidad',"
                 + " total as 'Total (L)'"
                 + " from test_hospitalizacion"

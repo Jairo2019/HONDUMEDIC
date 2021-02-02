@@ -278,7 +278,7 @@ public static Double value ;
 "                 medico_1 as 'Realizo Examen'," +
 "                 num_habitacion as 'Habitación'," +
 "                 observaciones as'Observaciones'," +
-"                 fecha as 'Fecha y Hora'," +
+"                 fecha as 'Fecha'," +
 "                  total as 'Total (L)' " +
 "                  from test_rayosx " +
 "                  inner join paciente on " +
@@ -356,7 +356,7 @@ public static Double value ;
                     + "medico_1 as 'Realizo Examen',"
                     + " num_habitacion as 'Habitación',"
                     + "observaciones as 'Observaciones',"
-                    + "fecha as 'Fecha y Hora',"
+                    + "fecha as 'Fecha',"
                     + " total as 'Total (L)' "
                     + "from test_rayosx WHERE paciente LIKE '%"+name+"%' ");
 

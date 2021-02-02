@@ -697,7 +697,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btningresosActionPerformed
 
     private void btnemergenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnemergenciaActionPerformed
-        new lista_examen_emergencia(new JFrame(), true).setVisible(true);     // TODO add your handling code here:
+        new elegir.elegir_reporte_emergencia_apa(new JFrame(), true).setVisible(true);     // TODO add your handling code here:
     }//GEN-LAST:event_btnemergenciaActionPerformed
 
     private void btnendoscopiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnendoscopiaActionPerformed
