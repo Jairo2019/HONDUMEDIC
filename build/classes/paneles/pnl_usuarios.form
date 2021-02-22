@@ -464,7 +464,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnUpdate" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnsave" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="btncancel" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                       <Component id="btnDelete" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>

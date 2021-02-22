@@ -8,9 +8,11 @@ package lista_productos_servicios;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,6 +59,7 @@ PreparedStatement pst=null;
         AWTUtilities.setOpaque(this, false);
         con= Conexion.ConnectDB();
         Get_Data();
+        cantidadAlmacen.hide();
         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
@@ -92,6 +95,7 @@ PreparedStatement pst=null;
         txtCantidad = new app.bolivia.swing.JCTextField();
         jLabel9 = new javax.swing.JLabel();
         cantidadAlmacen = new javax.swing.JLabel();
+        btnupdateStock = new principal.MaterialButtonCircle();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -110,7 +114,7 @@ PreparedStatement pst=null;
         cerrar.setForeground(new java.awt.Color(58, 159, 171));
         cerrar.setText("X");
         cerrar.setToolTipText("<html> <head> <style> #contenedor{background:white;color:black; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Cerrar</h4> </body> </html>");
-        cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cerrar.setFont(new java.awt.Font("Roboto Medium", 1, 20)); // NOI18N
         cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +230,7 @@ PreparedStatement pst=null;
                 btnMenosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnMenos, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 70, 60, 60));
+        jPanel1.add(btnMenos, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 70, 60, 60));
 
         buscar.setBorder(null);
         buscar.setForeground(new java.awt.Color(58, 159, 171));
@@ -254,15 +258,31 @@ PreparedStatement pst=null;
                 txtCantidadKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 80, 110, 30));
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 110, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ventas/campo-cantidad.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, -1, -1));
 
         cantidadAlmacen.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cantidadAlmacen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cantidadAlmacen.setText("CANTIDAD");
         jPanel1.add(cantidadAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, 29));
+
+        btnupdateStock.setBackground(new java.awt.Color(0, 111, 177));
+        btnupdateStock.setForeground(new java.awt.Color(255, 255, 255));
+        btnupdateStock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icons8_hospital-3_filled_16.png"))); // NOI18N
+        btnupdateStock.setText("-");
+        btnupdateStock.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Diminuir Stock</h4> </body> </html>");
+        btnupdateStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnupdateStock.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
+        btnupdateStock.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnupdateStock.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnupdateStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdateStockActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnupdateStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 70, 60, 60));
 
         panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 8, 960, 590));
 
@@ -455,6 +475,67 @@ PreparedStatement pst=null;
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
 
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void btnupdateStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateStockActionPerformed
+        if (tabla.getRowCount() > 0) {
+            try {
+                String[] dato = new String[6];
+
+                int fila = tabla.getSelectedRow();
+
+                if (fila == -1) {
+                    ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                    er.titulo.setText("OOPS...");
+                    er.msj.setText("SELECCIONA UN");
+                    er.msj1.setText("REGISTRO");
+                    er.setVisible(true);
+                } else {
+                    String cod = tabla.getValueAt(fila, 0).toString();
+                    if (this.txtCantidad.getText().equals("") || this.txtCantidad.getText().equals("0") ) {
+                        ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                        er.titulo.setText("OOPS...");
+                        er.msj.setText("DEBES INGRESAR UNA");
+                        er.msj1.setText("CANTIDAD");
+                        er.setVisible(true);
+                    } else {
+                        int total = Integer.parseInt(this.cantidadAlmacen.getText()) - Integer.parseInt(this.txtCantidad.getText());
+
+                        if (total < 0) {
+                            ErrorAlert er = new ErrorAlert(new JFrame(), true);
+                            er.titulo.setText("OOPS...");
+                            er.msj.setText("VERIFICA LA CANTIDAD DISPONIBLE");
+                            er.msj1.setText("DE ESTE PRODUCTO");
+                            er.setVisible(true);
+                        } else {
+                            try{
+                                int P = JOptionPane.showConfirmDialog(null," Seguro que quiere Quiere Disminuir el Stock?","Confirmación",JOptionPane.YES_NO_OPTION);
+                                if (P==0)
+                                {
+                                    con=Conexion.ConnectDB();
+                                    //query para actualizar los productos de inventario
+                                    String sql= "update inventario_ultrasonido set cantidad='"+ total
+                                    + "' where codigo_ultrasonido='" + cod+ "'";
+                                    pst=con.prepareStatement(sql);
+                                    pst.execute();
+                                    JOptionPane.showMessageDialog(this,"Stock Actualizado","Ultrasonido",JOptionPane.INFORMATION_MESSAGE);
+                                    Get_Data();
+                                    txtCantidad.setText("");
+                                }
+                            }catch(HeadlessException | SQLException ex){
+                                JOptionPane.showMessageDialog(this,ex);
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+            }
+        } else {
+            ErrorAlert er = new ErrorAlert(new JFrame(), true);
+            er.titulo.setText("OOPS...");
+            er.msj.setText("LA TABLA ESTA VACÍA");
+            er.msj1.setText("");
+            er.setVisible(true);}      // TODO add your handling code here:
+    }//GEN-LAST:event_btnupdateStockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4595,6 +4676,7 @@ PreparedStatement pst=null;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButtonCircle btnMenos;
+    private principal.MaterialButtonCircle btnupdateStock;
     public static app.bolivia.swing.JCTextField buscar;
     private javax.swing.JLabel cantidadAlmacen;
     private principal.MaterialButton cerrar;

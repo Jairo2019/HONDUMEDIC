@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -37,7 +38,7 @@ Date dato = null;
 ResultSet rs=null;
 PreparedStatement pst=null;
 public static int cant_minima;
-SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
+SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
     static Conexion cc = new Conexion();
     static Connection cn = cc.ConnectDB();
     static PreparedStatement ps;
@@ -55,6 +56,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         Get_Data();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         btnimprimir.setVisible(false);
+        cantidad_existente();
                
     }
 
@@ -82,6 +84,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         c_search_tbl = new app.bolivia.swing.JCTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsers = new javax.swing.JTable();
+        lblcantidad = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -209,7 +212,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Producto");
+        c_search_tbl.setPlaceholder("Buscar Producto (Nombre/Código)");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(300, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,6 +238,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
             }
         ));
         tableUsers.setGridColor(new java.awt.Color(255, 255, 255));
+        tableUsers.setName(""); // NOI18N
         tableUsers.setRowHeight(20);
         tableUsers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -252,23 +256,28 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
-                    .addGap(5, 5, 5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1030, Short.MAX_VALUE)
+                .addGroup(pnlChangeLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         pnlChangeLayout.setVerticalGroup(
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChangeLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(384, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addGap(338, 338, 338))
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlChangeLayout.createSequentialGroup()
-                    .addGap(84, 84, 84)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
+                    .addGap(91, 91, 91)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)))
         );
+
+        lblcantidad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblcantidad.setForeground(new java.awt.Color(0, 0, 0));
+        lblcantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblcantidad.setText("Cantidad del Producto:");
+        lblcantidad.setToolTipText("");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -276,13 +285,20 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblcantidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(138, 138, 138))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblcantidad)
+                .addContainerGap())
         );
 
         jPanel10.add(jPanel11, "card2");
@@ -547,7 +563,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         dtfechavec.setBackground(new java.awt.Color(255, 255, 255));
         dtfechavec.setForeground(new java.awt.Color(0, 0, 0));
         dtfechavec.setToolTipText("");
-        dtfechavec.setDateFormatString("dd/MM/yyyy");
+        dtfechavec.setDateFormatString("yyyy-MM-dd");
         dtfechavec.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         dtfechavec.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
@@ -1646,7 +1662,8 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
-        this.tableUsers.setDefaultRenderer(Object.class, new Colorear_CantMinima_Almacen());
+        tableUsers.setDefaultRenderer(Object.class, new Colorear_CantMinima_Almacen());
+        tableUsers.setDefaultRenderer(Object.class, new Colorear_fechaVencimiento());
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);}
   }
@@ -1692,16 +1709,29 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
             }if (txtPrecio.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
                 return;
-            }if (txtPrecioventa.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Precio de Venta","Error", JOptionPane.ERROR_MESSAGE);
-                return;
             }if (txtimpuesto.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese % de impuesto ","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             } if (txtcantidad.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
                 return;
+            } if (txtcantidadminima.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad Minima","Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
+    }
+    //función que suma las cantidades existentes de un producto
+    private void cantidad_existente(){
+        String can;
+        int total = 0;
+        int cantidad;
+
+        for (int i = 0; i < tableUsers.getRowCount(); i++) {
+            can = tableUsers.getValueAt(i, 5).toString(); //valores en la columna 5
+            cantidad = Integer.parseInt(can);
+            total = total + cantidad;
+        }
+        lblcantidad.setText("LA CANTIDAD EXISTENTE DE PRODUCTO ES DE: " + total );
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
@@ -1809,75 +1839,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnsaveMouseClicked
-
-    private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
-        try {
-            Reset();
-            con=Conexion.ConnectDB();
-            int row= tableUsers.getSelectedRow();
-            txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
-            txtproducto.setText(tableUsers.getModel().getValueAt(row,1).toString());
-            txtproveedor.setText(tableUsers.getModel().getValueAt(row,2).toString());
-            txtPrecio.setText(tableUsers.getModel().getValueAt(row,3).toString());
-            txtimpuesto.setText(tableUsers.getModel().getValueAt(row,4).toString());
-            precio=((Double.parseDouble(tableUsers.getModel().getValueAt(row,5).toString())) / (1+((Double.parseDouble(tableUsers.getModel().getValueAt(row,4).toString()))/100)));
-            txtPrecioventa.setText(String.valueOf(Math.round(precio)));
-            txtcantidad.setText(tableUsers.getModel().getValueAt(row,6).toString());
-            String fecha = tableUsers.getModel().getValueAt(tableUsers.getSelectedRow(),7).toString().trim() ;
-            try {
-
-                dato = formatofecha.parse(fecha);
-
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-            }
-            dtfechavec.setDate(dato);
-            txtcantidadminima.setText(tableUsers.getModel().getValueAt(row,8).toString());
-            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,9).toString());
-
-            this.btnsave.setEnabled(false);
-            this.btnDelete.setEnabled(true);
-            this.btnUpdate.setEnabled(true);
-            this.jTabbedPane2.setSelectedIndex(1);
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(this,ex);
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_tableUsersMouseClicked
-
-    private void c_search_tblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c_search_tblKeyReleased
-        // search btn code
-        String name = c_search_tbl.getText();
-        try {
-
-            DefaultTableModel dt = (DefaultTableModel) tableUsers.getModel();
-            dt.setRowCount(0);
-            Statement s = Conexion.ConnectDB().createStatement();
-
-            ResultSet rs = s.executeQuery("SELECT * FROM almacen WHERE producto LIKE '%"+name+"%' or codigo_almacen LIKE '%"+name+"%' ");
-            
-            while (rs.next()) {
-                Vector v = new Vector();
-                v.add(rs.getString(1));
-                v.add(rs.getString(2));
-                v.add(rs.getString(3));
-                v.add(rs.getString(4));
-                v.add(rs.getString(5));
-                v.add(rs.getString(6));
-                v.add(rs.getString(7));
-                v.add(rs.getString(8));
-                v.add(rs.getString(9));
-                v.add(rs.getString(10));
-                dt.addRow(v);
-            }
-        } catch (Exception e) {
-            Get_Data();
-
-        }          // TODO add your handling code here:
-    }//GEN-LAST:event_c_search_tblKeyReleased
-
-    private void c_search_tblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_search_tblActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c_search_tblActionPerformed
 
     private void txtproveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproveedorActionPerformed
         // TODO add your handling code here:
@@ -2077,6 +2038,78 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadminimaKeyTyped
 
+    private void c_search_tblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_search_tblActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c_search_tblActionPerformed
+
+    private void c_search_tblKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c_search_tblKeyReleased
+       // search btn code
+        String name = c_search_tbl.getText();
+        try {
+
+            DefaultTableModel dt = (DefaultTableModel) tableUsers.getModel();
+            dt.setRowCount(0);
+            Statement s = Conexion.ConnectDB().createStatement();
+
+            ResultSet rs = s.executeQuery("SELECT * FROM almacen WHERE producto LIKE '%"+name+"%' or codigo_almacen LIKE '%"+name+"%' ");
+            
+            while (rs.next()) {
+                Vector v = new Vector();
+                v.add(rs.getString(1));
+                v.add(rs.getString(2));
+                v.add(rs.getString(3));
+                v.add(rs.getString(4));
+                v.add(rs.getString(5));
+                v.add(rs.getString(6));
+                v.add(rs.getString(7));
+                v.add(rs.getString(8));
+                v.add(rs.getString(9));
+                v.add(rs.getString(10));
+                dt.addRow(v);
+            }
+            cantidad_existente();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e);
+            Get_Data();
+
+        }   
+ 
+    }//GEN-LAST:event_c_search_tblKeyReleased
+
+    private void tableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsersMouseClicked
+               try {
+            Reset();
+            con=Conexion.ConnectDB();
+            int row= tableUsers.getSelectedRow();
+            txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
+            txtproducto.setText(tableUsers.getModel().getValueAt(row,1).toString());
+            txtproveedor.setText(tableUsers.getModel().getValueAt(row,2).toString());
+            txtPrecio.setText(tableUsers.getModel().getValueAt(row,3).toString());
+            txtimpuesto.setText(tableUsers.getModel().getValueAt(row,4).toString());
+            precio=((Double.parseDouble(tableUsers.getModel().getValueAt(row,5).toString())) / (1+((Double.parseDouble(tableUsers.getModel().getValueAt(row,4).toString()))/100)));
+            txtPrecioventa.setText(String.valueOf(Math.round(precio)));
+            txtcantidad.setText(tableUsers.getModel().getValueAt(row,6).toString());
+            String fecha = tableUsers.getModel().getValueAt(tableUsers.getSelectedRow(),7).toString().trim() ;
+            try {
+
+                dato = formatofecha.parse(fecha);
+
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+            dtfechavec.setDate(dato);
+            txtcantidadminima.setText(tableUsers.getModel().getValueAt(row,8).toString());
+            txtDescripcion.setText(tableUsers.getModel().getValueAt(row,9).toString());
+
+            this.btnsave.setEnabled(false);
+            this.btnDelete.setEnabled(true);
+            this.btnUpdate.setEnabled(true);
+            this.jTabbedPane2.setSelectedIndex(1);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }        // TODO a
+    }//GEN-LAST:event_tableUsersMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCancelar;
@@ -2124,10 +2157,11 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private static javax.swing.JLabel lblcantidad;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JPanel pnlChange1;
     public static javax.swing.JTable tabla_almacen;
-    public static javax.swing.JTable tableUsers;
+    private javax.swing.JTable tableUsers;
     public javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtPrecio;

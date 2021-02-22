@@ -381,7 +381,7 @@ PreparedStatement pst=null;
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btncancel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -813,7 +813,6 @@ PreparedStatement pst=null;
     }
     private void Reset()
 {
-    txtCodigo.setText("");
     txtName.setText("");
     txtLastname.setText("");
     dtFechaNac.setDate(null);
@@ -822,7 +821,6 @@ PreparedStatement pst=null;
     txtUserName.setText("");
     txtPassword.setText("");
     txtEmail.setText("");
-    txtCodigo.setText("");
     btnsave.setEnabled(true);
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);

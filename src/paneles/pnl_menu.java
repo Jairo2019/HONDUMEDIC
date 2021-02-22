@@ -396,7 +396,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         btnendoscopia.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnendoscopia.setForeground(new java.awt.Color(0, 111, 177));
         btnendoscopia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnendoscopia.png"))); // NOI18N
-        btnendoscopia.setText("ENDOSCOPIA");
+        btnendoscopia.setText("ENDOSCOPÍA");
         btnendoscopia.setToolTipText("");
         btnendoscopia.setBorder(null);
         btnendoscopia.setContentAreaFilled(false);

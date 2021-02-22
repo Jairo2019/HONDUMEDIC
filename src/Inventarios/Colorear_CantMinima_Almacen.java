@@ -11,8 +11,8 @@ public class Colorear_CantMinima_Almacen extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
         
-        int cant_minima = (int) table.getValueAt(row, 7);
-        int cantidad = (int) table.getValueAt(row, 5);
+        int cant_minima =  Integer.parseInt(table.getValueAt(row, 7).toString());
+        int cantidad =  Integer.parseInt(table.getValueAt(row, 5).toString());
         
         if (cantidad<=cant_minima) {
             this.setBackground(Color.RED);
