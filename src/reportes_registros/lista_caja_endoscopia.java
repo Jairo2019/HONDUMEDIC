@@ -304,12 +304,12 @@ public static Double value ;
 
  }
  void print_bill(){
-        class_caja em;// Instaciamos la clase empleado
-        List <class_caja>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        class_caja em;// Instaciamos la clase  
+        List <class_caja>lista = new ArrayList<>(); //Creamos una lista de  s con ArrayList para obtener cada  
         for(int i=0; i<tabla.getRowCount(); i++){ // Iterena cada fila de la tabla
             em = new class_caja(tabla.getValueAt(i, 0).toString(),tabla.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto 
             tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i, 3).toString(),tabla.getValueAt(i, 4).toString());
-            lista.add(em); //Agregamos el objeto empleado a la lista
+            lista.add(em); //Agregamos el objeto   a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
         String path = "src\\reportes_registros\\rpt_caja_endoscopia.jasper"; //Ponemos la localizacion del reporte creado

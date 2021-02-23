@@ -7,27 +7,36 @@ package Inventarios;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import paneles.*;
 import java.awt.Font;
-import java.util.Date;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Vector;
-import javax.swing.table.DefaultTableModel;
-import java.sql.ResultSet;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lista_productos_servicios.*;
+import principal.GenerarCodigos;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import lista_productos_servicios.*;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import principal.GenerarCodigos;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import paneles.Conexion;
 /**
  *
  * @author Rojeru San
@@ -84,6 +93,12 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         c_search_tbl = new app.bolivia.swing.JCTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsers = new javax.swing.JTable();
+        jPanel14 = new javax.swing.JPanel();
+        btnvec6_12 = new rsbuttom.RSButtonMetro();
+        btnvec0_3 = new rsbuttom.RSButtonMetro();
+        btnall = new rsbuttom.RSButtonMetro();
+        btnvec3_6 = new rsbuttom.RSButtonMetro();
+        btnprint = new rsbuttom.RSButtonMetro();
         lblcantidad = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -247,13 +262,154 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         });
         jScrollPane1.setViewportView(tableUsers);
 
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel14.setLayout(new java.awt.GridBagLayout());
+
+        btnvec6_12.setText("Vencen(6-12 Meses)");
+        btnvec6_12.setToolTipText("");
+        btnvec6_12.setColorHover(new java.awt.Color(12, 140, 143));
+        btnvec6_12.setColorPressed(new java.awt.Color(12, 140, 143));
+        btnvec6_12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnvec6_12.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnvec6_12.setIconTextGap(10);
+        btnvec6_12.setPreferredSize(new java.awt.Dimension(150, 32));
+        btnvec6_12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnvec6_12MouseClicked(evt);
+            }
+        });
+        btnvec6_12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvec6_12ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 10, 0);
+        jPanel14.add(btnvec6_12, gridBagConstraints);
+
+        btnvec0_3.setText("Vencen(0-3 Meses)");
+        btnvec0_3.setToolTipText("");
+        btnvec0_3.setColorHover(new java.awt.Color(12, 140, 143));
+        btnvec0_3.setColorPressed(new java.awt.Color(12, 140, 143));
+        btnvec0_3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnvec0_3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnvec0_3.setIconTextGap(10);
+        btnvec0_3.setPreferredSize(new java.awt.Dimension(150, 32));
+        btnvec0_3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnvec0_3MouseClicked(evt);
+            }
+        });
+        btnvec0_3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvec0_3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 71, 10, 0);
+        jPanel14.add(btnvec0_3, gridBagConstraints);
+
+        btnall.setText("Todos Los Productos");
+        btnall.setToolTipText("");
+        btnall.setColorHover(new java.awt.Color(12, 140, 143));
+        btnall.setColorPressed(new java.awt.Color(12, 140, 143));
+        btnall.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnall.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnall.setIconTextGap(10);
+        btnall.setPreferredSize(new java.awt.Dimension(150, 32));
+        btnall.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnallMouseClicked(evt);
+            }
+        });
+        btnall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnallActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 10, 0);
+        jPanel14.add(btnall, gridBagConstraints);
+
+        btnvec3_6.setText("Vencen(3-6 Meses)");
+        btnvec3_6.setToolTipText("");
+        btnvec3_6.setActionCommand("Vencen(3-6 Meses)");
+        btnvec3_6.setColorHover(new java.awt.Color(12, 140, 143));
+        btnvec3_6.setColorPressed(new java.awt.Color(12, 140, 143));
+        btnvec3_6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnvec3_6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnvec3_6.setIconTextGap(10);
+        btnvec3_6.setPreferredSize(new java.awt.Dimension(150, 32));
+        btnvec3_6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnvec3_6MouseClicked(evt);
+            }
+        });
+        btnvec3_6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnvec3_6ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 10, 0);
+        jPanel14.add(btnvec3_6, gridBagConstraints);
+
+        btnprint.setText("Imprimir");
+        btnprint.setToolTipText("");
+        btnprint.setColorHover(new java.awt.Color(12, 140, 143));
+        btnprint.setColorPressed(new java.awt.Color(12, 140, 143));
+        btnprint.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnprint.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnprint.setIconTextGap(10);
+        btnprint.setPreferredSize(new java.awt.Dimension(150, 32));
+        btnprint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnprintMouseClicked(evt);
+            }
+        });
+        btnprint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnprintActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 25;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 10, 84);
+        jPanel14.add(btnprint, gridBagConstraints);
+
         javax.swing.GroupLayout pnlChangeLayout = new javax.swing.GroupLayout(pnlChange);
         pnlChange.setLayout(pnlChangeLayout);
         pnlChangeLayout.setHorizontalGroup(
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChangeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE)
+                .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1144, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 1144, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlChangeLayout.createSequentialGroup()
@@ -264,13 +420,14 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         pnlChangeLayout.setVerticalGroup(
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChangeLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                .addGap(338, 338, 338))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 311, Short.MAX_VALUE))
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
-                    .addGap(91, 91, 91)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)))
+                    .addGap(113, 113, 113)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)))
         );
 
         lblcantidad.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -598,7 +755,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
                         .addComponent(jLabel19)
                         .addGap(41, 41, 41)
                         .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -881,7 +1038,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         pnlChange1.setLayout(pnlChange1Layout);
         pnlChange1Layout.setHorizontalGroup(
             pnlChange1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1104, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlChange1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1663,7 +1820,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
         tableUsers.setDefaultRenderer(Object.class, new Colorear_CantMinima_Almacen());
-        tableUsers.setDefaultRenderer(Object.class, new Colorear_fechaVencimiento());
+        cantidad_existente();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);}
   }
@@ -1733,6 +1890,27 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         }
         lblcantidad.setText("LA CANTIDAD EXISTENTE DE PRODUCTO ES DE: " + total );
     }
+     void print_productos(){
+        class_almacen em;// Instaciamos la clase  
+        List < class_almacen>lista = new ArrayList<>(); //Creamos una lista de  s con ArrayList para obtener cada  
+        for(int i=0; i<tableUsers.getRowCount(); i++){ // Iterena cada fila de la tabla
+            em = new  class_almacen(tableUsers.getValueAt(i, 0).toString(),tableUsers.getValueAt(i,1).toString(),
+                    tableUsers.getValueAt(i, 2).toString(),tableUsers.getValueAt(i, 5).toString(),tableUsers.getValueAt(i, 6).toString(),
+                    tableUsers.getValueAt(i, 7).toString());
+            lista.add(em); //Agregamos el objeto   a la lista
+        }
+        JasperReport reporte; // Instaciamos el objeto reporte
+        String path = "src\\Inventarios\\rpt_almacen.jasper"; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this,ex);
+        }
+ }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -2110,17 +2288,91 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         }        // TODO a
     }//GEN-LAST:event_tableUsersMouseClicked
 
+    private void btnvec6_12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnvec6_12MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnvec6_12MouseClicked
+
+    private void btnvec6_12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvec6_12ActionPerformed
+        String sql="SELECT * FROM almacen WHERE DATEDIFF(fechavencimiento, (SELECT NOW()))<=365 AND DATEDIFF(fechavencimiento, (SELECT NOW()))>180";
+        try{
+         pst=con.prepareStatement(sql); 
+          rs= pst.executeQuery();
+         tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
+        tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
+        tableUsers.setDefaultRenderer(Object.class, new Colorear_CantMinima_Almacen());
+        cantidad_existente();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnvec6_12ActionPerformed
+
+    private void btnvec0_3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnvec0_3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnvec0_3MouseClicked
+
+    private void btnvec0_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvec0_3ActionPerformed
+        String sql=" SELECT * FROM almacen WHERE DATEDIFF(fechavencimiento, (SELECT NOW()))<=90 AND DATEDIFF(fechavencimiento, (SELECT NOW()))>=0";
+        try{
+         pst=con.prepareStatement(sql); 
+          rs= pst.executeQuery();
+         tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
+        tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
+        tableUsers.setDefaultRenderer(Object.class, new Colorear_CantMinima_Almacen());
+        cantidad_existente();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);}                // TODO add your handling code here:
+    }//GEN-LAST:event_btnvec0_3ActionPerformed
+
+    private void btnallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnallMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnallMouseClicked
+
+    private void btnallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnallActionPerformed
+        Get_Data();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnallActionPerformed
+
+    private void btnvec3_6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnvec3_6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnvec3_6MouseClicked
+
+    private void btnvec3_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnvec3_6ActionPerformed
+        String sql="SELECT * FROM almacen WHERE DATEDIFF(fechavencimiento, (SELECT NOW()))<=180 AND DATEDIFF(fechavencimiento, (SELECT NOW()))>90";
+        try{
+         pst=con.prepareStatement(sql); 
+          rs= pst.executeQuery();
+         tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
+        tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
+        tableUsers.setDefaultRenderer(Object.class, new Colorear_CantMinima_Almacen());
+        cantidad_existente();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnvec3_6ActionPerformed
+
+    private void btnprintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnprintMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnprintMouseClicked
+
+    private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
+        print_productos();                // TODO add your handling code here:
+    }//GEN-LAST:event_btnprintActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCancelar;
     private rsbuttom.RSButtonMetro btnDelete;
     private rsbuttom.RSButtonMetro btnUpdate;
+    private rsbuttom.RSButtonMetro btnall;
     private rsbuttom.RSButtonMetro btnasignar;
     private rsbuttom.RSButtonMetro btncancel;
     private principal.MaterialButton btnenviar;
     private principal.MaterialButton btnimprimir;
+    private rsbuttom.RSButtonMetro btnprint;
     private principal.MaterialButton btnquitar;
     private rsbuttom.RSButtonMetro btnsave;
+    private rsbuttom.RSButtonMetro btnvec0_3;
+    private rsbuttom.RSButtonMetro btnvec3_6;
+    private rsbuttom.RSButtonMetro btnvec6_12;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     private javax.swing.JComboBox cmbunidad;
@@ -2146,6 +2398,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
