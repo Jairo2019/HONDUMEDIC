@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jCTextField5" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="jCTextField4" max="32767" attributes="0"/>
+                  <Component id="jCTextField1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jCTextField2" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jCTextField3" alignment="1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jCTextField1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jCTextField2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jCTextField3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jCTextField4" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="107" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jCTextField5" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="JTextFieldPersonalizado.JCTextField" name="jCTextField1">
+      <Properties>
+        <Property name="placeholder" type="java.lang.String" value="Ingrese un valor"/>
+      </Properties>
+    </Component>
+    <Component class="JTextFieldPersonalizado.JCTextField" name="jCTextField2">
+      <Properties>
+        <Property name="placeholder" type="java.lang.String" value="Nombre"/>
+      </Properties>
+    </Component>
+    <Component class="JTextFieldPersonalizado.JCTextField" name="jCTextField3">
+      <Properties>
+        <Property name="placeholder" type="java.lang.String" value="Apellido"/>
+      </Properties>
+    </Component>
+    <Component class="JTextFieldPersonalizado.JCTextField" name="jCTextField4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jCTextField4"/>
+      </Properties>
+    </Component>
+    <Component class="JTextFieldPersonalizado.JCTextField" name="jCTextField5">
+      <Properties>
+        <Property name="placeholder" type="java.lang.String" value="El texto ir&#xe1; aqu&#xed;"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

@@ -109,26 +109,17 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         btnDelete = new rsbuttom.RSButtonMetro();
         jLabel14 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        txtproveedor = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        txtcantidad = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
-        txtimpuesto = new javax.swing.JTextField();
-        txtproducto = new javax.swing.JTextField();
-        txtCodigo = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        txtPrecioventa = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        txtcantidadminima = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         dtfechavec = new com.toedter.calendar.JDateChooser();
+        txtCodigo = new JTextFieldPersonalizado.JCTextField();
+        txtproveedor = new JTextFieldPersonalizado.JCTextField();
+        txtproducto = new JTextFieldPersonalizado.JCTextField();
+        txtPrecio = new JTextFieldPersonalizado.JCTextField();
+        txtimpuesto = new JTextFieldPersonalizado.JCTextField();
+        txtPrecioventa = new JTextFieldPersonalizado.JCTextField();
+        txtcantidad = new JTextFieldPersonalizado.JCTextField();
+        txtcantidadminima = new JTextFieldPersonalizado.JCTextField();
+        txtDescripcion = new JTextFieldPersonalizado.JCTextField();
         jPanel4 = new javax.swing.JPanel();
         pnlChange1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -348,7 +339,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
 
         btnvec3_6.setText("Vencen(3-6 Meses)");
         btnvec3_6.setToolTipText("");
-        btnvec3_6.setActionCommand("Vencen(3-6 Meses)");
         btnvec3_6.setColorHover(new java.awt.Color(12, 140, 143));
         btnvec3_6.setColorPressed(new java.awt.Color(12, 140, 143));
         btnvec3_6.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -584,43 +574,159 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setForeground(new java.awt.Color(0, 0, 0));
         jPanel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jPanel9.setLayout(new java.awt.GridBagLayout());
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setText("Fecha Vencimiento:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(14, 288, 0, 0);
+        jPanel9.add(jLabel22, gridBagConstraints);
+
+        dtfechavec.setBackground(new java.awt.Color(255, 255, 255));
+        dtfechavec.setForeground(new java.awt.Color(0, 0, 0));
+        dtfechavec.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Formato Año-Mes-Día</h4> </body> </html>");
+        dtfechavec.setDateFormatString("yyyy-MM-dd");
+        dtfechavec.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtfechavec.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 261;
+        gridBagConstraints.ipady = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 222, 0, 0);
+        jPanel9.add(dtfechavec, gridBagConstraints);
+
+        txtCodigo.setBackground(new java.awt.Color(255, 255, 255));
+        txtCodigo.setForeground(new java.awt.Color(0, 0, 0));
+        txtCodigo.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Código del Producto</h4> </body> </html>");
+        txtCodigo.setEnabled(false);
+        txtCodigo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtCodigo.setPlaceholder("Código del Producto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 222, 0, 0);
+        jPanel9.add(txtCodigo, gridBagConstraints);
 
         txtproveedor.setBackground(new java.awt.Color(204, 204, 204));
-        txtproveedor.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtproveedor.setForeground(new java.awt.Color(0, 0, 0));
-        txtproveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtproveedorActionPerformed(evt);
-            }
-        });
+        txtproveedor.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Nombre del Proveedor</h4> </body> </html>");
+        txtproveedor.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtproveedor.setPlaceholder("Ingrese Proveedor");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 143, 0, 163);
+        jPanel9.add(txtproveedor, gridBagConstraints);
 
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel24.setText("Proveedor: ");
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel25.setText("Precio Compra(Unitario):");
-        jLabel25.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel25.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        txtproducto.setBackground(new java.awt.Color(255, 255, 255));
+        txtproducto.setForeground(new java.awt.Color(0, 0, 0));
+        txtproducto.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Nombre del Producto</h4> </body> </html>");
+        txtproducto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtproducto.setPlaceholder("Ingrese Nombre del Producto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 222, 0, 0);
+        jPanel9.add(txtproducto, gridBagConstraints);
 
         txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
-        txtPrecio.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
+        txtPrecio.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Precio del Producto</h4> </body> </html>");
+        txtPrecio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtPrecio.setPlaceholder("Ingrece el Precio");
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
         txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPrecioKeyTyped(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 143, 0, 163);
+        jPanel9.add(txtPrecio, gridBagConstraints);
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Cantidad:");
+        txtimpuesto.setBackground(new java.awt.Color(255, 255, 255));
+        txtimpuesto.setForeground(new java.awt.Color(0, 0, 0));
+        txtimpuesto.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Impuesto</h4> </body> </html>");
+        txtimpuesto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtimpuesto.setPlaceholder("Ingrese % Impuesto");
+        txtimpuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtimpuestoActionPerformed(evt);
+            }
+        });
+        txtimpuesto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtimpuestoKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 222, 0, 0);
+        jPanel9.add(txtimpuesto, gridBagConstraints);
+
+        txtPrecioventa.setBackground(new java.awt.Color(255, 255, 255));
+        txtPrecioventa.setForeground(new java.awt.Color(0, 0, 0));
+        txtPrecioventa.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Precio de Venta</h4> </body> </html>");
+        txtPrecioventa.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtPrecioventa.setPlaceholder("Ingrese Precio de Venta");
+        txtPrecioventa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioventaActionPerformed(evt);
+            }
+        });
+        txtPrecioventa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioventaKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 143, 0, 163);
+        jPanel9.add(txtPrecioventa, gridBagConstraints);
 
         txtcantidad.setBackground(new java.awt.Color(255, 255, 255));
-        txtcantidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtcantidad.setForeground(new java.awt.Color(0, 0, 0));
+        txtcantidad.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Cantidad de Ingreso</h4> </body> </html>");
+        txtcantidad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtcantidad.setPlaceholder("Ingrese Cantidad de Ingreso\n");
         txtcantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcantidadActionPerformed(evt);
@@ -631,77 +737,20 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
                 txtcantidadKeyTyped(evt);
             }
         });
-
-        txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
-        txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
-
-        txtimpuesto.setBackground(new java.awt.Color(255, 255, 255));
-        txtimpuesto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtimpuesto.setForeground(new java.awt.Color(0, 0, 0));
-        txtimpuesto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtimpuestoKeyTyped(evt);
-            }
-        });
-
-        txtproducto.setBackground(new java.awt.Color(255, 255, 255));
-        txtproducto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtproducto.setForeground(new java.awt.Color(0, 0, 0));
-        txtproducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtproductoActionPerformed(evt);
-            }
-        });
-
-        txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtCodigo.setForeground(new java.awt.Color(0, 0, 0));
-        txtCodigo.setEnabled(false);
-        txtCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoActionPerformed(evt);
-            }
-        });
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("Codigo:");
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setText("Producto: ");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setText("Impuesto:");
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("Descripción:");
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel27.setText("Precio Venta:");
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-
-        txtPrecioventa.setBackground(new java.awt.Color(255, 255, 255));
-        txtPrecioventa.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtPrecioventa.setForeground(new java.awt.Color(0, 0, 0));
-        txtPrecioventa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPrecioventaKeyTyped(evt);
-            }
-        });
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("Cantidad Mínima:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 143, 0, 163);
+        jPanel9.add(txtcantidad, gridBagConstraints);
 
         txtcantidadminima.setBackground(new java.awt.Color(255, 255, 255));
-        txtcantidadminima.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtcantidadminima.setForeground(new java.awt.Color(0, 0, 0));
+        txtcantidadminima.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Cantidad Mínima </h4> </body> </html>");
+        txtcantidadminima.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtcantidadminima.setPlaceholder("Ingrese Cantidad Mínima ");
         txtcantidadminima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcantidadminimaActionPerformed(evt);
@@ -712,122 +761,35 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
                 txtcantidadminimaKeyTyped(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(38, 143, 0, 163);
+        jPanel9.add(txtcantidadminima, gridBagConstraints);
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel22.setText("Fecha Vencimiento:");
-
-        dtfechavec.setBackground(new java.awt.Color(255, 255, 255));
-        dtfechavec.setForeground(new java.awt.Color(0, 0, 0));
-        dtfechavec.setToolTipText("");
-        dtfechavec.setDateFormatString("yyyy-MM-dd");
-        dtfechavec.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        dtfechavec.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel17)
-                        .addGap(41, 41, 41)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel23)
-                        .addGap(41, 41, 41)
-                        .addComponent(txtproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel26)
-                        .addGap(41, 41, 41)
-                        .addComponent(txtimpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addGap(41, 41, 41)
-                        .addComponent(dtfechavec, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel19)
-                        .addGap(41, 41, 41)
-                        .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrecioventa, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcantidadminima, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel9Layout.createSequentialGroup()
-                            .addGap(7, 7, 7)
-                            .addComponent(jLabel17))
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel24))
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel23)))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel26))
-                            .addComponent(txtimpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(txtPrecioventa, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel22))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(dtfechavec, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel19))
-                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtcantidadminima, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel21))))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel25)
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel27)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel18)))
-                .addGap(13, 13, 13))
-        );
+        txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
+        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        txtDescripcion.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Descripción del Producto</h4> </body> </html>");
+        txtDescripcion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtDescripcion.setPlaceholder("Ingrese Descripción");
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescripcionActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 297;
+        gridBagConstraints.ipady = 53;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 222, 21, 0);
+        jPanel9.add(txtDescripcion, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -835,7 +797,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -847,10 +809,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -1077,7 +1039,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
                 .addComponent(pnlChange1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Distrubuir Inventario", jPanel4);
+        jTabbedPane2.addTab("Distribuir Inventario", jPanel4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1813,7 +1775,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
                 + "fechavencimiento as 'Fecha Vec', "
                 + "cantidadminima as 'Cantidad Mínima', "
                 + "descripcion as 'Descripción' "
-                + "from almacen";
+                + "from almacen ORDER BY producto ASC;";
         try{
          pst=con.prepareStatement(sql); 
           rs= pst.executeQuery();
@@ -1901,6 +1863,26 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         }
         JasperReport reporte; // Instaciamos el objeto reporte
         String path = "src\\Inventarios\\rpt_almacen.jasper"; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(this,ex);
+        }
+ }
+      void print_productos_distribuidos(){
+        class_distribuir_inventario em;// Instaciamos la clase  
+        List < class_distribuir_inventario>lista = new ArrayList<>(); //Creamos una lista de  s con ArrayList para obtener cada  
+        for(int i=0; i<tabla_almacen.getRowCount(); i++){ // Iterena cada fila de la tabla
+            em = new  class_distribuir_inventario(tabla_almacen.getValueAt(i, 0).toString(),tabla_almacen.getValueAt(i,1).toString(),
+                    tabla_almacen.getValueAt(i, 2).toString(),tabla_almacen.getValueAt(i, 3).toString(),tabla_almacen.getValueAt(i, 4).toString());
+            lista.add(em); //Agregamos el objeto   a la lista
+        }
+        JasperReport reporte; // Instaciamos el objeto reporte
+        String path = "src\\Inventarios\\rpt_dsitribuir_inventario.jasper"; //Ponemos la localizacion del reporte creado
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
@@ -2017,37 +1999,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
     private void btnsaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsaveMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnsaveMouseClicked
-
-    private void txtproveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtproveedorActionPerformed
-
-    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();      // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioKeyTyped
-
-    private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidadActionPerformed
-
-    private void txtcantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'0' || car>'9')) evt.consume();          // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidadKeyTyped
-
-    private void txtimpuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtimpuestoKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();         // TODO add your handling code here:
-    }//GEN-LAST:event_txtimpuestoKeyTyped
-
-    private void txtproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtproductoActionPerformed
-
-    private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void tabla_almacenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_almacenMouseClicked
         // TODO add your handling code here:
@@ -2200,21 +2151,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         }
     }//GEN-LAST:event_btnquitarActionPerformed
 
-    private void txtPrecioventaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioventaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioventaKeyTyped
-
     private void btnimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirActionPerformed
-        // TODO add your handling code here:
+        print_productos_distribuidos();
+        Reset();        // TODO add your handling code here:
     }//GEN-LAST:event_btnimprimirActionPerformed
-
-    private void txtcantidadminimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadminimaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidadminimaActionPerformed
-
-    private void txtcantidadminimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadminimaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcantidadminimaKeyTyped
 
     private void c_search_tblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_search_tblActionPerformed
         // TODO add your handling code here:
@@ -2357,6 +2297,55 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         print_productos();                // TODO add your handling code here:
     }//GEN-LAST:event_btnprintActionPerformed
 
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
+
+    private void txtimpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtimpuestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtimpuestoActionPerformed
+
+    private void txtPrecioventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioventaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioventaActionPerformed
+
+    private void txtcantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcantidadActionPerformed
+
+    private void txtcantidadminimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadminimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcantidadminimaActionPerformed
+
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescripcionActionPerformed
+
+    private void txtcantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9')) evt.consume();             // TODO add your handling code here:
+    }//GEN-LAST:event_txtcantidadKeyTyped
+
+    private void txtcantidadminimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadminimaKeyTyped
+       char car = evt.getKeyChar();
+        if((car<'0' || car>'9')) evt.consume();             // TODO add your handling code here:
+    }//GEN-LAST:event_txtcantidadminimaKeyTyped
+
+    private void txtimpuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtimpuestoKeyTyped
+         char car = evt.getKeyChar();
+        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();            // TODO add your handling code here:
+    }//GEN-LAST:event_txtimpuestoKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+         char car = evt.getKeyChar();
+        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();         // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtPrecioventaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioventaKeyTyped
+         char car = evt.getKeyChar();
+        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();         // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioventaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private principal.MaterialButton btnCancelar;
@@ -2379,17 +2368,8 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
     public com.toedter.calendar.JDateChooser dtfechavec;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -2415,14 +2395,14 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
     private javax.swing.JPanel pnlChange1;
     public static javax.swing.JTable tabla_almacen;
     private javax.swing.JTable tableUsers;
-    public javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtDescripcion;
-    public javax.swing.JTextField txtPrecio;
-    public javax.swing.JTextField txtPrecioventa;
-    public javax.swing.JTextField txtcantidad;
-    public javax.swing.JTextField txtcantidadminima;
-    public javax.swing.JTextField txtimpuesto;
-    public javax.swing.JTextField txtproducto;
-    public javax.swing.JTextField txtproveedor;
+    private JTextFieldPersonalizado.JCTextField txtCodigo;
+    private JTextFieldPersonalizado.JCTextField txtDescripcion;
+    private JTextFieldPersonalizado.JCTextField txtPrecio;
+    private JTextFieldPersonalizado.JCTextField txtPrecioventa;
+    private JTextFieldPersonalizado.JCTextField txtcantidad;
+    private JTextFieldPersonalizado.JCTextField txtcantidadminima;
+    private JTextFieldPersonalizado.JCTextField txtimpuesto;
+    private JTextFieldPersonalizado.JCTextField txtproducto;
+    private JTextFieldPersonalizado.JCTextField txtproveedor;
     // End of variables declaration//GEN-END:variables
 }
