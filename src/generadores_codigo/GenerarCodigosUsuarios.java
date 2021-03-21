@@ -1,45 +1,43 @@
 
-package principal;
+package generadores_codigo;
+
+import principal.*;
+import static Inventarios.almacen.txtCodigo;
+import cafeteria.OpcionesAl;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import ServiciosYConexion.Conexion;
+import ServiciosYConexion.pnl_usuarios;
 
 
-public class GenerarCodigos {
+public class GenerarCodigosUsuarios {
+    static Conexion cc = new Conexion();
+    static Connection cn = cc.ConnectDB();
+    static PreparedStatement ps;
     
-    private int dato;
-    private int cont=1;
-    private String num="";
 
-    public void generar(int dato) {
-        this.dato = dato;
-          
-           if((this.dato>=1000) || (this.dato<10000)) 
-           {
-               int can=cont+this.dato;
-               num = "" + can; 
-           }
-           if((this.dato>=100) || (this.dato<1000))
-           {
-               int can=cont+this.dato;
-               num = "0" + can; 
-           }
-           if((this.dato>=9) || (this.dato<100)) 
-           {
-                int can=cont+this.dato;
-               num = "00" + can; 
-           }
-           if (this.dato<9)
-           {
-               int can=cont+this.dato;
-               num = "000" + can; 
-           }
-          
+    public void generar() {
+        int id=0;
+        String c = "";
+        String SQL = "SELECT MAX(codigo) FROM usuarios";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()) {
+                c = rs.getString(1);
+            }if(c==null){
+                pnl_usuarios.txtCodigo.setText("UID1");
+            }else{
+                id=Integer.parseInt(c.substring(3))+1;
+                pnl_usuarios.txtCodigo.setText("UID"+String.valueOf(id));}
+        }catch (SQLException ex) {
+            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
-    public String serie()
-    {
-        return this.num;
-    }
-    
-    
-    
-    
 }

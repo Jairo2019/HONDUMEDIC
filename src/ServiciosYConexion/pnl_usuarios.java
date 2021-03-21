@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package ServiciosYConexion;
 import cafeteria.OpcionesAl;
+import generadores_codigo.*;
+import static groovy.xml.Entity.amp;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.awt.HeadlessException;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
@@ -20,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 import principal.GenerarCodigos;
@@ -41,6 +45,7 @@ PreparedStatement pst=null;
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         con= Conexion.ConnectDB();
         Get_Data();
+        lblidempleado.hide();
         tableUsers.getTableHeader().setFont(new Font("Tahoma", 1, 16));
         tableUsers.getTableHeader().setBackground(Color.decode("#006FB0"));
        // tableUsers.getTableHeader().setForeground(Color.white);
@@ -61,6 +66,7 @@ PreparedStatement pst=null;
         cerrar = new principal.MaterialButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        lblidempleado = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -79,15 +85,8 @@ PreparedStatement pst=null;
         btnDelete = new rsbuttom.RSButtonMetro();
         jLabel14 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        dtFechaNac = new com.toedter.calendar.JDateChooser();
-        jLabel15 = new javax.swing.JLabel();
-        txtLastname = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -96,14 +95,10 @@ PreparedStatement pst=null;
         txtPassword = new javax.swing.JTextField();
         choiceacces = new javax.swing.JComboBox();
         jLabel23 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        choicesex = new javax.swing.JComboBox();
+        txtEmpleado = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         choiceunidad = new javax.swing.JComboBox();
+        btnEmpleado = new principal.MaterialButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -134,6 +129,8 @@ PreparedStatement pst=null;
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuarios.png_48.png"))); // NOI18N
 
+        lblidempleado.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -143,6 +140,8 @@ PreparedStatement pst=null;
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(345, 345, 345)
+                .addComponent(lblidempleado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -156,7 +155,8 @@ PreparedStatement pst=null;
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblidempleado))))
                 .addContainerGap())
         );
 
@@ -189,7 +189,7 @@ PreparedStatement pst=null;
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Nombre");
+        c_search_tbl.setPlaceholder("Buscar Nombre/ Usuario/Id");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(300, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,56 +399,6 @@ PreparedStatement pst=null;
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setLayout(new java.awt.GridBagLayout());
 
-        dtFechaNac.setBackground(new java.awt.Color(255, 255, 255));
-        dtFechaNac.setForeground(new java.awt.Color(0, 0, 0));
-        dtFechaNac.setToolTipText("");
-        dtFechaNac.setDateFormatString("dd/MM/yyyy");
-        dtFechaNac.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        dtFechaNac.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 129;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 30, 0, 0);
-        jPanel9.add(dtFechaNac, gridBagConstraints);
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Apellido:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(22, 100, 0, 0);
-        jPanel9.add(jLabel15, gridBagConstraints);
-
-        txtLastname.setBackground(new java.awt.Color(255, 255, 255));
-        txtLastname.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtLastname.setForeground(new java.awt.Color(0, 0, 0));
-        txtLastname.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 165;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 30, 0, 0);
-        jPanel9.add(txtLastname, gridBagConstraints);
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Fecha Nacimiento:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(28, 18, 0, 0);
-        jPanel9.add(jLabel16, gridBagConstraints);
-
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Codigo:");
@@ -457,7 +407,7 @@ PreparedStatement pst=null;
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 150, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(28, 313, 0, 0);
         jPanel9.add(jLabel17, gridBagConstraints);
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -469,52 +419,14 @@ PreparedStatement pst=null;
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 170;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 275;
+        gridBagConstraints.ipady = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 12, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 29, 0, 0);
         jPanel9.add(txtCodigo, gridBagConstraints);
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Sexo:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(28, 171, 0, 0);
-        jPanel9.add(jLabel18, gridBagConstraints);
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("Dirección:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 148, 0, 0);
-        jPanel9.add(jLabel19, gridBagConstraints);
-
-        txtDireccion.setBackground(new java.awt.Color(204, 204, 204));
-        txtDireccion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtDireccion.setForeground(new java.awt.Color(0, 0, 0));
-        txtDireccion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtDireccion.setToolTipText("");
-        txtDireccion.setInheritsPopupMenu(true);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.ipadx = 170;
-        gridBagConstraints.ipady = 46;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(31, 17, 0, 0);
-        jPanel9.add(txtDireccion, gridBagConstraints);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setPreferredSize(new java.awt.Dimension(700, 76));
@@ -559,12 +471,12 @@ PreparedStatement pst=null;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -573,131 +485,61 @@ PreparedStatement pst=null;
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(jLabel21)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(choiceacces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(choiceacces, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 16;
-        gridBagConstraints.ipadx = 37;
-        gridBagConstraints.ipady = 19;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipadx = 34;
+        gridBagConstraints.ipady = 35;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(58, 148, 0, 151);
+        gridBagConstraints.insets = new java.awt.Insets(70, 119, 0, 100);
         jPanel9.add(jPanel10, gridBagConstraints);
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setText("Nombre: ");
+        jLabel23.setText("Empleado:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(25, 150, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(36, 289, 0, 0);
         jPanel9.add(jLabel23, gridBagConstraints);
 
-        txtName.setBackground(new java.awt.Color(255, 255, 255));
-        txtName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtName.setForeground(new java.awt.Color(0, 0, 0));
-        txtName.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.ipadx = 170;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 14, 0, 0);
-        jPanel9.add(txtName, gridBagConstraints);
-
-        txtEmail.setBackground(new java.awt.Color(204, 204, 204));
-        txtEmail.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
-        txtEmail.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 170;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 0);
-        jPanel9.add(txtEmail, gridBagConstraints);
-
-        txtTelefono.setBackground(new java.awt.Color(255, 255, 255));
-        txtTelefono.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
-        txtTelefono.setToolTipText("");
-        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTelefonoKeyPressed(evt);
-            }
+        txtEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        txtEmpleado.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtEmpleado.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmpleado.setToolTipText("");
+        txtEmpleado.setEnabled(false);
+        txtEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtTelefonoKeyTyped(evt);
+                txtEmpleadoKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 170;
+        gridBagConstraints.ipadx = 275;
+        gridBagConstraints.ipady = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 30, 0, 0);
-        jPanel9.add(txtTelefono, gridBagConstraints);
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel24.setText("Teléfono:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(28, 89, 0, 0);
-        jPanel9.add(jLabel24, gridBagConstraints);
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Correo:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 106, 0, 0);
-        jPanel9.add(jLabel25, gridBagConstraints);
-
-        choicesex.setBackground(new java.awt.Color(255, 255, 255));
-        choicesex.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        choicesex.setForeground(new java.awt.Color(0, 0, 0));
-        choicesex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F", "M" }));
-        choicesex.setToolTipText("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 142;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(23, 18, 0, 0);
-        jPanel9.add(choicesex, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(31, 29, 0, 0);
+        jPanel9.add(txtEmpleado, gridBagConstraints);
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Unidad:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 94, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(41, 312, 0, 0);
         jPanel9.add(jLabel26, gridBagConstraints);
 
         choiceunidad.setBackground(new java.awt.Color(255, 255, 255));
@@ -710,14 +552,38 @@ PreparedStatement pst=null;
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 4;
-        gridBagConstraints.ipadx = 49;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 154;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(11, 29, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(31, 29, 0, 0);
         jPanel9.add(choiceunidad, gridBagConstraints);
+
+        btnEmpleado.setBackground(new java.awt.Color(0, 111, 177));
+        btnEmpleado.setBorder(null);
+        btnEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        btnEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search_caja.png"))); // NOI18N
+        btnEmpleado.setText("buscar");
+        btnEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEmpleado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEmpleado.setRippleColor(new java.awt.Color(60, 63, 65));
+        btnEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpleadoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 46;
+        gridBagConstraints.ipady = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(26, 6, 0, 0);
+        jPanel9.add(btnEmpleado, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -749,7 +615,7 @@ PreparedStatement pst=null;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1057, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1057, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -766,61 +632,37 @@ PreparedStatement pst=null;
     }// </editor-fold>//GEN-END:initComponents
   private void Get_Data(){
       extraerID();
-        String sql="select codigo as 'Codigo', nombre as 'Nombre', apellido as 'Apellido',fecha_nacimiento as 'Fecha Nacimiento',sexo as 'Sexo', telefono as 'Telefono',correo as 'Correo',direccion as 'Dirección',unidad as 'Unidad',rol as 'Rol' , usuario as 'Nombre de Usuario', password as 'Contraseña' from usuarios";
+        String sql="select u.codigo as 'Codigo', "
+                + "u.id_empleado,"
+                + "concat(e.nombre,' ',e.apellido) as 'Empleado', "
+                + "e.telefono as 'Telefono',"
+                + "u.unidad as 'Unidad',"
+                + "u.rol as 'Acceso' ,"
+                + " u.usuario as 'Nombre de Usuario',"
+                + " u.password as 'Contraseña' "
+                +" from usuarios u " 
+                +" inner JOIN empleado e ON u.id_empleado=e.codigo_empleado";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
         tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
+        tableUsers.removeColumn(tableUsers.getColumnModel().getColumn(0));
+
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
           
 }
   }
   public void extraerID() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo) FROM usuarios";
-
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                txtCodigo.setText("ID0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                txtCodigo.setText("ID" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosUsuarios gen = new GenerarCodigosUsuarios();
+        gen.generar();
     }
     private void Reset()
 {
-    txtName.setText("");
-    txtLastname.setText("");
-    dtFechaNac.setDate(null);
-    txtDireccion.setText("");
-    txtTelefono.setText("");
+    txtEmpleado.setText("");
     txtUserName.setText("");
     txtPassword.setText("");
-    txtEmail.setText("");
     btnsave.setEnabled(true);
     btncancel.setEnabled(true);
     btnUpdate.setEnabled(false);
@@ -845,7 +687,17 @@ PreparedStatement pst=null;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM usuarios WHERE nombre LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select u.codigo as 'Codigo', "
+                 + "u.id_empleado,"
+                + "concat(e.nombre,' ',e.apellido) as 'Empleado', "
+                + "e.telefono as 'Telefono',"
+                + "u.unidad as 'Unidad',"
+                + "u.rol as 'Acceso' ,"
+                + " u.usuario as 'Nombre de Usuario',"
+                + " u.password as 'Contraseña' "
+                +" from usuarios u " 
+                +" inner JOIN empleado e ON u.id_empleado=e.codigo_empleado "
+                + "WHERE concat(e.nombre,' ',e.apellido) LIKE '%"+name+"%' or u.id_empleado LIKE '%"+name+"%' or u.usuario LIKE '%"+name+"%'");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -857,10 +709,6 @@ PreparedStatement pst=null;
                 v.add(rs.getString(6));
                 v.add(rs.getString(7));
                 v.add(rs.getString(8));
-                v.add(rs.getString(9));
-                v.add(rs.getString(10));
-                v.add(rs.getString(11));
-                v.add(rs.getString(11));
                 dt.addRow(v);
 
             }
@@ -876,25 +724,12 @@ PreparedStatement pst=null;
             con=Conexion.ConnectDB();
             int row= tableUsers.getSelectedRow();
             txtCodigo.setText(tableUsers.getModel().getValueAt(row,0).toString());
-            txtName.setText(tableUsers.getModel().getValueAt(row,1).toString());
-            txtLastname.setText(tableUsers.getModel().getValueAt(row,2).toString());
-            String fecha = tableUsers.getModel().getValueAt(tableUsers.getSelectedRow(),3).toString().trim() ;
-            try {
-
-                dato = formatofecha.parse(fecha);
-
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-            }
-            dtFechaNac.setDate(dato);
-            choicesex.setSelectedItem(tableUsers.getModel().getValueAt(row,4).toString());
-            txtTelefono.setText(tableUsers.getModel().getValueAt(row,5).toString());
-            txtEmail.setText(tableUsers.getModel().getValueAt(row,6).toString());
-            txtDireccion.setText(tableUsers.getModel().getValueAt(row,7).toString());
-            choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,8).toString());
-            choiceacces.setSelectedItem(tableUsers.getModel().getValueAt(row,9).toString());
-            txtUserName.setText(tableUsers.getModel().getValueAt(row,10).toString());
-            txtPassword.setText(tableUsers.getModel().getValueAt(row,11).toString());
+            lblidempleado.setText(tableUsers.getModel().getValueAt(row,1).toString());
+            txtEmpleado.setText(tableUsers.getModel().getValueAt(row,2).toString());
+            choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,4).toString());
+            choiceacces.setSelectedItem(tableUsers.getModel().getValueAt(row,5).toString());
+            txtUserName.setText(tableUsers.getModel().getValueAt(row,6).toString());
+            txtPassword.setText(tableUsers.getModel().getValueAt(row,7).toString());
 
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
@@ -912,29 +747,25 @@ PreparedStatement pst=null;
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         try{
             con=Conexion.ConnectDB();
-            if (txtName.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
+            if (txtCodigo.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                btnEmpleado.requestFocus();
                 return;
             }
-            if (txtLastname.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Apellido","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (dtFechaNac.getDate().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Fecha de Nacimiento","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtTelefono.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Número de Teléfono","Error", JOptionPane.ERROR_MESSAGE);
+            if (txtEmpleado.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Empleado","Error", JOptionPane.ERROR_MESSAGE);
+                txtEmpleado.requestFocus();
                 return;
             }
             if (txtUserName.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Nombre de Usuario","Error", JOptionPane.ERROR_MESSAGE);
+                txtUserName.requestFocus();
                 return;
             }
             //String Password= String.valueOf(txtPassword.getText());
             if (txtPassword.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Contraseña","Error", JOptionPane.ERROR_MESSAGE);
+                txtPassword.requestFocus();
                 return;
             }
 
@@ -948,26 +779,13 @@ PreparedStatement pst=null;
                 txtUserName.requestDefaultFocus();
                 return;
             }
-            String sql= "insert into usuarios(codigo,"
-                    + "nombre,"
-                    + "apellido,"
-                    + "fecha_nacimiento,"
-                    + "sexo,"
-                    + "telefono,"
-                    + "correo,"
-                    + "direccion,"
+            String sql= "insert into usuarios("
+                    + "id_empleado,"
                     + "unidad,"
                     + "rol,"
                     + "usuario,"
                     + "password) values ('"
-                    +txtCodigo.getText()+"','" 
-                    +txtName.getText()+"','" 
-                    + txtLastname.getText()+"','"
-                    +formatofecha.format( dtFechaNac.getDate())+"','"
-                    + choicesex.getSelectedItem()+"','"
-                    + txtTelefono.getText()+"','"
-                    + txtEmail.getText()+"','"
-                    +txtDireccion.getText()+"','"
+                    +lblidempleado.getText()+"','" 
                     + choiceunidad.getSelectedItem()+"','"
                     +choiceacces.getSelectedItem()+"','" 
                     +txtUserName.getText() + "','" 
@@ -992,28 +810,34 @@ PreparedStatement pst=null;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
+            if (txtCodigo.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE LA CONEXIÓN DEL SERVIDOR","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (txtEmpleado.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
+                txtEmpleado.requestFocus();
+                return;
+            }
+            if (txtUserName.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre de Usuario","Error", JOptionPane.ERROR_MESSAGE);
+                txtUserName.requestFocus();
+                return;
+            }
+            //String Password= String.valueOf(txtPassword.getText());
+            if (txtPassword.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Contraseña","Error", JOptionPane.ERROR_MESSAGE);
+                txtPassword.requestFocus();
+                return;
+            }
             Statement stmt;
             stmt= con.createStatement();
             String sql1="Select usuario from usuarios where usuario= '" + txtUserName.getText() + "'";
-            rs=stmt.executeQuery(sql1);
-            if(rs.next()){
-                JOptionPane.showMessageDialog( this, "Nombre de Usuario ya existe","Error", JOptionPane.ERROR_MESSAGE);
-                txtUserName.setText("");
-                txtUserName.requestDefaultFocus();
-                return;
-            }
-            String sql= "update usuarios set nombre='"+
-                    txtName.getText()+ "',apellido='" + 
-                    txtLastname.getText() + "',fecha_nacimiento='" +
-                    formatofecha.format( dtFechaNac.getDate()) +"',sexo='" +  
-                    choicesex.getSelectedItem() +"',telefono='" + 
-                    txtTelefono.getText() +"',correo='" + 
-                    txtEmail.getText() +"',direccion='" + 
-                    txtDireccion.getText()+"',unidad='"+
-                    choiceunidad.getSelectedItem() + "',rol='" + 
-                    choiceacces.getSelectedItem() +"',usuario='" + 
-                    txtUserName.getText()+"',password='" + 
-                    txtPassword.getText() + "' where codigo='" + 
+            String sql= "update usuarios set id_empleado='"+lblidempleado.getText()
+                    + "',unidad='" + choiceunidad.getSelectedItem() 
+                    + "',rol='" +choiceacces.getSelectedItem() 
+                    +"',usuario='" + txtUserName.getText()
+                    +"',password='" +txtPassword.getText() + "' where codigo='" + 
                     txtCodigo.getText() + "'";
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -1061,44 +885,42 @@ PreparedStatement pst=null;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void txtTelefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoKeyPressed
-
-    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-          char car = evt.getKeyChar();
-        if((car<'0' || car>'9') ) evt.consume();   
-    }//GEN-LAST:event_txtTelefonoKeyTyped
-
     private void choiceunidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choiceunidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_choiceunidadActionPerformed
 
+    private void txtEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmpleadoKeyTyped
+     char c = evt.getKeyChar();
+        if (Character.isDigit(c) == false) {
+        }else{
+            evt.consume();
+        }
+            // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmpleadoKeyTyped
+
+    private void btnEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpleadoActionPerformed
+        empleados.lista_empleados_admin.cual="12";
+        new empleados.lista_empleados_admin(new JFrame(), true).setVisible(true);   // TODO add your handling code here:
+    }//GEN-LAST:event_btnEmpleadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnDelete;
+    private principal.MaterialButton btnEmpleado;
     private rsbuttom.RSButtonMetro btnUpdate;
     private rsbuttom.RSButtonMetro btncancel;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     private javax.swing.JComboBox choiceacces;
-    private javax.swing.JComboBox choicesex;
     private javax.swing.JComboBox choiceunidad;
-    public com.toedter.calendar.JDateChooser dtFechaNac;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
@@ -1114,15 +936,12 @@ PreparedStatement pst=null;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    public static javax.swing.JLabel lblidempleado;
     private javax.swing.JPanel pnlChange;
     public javax.swing.JTable tableUsers;
-    public javax.swing.JTextField txtCodigo;
-    private javax.swing.JTextField txtDireccion;
-    public javax.swing.JTextField txtEmail;
-    public javax.swing.JTextField txtLastname;
-    public javax.swing.JTextField txtName;
+    public static javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtEmpleado;
     public javax.swing.JTextField txtPassword;
-    public javax.swing.JTextField txtTelefono;
     public javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

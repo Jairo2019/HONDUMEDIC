@@ -1,23 +1,23 @@
 package clases_cajas_servicios;
 
-public class laboratorio {
-    String paciente,num_fac,estado,fecha,isv,codigo,nombre_p, precio, cantidad,importe, subtotal, total;
+public class caja_pago_cuota {
+    String paciente,num_fac,estado,fecha,debe,codigo,nombre_p,fecha_servicio, precio, cantidad,importe, saldo_adeudado, total;
 
-    public laboratorio(String paciente, String num_fac, String estado, String fecha, String isv, String codigo, String nombre_p, String precio, String cantidad, String importe, String subtotal, String total) {
+    public caja_pago_cuota(String paciente, String num_fac, String estado, String fecha, String debe, String codigo, String nombre_p, String fecha_servicio, String precio, String cantidad, String importe, String saldo_adeudado, String total) {
         this.paciente = paciente;
         this.num_fac = num_fac;
         this.estado = estado;
         this.fecha = fecha;
-        this.isv = isv;
+        this.debe = debe;
         this.codigo = codigo;
         this.nombre_p = nombre_p;
+        this.fecha_servicio = fecha_servicio;
         this.precio = precio;
         this.cantidad = cantidad;
         this.importe = importe;
-        this.subtotal = subtotal;
+        this.saldo_adeudado = saldo_adeudado;
         this.total = total;
     }
-
 
     public String getPaciente() {
         return paciente;
@@ -35,12 +35,20 @@ public class laboratorio {
         return fecha;
     }
 
-    public String getIsv() {
-        return isv;
+    public String getDebe() {
+        return debe;
+    }
+
+    public String getCodigo() {
+        return codigo;
     }
 
     public String getNombre_p() {
         return nombre_p;
+    }
+
+    public String getFecha_servicio() {
+        return fecha_servicio;
     }
 
     public String getPrecio() {
@@ -55,16 +63,12 @@ public class laboratorio {
         return importe;
     }
 
-    public String getSubtotal() {
-        return subtotal;
+    public String getSaldo_adeudado() {
+        return saldo_adeudado;
     }
 
     public String getTotal() {
         return total;
-    }
-
-    public String getCodigo() {
-        return codigo;
     }
 
     public void setPaciente(String paciente) {
@@ -83,12 +87,20 @@ public class laboratorio {
         this.fecha = fecha;
     }
 
-    public void setIsv(String isv) {
-        this.isv = isv;
+    public void setDebe(String debe) {
+        this.debe = debe;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public void setNombre_p(String nombre_p) {
         this.nombre_p = nombre_p;
+    }
+
+    public void setFecha_servicio(String fecha_servicio) {
+        this.fecha_servicio = fecha_servicio;
     }
 
     public void setPrecio(String precio) {
@@ -103,14 +115,12 @@ public class laboratorio {
         this.importe = importe;
     }
 
-    public void setSubtotal(String subtotal) {
-        this.subtotal = subtotal;
+    public void setSaldo_adeudado(String saldo_adeudado) {
+        this.saldo_adeudado = saldo_adeudado;
     }
 
     public void setTotal(String total) {
         this.total = total;
-    }   
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }  
-}
+    }
+    
+ }

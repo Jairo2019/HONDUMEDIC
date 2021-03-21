@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package ServiciosYConexion;
 import cafeteria.OpcionesAl;
+import generadores_codigo.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -30,7 +31,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import static paneles.pnl_laboratorio.cn;
+import static ServiciosYConexion.pnl_laboratorio.cn;
 import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
@@ -454,7 +455,7 @@ public PrincipalAdministrador a ;
         gridBagConstraints.insets = new java.awt.Insets(63, 205, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
-        txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -577,38 +578,8 @@ private void Get_Data(){
 }
   }
  public void extraerID() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_endoscopia) FROM servicio_endoscopia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                txtCodigo.setText("SE0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                txtCodigo.setText("SE" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosServicios gen = new GenerarCodigosServicios();
+        gen.generar_endoscopia();
     }
     private void Reset()
 {
@@ -713,17 +684,30 @@ private void Get_Data(){
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         try{
             con=Conexion.ConnectDB();
+            if (txtCodigo.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                txtName.requestFocus();
+                return;
+            }
             if (txtName.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
+                txtName.requestFocus();
                 return;
             }
             if (txtPrecio.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Precio","Error", JOptionPane.ERROR_MESSAGE);
+                txtPrecio.requestFocus();
                 return;
             }
 
             // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into servicio_endoscopia(codigo_endoscopia,nombre,descripcion,precio) values ('"+txtCodigo.getText()+"','"+txtName.getText()+"','" + txtDescripcion.getText() +"','" +txtPrecio.getText()+ "')";
+            String sql= "insert into servicio_endoscopia("
+                    + "nombre,"
+                    + "descripcion,"
+                    + "precio) values ('"
+                    +txtName.getText()+"','" +
+                    txtDescripcion.getText() +"','" 
+                    +txtPrecio.getText()+ "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -741,6 +725,16 @@ private void Get_Data(){
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
+            if (txtName.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
+                txtName.requestFocus();
+                return;
+            }
+            if (txtPrecio.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio","Error", JOptionPane.ERROR_MESSAGE);
+                txtPrecio.requestFocus();
+                return;
+            }
             String sql= "update servicio_endoscopia set nombre='"+ txtName.getText()+ "',descripcion='" + txtDescripcion.getText() + "',precio='" + txtPrecio.getText() + "' where codigo_endoscopia='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -834,7 +828,7 @@ private void Get_Data(){
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JTable tableUsers;
-    public javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPrecio;

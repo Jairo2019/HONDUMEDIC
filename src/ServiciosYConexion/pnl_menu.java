@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package paneles;
+package ServiciosYConexion;
 import caja.caja;
 import principal.*;
 import cotizaciones.*;
@@ -241,7 +241,7 @@ public class pnl_menu extends javax.swing.JInternalFrame {
         btncirugia.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btncirugia.setForeground(new java.awt.Color(0, 111, 177));
         btncirugia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btncirugia.png"))); // NOI18N
-        btncirugia.setText("CIRUGÍA");
+        btncirugia.setText("QUIRÓFANO");
         btncirugia.setToolTipText("");
         btncirugia.setBorder(null);
         btncirugia.setContentAreaFilled(false);

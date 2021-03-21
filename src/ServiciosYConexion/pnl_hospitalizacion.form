@@ -208,7 +208,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img/Hospitalization_64.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Hospitalizaci&#xf3;n"/>
+                        <Property name="text" type="java.lang.String" value="Hospitalizaci&#xf3;n Pedi&#xe1;trica"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JPanel" name="pnlChange">
@@ -628,7 +628,7 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/img/Hospitalization_64.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Hospitalizaci&#xf3;n"/>
+                    <Property name="text" type="java.lang.String" value="Hospitalizaci&#xf3;n Pedi&#xe1;trica"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel9">
@@ -676,7 +676,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCodigoActionPerformed"/>
                       </Events>
                       <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -719,7 +719,7 @@
                     <Component class="javax.swing.JTextField" name="txtDescripcion">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                          <Color blue="cc" green="cc" red="cc" type="rgb"/>
                         </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="16" style="0"/>
