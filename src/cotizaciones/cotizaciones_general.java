@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package cotizaciones;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import unidad_apa.*;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -840,28 +841,28 @@ static Conexion cc = new Conexion();
     Double Num;
     //genera el numero que tendra la factura
     private void numeros() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo) FROM cotizaciones_general";
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            if (rs.next()) {
-                c = rs.getString(1);
-            }
-            if (c == null) {
-                numFac.setText("00000001");
-            } else {
-                j = Integer.parseInt(c);
-                GenerarNumero gen = new GenerarNumero();
-                gen.generar(j);
-                numFac.setText(gen.serie());
-            }
-        } catch (SQLException ex) {
-//           Logger.getLogger(opciones_serviciosVen.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        int j;
+//        int cont = 1;
+//        String num = "";
+//        String c = "";
+//        String SQL = "SELECT MAX(codigo) FROM cotizaciones_general";
+//        try {
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(SQL);
+//            if (rs.next()) {
+//                c = rs.getString(1);
+//            }
+//            if (c == null) {
+//                numFac.setText("0001");
+//            } else {
+//                j = Integer.parseInt(c);
+//                GenerarNumero gen = new GenerarNumero();
+//                gen.generar(j);
+//                numFac.setText(gen.serie());
+//            }
+//        } catch (SQLException ex) {
+////           Logger.getLogger(opciones_serviciosVen.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     //Método para saber la fecha actual
    public static String fechaactual() {

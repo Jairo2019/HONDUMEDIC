@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package Registro_Salida;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.SuccessAlert;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

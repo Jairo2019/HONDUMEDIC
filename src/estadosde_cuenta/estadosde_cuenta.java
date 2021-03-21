@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package estadosde_cuenta;
-import paneles.*;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -609,7 +610,7 @@ static Conexion cc = new Conexion();
         "    IFNULL((SELECT SUM(h.total)\n" +
         "    FROM test_hospitalizacion h\n" +
         "    where p.codigo_paciente=h.paciente AND h.estado=1),0)),0)AS Total" +
-        " FROM paciente p  " ;
+        " FROM paciente p  ORDER BY Total desc" ;
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();

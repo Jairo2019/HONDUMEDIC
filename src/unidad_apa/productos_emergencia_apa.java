@@ -8,9 +8,11 @@ package unidad_apa;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +24,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -57,6 +59,7 @@ PreparedStatement pst=null;
         AWTUtilities.setOpaque(this, false);
         con= Conexion.ConnectDB();
         Get_Data();
+        eliminarProductStock0();
         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
@@ -284,7 +287,26 @@ PreparedStatement pst=null;
 }
 
  }
- 
+  //eliminar producto automaticamente producto llegue a 0
+ public void eliminarProductStock0() {
+        String cod;
+        String can;
+
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            cod = tabla.getValueAt(i, 0).toString();
+            can = tabla.getValueAt(i, 3).toString();
+            try{
+                    con=Conexion.ConnectDB();
+                    String sql= "delete from inventario_emergencia_apa where cantidad='"+0+"' ";
+                    pst=con.prepareStatement(sql);
+                    pst.execute();
+                    Get_Data();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+            }
+        }
+
+    } 
     public void calcular() {
         String pre;
         String can;

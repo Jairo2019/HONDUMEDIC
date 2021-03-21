@@ -14,8 +14,8 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.swing.JRViewer;
-import paneles.CambiaPanel;
-import paneles.Conexion;
+import ServiciosYConexion.CambiaPanel;
+import ServiciosYConexion.Conexion;
 /**
  *
  * @author Jean Martell

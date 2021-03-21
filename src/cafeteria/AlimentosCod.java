@@ -16,8 +16,8 @@ public class AlimentosCod {
     
     public static String LISTAR = "SELECT * FROM alimentos ORDER BY nombre_al";
     
-    public static String REGISTRAR = "INSERT INTO alimentos(codigo_al, tipo_al, nombre_al, precio_al) "
-            + "VALUES(?,?,?,?)";
+    public static String REGISTRAR = "INSERT INTO alimentos(tipo_al, nombre_al, precio_al) "
+            + "VALUES(?,?,?)";
     
     public static String ACTUALIZAR = "UPDATE alimentos SET "
                 + "tipo_al=?, "

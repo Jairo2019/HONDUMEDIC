@@ -31,7 +31,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**

@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package ambulancia;
-import paneles.*;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.JasperCompilerManager;
+import ServiciosYConexion.Conexion;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -638,10 +640,12 @@ private void Get_Data(){
         try{
             con=Conexion.ConnectDB();
             if (txtName.getText().equals("")) {
+                txtName.requestFocus();
                 JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtPrecio.getText().equals("")) {
+                txtPrecio.requestFocus();
                 JOptionPane.showMessageDialog( this, "Ingrese Precio","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -665,6 +669,16 @@ private void Get_Data(){
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
+            if (txtName.getText().equals("")) {
+                txtName.requestFocus();
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (txtPrecio.getText().equals("")) {
+                txtPrecio.requestFocus();
+                JOptionPane.showMessageDialog( this, "Ingrese Precio","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             String sql= "update registrar_ambulancia set nombre='"+ txtName.getText()+ "',marca='" + txtDescripcion.getText() + "',year='" + txtPrecio.getText() + "' where codigo_ambulancia='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -710,10 +724,13 @@ private void Get_Data(){
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
-
+    private int limite=4;
     private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
           char car = evt.getKeyChar();
-        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();          // TODO add your handling code here:
+        if((car<'0' || car>'9') ) evt.consume();  
+        if (txtPrecio.getText().length()== limite){
+            evt.consume(); 
+       }// TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked

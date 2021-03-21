@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package deposito;
-import paneles.*;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -24,6 +25,7 @@ import principal.GenerarNumero;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
 import static principal.PrincipalAdministrador.estacerrado;
+import static principal.PrincipalAdministrador.historial_depositos;
 import static principal.PrincipalAdministrador.menu;
 /**
  *
@@ -68,6 +70,7 @@ PreparedStatement pst=null;
         jPanel2 = new javax.swing.JPanel();
         cerrar = new principal.MaterialButton();
         jLabel10 = new javax.swing.JLabel();
+        btnhistorydepositos = new javax.swing.JButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
@@ -128,6 +131,20 @@ PreparedStatement pst=null;
             }
         });
 
+        btnhistorydepositos.setBackground(new java.awt.Color(0, 111, 177));
+        btnhistorydepositos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnhistorydepositos.setForeground(new java.awt.Color(255, 255, 255));
+        btnhistorydepositos.setText("Historial de Depositos");
+        btnhistorydepositos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnhistorydepositos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnhistorydepositos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnhistorydepositos.setIconTextGap(10);
+        btnhistorydepositos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnhistorydepositosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -135,6 +152,8 @@ PreparedStatement pst=null;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnhistorydepositos, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -145,7 +164,8 @@ PreparedStatement pst=null;
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
+                    .addComponent(cerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnhistorydepositos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -573,7 +593,8 @@ PreparedStatement pst=null;
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
                 + "valor as 'Valor', "
                 + "fecha as 'Fecha', "
-                + "saldo_disponible as 'Saldo Disponible' "
+                + "saldo_disponible as 'Saldo Disponible', "
+                + "unidad as 'Unidad' "
                 + "from depositos"
                 + " inner join paciente on "
                 + "paciente = codigo_paciente "
@@ -630,7 +651,8 @@ PreparedStatement pst=null;
                 + "CONCAT(nombre, ' ' , apellido) as 'Paciente',"
                 + "valor as 'Valor', "
                 + "fecha as 'Fecha', "
-                + "saldo_disponible as 'Saldo Disponible' "
+                + "saldo_disponible as 'Saldo Disponible', "
+                + "unidad as 'Unidad' "
                 + "from depositos"
                 + " inner join paciente on "
                 + "paciente = codigo_paciente WHERE CONCAT(nombre, ' ' , apellido) LIKE '%"+name+"%' and estado=1 or codigo_paciente LIKE '%"+name+"%' and estado=1 ");
@@ -643,6 +665,7 @@ PreparedStatement pst=null;
                 v.add(rs.getString(4));
                 v.add(rs.getString(5));
                 v.add(rs.getString(6));
+                v.add(rs.getString(7));
                 dt.addRow(v);
 
             }
@@ -667,7 +690,7 @@ PreparedStatement pst=null;
             }
 
             if (c == null) {
-                txtCodigo.setText("00000001");
+                txtCodigo.setText("0001");
             } else {
                 j = Integer.parseInt(c);
                 GenerarNumero gen = new GenerarNumero();
@@ -727,13 +750,12 @@ PreparedStatement pst=null;
                 return;
             }
             //QUEry insert datos a tabla depositos
-            String sql= "insert into depositos(id,"
+            String sql= "insert into depositos("
                     + "paciente,"
                     + "valor,"
                     + "fecha,"
                     + "saldo_disponible,"
                     + "estado) values ('"
-                    +txtCodigo.getText()+"','" 
                     +txtidpaciente.getText()+"','" 
                     + txtvalor.getText() +"','" 
                     +txtfecha.getText()+"','" 
@@ -819,11 +841,24 @@ PreparedStatement pst=null;
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
 
+    private void btnhistorydepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhistorydepositosActionPerformed
+       PrincipalAdministrador.escritorio.removeAll();
+        if (estacerrado(historial_depositos)) {
+            historial_depositos = new depositos_clientesAntiguos();
+            int width = escritorio.getWidth();
+            int Height = escritorio.getHeight();
+            historial_depositos.setSize(width, Height);
+            escritorio.add(historial_depositos);
+            historial_depositos.show();
+        }         // TODO add your handling code here:
+    }//GEN-LAST:event_btnhistorydepositosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnDelete;
     private rsbuttom.RSButtonMetro btnUpdate;
     private rsbuttom.RSButtonMetro btncancel;
+    public static javax.swing.JButton btnhistorydepositos;
     private principal.MaterialButton btns_paciente;
     private rsbuttom.RSButtonMetro btnsave;
     private app.bolivia.swing.JCTextField c_search_tbl;

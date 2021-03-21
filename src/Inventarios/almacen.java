@@ -7,6 +7,7 @@ package Inventarios;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
+import generadores_codigo.*;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import lista_productos_servicios.*;
 import principal.GenerarCodigos;
+import principal.GenerarCodigosAlmacen;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +38,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 /**
  *
  * @author Rojeru San
@@ -583,7 +585,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 288, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 288, 0, 0);
         jPanel9.add(jLabel22, gridBagConstraints);
 
         dtfechavec.setBackground(new java.awt.Color(255, 255, 255));
@@ -596,7 +598,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 261;
         gridBagConstraints.ipady = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -607,52 +609,52 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         txtCodigo.setForeground(new java.awt.Color(0, 0, 0));
         txtCodigo.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Código del Producto</h4> </body> </html>");
         txtCodigo.setEnabled(false);
-        txtCodigo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtCodigo.setPlaceholder("Código del Producto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 297;
-        gridBagConstraints.ipady = 9;
+        gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 222, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 222, 0, 0);
         jPanel9.add(txtCodigo, gridBagConstraints);
 
         txtproveedor.setBackground(new java.awt.Color(204, 204, 204));
         txtproveedor.setForeground(new java.awt.Color(0, 0, 0));
         txtproveedor.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Nombre del Proveedor</h4> </body> </html>");
-        txtproveedor.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtproveedor.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtproveedor.setPlaceholder("Ingrese Proveedor");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 297;
-        gridBagConstraints.ipady = 9;
+        gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 143, 0, 163);
+        gridBagConstraints.insets = new java.awt.Insets(5, 143, 0, 163);
         jPanel9.add(txtproveedor, gridBagConstraints);
 
         txtproducto.setBackground(new java.awt.Color(255, 255, 255));
         txtproducto.setForeground(new java.awt.Color(0, 0, 0));
         txtproducto.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Nombre del Producto</h4> </body> </html>");
-        txtproducto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtproducto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtproducto.setPlaceholder("Ingrese Nombre del Producto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 297;
-        gridBagConstraints.ipady = 9;
+        gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 222, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 222, 0, 0);
         jPanel9.add(txtproducto, gridBagConstraints);
 
         txtPrecio.setBackground(new java.awt.Color(255, 255, 255));
         txtPrecio.setForeground(new java.awt.Color(0, 0, 0));
         txtPrecio.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Precio del Producto</h4> </body> </html>");
-        txtPrecio.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        txtPrecio.setPlaceholder("Ingrece el Precio");
+        txtPrecio.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtPrecio.setPlaceholder("Ingrece Precio de Compra\n");
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
@@ -667,15 +669,15 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 297;
-        gridBagConstraints.ipady = 9;
+        gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 143, 0, 163);
+        gridBagConstraints.insets = new java.awt.Insets(12, 143, 0, 163);
         jPanel9.add(txtPrecio, gridBagConstraints);
 
         txtimpuesto.setBackground(new java.awt.Color(255, 255, 255));
         txtimpuesto.setForeground(new java.awt.Color(0, 0, 0));
         txtimpuesto.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Impuesto</h4> </body> </html>");
-        txtimpuesto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtimpuesto.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtimpuesto.setPlaceholder("Ingrese % Impuesto");
         txtimpuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -692,15 +694,15 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 297;
-        gridBagConstraints.ipady = 5;
+        gridBagConstraints.ipady = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 222, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 222, 0, 0);
         jPanel9.add(txtimpuesto, gridBagConstraints);
 
         txtPrecioventa.setBackground(new java.awt.Color(255, 255, 255));
         txtPrecioventa.setForeground(new java.awt.Color(0, 0, 0));
         txtPrecioventa.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Precio de Venta</h4> </body> </html>");
-        txtPrecioventa.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtPrecioventa.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtPrecioventa.setPlaceholder("Ingrese Precio de Venta");
         txtPrecioventa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -717,15 +719,15 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 297;
-        gridBagConstraints.ipady = 9;
+        gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 143, 0, 163);
+        gridBagConstraints.insets = new java.awt.Insets(12, 143, 0, 163);
         jPanel9.add(txtPrecioventa, gridBagConstraints);
 
         txtcantidad.setBackground(new java.awt.Color(255, 255, 255));
         txtcantidad.setForeground(new java.awt.Color(0, 0, 0));
         txtcantidad.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Cantidad de Ingreso</h4> </body> </html>");
-        txtcantidad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtcantidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtcantidad.setPlaceholder("Ingrese Cantidad de Ingreso\n");
         txtcantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -739,17 +741,18 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 297;
-        gridBagConstraints.ipady = 9;
+        gridBagConstraints.ipady = 18;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 143, 0, 163);
+        gridBagConstraints.insets = new java.awt.Insets(18, 143, 0, 163);
         jPanel9.add(txtcantidad, gridBagConstraints);
 
         txtcantidadminima.setBackground(new java.awt.Color(255, 255, 255));
         txtcantidadminima.setForeground(new java.awt.Color(0, 0, 0));
         txtcantidadminima.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Cantidad Mínima </h4> </body> </html>");
-        txtcantidadminima.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtcantidadminima.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtcantidadminima.setPlaceholder("Ingrese Cantidad Mínima ");
         txtcantidadminima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -763,17 +766,17 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.ipadx = 297;
-        gridBagConstraints.ipady = 9;
+        gridBagConstraints.ipady = 17;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(38, 143, 0, 163);
+        gridBagConstraints.insets = new java.awt.Insets(13, 143, 0, 163);
         jPanel9.add(txtcantidadminima, gridBagConstraints);
 
         txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtDescripcion.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Descripción del Producto</h4> </body> </html>");
-        txtDescripcion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtDescripcion.setPlaceholder("Ingrese Descripción");
         txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -782,13 +785,13 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 297;
         gridBagConstraints.ipady = 53;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(26, 222, 21, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 222, 11, 0);
         jPanel9.add(txtDescripcion, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -797,7 +800,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -810,7 +813,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -885,7 +888,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
 
         btnCancelar.setBackground(new java.awt.Color(0, 111, 177));
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("LIMPIAR");
+        btnCancelar.setText("LIMPIAR / NUEVO");
         btnCancelar.setToolTipText("");
         btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -1068,74 +1071,9 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
     double precio=0;
 //metodo para obtener el maximo id y asignar id a la tabla almacen
     public void extraerID() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_almacen) FROM almacen";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                txtCodigo.setText("PA0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                txtCodigo.setText("PA" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    //metodo para obtener el maximo id y asignar id a la tabla ambulancia
-    public String extraerID_ambulancia(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_ambulancia) FROM inventario_ambulancia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "IA0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("IA" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
+        GenerarCodigosAlmacen gen = new GenerarCodigosAlmacen();
+        gen.generar();
+              
     }
         //metodo guardar productos en el inventario de ambulancia
     private void ingresar_inventario_ambulancia(){
@@ -1145,12 +1083,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_ambulancia( "
-                + "codigo_ambulancia,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_ambulancia(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1166,42 +1102,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
-     //metodo para obtener el maximo id y asignar id a la tabla cirugia
-    public String extraerID_cirugia(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_cirugia) FROM inventario_cirugia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "IC0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("IC" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }
         //metodo guardar productos en el inventario de cirugia
     private void ingresar_inventario_cirugia(){
     for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
@@ -1210,12 +1110,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_cirugia( "
-                + "codigo_cirugia,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_cirugia(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1231,77 +1129,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
-         //metodo para obtener el maximo id y asignar id a la tabla Emergencia
-    public String extraerID_Emergencia(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_emergencia) FROM inventario_emergencia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "PE0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("PE" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }//metodo para obtener el maximo id y asignar id a la tabla Emergencia APA
-    public String extraerID_Emergencia_apa(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_emergencia) FROM inventario_emergencia_apa";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "EA0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("EA" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }
         //metodo guardar productos en el inventario de Emergencia
     private void ingresar_inventario_Emergencia(){
     for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
@@ -1310,12 +1137,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_emergencia( "
-                + "codigo_emergencia,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_Emergencia(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1339,12 +1164,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_emergencia_apa( "
-                + "codigo_emergencia,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_Emergencia_apa(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1360,42 +1183,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
-     //metodo para obtener el maximo id y asignar id a la tabla Endoscopia
-    public String extraerID_Endoscopia(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_endoscopia) FROM inventario_endoscopia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "IE0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("IE" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }
         //metodo guardar productos en el inventario de Emergencia
     private void ingresar_inventario_Endoscopia(){
     for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
@@ -1404,12 +1191,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_endoscopia( "
-                + "codigo_endoscopia,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_Endoscopia(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1425,78 +1210,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
-    //metodo para obtener el maximo id y asignar id a la tabla Hospitalización
-    public String extraerID_Hospitalización(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_hospitalizacion) FROM inventario_hospitalizacion";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "IH0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("IH" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }
-    //metodo para obtener el maximo id y asignar id a la tabla Hospitalización APA
-     public String extraerID_Hospitalización_apa(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_hospitalizacion) FROM inventario_hospitalizacion_apa";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "HA0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("HA" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }
         //metodo guardar productos en el inventario de Hospitalización
     private void ingresar_inventario_Hospitalización(){
     for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
@@ -1505,12 +1218,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_hospitalizacion( "
-                + "codigo_hospitalizacion,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_Hospitalización(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1534,12 +1245,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_hospitalizacion_apa( "
-                + "codigo_hospitalizacion,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_Hospitalización_apa(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1555,42 +1264,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
-    //metodo para obtener el maximo id y asignar id a la tabla Laboratorio
-    public String extraerID_Laboratorio(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_laboratorio) FROM inventario_laboratorio";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "PL0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("PL" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }
         //metodo guardar productos en el inventario de Laboratorio
     private void ingresar_inventario_Laboratorio(){
     for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
@@ -1599,12 +1272,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_laboratorio( "
-                + "codigo_laboratorio,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_Laboratorio(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1620,42 +1291,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
-    //metodo para obtener el maximo id y asignar id a la tabla RayosX
-    public String extraerID_RayosX(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_rayosx) FROM inventario_rayosx";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "IR0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("IR" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }
         //metodo guardar productos en el inventario de RayosX
     private void ingresar_inventario_RayosX(){
     for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
@@ -1664,12 +1299,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_rayosx( "
-                + "codigo_rayosx,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_Laboratorio(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1685,42 +1318,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         catch(Exception e){JOptionPane.showMessageDialog(null,e.getMessage());}
     }
          }
-     //metodo para obtener el maximo id y asignar id a la tabla Ultrasonido
-    public String extraerID_Ultrasonido(String id) {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_ultrasonido) FROM inventario_ultrasonido";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                id = "IU0001";
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                id = ("IU" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return id;
-    }
         //metodo guardar productos en el inventario de Ultrasonido
     private void ingresar_inventario_Ultrasonido(){
     for (int i = 0; i <tabla_almacen.getRowCount(); i++) {
@@ -1729,12 +1326,10 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         String descripcion= tabla_almacen.getModel().getValueAt(i, 3).toString();
         String cantidad= tabla_almacen.getModel().getValueAt(i, 4).toString();
         String sql= "insert into inventario_ultrasonido( "
-                + "codigo_ultrasonido,"
                 + "nombre,"
                 + "precio,"
                 + "descripcion,"
                 + "cantidad) values ('"
-                +extraerID_Laboratorio(id)+"','" 
                 + producto +"','" 
                 +precio+"','" 
                 +descripcion+"','" 
@@ -1820,25 +1415,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
         btnasignar.setEnabled(false);
         btnimprimir.setVisible(true);
     }
-    //metodo para no permitir dejar campos vacios que es obligatorio llenar
-    private void notallowempty(){
-            if (txtproducto.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtPrecio.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtimpuesto.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese % de impuesto ","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } if (txtcantidad.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            } if (txtcantidadminima.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad Minima","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-    }
+
     //función que suma las cantidades existentes de un producto
     private void cantidad_existente(){
         String can;
@@ -1930,7 +1507,27 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
             precio= Double.parseDouble(txtPrecioventa.getText())* (1+ (Double.parseDouble(txtimpuesto.getText()))/100);
         try{
             con=Conexion.ConnectDB();
-            notallowempty();
+            if (txtproducto.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
+                txtproducto.requestFocus();
+                return;
+            }if (txtPrecio.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                txtPrecio.requestFocus();
+                return;
+            }if (txtimpuesto.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese % de impuesto ","Error", JOptionPane.ERROR_MESSAGE);
+                txtimpuesto.requestFocus();
+                return;
+            } if (txtcantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                txtcantidad.requestFocus();
+                return;
+            } if (txtcantidadminima.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad Minima","Error", JOptionPane.ERROR_MESSAGE);
+                txtcantidadminima.requestFocus();
+                return;
+            }
             //query para actualizar los productos de almacen
             String sql= "update almacen set producto='"+ txtproducto.getText()
                     + "',proveedor='" + txtproveedor.getText() 
@@ -1958,11 +1555,36 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         try{
             con=Conexion.ConnectDB();
-            notallowempty();
+            
+            if (txtCodigo.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (txtproducto.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
+                txtproducto.requestFocus();
+                return;
+            }if (txtPrecio.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                txtPrecio.requestFocus();
+                return;
+            }if (txtimpuesto.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese % de impuesto ","Error", JOptionPane.ERROR_MESSAGE);
+                txtimpuesto.requestFocus();
+                return;
+            } if (txtcantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                txtcantidad.requestFocus();
+                return;
+            } if (txtcantidadminima.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad Minima","Error", JOptionPane.ERROR_MESSAGE);
+                txtcantidadminima.requestFocus();
+                return;
+            }
             //formula para calcular el precio de compra
             precio= Double.parseDouble(txtPrecioventa.getText())* (1+ (Double.parseDouble(txtimpuesto.getText()))/100);
             // query para ingresar productos a almacen
-            String sql= "insert into almacen(codigo_almacen,"
+            String sql= "insert into almacen("
             + "producto,"
             + "proveedor,"
             + "precio_compra,"
@@ -1973,7 +1595,6 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
             + "cantidadminima,"
             + "descripcion"
             + ") values ('"
-            +txtCodigo.getText()+"','" 
             +txtproducto.getText()+"','" 
             + txtproveedor.getText() +"','" 
             + txtPrecio.getText() +"','" 
@@ -2395,7 +2016,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
     private javax.swing.JPanel pnlChange1;
     public static javax.swing.JTable tabla_almacen;
     private javax.swing.JTable tableUsers;
-    private JTextFieldPersonalizado.JCTextField txtCodigo;
+    public static JTextFieldPersonalizado.JCTextField txtCodigo;
     private JTextFieldPersonalizado.JCTextField txtDescripcion;
     private JTextFieldPersonalizado.JCTextField txtPrecio;
     private JTextFieldPersonalizado.JCTextField txtPrecioventa;

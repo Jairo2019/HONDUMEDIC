@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package contabilidad;
+import ServiciosYConexion.Conexion;
 import Farmacia.*;
 import Inventarios.*;
 import cafeteria.OpcionesAl;
-import paneles.JasperCompilerManager;
-import paneles.*;
+import generadores_codigo.*;
+import ServiciosYConexion.JasperCompilerManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -674,38 +675,8 @@ PreparedStatement pst=null;
     }// </editor-fold>//GEN-END:initComponents
     Double valor_actual=0.0;
     public void extraerID() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(idactivot) FROM activostangibles";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                txtCodigo.setText("AT0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                txtCodigo.setText("AT" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosActivoTangible gen = new GenerarCodigosActivoTangible();
+        gen.generar();
     }
     private void Get_Data(){
         Reset();
@@ -833,7 +804,7 @@ PreparedStatement pst=null;
                 return;
             }
             valor_actual= (Double.parseDouble(txtvi.getText()))-(Double.parseDouble(txtdepreciacion.getText()));
-            String sql= "insert into activostangibles(idactivot,"
+            String sql= "insert into activostangibles("
                     + "atnombre,"
                     + "atvalorini,"
                     + "atdepreciacion,"
@@ -841,7 +812,6 @@ PreparedStatement pst=null;
                     + "atfechaingreso,"
                     + "atfechacompra,"
                     + "atdescripcion) values ('"
-                    +txtCodigo.getText()+"','"
                     +txtnombre.getText()+"','" 
                     +txtvi.getText()+"','"
                     +txtnombre.getText()+"','" 
@@ -985,7 +955,7 @@ PreparedStatement pst=null;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JTable tableUsers;
-    public javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtdepreciacion;
     public javax.swing.JTextField txtfechai;

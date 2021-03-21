@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import principal.GenerarNumero;
 import principal.PrincipalAdministrador;
 
@@ -267,7 +267,7 @@ PreparedStatement pst=null;
             }
 
             if (c == null) {
-                id=("00000001");
+                id=("0001");
             } else {
                 j = Integer.parseInt(c);
                 GenerarNumero gen = new GenerarNumero();
@@ -312,13 +312,12 @@ PreparedStatement pst=null;
                 return;
             }
             //QUEry insert datos a tabla depositos
-            String sql= "insert into depositos(id,"
+            String sql= "insert into depositos("
                     + "paciente,"
                     + "valor,"
                     + "fecha,"
                     + "saldo_disponible,"
                     + "estado) values ('"
-                    +id+"','" 
                     +idpaciente+"','" 
                     + txtdeposito.getText() +"','" 
                     +fecha+"','" 

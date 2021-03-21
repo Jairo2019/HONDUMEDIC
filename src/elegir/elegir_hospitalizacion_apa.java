@@ -274,8 +274,8 @@ public class elegir_hospitalizacion_apa extends javax.swing.JDialog {
         this.dispose();
         if (PrincipalAdministrador.estacerrado(PrincipalAdministrador.salida_hospitalizacion_apa)) {
             PrincipalAdministrador.salida_hospitalizacion_apa = new salida_hospitalizacion_apa();
-            int width = PrincipalAPA.escritorio.getWidth();
-            int Height = PrincipalAPA.escritorio.getHeight();
+            int width = PrincipalAdministrador.escritorio.getWidth();
+            int Height = PrincipalAdministrador.escritorio.getHeight();
             PrincipalAdministrador.salida_hospitalizacion_apa.setSize(width, Height);
             PrincipalAdministrador.escritorio.add(PrincipalAdministrador.salida_hospitalizacion_apa);
             PrincipalAdministrador.salida_hospitalizacion_apa.show();

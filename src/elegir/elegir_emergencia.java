@@ -12,7 +12,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import principal.PrincipalAdministrador;
 import Inventarios.inventario_emergencia;
-import paneles.pnl_emergencia;
+import ServiciosYConexion.pnl_emergencia;
 import registro_examen.examen_emergencia;
 /**
  *
@@ -78,7 +78,7 @@ public class elegir_emergencia extends javax.swing.JDialog {
 
         btnservicios.setBackground(new java.awt.Color(0, 111, 177));
         btnservicios.setForeground(new java.awt.Color(255, 255, 255));
-        btnservicios.setText("Servicios");
+        btnservicios.setText("Servicios Pediátricos");
         btnservicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnservicios.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnservicios.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +111,7 @@ public class elegir_emergencia extends javax.swing.JDialog {
 
         btnregistrar.setBackground(new java.awt.Color(0, 111, 177));
         btnregistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnregistrar.setText("Registrar Emergencia");
+        btnregistrar.setText("Registrar Emergencia ");
         btnregistrar.setActionCommand("registrar emrgencia");
         btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistrar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

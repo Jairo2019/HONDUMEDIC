@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -329,9 +329,6 @@ PreparedStatement pst=null;
                     cual="";
                     }else if (("6").equals(cual)){
                     cirugia.registrar_cirugia.txtayudante.setText(nom + " "+  apellido);
-                    cual="";
-                    }else if (("8").equals(cual)){
-                    unidad_apa.cotizaciones_apa.txtempleado.setText(nom + " "+  apellido);
                     cual="";
                     }else if (("11").equals(cual)){
                     Farmacia.caja_cobro.txtmedicoindica.setText(nom + " "+  apellido);

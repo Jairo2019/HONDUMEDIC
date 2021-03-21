@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -303,14 +303,13 @@ PreparedStatement pst=null;
             ResultSet rs = s.executeQuery("select codigo_ultrasonido as 'Codigo',"
                     + " nombre as 'Nombre',"
                     + " precio as 'Precio' "
-                    + "from servicio_ultrasonido WHERE nombre LIKE '%"+name+"%' ");
+                    + "from servicio_ultrasonido WHERE nombre LIKE '%"+name+"%' or codigo_ultrasonido LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
-                v.add(rs.getString(4));
                 dt.addRow(v);
 
             }

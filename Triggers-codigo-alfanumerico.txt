@@ -1,0 +1,304 @@
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_almacen before insert on almacen for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_almacen, 3), signed integer)), 0) from almacen) + 1;
+    set new.codigo_almacen = concat('PA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_activostangibles before insert on activostangibles for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(idactivot, 3), signed integer)), 0) from activostangibles) + 1;
+    set new.idactivot = concat('AT', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_alimentos before insert on alimentos for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_al, 3), signed integer)), 0) from alimentos) + 1;
+    set new.codigo_al = concat('AT', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_caja_farmacia before insert on caja_farmacia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(idventa, 1), signed integer)), 0) from caja_farmacia) + 1;
+    set new.idventa = concat('', LPAD( siguiente_codigo, 10, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_cuentas_cobrar before insert on cuentas_cobrar for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(idventa, 3), signed integer)), 0) from cuentas_cobrar) + 1;
+    set new.idventa = concat('CC', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_ambulancia before insert on inventario_ambulancia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_ambulancia, 3), signed integer)), 0) from inventario_ambulancia) + 1;
+    set new.codigo_ambulancia = concat('IA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_cirugia before insert on inventario_cirugia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_cirugia, 3), signed integer)), 0) from inventario_cirugia) + 1;
+    set new.codigo_cirugia = concat('IC', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_farmacia before insert on inventario_farmacia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_farmacia, 3), signed integer)), 0) from inventario_farmacia) + 1;
+    set new.codigo_farmacia = concat('PF', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_emergencia before insert on inventario_emergencia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_emergencia, 3), signed integer)), 0) from inventario_emergencia) + 1;
+    set new.codigo_emergencia = concat('PE', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_emergencia_apa before insert on inventario_emergencia_apa for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_emergencia, 4), signed integer)), 0) from inventario_emergencia_apa) + 1;
+    set new.codigo_emergencia = concat('IEA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_endoscopia before insert on inventario_endoscopia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_endoscopia, 3), signed integer)), 0) from inventario_endoscopia) + 1;
+    set new.codigo_endoscopia = concat('IE', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_hospitalizacion before insert on inventario_hospitalizacion for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_hospitalizacion, 3), signed integer)), 0) from inventario_hospitalizacion) + 1;
+    set new.codigo_hospitalizacion = concat('IH', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_hospitalizacion_apa before insert on inventario_hospitalizacion_apa for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_hospitalizacion, 4), signed integer)), 0) from inventario_hospitalizacion_apa) + 1;
+    set new.codigo_hospitalizacion = concat('IHA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_laboratorio before insert on inventario_laboratorio for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_laboratorio, 3), signed integer)), 0) from inventario_laboratorio) + 1;
+    SET new.codigo_laboratorio = concat('IL', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_rayosx before insert on inventario_rayosx for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_rayosx, 3), signed integer)), 0) from inventario_rayosx) + 1;
+    set new.codigo_rayosx = concat('IR', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_inventario_ultrasonido before insert on inventario_ultrasonido for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_ultrasonido, 3), signed integer)), 0) from inventario_ultrasonido) + 1;
+    set new.codigo_ultrasonido = concat('IU', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_ambulancia before insert on servicio_ambulancia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_ambulancia, 3), signed integer)), 0) from servicio_ambulancia) + 1;
+    set new.codigo_ambulancia = concat('SA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_cirugia before insert on cirugia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_cirugia, 3), signed integer)), 0) from cirugia) + 1;
+    set new.codigo_cirugia = concat('SC', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_emergencia before insert on servicio_emergencia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_emergencia, 3), signed integer)), 0) from servicio_emergencia) + 1;
+    set new.codigo_emergencia = concat('SM', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_emergencia_apa before insert on servicio_emergencia_apa for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_emergencia, 4), signed integer)), 0) from servicio_emergencia_apa) + 1;
+    set new.codigo_emergencia = concat('SEA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_endoscopia before insert on servicio_endoscopia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_endoscopia, 3), signed integer)), 0) from servicio_endoscopia) + 1;
+    set new.codigo_endoscopia = concat('SE', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_hospitalizacion before insert on servicio_hospitalizacion for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_hospitalizacion, 3), signed integer)), 0) from servicio_hospitalizacion) + 1;
+    set new.codigo_hospitalizacion = concat('SH', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_hospitalizacion_apa before insert on servicio_hospitalizacion_apa for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_hospitalizacion, 4), signed integer)), 0) from servicio_hospitalizacion_apa) + 1;
+    set new.codigo_hospitalizacion = concat('SHA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_laboratorio before insert on servicio_laboratorio for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_laboratorio, 3), signed integer)), 0) from servicio_laboratorio) + 1;
+    set new.codigo_laboratorio = concat('SL', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_rayosx before insert on servicio_rayosx for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_rayosx, 3), signed integer)), 0) from servicio_rayosx) + 1;
+    set new.codigo_rayosx = concat('SR', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_servicio_ultrasonido before insert on servicio_ultrasonido for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo_ultrasonido, 3), signed integer)), 0) from servicio_ultrasonido) + 1;
+    set new.codigo_ultrasonido = concat('SU', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_ambulancia before insert on test_ambulancia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 3), signed integer)), 0) from test_ambulancia) + 1;
+    set new.codigo = concat('RA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_ambulancia before insert on test_ambulancia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 3), signed integer)), 0) from test_ambulancia) + 1;
+    set new.codigo = concat('RA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_cirugia before insert on test_cirugia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 3), signed integer)), 0) from test_cirugia) + 1;
+    set new.codigo = concat('RC', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_emergencia before insert on test_emergencia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 3), signed integer)), 0) from test_emergencia) + 1;
+    set new.codigo = concat('RE', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_emergencia_apa before insert on test_emergencia_apa for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 4), signed integer)), 0) from test_emergencia_apa) + 1;
+    set new.codigo = concat('REA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_endoscopia before insert on test_endoscopia for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 4), signed integer)), 0) from test_endoscopia) + 1;
+    set new.codigo = concat('REN', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_hospitalizacion before insert on test_hospitalizacion for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 3), signed integer)), 0) from test_hospitalizacion) + 1;
+    set new.codigo = concat('RH', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_hospitalizacion_apa before insert on test_hospitalizacion_apa for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 4), signed integer)), 0) from test_hospitalizacion_apa) + 1;
+    set new.codigo = concat('RHA', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_laboratorio before insert on test_laboratorio for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 3), signed integer)), 0) from test_laboratorio) + 1;
+    set new.codigo = concat('RL', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_rayosx before insert on test_rayosx for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 4), signed integer)), 0) from test_rayosx) + 1;
+    set new.codigo = concat('RRX', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_test_ultrasonido before insert on test_ultrasonido for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 3), signed integer)), 0) from test_ultrasonido) + 1;
+    set new.codigo = concat('RU', LPAD( siguiente_codigo, 8, '0'));
+END $
+-----------------------------------------------------------------------------------
+delimiter $
+create trigger Generar_codigo_usuarios before insert on usuarios for each row
+begin
+	declare siguiente_codigo int;
+    set siguiente_codigo = (Select ifnull(max(convert(substring(codigo, 4), signed integer)), 0) from usuarios) + 1;
+    set new.codigo = concat('UID', LPAD( siguiente_codigo, 8, '0'));
+END $

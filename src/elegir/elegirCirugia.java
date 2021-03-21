@@ -14,8 +14,8 @@ import java.util.TimerTask;
 import principal.PrincipalAdministrador;
 import Inventarios.inventario_emergencia;
 import cirugia.registrar_cirugia;
-import paneles.pnl_cirugia;
-import paneles.pnl_emergencia;
+import ServiciosYConexion.pnl_cirugia;
+import ServiciosYConexion.pnl_emergencia;
 import registro_examen.examen_emergencia;
 /**
  *

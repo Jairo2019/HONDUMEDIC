@@ -239,7 +239,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnambulancia.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="AMBULANCIA"/>
+                        <Property name="text" type="java.lang.String" value="RPT AMBULANCIA"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -296,7 +296,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btncaja.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="CAJA"/>
+                        <Property name="text" type="java.lang.String" value="RPT CAJA"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -353,7 +353,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnexpenses.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="EGRESOS"/>
+                        <Property name="text" type="java.lang.String" value="RPT EGRESOS"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -409,7 +409,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btncirugia.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="CIRUG&#xcd;A"/>
+                        <Property name="text" type="java.lang.String" value="RPT CIRUG&#xcd;A"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -528,7 +528,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnincome.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="INGRESOS"/>
+                        <Property name="text" type="java.lang.String" value="RPT  INGRESOS"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -584,7 +584,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnemergencia.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="EMERGENCIA"/>
+                        <Property name="text" type="java.lang.String" value="RPT  EMERGENCIA"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -640,7 +640,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnendoscopia.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="ENDOSCOPIA"/>
+                        <Property name="text" type="java.lang.String" value="RPT  ENDOSCOPIA"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -695,7 +695,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnusuarios.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="PACIENTES"/>
+                        <Property name="text" type="java.lang.String" value="RPT  PACIENTES"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -773,7 +773,7 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnhopitalizacion" pref="235" max="32767" attributes="0"/>
+                              <Component id="btnhopitalizacion" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -800,7 +800,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnhospitalizacion.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="HOSPITALIZACI&#xd3;N"/>
+                        <Property name="text" type="java.lang.String" value="RPT  HOSPITALIZACI&#xd3;N"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -856,7 +856,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnrayosx.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="RAYOS X"/>
+                        <Property name="text" type="java.lang.String" value="RPT  RAYOS X"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -912,7 +912,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnultrasonido.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="ULTRASONIDO"/>
+                        <Property name="text" type="java.lang.String" value="RPT  ULTRASONIDO"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -968,7 +968,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img1/btnlaboratorio.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="LABORATORIO"/>
+                        <Property name="text" type="java.lang.String" value="RPT  LABORATORIO"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>

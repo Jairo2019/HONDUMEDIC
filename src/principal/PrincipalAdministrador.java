@@ -4,7 +4,15 @@
  * and open the template in the editor.
  */
 package principal;
-import paneles.*;
+import ServiciosYConexion.pnl_ambulancia;
+import ServiciosYConexion.pnl_hospitalizacion;
+import ServiciosYConexion.pnl_ultrasonido;
+import ServiciosYConexion.pnl_rayosx;
+import ServiciosYConexion.pnl_endoscopia;
+import ServiciosYConexion.pnl_emergencia;
+import ServiciosYConexion.pnl_laboratorio;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.pnl_cirugia;
 import pacientes.pacientes;
 import Inventarios.*;
 import cajaservicios.*;
@@ -14,7 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import empleados.empleados;
 import salidas.Salidas;
-import paneles.pnl_usuarios;
+import ServiciosYConexion.pnl_usuarios;
 import ventas.ListaVentas;
 import ventas.Ventas;
 import registro_examen.*;
@@ -98,6 +106,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     public static formbgeneral bgeneral=null;
     public static cuentas_cobrar.cuentas_cobrar cuentas_por_cobrar = null;
     public static deposito.depositos depositos = null;
+    public static deposito.depositos_clientesAntiguos historial_depositos = null;
     public static estadosde_cuenta.estadosde_cuenta estadosde_cuenta = null;
     public static pnl_emergencia_apa servicio_emergencia_apa = null;
     public static inventario_emergencia_apa inventario_emergencia_apa = null;
@@ -125,7 +134,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
      */
     public PrincipalAdministrador() {
         initComponents();
-        this.setIconImage(new ImageIcon(getClass().getResource("/img1/HODUMEDIC.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/img1/icon_taskbar.png")).getImage());
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setTitle("SISTEMA HONDUMEDIC");
         user();
@@ -277,7 +286,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         lbluser.setText("Nombre Usuario");
         lbluser.setIconTextGap(10);
 
-        cerrarSesion.setBackground(new java.awt.Color(0, 111, 177));
+        cerrarSesion.setBackground(new java.awt.Color(12, 140, 143));
         cerrarSesion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         cerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sign_out_32.png"))); // NOI18N
@@ -324,7 +333,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
         btncafeteria.setBackground(new java.awt.Color(0, 111, 177));
         btncafeteria.setForeground(new java.awt.Color(255, 255, 255));
-        btncafeteria.setText("Cefetería");
+        btncafeteria.setText("Cafetería");
         btncafeteria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btncafeteria.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         btncafeteria.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -414,7 +423,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -465,9 +474,10 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        jScrollPane1.setBackground(new java.awt.Color(12, 140, 143));
         jScrollPane1.setPreferredSize(new java.awt.Dimension(2000, 1500));
 
-        escritorio.setBackground(new java.awt.Color(255, 255, 255));
+        escritorio.setBackground(new java.awt.Color(12, 140, 143));
         escritorio.setMinimumSize(new java.awt.Dimension(10, 10));
         escritorio.setPreferredSize(new java.awt.Dimension(1218, 876));
         jScrollPane1.setViewportView(escritorio);

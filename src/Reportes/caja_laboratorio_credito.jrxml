@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="print" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b78a9b5c-970a-4cd4-98c5-17bac53640c9">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
@@ -34,12 +35,13 @@ FROM
 	<field name="isv" class="java.lang.String"/>
 	<field name="codigo" class="java.lang.String"/>
 	<field name="nombre_p" class="java.lang.String"/>
+	<field name="fecha_servicio" class="java.lang.String"/>
 	<field name="precio" class="java.lang.String"/>
 	<field name="cantidad" class="java.lang.String"/>
 	<field name="importe" class="java.lang.String"/>
 	<field name="subtotal" class="java.lang.String"/>
-	<field name="total" class="java.lang.String"/>
 	<field name="adeuda" class="java.lang.String"/>
+	<field name="total" class="java.lang.String"/>
 	<group name="my">
 		<groupFooter>
 			<band height="122">
@@ -252,25 +254,32 @@ FROM
 				<text><![CDATA[Servicio/Producto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" mode="Opaque" x="251" y="20" width="108" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="c65e64df-360d-4d31-9a2a-c83294fe7b91"/>
+				<reportElement style="Column header" mode="Opaque" x="350" y="20" width="67" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="c65e64df-360d-4d31-9a2a-c83294fe7b91"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma"/>
 				</textElement>
 				<text><![CDATA[Precio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" mode="Opaque" x="439" y="20" width="116" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="8dff683b-3598-45bc-82a6-9b02360a027b"/>
+				<reportElement style="Column header" mode="Opaque" x="490" y="20" width="65" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="8dff683b-3598-45bc-82a6-9b02360a027b"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma"/>
 				</textElement>
 				<text><![CDATA[Importe]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" mode="Opaque" x="359" y="20" width="80" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="e8b1904b-beb7-4dce-875b-8c87cc58511e"/>
+				<reportElement style="Column header" mode="Opaque" x="417" y="20" width="73" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="e8b1904b-beb7-4dce-875b-8c87cc58511e"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" mode="Opaque" x="251" y="20" width="99" height="16" forecolor="#FFFFFF" backcolor="#006FB1" uuid="11e4ce0b-eed2-4e3c-8e6c-883bb9dd8f8f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -295,22 +304,28 @@ FROM
 				<textFieldExpression><![CDATA[$F{nombre_p}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="251" y="0" width="108" height="18" uuid="e6ef3a3a-3517-43fb-a8fc-915baa9771f8">
+				<reportElement x="350" y="0" width="67" height="18" uuid="e6ef3a3a-3517-43fb-a8fc-915baa9771f8">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8188c95-ffde-48ae-8a45-0b052c2970b9"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="359" y="0" width="81" height="17" uuid="53c870af-360b-4a24-9b23-294a175bfce9">
+				<reportElement x="417" y="0" width="74" height="17" uuid="53c870af-360b-4a24-9b23-294a175bfce9">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cce7e6f8-8a99-49b5-bc34-e764ef869d1e"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="440" y="0" width="115" height="17" uuid="a3a5157e-c91b-4e95-8266-c782f9747753">
+				<reportElement x="491" y="0" width="64" height="17" uuid="a3a5157e-c91b-4e95-8266-c782f9747753">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="825b5973-69b3-48e5-a9e0-baf45cdbf306"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="1" width="99" height="18" uuid="9b1d4189-fbb2-4707-a38f-c82405083562">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b8188c95-ffde-48ae-8a45-0b052c2970b9"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{fecha_servicio}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 
 public class ProductoDAO {
     int r;

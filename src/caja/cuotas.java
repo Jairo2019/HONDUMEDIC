@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 
 /**
  *

@@ -12,7 +12,7 @@ import alertas.principal.AWTUtilities;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
-import paneles.pnl_hospitalizacion;
+import ServiciosYConexion.pnl_hospitalizacion;
 import principal.PrincipalAdministrador;
 import registro_examen.examen_hospitalizacion;
 
@@ -80,7 +80,7 @@ public class elegir_hospitalizacion extends javax.swing.JDialog {
 
         btnservice.setBackground(new java.awt.Color(0, 111, 177));
         btnservice.setForeground(new java.awt.Color(255, 255, 255));
-        btnservice.setText("Servicios");
+        btnservice.setText("Servicios Pediátricos");
         btnservice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnservice.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnservice.addActionListener(new java.awt.event.ActionListener() {

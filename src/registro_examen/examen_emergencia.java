@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package registro_examen;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.Info_Message;
 import alertas.principal.SuccessAlert;
 import alertas.principal.Warning_Ingrese_Deposito;
 import cafeteria.OpcionesAl;
-import paneles.*;
+import generadores_codigo.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -228,7 +230,7 @@ public static String tipo_usuario="";
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hospital_64.png"))); // NOI18N
-        jLabel7.setText("Emergencia");
+        jLabel7.setText("Emergencia Pediátrica");
 
         pnlChange.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -366,7 +368,7 @@ public static String tipo_usuario="";
         jLabel14.setForeground(new java.awt.Color(128, 128, 131));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hospital_64.png"))); // NOI18N
-        jLabel14.setText("Emergencia");
+        jLabel14.setText("Emergencia Pediátrica");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -670,20 +672,19 @@ public static String tipo_usuario="";
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btneliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(btnVender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(btnVender, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btneliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -777,38 +778,8 @@ public static String tipo_usuario="";
     }
 //genera el codigo registro de examen 
     private void numeros() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo) FROM test_emergencia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                numFac.setText("RE0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                numFac.setText("RE" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosTest gen = new GenerarCodigosTest();
+        gen.generarTEmergencia();
     }
 
    public static String fechaactual() {
@@ -1170,6 +1141,10 @@ private void edit_detalle(){
         } else {
         try{
             con=Conexion.ConnectDB();
+            if (numFac.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (txtpaciente.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -1207,7 +1182,7 @@ private void edit_detalle(){
                     return;
                 }
                // query insertar datos en test_laboratorio
-            String sql= "insert into test_emergencia(codigo,"
+            String sql= "insert into test_emergencia("
                     + "paciente,"
                     + "encargado,"
                     + "medico_3,"
@@ -1216,7 +1191,6 @@ private void edit_detalle(){
                     + "fecha,"
                     + "total,"
                     + "estado) values ('"
-                    +numFac.getText()+"','" 
                     +lblidpaciente.getText()+"','" 
                     +txtencargado.getText()+"','" 
                     +txtmedicoingreso.getText()+"','"

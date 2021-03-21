@@ -12,7 +12,7 @@ import ambulancia.ambulancia;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
-import paneles.pnl_ambulancia;
+import ServiciosYConexion.pnl_ambulancia;
 import principal.PrincipalAdministrador;
 import ambulancia.registrar_ambulancias;
 

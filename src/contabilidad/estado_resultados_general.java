@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package contabilidad;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
 import java.awt.HeadlessException;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -987,7 +988,7 @@ PreparedStatement pst=null;
             }
 
             if (c == null) {
-                numFac.setText("00000001");
+                numFac.setText("0001");
             } else {
                 j = Integer.parseInt(c);
                 GenerarNumero gen = new GenerarNumero();
@@ -1071,7 +1072,7 @@ PreparedStatement pst=null;
             con=Conexion.ConnectDB();
             validar_ingreso();
                // insertar datos en la tabla estado_resultados_general
-            String sql= "insert into estado_resultados_general(id,"
+            String sql= "insert into estado_resultados_general("
                     + "ingresos_hospitalizacion,"
                     + "ingresos_emergencia,"
                     + "ingresos_ambulancia,"
@@ -1094,7 +1095,6 @@ PreparedStatement pst=null;
                     + "total_egresos,"
                     + "utilidad,"
                     + "fecha) values ('"
-                    +numFac.getText()+"','" 
                     +txthospi.getText()
                     +"','" + txtemergencia.getText()
                     +"','" + txtambulancia.getText()

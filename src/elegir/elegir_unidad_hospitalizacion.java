@@ -9,7 +9,7 @@ import Inventarios.inventario_rayosx;
 import alertas.principal.AWTUtilities;
 import java.util.Timer;
 import java.util.TimerTask;
-import paneles.pnl_rayosx;
+import ServiciosYConexion.pnl_rayosx;
 import principal.PrincipalAdministrador;
 
 /**

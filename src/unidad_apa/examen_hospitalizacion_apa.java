@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package unidad_apa;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import registro_examen.*;
 import alertas.principal.ErrorAlert;
 import alertas.principal.Info_Message;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import alertas.principal.*;
+import generadores_codigo.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -779,38 +781,8 @@ public static String tipo_usuario="";
     }
 //genera el codigo registro de examen 
     private void numeros() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo) FROM test_hospitalizacion_apa";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                numFac.setText("EH0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                numFac.setText("EH" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         GenerarCodigosTest gen = new GenerarCodigosTest();
+        gen.generarTHospiAPA();
     }
 
    public static String fechaactual() {
@@ -1184,7 +1156,7 @@ private void edit_detalle(){
                     return;
                 }
                // query insertar datos en test_laboratorio
-            String sql= "insert into test_hospitalizacion_apa(codigo,"
+            String sql= "insert into test_hospitalizacion_apa("
                     + "paciente,"
                     + "encargado,"
                     + "medico_3,"
@@ -1192,8 +1164,7 @@ private void edit_detalle(){
                     + "observaciones,"
                     + "fecha,"
                     + "total,"
-                    + "estado) values ('"
-                    +numFac.getText()+"','" 
+                    + "estado) values ('" 
                     +lblidpaciente.getText()+"','" 
                     +txtencargado.getText()+"','" 
                     +txtmedicoingreso.getText()+"','"

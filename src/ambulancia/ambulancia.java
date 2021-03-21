@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package ambulancia;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,6 +34,7 @@ import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
 import static principal.PrincipalAdministrador.estacerrado;
 import static principal.PrincipalAdministrador.menu;
+import generadores_codigo.*;
 /**
  *
  * @author Rojeru San
@@ -391,20 +393,28 @@ static Conexion cc = new Conexion();
         txtorigen.setBackground(new java.awt.Color(255, 255, 255));
         txtorigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtorigen.setForeground(new java.awt.Color(0, 0, 0));
+        txtorigen.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Lugar de Origen</h4> </body> </html>");
         txtorigen.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtorigen.setPlaceholder("LUGAR ORIGEN");
 
         txtkm.setBackground(new java.awt.Color(255, 255, 255));
         txtkm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtkm.setForeground(new java.awt.Color(0, 0, 0));
+        txtkm.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">KM Recorridos</h4> </body> </html>");
         txtkm.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtkm.setPlaceholder("KM RECORRIDOS");
 
         txtdestino.setBackground(new java.awt.Color(255, 255, 255));
         txtdestino.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtdestino.setForeground(new java.awt.Color(0, 0, 0));
+        txtdestino.setToolTipText("<html> <head> <style> #contenedor{background:#3A9FAB;color:white; padding-left:10px;padding-right:10px;margin:0; padding-top:5px;padding-bottom:5px;} </style> </head> <body> <h4 id=\"contenedor\">Lugar de Destino</h4> </body> </html>");
         txtdestino.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         txtdestino.setPlaceholder("LUGAR DESTINO");
+        txtdestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdestinoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -839,38 +849,8 @@ static Conexion cc = new Conexion();
     }// </editor-fold>//GEN-END:initComponents
     //genera el codigo registro de examen 
     private void numeros() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo) FROM test_ambulancia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                numFac.setText("RA0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                numFac.setText("RA" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosTest gen = new GenerarCodigosTest();
+        gen.generarTAmbulancia();
     }
 
    public static String fechaactual() {
@@ -1178,6 +1158,10 @@ private void edit_detalle(){
         } else {
         try{
             con=Conexion.ConnectDB();
+            if (numFac.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (txtpaciente.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -1195,23 +1179,26 @@ private void edit_detalle(){
                 return;
             }
             if (txtorigen.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese el Origen del Cual Partio Ambulancia","Error", JOptionPane.ERROR_MESSAGE);
+                txtorigen.requestFocus();
+                JOptionPane.showMessageDialog( this, "Ingrese el Origen del Cual Partio la Ambulancia","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtdestino.getText().equals("")) {
+                txtdestino.requestFocus();
                 JOptionPane.showMessageDialog( this, "Ingrese el Destino al cual Fue la ambulancia","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtkm.getText().equals("")) {
+                txtkm.requestFocus();
                 JOptionPane.showMessageDialog( this, "Ingrese los Kilometros de la Ambulancia","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (txtFecha.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Fecha","Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog( this, "Error con la Fecha, Consulte a un Técnico","Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_ambulancia(codigo,"
+            String sql= "insert into test_ambulancia("
                     + "paciente,"
                     + "medico_1,"
                     + "conductor,"
@@ -1222,7 +1209,6 @@ private void edit_detalle(){
                     + "fecha,"
                     + "total,"
                     + "estado) values ('"
-                    +numFac.getText()+"','" 
                     +lblidpaciente.getText()+"','" 
                     +txtmedicoadmin.getText()+"','" 
                     +txtconductor.getText()+"','"
@@ -1298,6 +1284,7 @@ private void edit_detalle(){
                 new pacientes.lista_pacientes_laboratorio(new JFrame(), true).setVisible(true);
             }else if (P == JOptionPane.NO_OPTION){
 //                pacientes.modalpaciente mp =
+                pacientes.modal_paciente.cual="Ambulancia";
                 new pacientes.modal_paciente(new JFrame(), true).setVisible(true);
 //                mp.titulo.setText("REGISTRAR PACIENTE");
 //                mp.registrar.setText("REGISTRAR");
@@ -1366,6 +1353,10 @@ private void edit_detalle(){
             new elegir.elegir_ambulancia(a, true).setVisible(true);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void txtdestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdestinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdestinoActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

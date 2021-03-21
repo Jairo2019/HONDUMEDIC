@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package empleados;
+import ServiciosYConexion.Conexion;
 import alertas.principal.SuccessAlert;
-import paneles.JasperCompilerManager;
-import paneles.*;
+import ServiciosYConexion.JasperCompilerManager;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -32,6 +32,8 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import empleados.class_empleados;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 /**
  *
  * @author Rojeru San
@@ -44,6 +46,7 @@ PreparedStatement pst=null;
     static Conexion cc = new Conexion();
     static Connection cn = cc.ConnectDB();
     static PreparedStatement ps;
+    SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
     /**
      * Creates new form NewJInternalFrame
      */
@@ -107,6 +110,12 @@ PreparedStatement pst=null;
         txtDescripcion = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         txtedad = new javax.swing.JTextField();
+        choicesex = new javax.swing.JComboBox();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        dtFechaNac = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -190,7 +199,7 @@ PreparedStatement pst=null;
         c_search_tbl.setFocusCycleRoot(true);
         c_search_tbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         c_search_tbl.setInheritsPopupMenu(true);
-        c_search_tbl.setPlaceholder("Buscar Empleado");
+        c_search_tbl.setPlaceholder("Buscar Nombre / Identidad");
         c_search_tbl.setPreferredSize(new java.awt.Dimension(300, 32));
         c_search_tbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -426,9 +435,10 @@ PreparedStatement pst=null;
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 294, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(15, 90, 0, 0);
         jPanel9.add(jLabel17, gridBagConstraints);
 
         txtCodigo.setBackground(new java.awt.Color(255, 255, 255));
@@ -445,10 +455,9 @@ PreparedStatement pst=null;
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -460,10 +469,10 @@ PreparedStatement pst=null;
         jLabel23.setText("Apellido: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 333, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(36, 129, 0, 0);
         jPanel9.add(jLabel23, gridBagConstraints);
 
         txtName.setBackground(new java.awt.Color(255, 255, 255));
@@ -474,10 +483,14 @@ PreparedStatement pst=null;
                 txtNameActionPerformed(evt);
             }
         });
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNameKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
@@ -493,15 +506,19 @@ PreparedStatement pst=null;
                 txtLastNameActionPerformed(evt);
             }
         });
+        txtLastName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtLastNameKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 40, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 40, 0, 0);
         jPanel9.add(txtLastName, gridBagConstraints);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -509,10 +526,10 @@ PreparedStatement pst=null;
         jLabel24.setText("Nombre:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 341, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 137, 0, 0);
         jPanel9.add(jLabel24, gridBagConstraints);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -520,10 +537,11 @@ PreparedStatement pst=null;
         jLabel25.setText("Rol / Cargo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(24, 309, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 107, 0, 0);
         jPanel9.add(jLabel25, gridBagConstraints);
 
         choicerol.setBackground(new java.awt.Color(255, 255, 255));
@@ -532,13 +550,13 @@ PreparedStatement pst=null;
         choicerol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Doctor (a)", "Enfermera (o)", "Conductor", "Administrador", "Personal de Servicio", "Instrumentista", "Circulante" }));
         choicerol.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 88;
-        gridBagConstraints.ipady = 3;
+        gridBagConstraints.ipady = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 38, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 40, 0, 0);
         jPanel9.add(choicerol, gridBagConstraints);
 
         rbpermanet.setBackground(new java.awt.Color(255, 255, 255));
@@ -552,11 +570,10 @@ PreparedStatement pst=null;
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 35, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(12, 41, 0, 0);
         jPanel9.add(rbpermanet, gridBagConstraints);
 
         rbtemporal.setBackground(new java.awt.Color(255, 255, 255));
@@ -570,35 +587,37 @@ PreparedStatement pst=null;
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 25;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(20, 27, 0, 70);
+        gridBagConstraints.insets = new java.awt.Insets(12, 27, 0, 0);
         jPanel9.add(rbtemporal, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Dirección:");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(41, 326, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 116, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
         txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 246;
-        gridBagConstraints.ipady = 39;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.ipadx = 251;
+        gridBagConstraints.ipady = 49;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 38, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(2, 41, 50, 0);
         jPanel9.add(txtDescripcion, gridBagConstraints);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -606,10 +625,11 @@ PreparedStatement pst=null;
         jLabel18.setText("Teléfono:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 326, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 124, 0, 0);
         jPanel9.add(jLabel18, gridBagConstraints);
 
         txtedad.setBackground(new java.awt.Color(255, 255, 255));
@@ -626,14 +646,94 @@ PreparedStatement pst=null;
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 246;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 40, 0, 0);
+        jPanel9.add(txtedad, gridBagConstraints);
+
+        choicesex.setBackground(new java.awt.Color(255, 255, 255));
+        choicesex.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        choicesex.setForeground(new java.awt.Color(0, 0, 0));
+        choicesex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "F", "M" }));
+        choicesex.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 228;
+        gridBagConstraints.ipady = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 41, 0, 78);
+        jPanel9.add(choicesex, gridBagConstraints);
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Sexo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 142, 0, 0);
+        jPanel9.add(jLabel20, gridBagConstraints);
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Correo:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(36, 128, 0, 0);
+        jPanel9.add(jLabel26, gridBagConstraints);
+
+        txtEmail.setBackground(new java.awt.Color(204, 204, 204));
+        txtEmail.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmail.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 38, 19, 0);
-        jPanel9.add(txtedad, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(27, 41, 0, 0);
+        jPanel9.add(txtEmail, gridBagConstraints);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Fecha Nacimiento:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(27, 47, 0, 0);
+        jPanel9.add(jLabel16, gridBagConstraints);
+
+        dtFechaNac.setBackground(new java.awt.Color(255, 255, 255));
+        dtFechaNac.setForeground(new java.awt.Color(0, 0, 0));
+        dtFechaNac.setToolTipText("");
+        dtFechaNac.setDateFormatString("dd/MM/yyyy");
+        dtFechaNac.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtFechaNac.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 220;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 41, 0, 78);
+        jPanel9.add(dtFechaNac, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -642,10 +742,10 @@ PreparedStatement pst=null;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -653,7 +753,7 @@ PreparedStatement pst=null;
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -683,7 +783,17 @@ PreparedStatement pst=null;
 String Estado_actual;
     private void Get_Data(){
         Reset();
-        String sql="select codigo_empleado as 'Codigo', nombre as 'Nombre', apellido as 'Apellido',Rol as 'Rol', direccion as 'Dirección',telefono as 'Teléfono', tipo_empleado as 'Tipo de Empleado' from empleado";
+        String sql="select codigo_empleado as 'Codigo',"
+                + " nombre as 'Nombre',"
+                + " apellido as 'Apellido',"
+                + "Rol as 'Rol', "
+                + "direccion as 'Dirección',"
+                + "telefono as 'Teléfono', "
+                + "tipo_empleado as 'Tipo de Empleado',"
+                + "fecha_nacimiento as 'Fecha Nac',"
+                + "sexo as 'Sexo', "
+                + "correo as 'Correo'"
+                + " from empleado";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
@@ -710,6 +820,8 @@ String Estado_actual;
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
     buttonGroup1.clearSelection();
+    txtEmail.setText("");
+    dtFechaNac.setDate(null);
 }
    private String condiciones(String estado_actual){
     if (rbpermanet.isSelected()){
@@ -768,7 +880,7 @@ String Estado_actual;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("SELECT * FROM empleado WHERE nombre LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("SELECT * FROM empleado WHERE nombre LIKE '%"+name+"%' or codigo_empleado LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -779,7 +891,9 @@ String Estado_actual;
                 v.add(rs.getString(5));
                 v.add(rs.getString(6));
                 v.add(rs.getString(7));
-               // v.add(rs.getString(6));
+                v.add(rs.getString(8));
+                v.add(rs.getString(9));
+                v.add(rs.getString(10));
                 dt.addRow(v);
 
             }
@@ -809,6 +923,17 @@ String Estado_actual;
             txtLastName.setText(tableUsers.getModel().getValueAt(row,2).toString());
             choicerol.setSelectedItem(tableUsers.getModel().getValueAt(row,3).toString());
             txtedad.setText(tableUsers.getModel().getValueAt(row,5).toString());
+            String fecha = tableUsers.getModel().getValueAt(tableUsers.getSelectedRow(),7).toString().trim() ;
+            try {
+
+                dato = formatofecha.parse(fecha);
+
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+            dtFechaNac.setDate(dato);
+            choicesex.setSelectedItem(tableUsers.getModel().getValueAt(row,8).toString());
+            txtEmail.setText(tableUsers.getModel().getValueAt(row,9).toString());
             txtCodigo.setEnabled(false);
             condicion();
             this.btnsave.setEnabled(false);
@@ -833,14 +958,17 @@ String Estado_actual;
             }
             if (txtName.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
+                txtName.requestFocus();
                 return;
             }
             if (txtLastName.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Apellido","Error", JOptionPane.ERROR_MESSAGE);
+                txtLastName.requestFocus();
                 return;
             }
             if (txtedad.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Numero Teléfono","Error", JOptionPane.ERROR_MESSAGE);
+                txtedad.requestFocus();
                 return;
             }
             if("vacio".equals(condiciones(Estado_actual))){
@@ -848,6 +976,12 @@ String Estado_actual;
                     rbpermanet.requestFocus();
                     return;
                 }
+            if (dtFechaNac.getDate().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Fecha de Nacimiento","Error", JOptionPane.ERROR_MESSAGE);
+                dtFechaNac.requestFocus();
+                return;
+            }
+            
             Statement stmt;
             stmt= con.createStatement();
             String sql1="Select codigo_empleado from empleado where codigo_empleado= '" + txtCodigo.getText() + "'";
@@ -864,7 +998,26 @@ String Estado_actual;
                 return;  
                 }
             // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into empleado(codigo_empleado,nombre,apellido,rol,direccion,telefono,tipo_empleado) values ('"+txtCodigo.getText()+"','" +txtName.getText()+"','" + txtLastName.getText() +"','"+choicerol.getSelectedItem()+"','" +txtDescripcion.getText()+ "','" +txtedad.getText()+"','"+condiciones(Estado_actual)+ "')";
+            String sql= "insert into empleado(codigo_empleado,"
+                    + "nombre,"
+                    + "apellido,"
+                    + "rol,"
+                    + "direccion,"
+                    + "telefono,"
+                    + "tipo_empleado,"
+                    + "fecha_nacimiento,"
+                    + "sexo,"
+                    + "correo) values ('"
+                    +txtCodigo.getText()+"','" 
+                    +txtName.getText()+"','" 
+                    + txtLastName.getText() +"','"
+                    +choicerol.getSelectedItem()+"','" 
+                    +txtDescripcion.getText()+ "','" 
+                    +txtedad.getText()+"','"
+                    +condiciones(Estado_actual)+ "','"
+                    +formatofecha.format( dtFechaNac.getDate())+"','"
+                    + choicesex.getSelectedItem()+"','"
+                    + txtEmail.getText()  + "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -885,7 +1038,40 @@ String Estado_actual;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
-            String sql= "update empleado set nombre='"+ txtName.getText()+ "',apellido='" + txtLastName.getText()+ "',rol='" + choicerol.getSelectedItem() + "',direccion='" + txtDescripcion.getText() +"',telefono='" + txtedad.getText()+ "',tipo_empleado='" + condiciones(Estado_actual) + "' where codigo_empleado='" + txtCodigo.getText()+ "'";
+            if (txtCodigo.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Numero de Identidad","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (txtName.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre","Error", JOptionPane.ERROR_MESSAGE);
+                txtName.requestFocus();
+                return;
+            }
+            if (txtLastName.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Apellido","Error", JOptionPane.ERROR_MESSAGE);
+                txtLastName.requestFocus();
+                return;
+            }
+            if (txtedad.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Numero Teléfono","Error", JOptionPane.ERROR_MESSAGE);
+                txtedad.requestFocus();
+                return;
+            }
+            if("vacio".equals(condiciones(Estado_actual))){
+                    JOptionPane.showMessageDialog( this, "Seleccione el Empleado es Permanente o Temporal","Error", JOptionPane.ERROR_MESSAGE);
+                    rbpermanet.requestFocus();
+                    return;
+                }
+            String sql= "update empleado set nombre='"+ txtName.getText()
+                    + "',apellido='" + txtLastName.getText()
+                    + "',rol='" + choicerol.getSelectedItem() 
+                    + "',direccion='" + txtDescripcion.getText() 
+                    +"',telefono='" + txtedad.getText()
+                    + "',tipo_empleado='" + condiciones(Estado_actual) 
+                    + "',fecha_nacimiento='" + formatofecha.format( dtFechaNac.getDate()) 
+                    +"',sexo='" + choicesex.getSelectedItem()
+                    + "',correo='" + txtEmail.getText() 
+                    + "' where codigo_empleado='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
             pst.execute();
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
@@ -946,10 +1132,14 @@ String Estado_actual;
     private void txtedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtedadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtedadActionPerformed
-
+ private int limiteTEL  = 8;
     private void txtedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtedadKeyTyped
            char car = evt.getKeyChar();
-        if((car<'0' || car>'9')) evt.consume();          // TODO add your handling code here:
+        if((car<'0' || car>'9')) evt.consume(); 
+        if (txtedad.getText().length()== limiteTEL){
+
+            evt.consume();
+       }// TODO add your handling code here:
     }//GEN-LAST:event_txtedadKeyTyped
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
@@ -978,6 +1168,22 @@ String Estado_actual;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLastNameActionPerformed
 
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) == false) {
+        }else{
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameKeyTyped
+
+    private void txtLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLastNameKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) == false) {
+        }else{
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastNameKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro btnDelete;
@@ -989,14 +1195,19 @@ String Estado_actual;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     private javax.swing.JComboBox choicerol;
+    private javax.swing.JComboBox choicesex;
+    public com.toedter.calendar.JDateChooser dtFechaNac;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
@@ -1016,6 +1227,7 @@ String Estado_actual;
     private javax.swing.JTable tableUsers;
     public javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
+    public javax.swing.JTextField txtEmail;
     public javax.swing.JTextField txtLastName;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtedad;

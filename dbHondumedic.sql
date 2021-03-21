@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `caja_endoscopia` (
 -- Volcando datos para la tabla hondumedic.caja_endoscopia: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `caja_endoscopia` DISABLE KEYS */;
 REPLACE INTO `caja_endoscopia` (`idventa`, `paciente`, `fecha`, `total`, `estado`) VALUES
-	('00000001', '1503199802512', '21/11/2020 10:01:43', 150, 0),
+	('0001', '1503199802512', '21/11/2020 10:01:43', 150, 0),
 	('00000002', '1503200002610', '21/11/2020 10:03:11', 300, 1);
 /*!40000 ALTER TABLE `caja_endoscopia` ENABLE KEYS */;
 
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `caja_laboratorio` (
 -- Volcando datos para la tabla hondumedic.caja_laboratorio: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `caja_laboratorio` DISABLE KEYS */;
 REPLACE INTO `caja_laboratorio` (`idventa`, `paciente`, `fecha`, `total`, `estado`) VALUES
-	('00000001', '1503200002610', '19/11/2020 12:16:26', 100, 1);
+	('0001', '1503200002610', '19/11/2020 12:16:26', 100, 1);
 /*!40000 ALTER TABLE `caja_laboratorio` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.caja_rayosx
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `caja_rayosx` (
 -- Volcando datos para la tabla hondumedic.caja_rayosx: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `caja_rayosx` DISABLE KEYS */;
 REPLACE INTO `caja_rayosx` (`idventa`, `paciente`, `fecha`, `total`, `estado`) VALUES
-	('00000001', '1503199802512', '20/11/2020 12:12:52', 200, 1);
+	('0001', '1503199802512', '20/11/2020 12:12:52', 200, 1);
 /*!40000 ALTER TABLE `caja_rayosx` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.caja_servicios
@@ -171,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `caja_servicios` (
 -- Volcando datos para la tabla hondumedic.caja_servicios: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `caja_servicios` DISABLE KEYS */;
 REPLACE INTO `caja_servicios` (`idventa`, `paciente`, `fecha`, `estado_pago`, `abonado`, `cuotas`, `valor_cuotas`, `saldo_pendiente`, `total`, `isv`) VALUES
-	('00000001', '1502032151465', '30/11/2020', 'Contado', NULL, NULL, NULL, NULL, 3893, 15),
+	('0001', '1502032151465', '30/11/2020', 'Contado', NULL, NULL, NULL, NULL, 3893, 15),
 	('00000002', '1502032151465', '30/11/2020', 'Contado', 3892.76, 0, 673.188, 0, 3892.75, 15);
 /*!40000 ALTER TABLE `caja_servicios` ENABLE KEYS */;
 
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `caja_servicios_apa` (
 -- Volcando datos para la tabla hondumedic.caja_servicios_apa: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `caja_servicios_apa` DISABLE KEYS */;
 REPLACE INTO `caja_servicios_apa` (`idventa`, `codigo_examen`, `cod_servicio`, `paciente`, `fecha`, `estado_pago`, `abonado`, `pendiente`, `total`) VALUES
-	('00000001', 'EH0001', 'H', 'Ximena Jaramillo', '12/08/2020', 'Contado', NULL, NULL, 200),
+	('0001', 'EH0001', 'H', 'Ximena Jaramillo', '12/08/2020', 'Contado', NULL, NULL, 200),
 	('00000002', 'EE0001', 'E', 'Ximena Jaramillo', '12/08/2020', 'Contado', 50, 50, 100);
 /*!40000 ALTER TABLE `caja_servicios_apa` ENABLE KEYS */;
 
@@ -208,7 +208,7 @@ CREATE TABLE IF NOT EXISTS `caja_ultrasonido` (
 -- Volcando datos para la tabla hondumedic.caja_ultrasonido: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `caja_ultrasonido` DISABLE KEYS */;
 REPLACE INTO `caja_ultrasonido` (`idventa`, `paciente`, `fecha`, `total`, `estado`) VALUES
-	('00000001', '1502032151465', '21/11/2020 08:25:19', 500, 1);
+	('0001', '1502032151465', '21/11/2020 08:25:19', 500, 1);
 /*!40000 ALTER TABLE `caja_ultrasonido` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.cirugia
@@ -253,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `cotizaciones_general` (
 -- Volcando datos para la tabla hondumedic.cotizaciones_general: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `cotizaciones_general` DISABLE KEYS */;
 REPLACE INTO `cotizaciones_general` (`codigo`, `servicio`, `paciente`, `empleado`) VALUES
-	('00000001', 'De instalaciones de HONDUMEDIC a su domicilio. ', '1502032151465', 'Lauren Cruz');
+	('0001', 'De instalaciones de HONDUMEDIC a su domicilio. ', '1502032151465', 'Lauren Cruz');
 /*!40000 ALTER TABLE `cotizaciones_general` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.cuentascobrar
@@ -425,8 +425,8 @@ CREATE TABLE IF NOT EXISTS `detalle_test_endoscopia` (
 /*!40000 ALTER TABLE `detalle_test_endoscopia` DISABLE KEYS */;
 REPLACE INTO `detalle_test_endoscopia` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
 	(5, 'RE0001', 'SE0001', '15644153665', 'Endoscopia gástrica', '150', '1', '150.0', NULL, NULL, NULL),
-	(6, '00000001', 'SE0002', '1502032151465', 'Endoscopia colónica ', '300', '1', '300.0', '19/11/2020 09:50:08', 'Endoscopia', 1),
-	(7, '00000001', 'SE0001', '1503199802512', 'Endoscopia gástrica', '150', '1', '150.0', '21/11/2020 10:01:43', 'Endoscopia', 1),
+	(6, '0001', 'SE0002', '1502032151465', 'Endoscopia colónica ', '300', '1', '300.0', '19/11/2020 09:50:08', 'Endoscopia', 1),
+	(7, '0001', 'SE0001', '1503199802512', 'Endoscopia gástrica', '150', '1', '150.0', '21/11/2020 10:01:43', 'Endoscopia', 1),
 	(8, '00000002', 'SE0002', '1503200002610', 'Endoscopia colónica ', '300', '1', '300.0', '21/11/2020 10:03:11', 'Endoscopia', 1);
 /*!40000 ALTER TABLE `detalle_test_endoscopia` ENABLE KEYS */;
 
@@ -472,7 +472,7 @@ CREATE TABLE IF NOT EXISTS `detalle_test_laboratorio` (
 -- Volcando datos para la tabla hondumedic.detalle_test_laboratorio: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `detalle_test_laboratorio` DISABLE KEYS */;
 REPLACE INTO `detalle_test_laboratorio` (`id_detalle`, `idventa`, `codigo`, `id_paciente`, `p_s`, `precio`, `cantidad`, `importe`, `fecha`, `unidad`, `estado`) VALUES
-	(15, '00000001', 'SL0001', '1503200002610', 'Muestra de Sangre', '100', '1', '100.0', '19/11/2020 12:16:26', 'Endoscopia', 1);
+	(15, '0001', 'SL0001', '1503200002610', 'Muestra de Sangre', '100', '1', '100.0', '19/11/2020 12:16:26', 'Endoscopia', 1);
 /*!40000 ALTER TABLE `detalle_test_laboratorio` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.detalle_test_rayosx
@@ -497,7 +497,7 @@ REPLACE INTO `detalle_test_rayosx` (`id_detalle`, `idventa`, `codigo`, `id_pacie
 	(6, 'RX0001', 'IR0001', '1502032151465', 'rayo', '100.0', '2', '200.0', NULL, NULL, NULL),
 	(7, 'RX0001', 'SR0001', '', 'Localizar Lesiones', '200', '1', '200.0', NULL, NULL, NULL),
 	(8, 'RX0001', 'IR0001', '', 'rayo', '100.0', '2', '200.0', NULL, NULL, NULL),
-	(9, '00000001', 'SR0001', '1503199802512', 'Localizar Lesiones', '200', '1', '200.0', '20/11/2020 12:12:52', 'Endoscopia', 1);
+	(9, '0001', 'SR0001', '1503199802512', 'Localizar Lesiones', '200', '1', '200.0', '20/11/2020 12:12:52', 'Endoscopia', 1);
 /*!40000 ALTER TABLE `detalle_test_rayosx` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.detalle_test_ultrasonido
@@ -522,7 +522,7 @@ REPLACE INTO `detalle_test_ultrasonido` (`id_detalle`, `idventa`, `codigo`, `id_
 	(5, 'RU0001', 'IU0001', '', 'Guantes', '10.0', '1', '10.0', NULL, NULL, NULL),
 	(6, 'RU0001', 'SU0001', '', 'Ultrasonido Doppler', '500', '1', '500.0', NULL, NULL, NULL),
 	(7, 'RU0001', 'IU0001', '', 'Guantes', '10.0', '2', '20.0', NULL, NULL, NULL),
-	(8, '00000001', 'SU0001', '1502032151465', 'Ultrasonido Doppler', '500', '1', '500.0', '21/11/2020 08:25:19', 'Endoscopia', 1);
+	(8, '0001', 'SU0001', '1502032151465', 'Ultrasonido Doppler', '500', '1', '500.0', '21/11/2020 08:25:19', 'Endoscopia', 1);
 /*!40000 ALTER TABLE `detalle_test_ultrasonido` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.edificios
@@ -1056,7 +1056,7 @@ CREATE TABLE IF NOT EXISTS `test_endoscopia` (
 -- Volcando datos para la tabla hondumedic.test_endoscopia: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `test_endoscopia` DISABLE KEYS */;
 REPLACE INTO `test_endoscopia` (`codigo`, `numfact`, `paciente`, `medico`, `encargado`, `num_telefono`, `observaciones`, `fecha`, `total`, `estado`) VALUES
-	('RE0001', '00000001', '1503199802512', 'Lauren Cruz', 'Hola Mundo', '95489512', '', '21/11/2020 10:02:11', 450, 1);
+	('RE0001', '0001', '1503199802512', 'Lauren Cruz', 'Hola Mundo', '95489512', '', '21/11/2020 10:02:11', 450, 1);
 /*!40000 ALTER TABLE `test_endoscopia` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.test_hospitalizacion
@@ -1099,7 +1099,7 @@ CREATE TABLE IF NOT EXISTS `test_laboratorio` (
 -- Volcando datos para la tabla hondumedic.test_laboratorio: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `test_laboratorio` DISABLE KEYS */;
 REPLACE INTO `test_laboratorio` (`codigo`, `numfact`, `paciente`, `medico`, `encargado`, `num_telefono`, `observaciones`, `fecha`, `total`, `estado`) VALUES
-	('RL0001', '00000001', '1503200002610', 'Lauren Cruz', '', '', '', '21/11/2020 07:33:31', 100, 1);
+	('RL0001', '0001', '1503200002610', 'Lauren Cruz', '', '', '', '21/11/2020 07:33:31', 100, 1);
 /*!40000 ALTER TABLE `test_laboratorio` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.test_rayosx
@@ -1121,7 +1121,7 @@ CREATE TABLE IF NOT EXISTS `test_rayosx` (
 -- Volcando datos para la tabla hondumedic.test_rayosx: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `test_rayosx` DISABLE KEYS */;
 REPLACE INTO `test_rayosx` (`codigo`, `numfact`, `paciente`, `medico`, `encargado`, `num_telefono`, `observaciones`, `fecha`, `total`, `estado`) VALUES
-	('RR0001', '00000001', '1503199802512', 'Lauren Cruz', '', '', '', '20/11/2020 16:06:24', 200, 1);
+	('RR0001', '0001', '1503199802512', 'Lauren Cruz', '', '', '', '20/11/2020 16:06:24', 200, 1);
 /*!40000 ALTER TABLE `test_rayosx` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.test_ultrasonido
@@ -1143,7 +1143,7 @@ CREATE TABLE IF NOT EXISTS `test_ultrasonido` (
 -- Volcando datos para la tabla hondumedic.test_ultrasonido: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `test_ultrasonido` DISABLE KEYS */;
 REPLACE INTO `test_ultrasonido` (`codigo`, `numfact`, `paciente`, `medico`, `encargado`, `num_telefono`, `observaciones`, `fecha`, `total`, `estado`) VALUES
-	('RR0001', '00000001', '1502032151465', 'Lauren Cruz', 'Jonas Cruz', '95457584', 'Ninguna', '21/11/2020 08:31:09', 500, 1);
+	('RR0001', '0001', '1502032151465', 'Lauren Cruz', 'Jonas Cruz', '95457584', 'Ninguna', '21/11/2020 08:31:09', 500, 1);
 /*!40000 ALTER TABLE `test_ultrasonido` ENABLE KEYS */;
 
 -- Volcando estructura para tabla hondumedic.unidad_apa

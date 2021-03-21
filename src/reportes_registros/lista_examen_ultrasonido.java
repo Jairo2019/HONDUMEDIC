@@ -30,7 +30,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -313,7 +313,7 @@ public static Double value ;
 
         }
         caja.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
-        caja.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
+        caja.lbldeposito.setText("" + Math.rint((total+isv) * 100) / 100);
     }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);

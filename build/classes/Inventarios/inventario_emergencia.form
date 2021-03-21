@@ -212,7 +212,7 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/img/hospital_64.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Emergencia"/>
+                        <Property name="text" type="java.lang.String" value="Emergencia Pedi&#xe1;trica"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JPanel" name="pnlChange">

@@ -22,7 +22,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -309,7 +309,7 @@ public static Double value ;
 
         }
         caja.lblsubtotal.setText("" + Math.rint((total) * 100) / 100);
-        caja.lblTotal.setText("" + Math.rint((total+isv) * 100) / 100);
+        caja.lbldeposito.setText("" + Math.rint((total+isv) * 100) / 100);
 
     }
     private void show_detalle(){

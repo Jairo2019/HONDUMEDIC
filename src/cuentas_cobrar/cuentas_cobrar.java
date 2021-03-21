@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package cuentas_cobrar;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import caja.cuotas_estados_cuenta;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

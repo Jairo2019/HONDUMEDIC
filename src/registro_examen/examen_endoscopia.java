@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package registro_examen;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
-import cafeteria.OpcionesAl;
-import paneles.*;
+import generadores_codigo.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,22 +18,15 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
-import static principal.PrincipalAdministrador.escritorio;
-import lista_productos_servicios.Producto;
 import java.awt.HeadlessException;
 import lista_productos_servicios.ProductoDAO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import principal.GenerarCodigos;
 import principal.PrincipalAdministrador;
 import static principal.PrincipalAdministrador.escritorio;
-import static principal.PrincipalAdministrador.estacerrado;
 import static principal.PrincipalAdministrador.menu;
 /**
  *
@@ -707,38 +701,8 @@ static Conexion cc = new Conexion();
     }// </editor-fold>//GEN-END:initComponents
     //genera el codigo registro de examen 
     private void numeros() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo) FROM test_endoscopia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                numFac.setText("RE0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                numFac.setText("RE" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosTest gen = new GenerarCodigosTest();
+        gen.generarTEndoscopia();
     }
 
    public static String fechaactual() {
@@ -941,6 +905,10 @@ static Conexion cc = new Conexion();
         } else {
         try{
             con=Conexion.ConnectDB();
+            if (numFac.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (txtpaciente.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -954,7 +922,7 @@ static Conexion cc = new Conexion();
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_endoscopia(codigo,"
+            String sql= "insert into test_endoscopia("
                     + "numfact,"
                     + "paciente,"
                     + "medico,"
@@ -963,8 +931,7 @@ static Conexion cc = new Conexion();
                     + "observaciones,"
                     + "fecha,"
                     + "total,"
-                    + "estado) values ('"
-                    +numFac.getText()+"','" 
+                    + "estado) values ('" 
                     +codetest.getText()+"','" 
                     +lblidpaciente.getText()+"','" 
                     +txtmedico.getText()

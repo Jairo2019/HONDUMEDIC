@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -262,11 +262,11 @@ PreparedStatement pst=null;
 // metodo para obtener los detalles de cada servicio e insumo brindado a un determinado paciente
     private void show_detalle(){
         String sql="SELECT  unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_ambulancia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion_apa WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
-        + "UNION SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia_apa WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "; 
+        + "UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_cirugia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_hospitalizacion_apa WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "
+        + "UNION ALL SELECT unidad as 'Unidad', p_s AS 'Servicio/Insumo',fecha as 'Fecha', precio AS 'Precio', cantidad AS 'Cantidad', importe AS 'Importe' FROM detalle_test_emergencia_apa WHERE id_paciente ='" + caja.lblidpaciente.getText() + "' and estado=1 "; 
         try{
          pst=con.prepareStatement(sql);
          rs= pst.executeQuery();
@@ -301,8 +301,8 @@ PreparedStatement pst=null;
             deposito=Double.parseDouble(caja.lbldeposito.getText());
         }
         caja.lblsubtotal.setText("" + (Math.rint((total) * 100) / 100));
-        caja.lblTotal.setText("" + (Math.rint((total+isv-deposito) * 100) / 100));
-
+        caja.lblTotal.setText("" + (Math.rint((total+isv) * 100) / 100));
+        caja.lbldebe.setText("" + (Math.rint((total+isv-deposito) * 100) / 100));
     }
     //Traer el deposito del paciente seleccionado
     private void deposito() throws SQLException{
@@ -412,9 +412,6 @@ PreparedStatement pst=null;
                         }else if (("7").equals(cual)){
                             registro_examen.examen_ultrasonido.txtpaciente.setText(nom);
                             registro_examen.examen_ultrasonido.lblidpaciente.setText(cod);
-                            cual="";
-                        }else if (("8").equals(cual)){
-                            unidad_apa.cotizaciones_apa.txtpaciente.setText(nom);
                             cual="";
                         }else if (("9").equals(cual)){
                             unidad_apa.examen_hospitalizacion_apa.txtpaciente.setText(nom);

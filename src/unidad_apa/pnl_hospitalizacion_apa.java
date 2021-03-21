@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package unidad_apa;
-import paneles.*;
+import ServiciosYConexion.pnl_menu;
+import generadores_codigo.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -22,7 +23,7 @@ import static principal.PrincipalAdministrador.menu;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import principal.GenerarCodigos;
 /**
  *
@@ -425,7 +426,7 @@ public PrincipalAdministrador a ;
         gridBagConstraints.insets = new java.awt.Insets(63, 205, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
-        txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setBackground(new java.awt.Color(204, 204, 204));
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -545,38 +546,8 @@ public PrincipalAdministrador a ;
 }
   }
     public void extraerID() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_hospitalizacion) FROM servicio_hospitalizacion_apa";
-
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                txtCodigo.setText("AH0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                txtCodigo.setText("AH" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
+         GenerarCodigosServicios gen = new GenerarCodigosServicios();
+        gen.generar_hospitalizacion_APA();
     }
     private void Reset()
 {
@@ -663,7 +634,13 @@ public PrincipalAdministrador a ;
             }
 
             // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into servicio_hospitalizacion_apa(codigo_hospitalizacion,nombre,descripcion,precio) values ('"+txtCodigo.getText()+"','"+txtName.getText()+"','" + txtDescripcion.getText() +"','" +txtPrecio.getText()+ "')";
+            String sql= "insert into servicio_hospitalizacion_apa("
+                    + "nombre,"
+                    + "descripcion,"
+                    + "precio) values ('"
+                    +txtName.getText()+"','" 
+                    + txtDescripcion.getText() +"','" 
+                    +txtPrecio.getText()+ "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -773,7 +750,7 @@ public PrincipalAdministrador a ;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JTable tableUsers;
-    public javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPrecio;

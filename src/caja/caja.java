@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package caja;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import paneles.*;
+import clases_cajas_servicios.caja_factura_Credito;
+import clases_cajas_servicios.caja_factura_contado;
+import clases_cajas_servicios.caja_pago_cuota;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,8 +40,8 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import clases_cajas_servicios.laboratorio;
 import clases_cajas_servicios.laboratorio_Credito;
+import generadores_codigo.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import principal.GenerarCodigos;
@@ -129,12 +133,13 @@ static Conexion cc = new Conexion();
         pnlChange = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         c_search_tbl = new app.bolivia.swing.JCTextField();
-        fecha = new com.toedter.calendar.JDateChooser();
-        buscF = new javax.swing.JButton();
+        btnsalestoday1 = new rsbuttom.RSButtonMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCaja = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         btnsalestoday = new rsbuttom.RSButtonMetro();
+        dtfecha1 = new com.toedter.calendar.JDateChooser();
+        dtfecha2 = new com.toedter.calendar.JDateChooser();
         txttotalcaja = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -168,8 +173,10 @@ static Conexion cc = new Conexion();
         lblTotal = new javax.swing.JLabel();
         txtsubtotal = new javax.swing.JLabel();
         lblsubtotal = new javax.swing.JLabel();
-        txtsubtotal1 = new javax.swing.JLabel();
+        tiledeposito = new javax.swing.JLabel();
         lbldeposito = new javax.swing.JLabel();
+        tiledebe = new javax.swing.JLabel();
+        lbldebe = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         btnCancelar = new principal.MaterialButton();
         btnVender = new principal.MaterialButton();
@@ -297,46 +304,40 @@ static Conexion cc = new Conexion();
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 296;
+        gridBagConstraints.ipady = 6;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 296, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(6, 384, 0, 0);
         jPanel5.add(c_search_tbl, gridBagConstraints);
 
-        fecha.setBackground(new java.awt.Color(255, 255, 255));
-        fecha.setForeground(new java.awt.Color(0, 0, 0));
-        fecha.setToolTipText("");
-        fecha.setDateFormatString("dd/MM/yyyy");
-        fecha.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        fecha.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        fecha.setPreferredSize(new java.awt.Dimension(170, 35));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(15, 18, 0, 0);
-        jPanel5.add(fecha, gridBagConstraints);
-
-        buscF.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        buscF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/buscaF1.png"))); // NOI18N
-        buscF.setToolTipText("Buscar");
-        buscF.setBorder(null);
-        buscF.setBorderPainted(false);
-        buscF.setContentAreaFilled(false);
-        buscF.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buscF.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        buscF.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/caja/buscaF2.png"))); // NOI18N
-        buscF.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        buscF.addActionListener(new java.awt.event.ActionListener() {
+        btnsalestoday1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/list_all_32.png"))); // NOI18N
+        btnsalestoday1.setText("Mostrar Todo");
+        btnsalestoday1.setToolTipText("");
+        btnsalestoday1.setColorBorde(null);
+        btnsalestoday1.setColorHover(new java.awt.Color(12, 140, 143));
+        btnsalestoday1.setColorPressed(new java.awt.Color(12, 140, 143));
+        btnsalestoday1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnsalestoday1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnsalestoday1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnsalestoday1.setIconTextGap(19);
+        btnsalestoday1.setPreferredSize(new java.awt.Dimension(231, 32));
+        btnsalestoday1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnsalestoday1MouseClicked(evt);
+            }
+        });
+        btnsalestoday1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscFActionPerformed(evt);
+                btnsalestoday1ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 12;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 12, 0, 327);
-        jPanel5.add(buscF, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 12, 0, 316);
+        jPanel5.add(btnsalestoday1, gridBagConstraints);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
@@ -393,7 +394,7 @@ static Conexion cc = new Conexion();
         jPanel12.setLayout(new java.awt.GridBagLayout());
 
         btnsalestoday.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/sales_today_32.png"))); // NOI18N
-        btnsalestoday.setText("Mostrar Ventas");
+        btnsalestoday.setText("Buscar");
         btnsalestoday.setToolTipText("");
         btnsalestoday.setColorBorde(null);
         btnsalestoday.setColorHover(new java.awt.Color(12, 140, 143));
@@ -414,9 +415,46 @@ static Conexion cc = new Conexion();
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 12, 0, 314);
+        jPanel12.add(btnsalestoday, gridBagConstraints);
+
+        dtfecha1.setBackground(new java.awt.Color(255, 255, 255));
+        dtfecha1.setForeground(new java.awt.Color(0, 0, 0));
+        dtfecha1.setToolTipText("");
+        dtfecha1.setDateFormatString("dd/MM/yyyy");
+        dtfecha1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtfecha1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        dtfecha1.setPreferredSize(new java.awt.Dimension(170, 35));
+        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        jPanel12.add(btnsalestoday, gridBagConstraints);
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 120;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 395, 6, 0);
+        jPanel12.add(dtfecha1, gridBagConstraints);
+
+        dtfecha2.setBackground(new java.awt.Color(255, 255, 255));
+        dtfecha2.setForeground(new java.awt.Color(0, 0, 0));
+        dtfecha2.setToolTipText("");
+        dtfecha2.setDateFormatString("dd/MM/yyyy");
+        dtfecha2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        dtfecha2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        dtfecha2.setPreferredSize(new java.awt.Dimension(170, 35));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 120;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 10, 6, 0);
+        jPanel12.add(dtfecha2, gridBagConstraints);
 
         javax.swing.GroupLayout pnlChangeLayout = new javax.swing.GroupLayout(pnlChange);
         pnlChange.setLayout(pnlChangeLayout);
@@ -425,8 +463,8 @@ static Conexion cc = new Conexion();
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1194, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlChangeLayout.createSequentialGroup()
@@ -437,16 +475,15 @@ static Conexion cc = new Conexion();
         pnlChangeLayout.setVerticalGroup(
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChangeLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(3, 3, 3)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(346, Short.MAX_VALUE))
+                .addContainerGap(375, Short.MAX_VALUE))
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
-                    .addGap(128, 128, 128)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                    .addGap(20, 20, 20)))
+                .addGroup(pnlChangeLayout.createSequentialGroup()
+                    .addGap(119, 119, 119)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(20, Short.MAX_VALUE)))
         );
 
         txttotalcaja.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -750,14 +787,24 @@ static Conexion cc = new Conexion();
         lblsubtotal.setForeground(new java.awt.Color(255, 255, 255));
         lblsubtotal.setText("0.0");
 
-        txtsubtotal1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        txtsubtotal1.setForeground(new java.awt.Color(255, 255, 255));
-        txtsubtotal1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtsubtotal1.setText("DEPÓSITO: L");
+        tiledeposito.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tiledeposito.setForeground(new java.awt.Color(255, 255, 255));
+        tiledeposito.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tiledeposito.setText("DEPÓSITO: L");
 
         lbldeposito.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbldeposito.setForeground(new java.awt.Color(255, 255, 255));
         lbldeposito.setText("0.0");
+
+        tiledebe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tiledebe.setForeground(new java.awt.Color(255, 255, 255));
+        tiledebe.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        tiledebe.setText("DEBE: L");
+        tiledebe.setToolTipText("");
+
+        lbldebe.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbldebe.setForeground(new java.awt.Color(255, 255, 255));
+        lbldebe.setText("0.0");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -768,15 +815,19 @@ static Conexion cc = new Conexion();
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txttotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtsubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtsubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblsubtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addComponent(txtsubtotal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tiledebe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbldebe, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(txttotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addComponent(tiledeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbldeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -786,19 +837,23 @@ static Conexion cc = new Conexion();
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtsubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtsubtotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
-                    .addComponent(lbldeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tiledeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(lbldeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tiledebe, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbldebe, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -1010,7 +1065,7 @@ static Conexion cc = new Conexion();
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("Nuevo Factura", jPanel3);
+        jTabbedPane2.addTab("Nueva Factura", jPanel3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1053,7 +1108,7 @@ static Conexion cc = new Conexion();
             }
 
             if (c == null) {
-                numFac.setText("00000001");
+                numFac.setText("0001");
             } else {
                 j = Integer.parseInt(c);
                 GenerarNumero gen = new GenerarNumero();
@@ -1067,38 +1122,8 @@ static Conexion cc = new Conexion();
         }
     }
 private void numeros_cobrar() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(idventa) FROM cuentas_cobrar";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                numFac.setText("CC0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                numFac.setText("CC" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       GenerarCodigosCuantasCobrar gen = new GenerarCodigosCuantasCobrar();
+        gen.generar();
 }
    public static String fechaactual() {
         Date fecha = new Date();
@@ -1144,6 +1169,10 @@ private void numeros_cobrar() {
         lblvalor.hide();
         btncuota.hide();
         btnVender.setText("           GUARDAR           ");
+        tiledebe.setVisible(true);
+        lbldebe.setVisible(true);
+        tiledeposito.setVisible(true);
+        lbldeposito.setVisible(true);
     }
     //metodo obtener los datos de la tabla caja_servicios
   private void Get_Data(){
@@ -1246,11 +1275,11 @@ private void condicionIsv( ){
 //    paciente,num_fac,estado,fecha,codigo_examen,codigo,nombre_p, precio, cantidad,importe, subtotal, total
 // llenar la factura
     void print_bill(){
-        laboratorio em;// Instaciamos la clase
-        List <laboratorio>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        caja_factura_contado em;// Instaciamos la clase
+        List <caja_factura_contado>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
         for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-            em = new laboratorio(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
-            tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),tablaCaja.getValueAt(i, 5).toString(),lblsubtotal.getText(),lblTotal.getText());
+            em = new caja_factura_contado(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),tablaCaja.getValueAt(i, 5).toString(),lblsubtotal.getText(),lblTotal.getText());
             lista.add(em); //Agregamos el objeto empleado a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
@@ -1266,15 +1295,35 @@ private void condicionIsv( ){
         } 
 }
     void print_bill_credit(){
-        laboratorio_Credito em;// Instaciamos la clase empleado
-        List <laboratorio_Credito>lista = new ArrayList<>(); //lista de los datos de la factura con ArrayList para obtener cada dato del laboratorio
+        caja_factura_Credito em;// Instaciamos la clase empleado
+        List <caja_factura_Credito>lista = new ArrayList<>(); //lista de los datos de la factura con ArrayList para obtener cada dato del laboratorio
         for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
-            em = new laboratorio_Credito(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
-            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),lblsubtotal.getText(),txtcredito.getText(),lblTotal.getText());
+            em = new caja_factura_Credito(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),isv.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),tablaCaja.getValueAt(i, 5).toString(),lblsubtotal.getText(),txtcredito.getText(),lblTotal.getText());
             lista.add(em); //se lee el objeto laboratrio a la lista
         }
         JasperReport reporte; // Instaciamos el objeto reporte
-        String path = "src\\reportes\\caja_laboratorio_credito.jasper"; //Ponemos la localizacion del reporte creado
+        String path = "src\\Reportes\\caja_laboratorio_credito.jasper"; //Ponemos la localizacion del reporte creado
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
+            JasperViewer viewer = new JasperViewer(jprint, false); //Se crea la vista del reportes
+            viewer.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Se declara con dispose_on_close para que no se cierre el programa cuando se cierre el reporte
+            viewer.setVisible(true); //Se vizualiza el reporte
+        } catch (JRException ex) {
+           
+        } 
+}
+        void print_bill_cuota(){
+        caja_pago_cuota em;// Instaciamos la clase
+        List <caja_pago_cuota>lista = new ArrayList<>(); //Creamos una lista de empleados con ArrayList para obtener cada empleado
+        for(int i=0; i<tablaCaja.getRowCount(); i++){ // Iterena cada fila de la tabla
+            em = new caja_pago_cuota(txtpaciente.getText(),numFac.getText(),condiciones(Estado_actual), txtFecha.getText(),lblsubtotal.getText(),tablaCaja.getValueAt(i, 0).toString(),tablaCaja.getValueAt(i,1).toString(), //Tomamos de la tabla el valor de cada columna y creamos un objeto empleado
+            tablaCaja.getValueAt(i, 2).toString(),tablaCaja.getValueAt(i, 3).toString(),tablaCaja.getValueAt(i, 4).toString(),tablaCaja.getValueAt(i, 5).toString(),txtcredito.getText(),lblTotal.getText());
+            lista.add(em); //Agregamos el objeto empleado a la lista
+        }
+        JasperReport reporte; // Instaciamos el objeto reporte
+        String path = "src\\reportes\\caja_pago_cuotas.jasper"; //Ponemos la localizacion del reporte creado
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path); //Se carga el reporte de su localizacion
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista)); //Agregamos los parametros para llenar el reporte
@@ -1327,57 +1376,10 @@ private void condicionIsv( ){
            
         } 
 }
-    //metodo obtener las ventas del dia, de la tabla caja_servicios
-      private void Get_Data_today(){
-        Date sistemaFech = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        String fecH = formato.format(sistemaFech);
-        thishide.setVisible(false);
-        String sql="select idventa as 'Codigo', " +
-"                        codigo_paciente as 'Identidad', " +
-"                        CONCAT(nombre,' ', apellido) as 'Paciente', " +
-"                        fecha as 'Fecha',   " +
-"                        total as 'Total (L)',   " +
-"                        estado_pago AS 'Estado'  " +
-"                        from caja_servicios     " +
-"                        inner join paciente on    \\n\" +\n" +
-"                        paciente = codigo_paciente    \\n\" +\n" +
-"                      WHERE fecha = '\"+fecH+\"'  \" +\n" +
-"                      UNION ALL \\n\" +\n" +
-"                       select idventa as 'Codigo',   \\n\" +\n" +
-"                        codigo_paciente as 'Identidad',   \\n\" +\n" +
-"                        CONCAT(nombre, ' ' , apellido) as 'Paciente',   \\n\" +\n" +
-"                        fecha as 'Fecha',   \\n\" +\n" +
-"                        abonado as 'Total (L)',   \\n\" +\n" +
-"                        estado_pago AS 'Estado'   \\n\" +\n" +
-"                        from cuentas_cobrar    \\n\" +\n" +
-"                       inner join paciente on   \\n\" +\n" +
-"                       paciente = codigo_paciente    \\n\" +\n" +
-"                      WHERE fecha = '\"+fecH+\"'  \" ";
-        try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         tableCaja.setModel(DbUtils.resultSetToTableModel(rs));
-         tableCaja.removeColumn(tableCaja.getColumnModel().getColumn(0));
-         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-          } 
-        String pre;
-        String can;
-        double total = 0;
-        float cantidad;
-
-        for (int i = 0; i < tableCaja.getRowCount(); i++) {
-            can = tableCaja.getValueAt(i, 3).toString();
-            cantidad = Float.parseFloat(can);
-            total = total + cantidad;
-        }
-        caja.txttotalcaja.setText("TOTAL EN CAJA: L " + Math.rint((total) * 100) / 100);
-  }
     //metodo obtener las ventas por fecah de la tabla caja_servicios
     void sales_date(){
-            String formato = fecha.getDateFormatString();
-            Date date = fecha.getDate();
+            String formato = dtfecha1.getDateFormatString();
+            Date date = dtfecha1.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat(formato); 
             String fecH = (String.valueOf(sdf.format(date)));
 
@@ -1421,8 +1423,8 @@ private void condicionIsv( ){
     }
     //seleccionar las facturas que hiciste al credito, seleccionando la fecha
     void receivable_date(){
-            String formato = fecha.getDateFormatString();
-            Date date = fecha.getDate();
+            String formato = dtfecha1.getDateFormatString();
+            Date date = dtfecha1.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat(formato); 
             String fecH = (String.valueOf(sdf.format(date)));
 
@@ -1574,7 +1576,7 @@ private void condicionIsv( ){
     //función factura al credito o al contado
     private void Fact (){
       if(rbcredito.isSelected()){
-//            print_bill_credit();
+            print_bill_credit();
         }else if(rbcontado.isSelected()){
             print_bill();
         }
@@ -1675,6 +1677,18 @@ private void condicionIsv( ){
             JOptionPane.showMessageDialog(this,ex);
         }
     }
+    //actualizar el estado de deposito del paciente que ya salio
+    void editEstado_Deposito() {
+        try{
+            con=Conexion.ConnectDB();
+            //query para actualizar los productos de almacen
+            String sql= "update depositos set estado=0 where paciente='" + lblidpaciente.getText()+ "' and estado=1 ";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+        }catch(HeadlessException | SQLException ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
+    }
     //mostrar campos al credito
     void campos_credito(){
         txtcredito.setVisible(true);
@@ -1723,6 +1737,60 @@ private void condicionIsv( ){
                 }
              } 
 }
+    //buscar por rango de Fechas en Caja
+   void between_date(){
+            String fecH1 = formatofecha.format(dtfecha1.getDate());
+            /////////////////////
+            String fecH2 = formatofecha.format(dtfecha2.getDate());
+       try {
+
+            DefaultTableModel dt = (DefaultTableModel) tableCaja.getModel();
+            dt.setRowCount(0);
+            Statement s = Conexion.ConnectDB().createStatement();
+            ResultSet rs = s.executeQuery("(select idventa as 'Codigo',\n" +
+"                codigo_paciente as 'Identidad',\n" +
+"                CONCAT(nombre, ' ' , apellido) as 'Paciente',\n" +
+"                fecha as 'Fecha',\n" +
+"                total as 'Total (L)',\n" +
+"                estado_pago AS 'Estado'\n" +
+"                from caja_servicios \n" +
+"                inner join paciente on \n" +
+"                paciente = codigo_paciente WHERE fecha BETWEEN '"+ fecH1+"' and '"+fecH2+"') \n" +
+"					 UNION ALL\n" +
+"(select idventa as 'Codigo',\n" +
+"                codigo_paciente as 'Identidad',\n" +
+"                CONCAT(nombre, ' ' , apellido) as 'Paciente',\n" +
+"                fecha as 'Fecha',\n" +
+"                abonado as 'Total (L)',\n" +
+"                estado_pago AS 'Estado'\n" +
+"                from cuentas_cobrar \n" +
+"                inner join paciente on \n" +
+"                paciente = codigo_paciente WHERE fecha BETWEEN '"+ fecH1+"' and '"+fecH2+"')");
+
+            while (rs.next()) {
+                Vector v = new Vector();
+                    v.add(rs.getString(1));
+                    v.add(rs.getString(2));
+                    v.add(rs.getString(3));
+                    v.add(rs.getString(4));
+                    v.add(rs.getString(5));
+                    v.add(rs.getString(6));
+                dt.addRow(v);
+                String can;
+                double total = 0;
+                float cantidad;
+
+                for (int i = 0; i < tableCaja.getRowCount(); i++) {
+                    can = tableCaja.getValueAt(i, 3).toString();
+                    cantidad = Float.parseFloat(can);
+                    total = total + cantidad;
+                }
+                caja.txttotalcaja.setText("TOTAL: L " + Math.rint((total) * 100) / 100); 
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }          
+    } 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -1740,7 +1808,7 @@ private void condicionIsv( ){
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
                 //query para buscar por diferentes datos al paciente 
-                    ResultSet rs = s.executeQuery("select idventa as 'Codigo', \n" +
+                    ResultSet rs = s.executeQuery("(select idventa as 'Codigo', \n" +
 "                        codigo_paciente as 'Identidad',   \n" +
 "                        CONCAT(nombre,' ', apellido) as 'Paciente',   \n" +
 "                        fecha as 'Fecha',   \n" +
@@ -1751,9 +1819,9 @@ private void condicionIsv( ){
 "                        paciente = codigo_paciente    \n" +
 "                      WHERE codigo_paciente LIKE '%"+name+"%'    \n" +
 "                      OR CONCAT(nombre,' ', apellido) LIKE '%"+name+"%'    \n" +
-"                      OR idventa LIKE '%"+name+"%'     \n" +
+"                      OR idventa LIKE '%"+name+"%')     \n" +
 "                      UNION ALL \n" +
-"                       select idventa as 'Codigo',   \n" +
+"                       (select idventa as 'Codigo',   \n" +
 "                        codigo_paciente as 'Identidad',   \n" +
 "                        CONCAT(nombre, ' ' , apellido) as 'Paciente',   \n" +
 "                        fecha as 'Fecha',   \n" +
@@ -1764,7 +1832,7 @@ private void condicionIsv( ){
 "                       paciente = codigo_paciente    \n" +
 "                      WHERE codigo_paciente like '%"+name+"%'   \n" +
 "                      OR CONCAT(nombre,' ', apellido) LIKE '%"+name+"%'    \n" +
-"                      OR idventa LIKE '%"+name+"%'");
+"                      OR idventa LIKE '%"+name+"%')");
                     while (rs.next()) {
                         Vector v = new Vector();
                         v.add(rs.getString(1));
@@ -1800,6 +1868,7 @@ private void condicionIsv( ){
             txtpaciente.setText(tableCaja.getModel().getValueAt(row,2).toString());
             lblidpaciente.setText(tableCaja.getModel().getValueAt(row,1).toString());
             txtFecha.setText(tableCaja.getModel().getValueAt(row,3).toString()) ;
+            lblTotal.setText(tableCaja.getModel().getValueAt(row,4).toString()) ;
             show_detalle();
             condicion();
             isv.setEnabled(false);
@@ -1808,6 +1877,10 @@ private void condicionIsv( ){
             this.jTabbedPane2.setSelectedIndex(1);
             rbisv.setEnabled(false);
             rbnoisv.setEnabled(false);
+            tiledebe.hide();
+            lbldebe.hide();
+            tiledeposito.hide();
+            lbldeposito.hide();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
         }        // TODO add your handling code here:
@@ -1848,6 +1921,10 @@ private void condicionIsv( ){
         }else if("Actualizar".equals(btnVender.getText())){
             try{
                 con=Conexion.ConnectDB();
+                if (numFac.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
                 if (txtFecha.getText().equals("")) {
                     JOptionPane.showMessageDialog( this, "Ingrese Fecha","Error", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -1871,8 +1948,7 @@ private void condicionIsv( ){
                 sa.msj.setText("REGISTRADO CON");
                 sa.msj1.setText("ÉXITO");
                 sa.setVisible(true);
-                //funcion de factura
-                //Fact();
+                print_bill_cuota();
                 this.jTabbedPane2.setSelectedIndex(0);
                 limpiaCampos();
             }catch(HeadlessException | SQLException ex){
@@ -1897,7 +1973,7 @@ private void condicionIsv( ){
             }
                // insertar datos en caja_servicios
             if (rbcredito.isSelected()){
-            String sql= "insert into cuentas_cobrar(idventa,"
+            String sql= "insert into cuentas_cobrar("
                     + "paciente,"
                     + "fecha,"
                     + "estado_pago,"
@@ -1908,8 +1984,7 @@ private void condicionIsv( ){
                     + "total,"
                     + "isv) "
                     + "values ('"
-                    +numFac.getText()
-                    +"','" +lblidpaciente.getText()
+                    +lblidpaciente.getText()
                     +"','" +txtFecha.getText()
                     +"','" +condiciones(Estado_actual)
                     +"','" + Double.parseDouble(txtcredito.getText())
@@ -1929,15 +2004,15 @@ private void condicionIsv( ){
             editEstado_Cirugia();
             editEstado_Emergencia();
             editEstado_Hospitalizacion();
+            editEstado_Deposito();
             }else{
-            String sql= "insert into caja_servicios(idventa,"
+            String sql= "insert into caja_servicios("
                     + "paciente,"
                     + "fecha,"
                     + "estado_pago,"
                     + "total,"
                     + "isv) "
                     + "values ('"
-                    +numFac.getText()
                     +"','" +lblidpaciente.getText()
                     +"','" +txtFecha.getText()
                     +"','" +condiciones(Estado_actual)
@@ -1954,6 +2029,7 @@ private void condicionIsv( ){
             editEstado_Cirugia();
             editEstado_Emergencia();
             editEstado_Hospitalizacion();
+            editEstado_Deposito();
             }
             SuccessAlert sa = new SuccessAlert(new JFrame(), true);
             sa.titulo.setText("¡HECHO!");
@@ -2041,10 +2117,6 @@ private void condicionIsv( ){
                 }
         }
     }//GEN-LAST:event_btnCalcularActionPerformed
-
-    private void buscFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscFActionPerformed
-            sales_date();
-    }//GEN-LAST:event_buscFActionPerformed
 
     private void rbnoisvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnoisvActionPerformed
          isv.setVisible(true);
@@ -2136,7 +2208,10 @@ private void condicionIsv( ){
     }//GEN-LAST:event_txtcuotasKeyTyped
 
     private void btnsalestodayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalestodayActionPerformed
-        Get_Data_today();       // TODO add your handling code here:
+        if (dtfecha1.getDate() == null || dtfecha2.getDate() == null) {
+            JOptionPane.showMessageDialog( this, "Seleccione el Rango de Fechas","Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            between_date(); }              // TODO add your handling code here:
     }//GEN-LAST:event_btnsalestodayActionPerformed
 
     private void btnsalestodayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsalestodayMouseClicked
@@ -2162,6 +2237,14 @@ private void condicionIsv( ){
         cuotas_estados_cuenta.valorcuota = valorcuotas;
         new cuotas_estados_cuenta(new JFrame(), true).setVisible(true);
     }//GEN-LAST:event_btncuotaActionPerformed
+
+    private void btnsalestoday1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsalestoday1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsalestoday1MouseClicked
+
+    private void btnsalestoday1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalestoday1ActionPerformed
+        Get_Data();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsalestoday1ActionPerformed
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2170,12 +2253,13 @@ private void condicionIsv( ){
     public static principal.MaterialButton btnVender;
     private principal.MaterialButton btncuota;
     private rsbuttom.RSButtonMetro btnsalestoday;
+    private rsbuttom.RSButtonMetro btnsalestoday1;
     private principal.MaterialButton btnservicios;
-    private javax.swing.JButton buscF;
     private app.bolivia.swing.JCTextField c_search_tbl;
     private principal.MaterialButton cerrar;
     public static javax.swing.JLabel codetest;
-    public com.toedter.calendar.JDateChooser fecha;
+    public com.toedter.calendar.JDateChooser dtfecha1;
+    public com.toedter.calendar.JDateChooser dtfecha2;
     public static app.bolivia.swing.JCTextField isv;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2208,6 +2292,7 @@ private void condicionIsv( ){
     public static javax.swing.JLabel lbladeuda;
     private javax.swing.JLabel lblback;
     public static javax.swing.JLabel lblcuotas;
+    public static javax.swing.JLabel lbldebe;
     public static javax.swing.JLabel lbldebecuotas;
     public static javax.swing.JLabel lbldeposito;
     public static javax.swing.JLabel lblidpaciente;
@@ -2224,6 +2309,8 @@ private void condicionIsv( ){
     public static javax.swing.JTable tablaCaja;
     private javax.swing.JTable tableCaja;
     private javax.swing.JLabel thishide;
+    private javax.swing.JLabel tiledebe;
+    private javax.swing.JLabel tiledeposito;
     public static app.bolivia.swing.JCTextField txtCambio;
     private app.bolivia.swing.JCTextField txtFecha;
     public static app.bolivia.swing.JCTextField txtImporte;
@@ -2231,9 +2318,9 @@ private void condicionIsv( ){
     public static app.bolivia.swing.JCTextField txtcuotas;
     public static app.bolivia.swing.JCTextField txtpaciente;
     private javax.swing.JLabel txtsubtotal;
-    private javax.swing.JLabel txtsubtotal1;
     private javax.swing.JLabel txttotal;
     private static javax.swing.JLabel txttotalcaja;
     public static app.bolivia.swing.JCTextField txtvalorcuotas;
     // End of variables declaration//GEN-END:variables
 }
+

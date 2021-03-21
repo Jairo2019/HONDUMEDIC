@@ -8,9 +8,11 @@ package lista_productos_servicios;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +24,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -45,7 +47,7 @@ PreparedStatement pst=null;
     public productos_ambulancia(JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
+        
         this.tabla.getTableHeader().setDefaultRenderer(new principal.EstiloTablaHeader());
         this.tabla.setDefaultRenderer(Object.class, new principal.EstiloTablaRenderer());
         this.tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -57,6 +59,7 @@ PreparedStatement pst=null;
         AWTUtilities.setOpaque(this, false);
         con= Conexion.ConnectDB();
         Get_Data();
+        eliminarProductStock0();
         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
@@ -264,7 +267,7 @@ PreparedStatement pst=null;
         cantidadAlmacen.setText("CANTIDAD");
         jPanel1.add(cantidadAlmacen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, -1, 29));
 
-        panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 8, 960, 590));
+        panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 960, 590));
 
         getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 610));
 
@@ -284,7 +287,19 @@ PreparedStatement pst=null;
 }
 
  }
- 
+//eliminar producto automaticamente producto llegue a 0
+ public void eliminarProductStock0() {
+            try{
+                    con=Conexion.ConnectDB();
+                    String sql= "delete from inventario_ambulancia where cantidad='"+0+"' ";
+                    pst=con.prepareStatement(sql);
+                    pst.execute();
+                    Get_Data();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+            }
+
+    }
     public void calcular() {
         String pre;
         String can;
@@ -321,7 +336,8 @@ PreparedStatement pst=null;
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select codigo_ambulancia as 'Codigo', nombre as 'Nombre', precio as 'Precio', cantidad as 'Cantidad Disponible' from inventario_ambulancia WHERE nombre LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select codigo_ambulancia as 'Codigo', nombre as 'Nombre', precio as 'Precio', cantidad as 'Cantidad Disponible' "
+                    + "from inventario_ambulancia WHERE nombre LIKE '%"+name+"%' or codigo_ambulancia LIKE '%"+name+"%'");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -329,11 +345,9 @@ PreparedStatement pst=null;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-                v.add(rs.getString(5));
                 dt.addRow(v);
-
+                
             }
-
         } catch (Exception e) {
             Get_Data();
 
@@ -421,7 +435,6 @@ PreparedStatement pst=null;
                             dato[3] = cant;
 
                             tabladet.addRow(dato);
-
                             ambulancia.ambulancia.tablaCaja.setModel(tabladet);
                             calcular();
 

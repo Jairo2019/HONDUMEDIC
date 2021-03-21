@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package unidad_apa;
-import paneles.*;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
+import generadores_codigo.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -542,38 +544,8 @@ public PrincipalAdministrador a ;
 }
   }
     public void extraerID() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_emergencia) FROM servicio_emergencia_apa";
-
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                txtCodigo.setText("AE0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                txtCodigo.setText("AE" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
+         GenerarCodigosServicios gen = new GenerarCodigosServicios();
+        gen.generar_emergencia_APA();
     }    
     private void Reset()
 {
@@ -636,7 +608,6 @@ public PrincipalAdministrador a ;
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
@@ -660,7 +631,13 @@ public PrincipalAdministrador a ;
             }
 
             // String Password1= String.valueOf(txtPassword.getText());
-            String sql= "insert into servicio_emergencia_apa(codigo_emergencia,nombre,descripcion,precio) values ('"+txtCodigo.getText()+"','" +txtName.getText()+"','" + txtDescripcion.getText() +"','" +txtPrecio.getText()+ "')";
+            String sql= "insert into servicio_emergencia_apa("
+                    + "nombre,"
+                    + "descripcion,"
+                    + "precio) values ('"
+                    +txtName.getText()+"','" 
+                    + txtDescripcion.getText() +"','" 
+                    +txtPrecio.getText()+ "')";
 
             pst=con.prepareStatement(sql);
             pst.execute();
@@ -770,7 +747,7 @@ public PrincipalAdministrador a ;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JTable tableUsers;
-    public javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPrecio;

@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import principal.GenerarNumero;
 
 
@@ -113,7 +113,7 @@ public class OpcionesVen {
             }
 
             if (c == null) {
-                ventas.CajaAd.numFac.setText("00000001");
+                ventas.CajaAd.numFac.setText("0001");
             } else {
                 j = Integer.parseInt(c);
                 GenerarNumero gen = new GenerarNumero();
@@ -140,7 +140,7 @@ public class OpcionesVen {
 //            }
 //
 //            if (c == null) {
-//               // ventas.CajaNor.numFac.setText("00000001");
+//               // ventas.CajaNor.numFac.setText("0001");
 //            } else {
 //                j = Integer.parseInt(c);
 //                GenerarNumero gen = new GenerarNumero();

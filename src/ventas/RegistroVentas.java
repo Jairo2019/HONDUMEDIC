@@ -15,14 +15,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 
 /**
  *
  * @author Rojeru San CL
  */
 public class RegistroVentas extends javax.swing.JInternalFrame {
-SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
+SimpleDateFormat formatofecha = new SimpleDateFormat("yyyy-MM-dd");
+public static String T_usuario="";
     /**
      * Creates new form Usuarios
      */
@@ -33,6 +34,7 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         this.setFrameIcon(new ImageIcon(getClass().getResource("/imagenes/caja/icono1.png")));
         tablaVentas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         limpiaCampos();
+        habilitar_eliminar();
     }
 
     void limpiaCampos() {
@@ -43,6 +45,17 @@ SimpleDateFormat formatofecha = new SimpleDateFormat("dd/MM/yyyy");
         dtfecha2.setDate(null);
         buscar.setText("");
         OpcionesVen.listar("");
+    }
+    //permitir eliminar registros a gerencia
+    void habilitar_eliminar(){
+       if (T_usuario=="Gerencia") {
+           eliminar.setEnabled(true);
+           eliminarT.setEnabled(true);
+       }else{
+           eliminar.setEnabled(false);
+           eliminarT.setEnabled(false);
+       }
+           
     }
     //metodo obtener ventas por rango de fechas
 void between_date(){
@@ -421,7 +434,7 @@ void between_date(){
 
     private void ventasHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ventasHActionPerformed
         Date sistemaFech = new Date();
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         String fecH = formato.format(sistemaFech);
         OpcionesVen.listar(fecH);
         dtfecha1.setDate(null);

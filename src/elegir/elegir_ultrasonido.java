@@ -12,8 +12,8 @@ import cajaservicios.caja_ultrasonido;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
-import paneles.pnl_ambulancia;
-import paneles.pnl_ultrasonido;
+import ServiciosYConexion.pnl_ambulancia;
+import ServiciosYConexion.pnl_ultrasonido;
 import principal.PrincipalAdministrador;
 import registro_examen.examen_ultrasonido;
 

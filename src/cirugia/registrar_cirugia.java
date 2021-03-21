@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package cirugia;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.*;
 import cafeteria.OpcionesAl;
-import paneles.*;
+import generadores_codigo.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -228,7 +230,7 @@ public static String tipo_usuario="";
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/cirugia_64.png"))); // NOI18N
-        jLabel7.setText("Cirugía");
+        jLabel7.setText("Quirófano");
 
         pnlChange.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -366,7 +368,7 @@ public static String tipo_usuario="";
         jLabel14.setForeground(new java.awt.Color(128, 128, 131));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/cirugia_64.png"))); // NOI18N
-        jLabel14.setText("Cirugía");
+        jLabel14.setText("Quirófano");
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -799,38 +801,8 @@ public static String tipo_usuario="";
         }
     }
     private void numeros() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo) FROM test_cirugia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                numFac.setText("RC0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                numFac.setText("RC" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosTest gen = new GenerarCodigosTest();
+        gen.generarTCirugia();
     }
 
    public static String fechaactual() {
@@ -1189,6 +1161,10 @@ private void edit_detalle(){
         } else {
         try{
             con=Conexion.ConnectDB();
+            if (numFac.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (txtpaciente.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -1221,7 +1197,7 @@ private void edit_detalle(){
                     return;
                 }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_cirugia(codigo,"
+            String sql= "insert into test_cirugia("
                     + "paciente,"
                     + "medico_1,"
                     + "medico_2,"
@@ -1231,7 +1207,6 @@ private void edit_detalle(){
                     + "total,"
                     + "estado) "
                     + "values ('"
-                    +numFac.getText()+"','" 
                     +lblidpaciente.getText()+"','" 
                     +txtmedicoadmin.getText()+"','" 
                     +txtayudante.getText()+"','"

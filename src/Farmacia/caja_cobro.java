@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package Farmacia;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,7 +37,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import principal.GenerarCodigos;
+import generadores_codigo.*;
 
 /**
  *
@@ -730,36 +730,8 @@ static Conexion cc = new Conexion();
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void numeros() {
-        int j;
-        String c = "";
-        String SQL = "SELECT MAX(idventa) FROM caja_farmacia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                numFac.setText("RF0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                numFac.setText("RF" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosCajaFarmacia gen = new GenerarCodigosCajaFarmacia();
+        gen.generar();
     }
 
    public static String fechaactual() {
@@ -987,12 +959,11 @@ private void show_detalle(){
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into caja_farmacia(idventa,"
+            String sql= "insert into caja_farmacia("
                     + "medico,"
                     + "cliente,"
                     + "fecha,"
                     + "total) values ('"
-                    +numFac.getText()+"','" 
                     +txtmedicoindica.getText()+"','"
                     +txtpaciente.getText()+"','" 
                     + txtFecha.getText()+"','" 

@@ -6,6 +6,7 @@
 package cajaservicios;
 
 import cafeteria.*;
+import generadores_codigo.GenerarCodigosAlimentos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import principal.GenerarCodigos;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 
 /**
  *
@@ -89,38 +90,8 @@ public class OpcionesCL {
     }
 
     public static void extraerID() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_al) FROM alimentos";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                cafeteria.Alimentos.codigo.setText("AL0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                cafeteria.Alimentos.codigo.setText("AL" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesCL.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosAlimentos gen = new GenerarCodigosAlimentos();
+        gen.generar();
     }
 
     public static void listar(String busca) {

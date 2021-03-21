@@ -12,7 +12,7 @@ import cajaservicios.caja_rayosx;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
-import paneles.pnl_rayosx;
+import ServiciosYConexion.pnl_rayosx;
 import principal.PrincipalAdministrador;
 import registro_examen.examen_rayosx;
 

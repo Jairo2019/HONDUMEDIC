@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package Inventarios;
-import paneles.*;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import java.awt.Font;
 import java.util.Date;
 import java.sql.Connection;
@@ -132,7 +133,7 @@ public PrincipalAdministrador a ;
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/hospital_64.png"))); // NOI18N
-        jLabel7.setText("Emergencia");
+        jLabel7.setText("Emergencia Pediátrica");
 
         pnlChange.setBackground(new java.awt.Color(255, 255, 255));
 

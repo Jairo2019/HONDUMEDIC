@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 package cajaservicios;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -829,7 +830,7 @@ static Conexion cc = new Conexion();
             }
 
             if (c == null) {
-                numFac.setText("00000001");
+                numFac.setText("0001");
             } else {
                 j = Integer.parseInt(c);
                 GenerarNumero gen = new GenerarNumero();
@@ -1118,6 +1119,10 @@ private void condicionPaciente( ){
         } else {
         try{
             con=Conexion.ConnectDB();
+            if (numFac.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (txtpaciente.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -1127,12 +1132,11 @@ private void condicionPaciente( ){
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into caja_endoscopia(idventa,"
+            String sql= "insert into caja_endoscopia("
                     + "paciente,"
                     + "fecha,"
                     + "total,"
                     + "estado) values ('"
-                    +numFac.getText()+"','" 
                     +lblidpaciente.getText()
                     +"','" + txtFecha.getText()
                     +"','" + lblTotal.getText()

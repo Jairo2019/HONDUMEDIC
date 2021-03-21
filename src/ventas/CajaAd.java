@@ -18,7 +18,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import static principal.cafeteriaPrincipalAd.escritorio;
 
 /**
@@ -615,7 +615,11 @@ cafeteria.ListaAlimentosAd la;
         } else {
             try{
              con=Conexion.ConnectDB();
-             String sql= "insert into registro_venta(numero,total,fecha) values ('"+numFac.getText()+"','" + total.getText() +"','" +fecha.getText()+ "')";
+             String sql= "insert into registro_venta("
+                     + "total,"
+                     + "fecha) values ('" 
+                     + total.getText() +"','" 
+                     +fecha.getText()+ "')";
              pst=con.prepareStatement(sql);
              pst.execute();
                 JOptionPane.showMessageDialog(this, "Venta realizada.", "Caja de cobro",0);

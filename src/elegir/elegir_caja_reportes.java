@@ -13,7 +13,7 @@ import java.util.TimerTask;
 import principal.PrincipalAdministrador;
 import cirugia.registrar_cirugia;
 import javax.swing.JFrame;
-import paneles.pnl_cirugia;
+import ServiciosYConexion.pnl_cirugia;
 import reportes_registros.lista_caja_apa;
 import reportes_registros.lista_caja_cafeteria;
 import reportes_registros.lista_caja_endoscopia;

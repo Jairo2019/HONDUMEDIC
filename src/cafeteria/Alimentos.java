@@ -216,7 +216,7 @@ public class Alimentos extends javax.swing.JInternalFrame {
 
         tipoAl.setBackground(new java.awt.Color(0, 111, 177));
         tipoAl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 111, 177), 10));
-        tipoAl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO ALIMENTO", "BEBIDAS", "BOTANAS", "CALDOS", "CAMARONES", "COCTELES", "DESAYUNOS", "FILETE", "LANGOSTA", "LANGOSTINO", "PESCADO" }));
+        tipoAl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TIPO ALIMENTO", "BEBIDA", "BOTANA", "DESAYUNO", "ALMUERZO", "CENA", "COMIDA RÁPIDA", "OTRO" }));
         tipoAl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jPanel2.add(tipoAl, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 183, 40));
 
@@ -255,7 +255,7 @@ public class Alimentos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "CÓDIGO", "TIPO ALIMENTO", "NOMBRE ALIMENTO", "PRECIO $"
+                "CÓDIGO", "TIPO ALIMENTO", "NOMBRE ALIMENTO", "PRECIO L"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -469,18 +469,19 @@ public class Alimentos extends javax.swing.JInternalFrame {
                     new ImageIcon(getClass().getResource("/imagenes/usuarios/info.png")));
         } else {
            cafeteria.AlimentosCod us = new AlimentosCod();
-            us.setPrimaryKey(codigo.getText());
             us.setNombre(nombre.getText());
             us.setTipoal(tipoAl.getSelectedItem().toString());
             us.setPrecio(precio.getText());
-            int opcion = OpcionesAl.registrar(us);
-            if (opcion != 0) {
-                String id = codigo.getText();
-                limpiaCampos();
-                selecionaFila(id);
+            OpcionesAl.registrar(us);
+//            int opcion = OpcionesAl.registrar(us);
+//            if (opcion != 0) {
+//                String id = codigo.getText();
+//                limpiaCampos();
+//                selecionaFila(id);
                 JOptionPane.showMessageDialog(this, "Registro éxitoso.", "Alimentos", 0,
                         new ImageIcon(getClass().getResource("/imagenes/alimentos/registrado.png")));
-            }
+                 OpcionesAl.listar("");
+//            }
         }
     }//GEN-LAST:event_registrarActionPerformed
 

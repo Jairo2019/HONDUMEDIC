@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package Farmacia;
+import ServiciosYConexion.Conexion;
 import cafeteria.OpcionesAl;
-import paneles.*;
+import generadores_codigo.*;
 import java.awt.Font;
 import java.util.Date;
 import java.sql.Connection;
@@ -812,38 +813,8 @@ PreparedStatement pst=null;
     }
     
     public void extraerID() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo_farmacia) FROM inventario_farmacia";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                txtCodigo.setText("PF0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                txtCodigo.setText("PF" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        GenerarCodigosInventarioFarmacia gen = new GenerarCodigosInventarioFarmacia();
+        gen.generar();
     }
     private void Get_Data(){
         Reset();
@@ -892,38 +863,6 @@ PreparedStatement pst=null;
     txtcantidadminima.setText("");
     dtFechaVec.setDate(null);
 }
-    //Metodo para no permitir campos vacios
-    private void notallowempty(){
-        if (txtcodbarras.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Código de Barras","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (txtName.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtPreciocompra.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtPrecioventa.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Precio de Venta","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtisv.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese Porcentaje de Impuesto","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtfechaingreso.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la fecha de Hoy","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (dtFechaVec.getDate().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Fecha de Vencimiento","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtcantidad.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }if (txtcantidadminima.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad Mínima Establecida para este Producto","Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
@@ -1009,9 +948,45 @@ PreparedStatement pst=null;
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
         try{
             con=Conexion.ConnectDB();
-            notallowempty();
+            if (txtcodbarras.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Código de Barras","Error", JOptionPane.ERROR_MESSAGE);
+                txtcodbarras.requestFocus();
+                return;
+            }
+            if (txtName.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
+                txtName.requestFocus();
+                return;
+            }if (txtPreciocompra.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                txtPreciocompra.requestFocus();
+                return;
+            }if (txtPrecioventa.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Venta","Error", JOptionPane.ERROR_MESSAGE);
+                txtPrecioventa.requestFocus();
+                return;
+            }if (txtisv.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Porcentaje de Impuesto","Error", JOptionPane.ERROR_MESSAGE);
+                txtisv.requestFocus();
+                return;
+            }if (txtfechaingreso.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la fecha de Hoy","Error", JOptionPane.ERROR_MESSAGE);
+                txtfechaingreso.requestFocus();
+                return;
+            }if (dtFechaVec.getDate().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Fecha de Vencimiento","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtcantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                txtcantidad.requestFocus();
+                return;
+            }if (txtcantidadminima.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad Mínima Establecida para este Producto","Error", JOptionPane.ERROR_MESSAGE);
+                txtcantidadminima.requestFocus();
+                return;
+            }
             precio= (Double.parseDouble(txtPrecioventa.getText()))*(1 + (Double.parseDouble(txtisv.getText()))/100);
-            String sql= "insert into inventario_farmacia(codigo_farmacia,"
+            String sql= "insert into inventario_farmacia("
                     + "codigo_barras,"
                     + "nombre,"
                     + "casa_farmaceutica,"
@@ -1023,7 +998,6 @@ PreparedStatement pst=null;
                     + "cantidad,"
                     + "cantidad_minima,"
                     + "descripcion) values ('"
-                    +txtCodigo.getText()+"','" 
                     +txtcodbarras.getText()+"','" 
                     +txtName.getText()+"','"
                     +txtfarmacia.getText()+"','" 
@@ -1051,7 +1025,43 @@ PreparedStatement pst=null;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try{
             con=Conexion.ConnectDB();
-            notallowempty();
+            if (txtcodbarras.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Código de Barras","Error", JOptionPane.ERROR_MESSAGE);
+                txtcodbarras.requestFocus();
+                return;
+            }
+            if (txtName.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Nombre del Producto","Error", JOptionPane.ERROR_MESSAGE);
+                txtName.requestFocus();
+                return;
+            }if (txtPreciocompra.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                txtPreciocompra.requestFocus();
+                return;
+            }if (txtPrecioventa.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Precio de Venta","Error", JOptionPane.ERROR_MESSAGE);
+                txtPrecioventa.requestFocus();
+                return;
+            }if (txtisv.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese Porcentaje de Impuesto","Error", JOptionPane.ERROR_MESSAGE);
+                txtisv.requestFocus();
+                return;
+            }if (txtfechaingreso.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la fecha de Hoy","Error", JOptionPane.ERROR_MESSAGE);
+                txtfechaingreso.requestFocus();
+                return;
+            }if (dtFechaVec.getDate().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Fecha de Vencimiento","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }if (txtcantidad.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad de Compra","Error", JOptionPane.ERROR_MESSAGE);
+                txtcantidad.requestFocus();
+                return;
+            }if (txtcantidadminima.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "Ingrese la Cantidad Mínima Establecida para este Producto","Error", JOptionPane.ERROR_MESSAGE);
+                txtcantidadminima.requestFocus();
+                return;
+            }
             precio= (Double.parseDouble(txtPrecioventa.getText()))*(1 + (Double.parseDouble(txtisv.getText()))/100);
             //query para actualizar inventario de farmacia
             String sql= "update inventario_farmacia set codigo_barras='"+ txtcodbarras.getText()+
@@ -1093,9 +1103,6 @@ PreparedStatement pst=null;
 
                 String sql= "delete from inventario_farmacia where codigo_farmacia= '" + txtCodigo.getText() + "'";
                 pst=con.prepareStatement(sql);
-                //        pst.execute();
-                //         String sql1= "delete from Users where Username = '" + txtUserName.getText() + "'";
-                //        pst=con.prepareStatement(sql1);
                 pst.execute();
                 JOptionPane.showMessageDialog(this,"Borrado Exitosamente","Registro",JOptionPane.INFORMATION_MESSAGE);
                 this.jTabbedPane2.setSelectedIndex(0);
@@ -1155,11 +1162,13 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_txtcantidadminimaActionPerformed
 
     private void txtcantidadminimaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadminimaKeyTyped
-        // TODO add your handling code here:
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9')) evt.consume();         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadminimaKeyTyped
 
     private void txtPrecioventaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioventaKeyTyped
-        // TODO add your handling code here:
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9') && (car<'.' || car>'.')) evt.consume();          // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioventaKeyTyped
 
 
@@ -1200,7 +1209,7 @@ PreparedStatement pst=null;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JPanel pnlChange;
     private javax.swing.JTable tableUsers;
-    public javax.swing.JTextField txtCodigo;
+    public static javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtName;
     public javax.swing.JTextField txtPreciocompra;

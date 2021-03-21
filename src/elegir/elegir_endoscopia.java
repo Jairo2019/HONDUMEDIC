@@ -12,7 +12,7 @@ import cajaservicios.caja_endoscopia;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
-import paneles.pnl_endoscopia;
+import ServiciosYConexion.pnl_endoscopia;
 import principal.PrincipalAdministrador;
 import registro_examen.examen_endoscopia;
 

@@ -6,7 +6,7 @@
 package login;
 
 import cirugia.registrar_cirugia;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import login.Login;
-import paneles.pnl_menu;
+import pacientes.modal_paciente;
+import ServiciosYConexion.pnl_menu;
 import principal.*;
 import static principal.PrincipalAdministrador.escritorio;
 import static principal.PrincipalAdministrador.estacerrado;
@@ -170,7 +171,7 @@ public class Opciones {
         PrincipalAdministrador.btnmenu.setEnabled(true);
         PrincipalAdministrador.btncafeteria.setEnabled(false);
         PrincipalAdministrador.btnempleados.setEnabled(true);
-        PrincipalAdministrador.btnGastos.setEnabled(false);
+        PrincipalAdministrador.btnGastos.setEnabled(true);
         PrincipalAdministrador.btnpacientes.setEnabled(true);
         PrincipalAdministrador.btnalmacen.setEnabled(false);
         PrincipalAdministrador.btnUsuarios.setEnabled(false);
@@ -332,7 +333,7 @@ public class Opciones {
     public static void verifica(String usuario, String pas, JFrame login) {
         String user = "", pass = "", tipo_us = "",name="";
         try {
-            String sql = "SELECT rol, usuario, password, concat(nombre,' ',apellido) FROM usuarios WHERE usuario = '" + usuario + "'";
+            String sql = "SELECT u.rol, u.usuario, u.password, concat(e.nombre,' ',e.apellido) FROM usuarios u inner join empleado e ON u.id_empleado=e.codigo_empleado  WHERE usuario = '" + usuario + "'";
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -361,6 +362,7 @@ public class Opciones {
                     examen_emergencia_apa.tipo_usuario="Administración";
                     examen_hospitalizacion_apa.tipo_usuario="Administración";
                     pacientes.pacientes.usuario=user;
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Enfermeria")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -376,7 +378,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="";
                     examen_emergencia_apa.tipo_usuario="";
                      examen_hospitalizacion_apa.tipo_usuario="";
-                    pacientes.pacientes.usuario=user;   
+                    pacientes.pacientes.usuario=user;                   
+                    modal_paciente.usuario=user;   
                 }else if (tipo_us.equals("Médico")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -392,7 +395,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Médico";
                     examen_emergencia_apa.tipo_usuario="Médico";
                     examen_hospitalizacion_apa.tipo_usuario="Médico";
-                    pacientes.pacientes.usuario=user;   
+                    pacientes.pacientes.usuario=user;                    
+                    modal_paciente.usuario=user;   
                 }else if (tipo_us.equals("Almacén")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -408,7 +412,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Almacén";
                     examen_emergencia_apa.tipo_usuario="Almacén";
                     examen_hospitalizacion_apa.tipo_usuario="Almacén";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;                   
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Ambulancia")) {
                     login.dispose();
                     PrincipalAdministrador.name_usuario=name;
@@ -424,7 +429,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Ambulancia";
                     examen_emergencia_apa.tipo_usuario="Ambulancia";
                     examen_hospitalizacion_apa.tipo_usuario="Ambulancia";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;                   
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Caja")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -440,7 +446,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Caja";
                     examen_emergencia_apa.tipo_usuario="Caja";
                     examen_hospitalizacion_apa.tipo_usuario="Caja";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;   
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Cafetería")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -456,7 +463,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Cafetería";
                     examen_emergencia_apa.tipo_usuario="Cafetería";
                     examen_hospitalizacion_apa.tipo_usuario="Cafetería";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;             
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Cirugía")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -472,7 +480,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Cirugía";
                     examen_emergencia_apa.tipo_usuario="Cirugía";
                     examen_hospitalizacion_apa.tipo_usuario="Cirugía";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;            
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Endoscopia")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -488,7 +497,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Endoscopia";
                     examen_emergencia_apa.tipo_usuario="Endoscopia";
                     examen_hospitalizacion_apa.tipo_usuario="Endoscopia";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;  
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Farmacia")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -504,7 +514,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Farmacia";
                     examen_emergencia_apa.tipo_usuario="Farmacia";
                     examen_hospitalizacion_apa.tipo_usuario="Farmacia";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;         
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Gerencia")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -520,7 +531,9 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Gerencia";
                     examen_emergencia_apa.tipo_usuario="Gerencia";
                     examen_hospitalizacion_apa.tipo_usuario="Gerencia";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;   
+                    ventas.RegistroVentas.T_usuario="Gerencia";
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("Laboratorio")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -536,7 +549,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="Laboratorio";
                     examen_emergencia_apa.tipo_usuario="Laboratorio";
                     examen_hospitalizacion_apa.tipo_usuario="Laboratorio";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;    
+                    modal_paciente.usuario=user;
                 }else if (tipo_us.equals("RayosX")) {
                     login.dispose();
                     new principal.PrincipalAdministrador().setVisible(true);
@@ -552,7 +566,8 @@ public class Opciones {
                     examen_hospitalizacion.tipo_usuario="RayosX";
                     examen_emergencia_apa.tipo_usuario="RayosX";
                     examen_hospitalizacion_apa.tipo_usuario="RayosX";
-                    pacientes.pacientes.usuario=user;
+                    pacientes.pacientes.usuario=user;           
+                    modal_paciente.usuario=user;
                 }
             } else {
                 Login.info.setText("¡ USUARIO O CONTRASEÑA INCORRECTOS !");

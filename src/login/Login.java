@@ -32,7 +32,7 @@ PreparedStatement pst=null;
      */
     public Login() {
         initComponents();
-        this.setIconImage(new ImageIcon(getClass().getResource("/img1/HODUMEDIC_1.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/img1/icon_taskbar.png")).getImage());
         setLocationRelativeTo(null);
         AWTUtilities.setOpaque(this, false);
         FadeEffect.fadeInFrame(this, 50, 0.1f);
@@ -196,8 +196,7 @@ PreparedStatement pst=null;
             this.info.setText("¡ USUARIO Y CONTRASEÑA REQUERIDOS !");
             this.txtUserName.requestFocus();
         }else{
-            Opciones.verifica(this.txtUserName.getText(), this.txtPassword.getText(), this);
-            
+            Opciones.verifica(this.txtUserName.getText(), this.txtPassword.getText(), this);  
         }
 }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed

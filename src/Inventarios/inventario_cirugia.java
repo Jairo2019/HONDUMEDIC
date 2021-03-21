@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package Inventarios;
-import paneles.*;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;

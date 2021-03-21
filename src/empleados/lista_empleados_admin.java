@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -339,6 +339,11 @@ PreparedStatement pst=null;
                             cual="";
                         }else if (("11").equals(cual)){
                             registro_examen.examen_rayosx.txtmedico.setText(nom + " "+  apellido);
+                            cual="";
+                        }
+                        else if (("12").equals(cual)){
+                            ServiciosYConexion.pnl_usuarios.txtEmpleado.setText(nom + " "+  apellido);
+                            ServiciosYConexion.pnl_usuarios.lblidempleado.setText(cod);
                             cual="";
                         }
                         this.dispose();

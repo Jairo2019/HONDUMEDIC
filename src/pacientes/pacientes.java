@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package pacientes;
-import paneles.*;
+import ServiciosYConexion.Conexion;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;
@@ -75,7 +75,6 @@ public static String Knowbutton="";
         btnUpdate = new rsbuttom.RSButtonMetro();
         btncancel = new rsbuttom.RSButtonMetro();
         btnDelete = new rsbuttom.RSButtonMetro();
-        jLabel14 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
@@ -89,14 +88,13 @@ public static String Knowbutton="";
         txtedad = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         txttelefono = new javax.swing.JTextField();
-        txtunidadreferente = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
         choiceunidad = new javax.swing.JComboBox();
         jLabel24 = new javax.swing.JLabel();
         txtresponsable = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         txtcorreo = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         org.jdesktop.swingx.border.DropShadowBorder dropShadowBorder1 = new org.jdesktop.swingx.border.DropShadowBorder();
@@ -221,7 +219,7 @@ public static String Knowbutton="";
             pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChangeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1186, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(pnlChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlChangeLayout.createSequentialGroup()
@@ -375,12 +373,6 @@ public static String Knowbutton="";
 
         jPanel6.add(jPanel7, new java.awt.GridBagConstraints());
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(128, 128, 131));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paciente_64.png"))); // NOI18N
-        jLabel14.setText("Pacientes");
-
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setForeground(new java.awt.Color(0, 0, 0));
         jPanel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -394,7 +386,7 @@ public static String Knowbutton="";
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(53, 60, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(53, 14, 0, 0);
         jPanel9.add(jLabel17, gridBagConstraints);
 
         txtCodigo.setBackground(new java.awt.Color(255, 255, 255));
@@ -428,7 +420,7 @@ public static String Knowbutton="";
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 102, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 56, 0, 0);
         jPanel9.add(jLabel23, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -438,7 +430,7 @@ public static String Knowbutton="";
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 96, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 50, 0, 0);
         jPanel9.add(jLabel19, gridBagConstraints);
 
         txtdireccion.setBackground(new java.awt.Color(204, 204, 204));
@@ -447,7 +439,7 @@ public static String Knowbutton="";
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.gridheight = 7;
+        gridBagConstraints.gridheight = 6;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 117;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -460,6 +452,11 @@ public static String Knowbutton="";
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
+            }
+        });
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNameKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -480,7 +477,7 @@ public static String Knowbutton="";
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 104, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 58, 0, 0);
         jPanel9.add(jLabel25, gridBagConstraints);
 
         txtapellido.setBackground(new java.awt.Color(255, 255, 255));
@@ -531,7 +528,7 @@ public static String Knowbutton="";
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 72);
+        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 25);
         jPanel9.add(txtedad, gridBagConstraints);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -565,31 +562,8 @@ public static String Knowbutton="";
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(35, 6, 0, 72);
+        gridBagConstraints.insets = new java.awt.Insets(35, 6, 0, 25);
         jPanel9.add(txttelefono, gridBagConstraints);
-
-        txtunidadreferente.setBackground(new java.awt.Color(255, 255, 255));
-        txtunidadreferente.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtunidadreferente.setForeground(new java.awt.Color(0, 0, 0));
-        txtunidadreferente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtunidadreferenteActionPerformed(evt);
-            }
-        });
-        txtunidadreferente.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtunidadreferenteKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 246;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 72);
-        jPanel9.add(txtunidadreferente, gridBagConstraints);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
@@ -601,39 +575,29 @@ public static String Knowbutton="";
         gridBagConstraints.insets = new java.awt.Insets(18, 190, 0, 0);
         jPanel9.add(jLabel21, gridBagConstraints);
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel22.setText("Unidad Referente:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 255, 0, 0);
-        jPanel9.add(jLabel22, gridBagConstraints);
-
         choiceunidad.setBackground(new java.awt.Color(255, 255, 255));
         choiceunidad.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         choiceunidad.setForeground(new java.awt.Color(0, 0, 0));
-        choiceunidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pediatría", "APA" }));
+        choiceunidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Observación Pediátrica", "Emergencia Pediátrica", "Internamiento Pediátrica", "Consulta Externa Pediátrica", "Observación APA", "Emergencia APA", "Internamiento APA", "Consulta Externa APA", "Quirófano", "Ambulancia" }));
         choiceunidad.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 169;
-        gridBagConstraints.ipady = 4;
+        gridBagConstraints.ipadx = 38;
+        gridBagConstraints.ipady = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 72);
+        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 25);
         jPanel9.add(choiceunidad, gridBagConstraints);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel24.setText("Unidad:");
+        jLabel24.setText("Unidad Referente:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(16, 342, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(16, 255, 0, 0);
         jPanel9.add(jLabel24, gridBagConstraints);
 
         txtresponsable.setBackground(new java.awt.Color(255, 255, 255));
@@ -656,7 +620,7 @@ public static String Knowbutton="";
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 72);
+        gridBagConstraints.insets = new java.awt.Insets(9, 6, 0, 25);
         jPanel9.add(txtresponsable, gridBagConstraints);
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -664,9 +628,10 @@ public static String Knowbutton="";
         jLabel26.setText("Correo:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 344, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(27, 344, 0, 0);
         jPanel9.add(jLabel26, gridBagConstraints);
 
         txtcorreo.setBackground(new java.awt.Color(204, 204, 204));
@@ -684,33 +649,40 @@ public static String Knowbutton="";
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 13;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.ipadx = 246;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 6, 0, 72);
+        gridBagConstraints.insets = new java.awt.Insets(18, 6, 0, 25);
         jPanel9.add(txtcorreo, gridBagConstraints);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(128, 128, 131));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/paciente_64.png"))); // NOI18N
+        jLabel14.setText("Pacientes");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(jLabel14)
+                .addGap(9, 9, 9)
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -721,8 +693,11 @@ public static String Knowbutton="";
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -744,20 +719,17 @@ public static String Knowbutton="";
 "                    p.nombre as 'Nombre del Paciente',\n" +
 "                    p.apellido as 'Apellido del Paciente',\n" +
                      "p.responsable as 'Responsable del Paciente',\n" +
-"                    CONCAT(u.nombre,' ',u.apellido) AS 'Usuario Responsable',\n" +
+"                    u.usuario AS 'Usuario Responsable',\n" +
 "                    p.direccion as 'Dirección',\n" +
 "                    p.edad as 'Edad',\n" +
 "                    p.telefono as 'Teléfono',\n" +
 "                    p.unidad as 'Unidad',\n" +
-"                    p.unidad_referente as 'Unidad Referente', \n" +
 "                    p.correo as 'Correo'  from paciente p\n" +
 "                    left JOIN usuarios u ON p.codigo_usuario=u.usuario";
         try{
          pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
          tableUsers.setModel(DbUtils.resultSetToTableModel(rs));
-        lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(3);
-       tableUsers.setDefaultRenderer (Object.class, colorear);
          }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
           
@@ -778,7 +750,8 @@ public static String Knowbutton="";
     btnDelete.setEnabled(false);
     txttelefono.setText("");
     txtresponsable.setText("");
-    txtunidadreferente.setText("");   
+    txtcorreo.setText("");
+    txtCodigo.setEnabled(true);
 }
     //guardar los datos ingresados
     private void insert_paciente(){
@@ -809,7 +782,6 @@ public static String Knowbutton="";
                     + "edad,"
                     + "telefono,"
                     + "unidad,"
-                    + "unidad_referente,"
                     + "correo) values ('"
                     +txtCodigo.getText()+"','" 
                     +usuario+"','" 
@@ -820,7 +792,6 @@ public static String Knowbutton="";
                     +txtedad.getText()+"','"
                     +txttelefono.getText()+"','" 
                     +choiceunidad.getSelectedItem()+"','" 
-                    +txtunidadreferente.getText()+"','" 
                     +txtcorreo.getText()+ "')";
 
             pst=con.prepareStatement(sql);
@@ -847,7 +818,6 @@ public static String Knowbutton="";
                     +"',edad='" + txtedad.getText()
                     +"',telefono='" + txttelefono.getText() 
                     +"',unidad='" + choiceunidad.getSelectedItem()
-                    + "',unidad_referente='" + txtunidadreferente.getText() 
                     +"',correo='" + txtcorreo.getText()
                     + "' where codigo_paciente='" + txtCodigo.getText()+ "'";
             pst=con.prepareStatement(sql);
@@ -895,11 +865,6 @@ public static String Knowbutton="";
                 JOptionPane.showMessageDialog( this, "Ingrese La Persona Responsable del Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 txtresponsable.requestFocus();
                 return;
-            }
-            else if (txtunidadreferente.getText().equals("")) {
-                JOptionPane.showMessageDialog( this, "Ingrese una unidad Referente","Error", JOptionPane.ERROR_MESSAGE);
-                txtunidadreferente.requestFocus();
-                return;
             }else if("save".equals(Knowbutton)){
                 insert_paciente();
             }else if("edit".equals(Knowbutton)){
@@ -927,12 +892,11 @@ public static String Knowbutton="";
 "                    p.nombre as 'Nombre del Paciente',\n" +
 "                    p.apellido as 'Apellido del Paciente',\n" +
                     "p.responsable as 'Responsable del Paciente',\n" +
-"                    CONCAT(u.nombre,' ',u.apellido) AS 'Usuario Responsable',\n" +
+                    "u.usuario AS 'Usuario Responsable',\n" +
 "                    p.direccion as 'Dirección',\n" +
 "                    p.edad as 'Edad',\n" +
 "                    p.telefono as 'Teléfono',\n" +
 "                    p.unidad as 'Unidad',\n" +
-"                    p.unidad_referente as 'Unidad Referente', \n" +
 "                    p.correo as 'Correo'  from paciente p\n" +
 "                    left JOIN usuarios u ON p.codigo_usuario=u.usuario "
                     + "WHERE CONCAT(p.nombre, ' ' ,p.apellido) "
@@ -951,7 +915,6 @@ public static String Knowbutton="";
                 v.add(rs.getString(8));
                 v.add(rs.getString(9));
                 v.add(rs.getString(10));
-                v.add(rs.getString(11));
                 dt.addRow(v);
 
             }
@@ -974,13 +937,11 @@ public static String Knowbutton="";
             txtedad.setText(tableUsers.getModel().getValueAt(row,6).toString());
             txttelefono.setText(tableUsers.getModel().getValueAt(row,7).toString());
             choiceunidad.setSelectedItem(tableUsers.getModel().getValueAt(row,8).toString());
-            txtunidadreferente.setText(tableUsers.getModel().getValueAt(row,9).toString());
-            txtcorreo.setText(tableUsers.getModel().getValueAt(row,10).toString());
+            txtcorreo.setText(tableUsers.getModel().getValueAt(row,9).toString());
             txtCodigo.setEnabled(false);
             this.btnsave.setEnabled(false);
             this.btnDelete.setEnabled(true);
             this.btnUpdate.setEnabled(true);
-            this.btncancel.setEnabled(false);
             this.jTabbedPane2.setSelectedIndex(1);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(this,ex);
@@ -1039,7 +1000,11 @@ public static String Knowbutton="";
     }//GEN-LAST:event_txtedadActionPerformed
 
     private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
-    // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) == false) {
+        }else{
+            evt.consume();
+        }    // TODO add your handling code here:
     }//GEN-LAST:event_txtapellidoKeyTyped
 
     private void txtedadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtedadKeyTyped
@@ -1078,20 +1043,16 @@ public static String Knowbutton="";
        }       // TODO add your handling code here:
     }//GEN-LAST:event_txttelefonoKeyTyped
 
-    private void txtunidadreferenteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtunidadreferenteKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtunidadreferenteKeyTyped
-
-    private void txtunidadreferenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtunidadreferenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtunidadreferenteActionPerformed
-
     private void txtresponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtresponsableActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtresponsableActionPerformed
 
     private void txtresponsableKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtresponsableKeyTyped
-        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) == false) {
+        }else{
+            evt.consume();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_txtresponsableKeyTyped
 
     private void txtcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreoActionPerformed
@@ -1101,6 +1062,14 @@ public static String Knowbutton="";
     private void txtcorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcorreoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcorreoKeyTyped
+
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c) == false) {
+        }else{
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1118,7 +1087,6 @@ public static String Knowbutton="";
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1146,6 +1114,5 @@ public static String Knowbutton="";
     public javax.swing.JTextField txtedad;
     public static javax.swing.JTextField txtresponsable;
     public javax.swing.JTextField txttelefono;
-    public javax.swing.JTextField txtunidadreferente;
     // End of variables declaration//GEN-END:variables
 }

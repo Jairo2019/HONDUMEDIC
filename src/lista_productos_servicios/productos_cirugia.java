@@ -9,7 +9,7 @@ import ventas.*;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -27,7 +27,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.EstiloTablaHeader;
 import tabla.EstiloTablaRenderer;
 import tabla.MyScrollbarUI;
@@ -64,6 +64,7 @@ PreparedStatement pst=null;
         AWTUtilities.setOpaque(this, false);
         con= Conexion.ConnectDB();
         Get_Data();
+        eliminarProductStock0();
         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
@@ -291,7 +292,18 @@ PreparedStatement pst=null;
 }
 
  }
- 
+ //eliminar producto automaticamente producto llegue a 0
+ public void eliminarProductStock0() {
+            try{
+                    con=Conexion.ConnectDB();
+                    String sql= "delete from inventario_cirugia where cantidad='"+0+"' ";
+                    pst=con.prepareStatement(sql);
+                    pst.execute();
+                    Get_Data();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+            }
+    }
     public void calcular() {
         String pre;
         String can;
@@ -314,6 +326,10 @@ PreparedStatement pst=null;
         cirugia.registrar_cirugia.lblTotal.setText("" + Math.rint((total) * 100) / 100);
 
     }
+    private void colorear(){
+        lista_productos_servicios.ColorearFilas colorear=new lista_productos_servicios.ColorearFilas(3);
+        tabla.setDefaultRenderer (Object.class, colorear);
+    }
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
        FadeEffect.fadeOut(this, 50, 0.1f);
         this.dispose();
@@ -321,14 +337,18 @@ PreparedStatement pst=null;
 
     private void buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarKeyReleased
         // search btn code
+        
         String name = buscar.getText();
         try {
-
             DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select codigo_cirugia as 'Codigo', nombre as 'Nombre', precio as 'Precio', cantidad as 'Cantidad Disponible' from inventario_cirugia WHERE nombre LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select codigo_cirugia as 'Codigo', "
+                    + "nombre as 'Nombre', "
+                    + "precio as 'Precio', "
+                    + "cantidad as 'Cantidad Disponible' "
+                    + "from inventario_cirugia WHERE nombre LIKE '%"+name+"%' or codigo_cirugia LIKE '%"+name+"%'");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -336,11 +356,9 @@ PreparedStatement pst=null;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-                v.add(rs.getString(5));
                 dt.addRow(v);
-
             }
-
+                colorear();
         } catch (Exception e) {
             Get_Data();
 

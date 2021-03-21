@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package unidad_apa;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import cafeteria.OpcionesAl;
-import paneles.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Date;

@@ -12,7 +12,7 @@ import cajaservicios.caja_laboratorio;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JFrame;
-import paneles.pnl_laboratorio;
+import ServiciosYConexion.pnl_laboratorio;
 import principal.PrincipalAdministrador;
 import registro_examen.examen_laboratorio;
 

@@ -24,7 +24,7 @@ public class Load extends javax.swing.JFrame implements Runnable {
      */
     public Load() {
         initComponents();
-        this.setIconImage(new ImageIcon(getClass().getResource("/img1/HODUMEDIC.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/img1/icon_taskbar.png")).getImage());
         this.setLocationRelativeTo(null);
         AWTUtilities.setOpaque(this, false);
         FadeEffect.fadeInFrame(this, 50, 0.1f);

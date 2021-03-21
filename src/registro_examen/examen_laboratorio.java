@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package registro_examen;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import alertas.principal.ErrorAlert;
 import alertas.principal.SuccessAlert;
 import cafeteria.OpcionesAl;
-import paneles.*;
+import generadores_codigo.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -707,38 +709,8 @@ static Conexion cc = new Conexion();
     }// </editor-fold>//GEN-END:initComponents
     //genera el codigo registro de examen 
     private void numeros() {
-        int j;
-        int cont = 1;
-        String num = "";
-        String c = "";
-        String SQL = "SELECT MAX(codigo) FROM test_laboratorio";
-
-        try {
-            Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery(SQL);
-            while (rs.next()) {
-                c = rs.getString(1);
-            }
-
-            if (c == null) {
-                numFac.setText("RL0001");
-            } else {
-                char r1 = c.charAt(2);
-                char r2 = c.charAt(3);
-                char r3 = c.charAt(4);
-                char r4 = c.charAt(5);
-                String r = "";
-                r = "" + r1 + r2 + r3 + r4;
-                j = Integer.parseInt(r);
-                GenerarCodigos gen = new GenerarCodigos();
-                gen.generar(j);
-                numFac.setText("RL" + gen.serie());
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OpcionesAl.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         GenerarCodigosTest gen = new GenerarCodigosTest();
+        gen.generarTLab();
     }
 
    public static String fechaactual() {
@@ -940,6 +912,10 @@ static Conexion cc = new Conexion();
         } else {
         try{
             con=Conexion.ConnectDB();
+            if (numFac.getText().equals("")) {
+                JOptionPane.showMessageDialog( this, "REVISE QUE EL SERVIDOR ESTE ENCENDIDO O QUE LA RED ESTE FUNCIONANDO","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if (txtpaciente.getText().equals("")) {
                 JOptionPane.showMessageDialog( this, "Ingrese Paciente","Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -953,7 +929,7 @@ static Conexion cc = new Conexion();
                 return;
             }
                // insertar datos en test_laboratorio
-            String sql= "insert into test_laboratorio(codigo,"
+            String sql= "insert into test_laboratorio("
                     + "numfact,"
                     + "paciente,"
                     + "medico,"
@@ -963,7 +939,6 @@ static Conexion cc = new Conexion();
                     + "fecha,"
                     + "total,"
                     + "estado) values ('"
-                    +numFac.getText()+"','" 
                     +codetest.getText()+"','" 
                     +lblidpaciente.getText()+"','" 
                     +txtmedico.getText()

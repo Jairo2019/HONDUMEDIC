@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package unidad_apa;
+import ServiciosYConexion.pnl_menu;
+import ServiciosYConexion.Conexion;
 import cafeteria.OpcionesAl;
-import paneles.*;
 import java.awt.Font;
 import java.util.Date;
 import java.sql.Connection;
@@ -267,7 +268,6 @@ private void Get_Data(){
           
 }
   }
-
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed

@@ -24,7 +24,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -59,6 +59,7 @@ PreparedStatement pst=null;
         AWTUtilities.setOpaque(this, false);
         con= Conexion.ConnectDB();
         Get_Data();
+        eliminarProductStock0();
         cantidadAlmacen.hide();
         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -307,7 +308,19 @@ PreparedStatement pst=null;
 }
 
  }
- 
+ //eliminar producto automaticamente producto llegue a 0
+ public void eliminarProductStock0() {
+            try{
+                con=Conexion.ConnectDB();
+                String sql= "delete from inventario_ultrasonido where cantidad='"+0+"' ";
+                pst=con.prepareStatement(sql);
+                pst.execute();
+                Get_Data();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+            }
+
+    }
     public void calcular() {
         String pre;
         String can;
@@ -348,7 +361,7 @@ PreparedStatement pst=null;
                     + " nombre as 'Nombre',"
                     + " precio as 'Precio',"
                     + " cantidad as 'Cantidad Disponible' "
-                    + "from inventario_ultrasonido WHERE nombre LIKE '%"+name+"%' ");
+                    + "from inventario_ultrasonido WHERE nombre LIKE '%"+name+"%' or codigo_ultrasonido LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
@@ -356,7 +369,6 @@ PreparedStatement pst=null;
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
                 v.add(rs.getString(4));
-                v.add(rs.getString(5));
                 dt.addRow(v);
 
             }

@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -301,14 +301,15 @@ public static String cual=""; //saber que formulario esta pidiendo información
             dt.setRowCount(0);
             Statement s = Conexion.ConnectDB().createStatement();
 
-            ResultSet rs = s.executeQuery("select codigo_hospitalizacion as 'Codigo', nombre as 'Nombre', precio as 'Precio' from servicio_hospitalizacion WHERE nombre LIKE '%"+name+"%' ");
+            ResultSet rs = s.executeQuery("select codigo_hospitalizacion as 'Codigo',"
+                    + " nombre as 'Nombre',"
+                    + " precio as 'Precio' from servicio_hospitalizacion WHERE nombre LIKE '%"+name+"%' or codigo_hospitalizacion LIKE '%"+name+"%' ");
 
             while (rs.next()) {
                 Vector v = new Vector();
                 v.add(rs.getString(1));
                 v.add(rs.getString(2));
                 v.add(rs.getString(3));
-                v.add(rs.getString(4));
                 dt.addRow(v);
 
             }

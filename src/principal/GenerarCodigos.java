@@ -3,7 +3,6 @@ package principal;
 
 
 public class GenerarCodigos {
-    
     private int dato;
     private int cont=1;
     private String num="";
@@ -34,12 +33,8 @@ public class GenerarCodigos {
           
     }
 
-    public String serie()
-    {
-        return this.num;
-    }
-    
-    
-    
-    
+//    public String serie()
+//    {
+//        return this.num;
+//    }
 }

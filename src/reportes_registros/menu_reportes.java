@@ -132,7 +132,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnambulancia.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnambulancia.setForeground(new java.awt.Color(0, 111, 177));
         btnambulancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnambulancia.png"))); // NOI18N
-        btnambulancia.setText("AMBULANCIA");
+        btnambulancia.setText("RPT AMBULANCIA");
         btnambulancia.setToolTipText("");
         btnambulancia.setBorder(null);
         btnambulancia.setContentAreaFilled(false);
@@ -166,7 +166,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btncaja.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btncaja.setForeground(new java.awt.Color(0, 111, 177));
         btncaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btncaja.png"))); // NOI18N
-        btncaja.setText("CAJA");
+        btncaja.setText("RPT CAJA");
         btncaja.setToolTipText("");
         btncaja.setBorder(null);
         btncaja.setContentAreaFilled(false);
@@ -201,7 +201,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnadmin.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnadmin.setForeground(new java.awt.Color(0, 111, 177));
         btnadmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnexpenses.png"))); // NOI18N
-        btnadmin.setText("EGRESOS");
+        btnadmin.setText("RPT EGRESOS");
         btnadmin.setToolTipText("");
         btnadmin.setBorder(null);
         btnadmin.setContentAreaFilled(false);
@@ -236,7 +236,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btncirugia.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btncirugia.setForeground(new java.awt.Color(0, 111, 177));
         btncirugia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btncirugia.png"))); // NOI18N
-        btncirugia.setText("CIRUGÍA");
+        btncirugia.setText("RPT CIRUGÍA");
         btncirugia.setToolTipText("");
         btncirugia.setBorder(null);
         btncirugia.setContentAreaFilled(false);
@@ -317,7 +317,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btningresos.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btningresos.setForeground(new java.awt.Color(0, 111, 177));
         btningresos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnincome.png"))); // NOI18N
-        btningresos.setText("INGRESOS");
+        btningresos.setText("RPT  INGRESOS");
         btningresos.setToolTipText("");
         btningresos.setBorder(null);
         btningresos.setContentAreaFilled(false);
@@ -351,7 +351,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnemergencia.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnemergencia.setForeground(new java.awt.Color(0, 111, 177));
         btnemergencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnemergencia.png"))); // NOI18N
-        btnemergencia.setText("EMERGENCIA");
+        btnemergencia.setText("RPT  EMERGENCIA");
         btnemergencia.setToolTipText("");
         btnemergencia.setBorder(null);
         btnemergencia.setContentAreaFilled(false);
@@ -385,7 +385,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnendoscopia.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnendoscopia.setForeground(new java.awt.Color(0, 111, 177));
         btnendoscopia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnendoscopia.png"))); // NOI18N
-        btnendoscopia.setText("ENDOSCOPIA");
+        btnendoscopia.setText("RPT  ENDOSCOPIA");
         btnendoscopia.setToolTipText("");
         btnendoscopia.setBorder(null);
         btnendoscopia.setContentAreaFilled(false);
@@ -419,7 +419,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnfarmacia.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnfarmacia.setForeground(new java.awt.Color(0, 111, 177));
         btnfarmacia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnusuarios.png"))); // NOI18N
-        btnfarmacia.setText("PACIENTES");
+        btnfarmacia.setText("RPT  PACIENTES");
         btnfarmacia.setToolTipText("");
         btnfarmacia.setBorder(null);
         btnfarmacia.setContentAreaFilled(false);
@@ -486,7 +486,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnhopitalizacion.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnhopitalizacion.setForeground(new java.awt.Color(0, 111, 177));
         btnhopitalizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnhospitalizacion.png"))); // NOI18N
-        btnhopitalizacion.setText("HOSPITALIZACIÓN");
+        btnhopitalizacion.setText("RPT  HOSPITALIZACIÓN");
         btnhopitalizacion.setToolTipText("");
         btnhopitalizacion.setBorder(null);
         btnhopitalizacion.setContentAreaFilled(false);
@@ -504,7 +504,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
-                .addComponent(btnhopitalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                .addComponent(btnhopitalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel18Layout.setVerticalGroup(
@@ -520,7 +520,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnrayosx.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnrayosx.setForeground(new java.awt.Color(0, 111, 177));
         btnrayosx.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnrayosx.png"))); // NOI18N
-        btnrayosx.setText("RAYOS X");
+        btnrayosx.setText("RPT  RAYOS X");
         btnrayosx.setToolTipText("");
         btnrayosx.setBorder(null);
         btnrayosx.setContentAreaFilled(false);
@@ -554,7 +554,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnultrasonido.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnultrasonido.setForeground(new java.awt.Color(0, 111, 177));
         btnultrasonido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnultrasonido.png"))); // NOI18N
-        btnultrasonido.setText("ULTRASONIDO");
+        btnultrasonido.setText("RPT  ULTRASONIDO");
         btnultrasonido.setToolTipText("");
         btnultrasonido.setBorder(null);
         btnultrasonido.setContentAreaFilled(false);
@@ -588,7 +588,7 @@ public class menu_reportes extends javax.swing.JInternalFrame {
         btnlaboratorio.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         btnlaboratorio.setForeground(new java.awt.Color(0, 111, 177));
         btnlaboratorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/btnlaboratorio.png"))); // NOI18N
-        btnlaboratorio.setText("LABORATORIO");
+        btnlaboratorio.setText("RPT  LABORATORIO");
         btnlaboratorio.setToolTipText("");
         btnlaboratorio.setBorder(null);
         btnlaboratorio.setContentAreaFilled(false);

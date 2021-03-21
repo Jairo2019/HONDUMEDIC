@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package contabilidad;
+import ServiciosYConexion.Conexion;
 import cafeteria.OpcionesAl;
-import paneles.*;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -637,7 +637,7 @@ PreparedStatement pst=null;
             }
 
             if (c == null) {
-                numFac.setText("00000001");
+                numFac.setText("0001");
             } else {
                 j = Integer.parseInt(c);
                 GenerarNumero gen = new GenerarNumero();

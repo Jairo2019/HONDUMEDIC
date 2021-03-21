@@ -5,13 +5,9 @@
  */
 package unidad_apa;
 
-import lista_productos_servicios.*;
-import ventas.*;
 import alertas.principal.AWTUtilities;
 import alertas.principal.ErrorAlert;
 import alertas.principal.FadeEffect;
-import paneles.Conexion;
-import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,9 +24,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
-import paneles.Conexion;
-import tabla.EstiloTablaHeader;
-import tabla.EstiloTablaRenderer;
+import ServiciosYConexion.Conexion;
 import tabla.MyScrollbarUI;
 
 /**
@@ -65,6 +59,7 @@ PreparedStatement pst=null;
         AWTUtilities.setOpaque(this, false);
         con= Conexion.ConnectDB();
         Get_Data();
+        eliminarProductStock0();
         this.tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
@@ -292,6 +287,18 @@ PreparedStatement pst=null;
 }
 
  }
+ //eliminar producto automaticamente producto llegue a 0
+ public void eliminarProductStock0() {
+            try{
+                con=Conexion.ConnectDB();
+                String sql= "delete from inventario_hospitalizacion_apa where cantidad='"+0+"' ";
+                pst=con.prepareStatement(sql);
+                pst.execute();
+                Get_Data();
+            }catch(HeadlessException | SQLException ex){
+                JOptionPane.showMessageDialog(this,ex);
+            }
+    }
  
     public void calcular() {
         String pre;
